@@ -14,9 +14,9 @@ namespace Financiera_GUI;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class wSystemManagement : Window
 {
-    public MainWindow()
+    public wSystemManagement()
     {
         InitializeComponent();
     }

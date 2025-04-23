@@ -9,4 +9,36 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\agregar_usuario_icon.png" />
+    <None Remove="Images\credit_condition_icon.png" />
+    <None Remove="Images\credit_policy_icon.png" />
+    <None Remove="Images\document_icon.png" />
+    <None Remove="Images\edit_account_icon.png" />
+    <None Remove="Images\financiera_logo.png" />
+    <None Remove="Images\logout_icon.png" />
+    <None Remove="Images\sucursal_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\agregar_usuario_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\credit_condition_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\credit_policy_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\document_icon.png" />
+    <Resource Include="Images\edit_account_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\financiera_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\logout_icon.png" />
+    <Resource Include="Images\sucursal_icon.png" />
+  </ItemGroup>
+
 </Project>
