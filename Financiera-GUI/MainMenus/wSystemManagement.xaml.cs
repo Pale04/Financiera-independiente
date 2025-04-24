@@ -1,23 +1,38 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
-namespace Financiera_GUI;
-
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class wSystemManagement : Window
+namespace Financiera_GUI.MainMenus
 {
-    public wSystemManagement()
+    public partial class wSystemManagement : Page
     {
-        InitializeComponent();
+        public wSystemManagement()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnCreateAccountClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //TODO: Implement the logic for navigate to the account creation page
+        }
+
+        private void BtnEditAccountClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //TODO: Implement the logic for navigate to the account update page
+        }
+        private void BtnCreditPoliciesManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //TODO: Implement the logic for navigate to the credit policies page
+        }
+        private void BtnCreditConditionManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //TODO: Implement the logic for navigate to the credit conditions page
+        }
+        private void BtnDocumentationManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //TODO: Implement the logic for navigate to the documentation page
+        }
+        private void BtnFinancialBranchesManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //TODO: Implement the logic for navigate to the Financial Branches page
+        }
     }
 }
