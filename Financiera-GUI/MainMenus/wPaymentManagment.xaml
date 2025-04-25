@@ -1,0 +1,80 @@
+﻿<Window x:Class="Financiera_GUI.MainMenus.wPaymentManagment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financiera_GUI.MainMenus"
+        mc:Ignorable="d"
+        Title="wPaymentManagment" Height="720" Width="1280">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Background="#FF0D1B2A">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Margin="10" Grid.Column="0" Source="/Images/financiera_logo.png" Stretch="Uniform"/>
+            <Label Margin="10" Grid.Column="1" HorizontalAlignment="Center"
+                   Height="Auto"
+                   FontSize="50" FontFamily="Roboto" FontWeight="Bold" Foreground="White">Financiera Independiente </Label>
+            <Button Margin="1038,30,10,30" Grid.Column="1" Height="40px" Width="Auto">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../images/logout_icon.png" Margin="5"/>
+                    <TextBlock Text="Cerrar sesión" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Margin="10" Background="#FFE0E1DD" CornerRadius="20">
+                    <Grid Width="400" Height="150">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0" Margin="10" Source="/Images/generate_payment_layout.png" Stretch="Uniform"/>
+                        <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto"> Generar Layout de Cobro </Label>
+                    </Grid>
+                </Border>
+                
+                <Border Margin="10" Background="#FFE0E1DD" CornerRadius="20">
+                    <Grid Width="400" Height="150">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0" Margin="10" Source="/Images/payment_register.png" Stretch="Uniform"/>
+                        <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto">Registrar Pagos de Créditos</Label>
+                    </Grid>
+                </Border>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Margin="10" Background="#FFE0E1DD" CornerRadius="20">
+                    <Grid Width="400" Height="150">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0" Margin="10" Source="/Images/efficency_statistics.png" Stretch="Uniform"/>
+                        <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto">Generar Reporte de Eficiencia</Label>
+                    </Grid>
+                </Border>
+            </StackPanel>
+            
+            </StackPanel>
+    </Grid>
+</Window>
