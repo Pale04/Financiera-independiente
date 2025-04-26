@@ -7,6 +7,10 @@ builder.Services.AddServiceModelServices();
 builder.Services.AddServiceModelMetadata();
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
 
+builder.Services.AddSingleton<SessionService>();
+builder.Services.AddSingleton<AccountService>();
+builder.Services.AddSingleton<CatalogService>();
+
 var app = builder.Build();
 
 app.UseServiceModel(serviceBuilder =>
