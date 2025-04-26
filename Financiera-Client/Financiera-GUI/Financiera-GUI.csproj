@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Business-logic\Business-logic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\agregar_usuario_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
