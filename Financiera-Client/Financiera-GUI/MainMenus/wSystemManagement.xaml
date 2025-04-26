@@ -1,0 +1,154 @@
+﻿<Page x:Class="Financiera_GUI.MainMenus.wSystemManagement"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Financiera_GUI.MainMenus"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="wSystemManagement">
+
+    <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal">
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnCreateAccountClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="150" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/agregar_usuario_icon.png" Stretch="Uniform"/>
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" FontFamily="Roboto">Crear cuentas</Label>
+                </Grid>
+            </Border>
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnEditAccountClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="150" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/edit_account_icon.png" Stretch="Uniform"/>
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" FontFamily="Roboto">Modificar cuentas</Label>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnCreditPoliciesManagementClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="150" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/credit_policy_icon.png" Stretch="Uniform"/>
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" FontFamily="Roboto">Gestión de políticas de crédito</Label>
+                </Grid>
+            </Border>
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnCreditConditionManagementClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="150" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/credit_condition_icon.png" Stretch="Uniform"/>
+                    <TextBlock Grid.Row="1" Margin="10,0" Height="Auto"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontSize="25" FontFamily="Roboto" TextAlignment="Center"
+                           TextWrapping="Wrap">Gestión de condiciones de crédito</TextBlock>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnDocumentationManagementClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="180" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/document_icon.png" Stretch="Uniform"/>
+                    <TextBlock Grid.Row="1" Margin="20,0" Height="Auto"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontSize="25" FontFamily="Roboto" TextAlignment="Center"
+                           TextWrapping="Wrap">Gestión de documentos para solicitud de crédito</TextBlock>
+                </Grid>
+            </Border>
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnFinancialBranchesManagementClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="180" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/sucursal_icon.png" Stretch="Uniform"/>
+                    <TextBlock Grid.Row="1" Margin="10" Height="Auto" 
+                           VerticalAlignment="Top" HorizontalAlignment="Center" 
+                           FontSize="25" FontFamily="Roboto" TextAlignment="Center"
+                           TextWrapping="Wrap">Gestión de sucursales</TextBlock>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</Page>
