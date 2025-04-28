@@ -1,0 +1,105 @@
+﻿<Page x:Class="Financiera_GUI.MainMenus.wPaymentManagment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financiera_GUI.MainMenus"
+        mc:Ignorable="d"
+        d:DesignHeight="720" d:DesignWidth="1280"
+        Title="wPaymentManagment">
+
+    <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal">
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnGeneratePaymentLayoutClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="150">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/generate_payment_layout.png" Stretch="Uniform"/>
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto">Generar Layout de Cobro</Label>
+                </Grid>
+            </Border>
+
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnRegisterCreditPaymentsClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="150">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/payment_register.png" Stretch="Uniform"/>
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto">Registrar Pagos de Créditos</Label>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnGenerateEfficiencyReportClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="150">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/efficency_statistics.png" Stretch="Uniform"/>
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto">Generar Reporte de Eficiencia</Label>
+                </Grid>
+            </Border>
+
+
+            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnManageUncollectableCreditsClick">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#FFE0E1DD" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid Width="400" Height="150">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="10" Source="../images/manage_uncollectible_credits.png" Stretch="Uniform"/>
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto">Gestionar Créditos Incobrables</Label>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</Page>

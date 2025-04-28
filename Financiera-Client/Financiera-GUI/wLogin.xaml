@@ -1,0 +1,85 @@
+﻿<Window x:Class="Financiera_GUI.wLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financiera_GUI"
+        mc:Ignorable="d"
+        Title="wLogin" Height="720" Width="1280">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Background="#FF0D1B2A">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Margin="10" Grid.Column="0" Source="/Images/financiera_logo.png" Stretch="Uniform"/>
+
+            <Label Margin="10" Grid.Column="1" Height="Auto"
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+           FontSize="50" FontFamily="Roboto" FontWeight="Bold" Foreground="White" >Financiera Independiente</Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Frame Name="ContentFrame" NavigationUIVisibility="Hidden" />
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                <Label Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center"
+                       Height="Auto"
+                       FontSize="50" FontWeight="DemiBold" FontFamily="Roboto">Iniciar Sesión</Label>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                    <Label Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top"
+                           Height="Auto"
+                           FontSize="25" FontWeight="Normal"  FontFamily="Roboto">Nombre de Usuario</Label>
+                    <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="2" Background="White">
+                        <TextBox x:Name="tbUsername" GotFocus="tbUsername_GotFocus" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5"
+                        Height="40" Width="500" Margin="10" 
+                        FontSize="20" FontFamily="Roboto" TextAlignment="Justify" BorderThickness="0" Foreground="Gray">Ej. Usuario123</TextBox>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                    <Label Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Height="Auto"
+                    FontSize="25" FontWeight="Normal"  FontFamily="Roboto">Contraseña</Label>
+                    <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="2" Background="White">
+                        <PasswordBox x:Name="psbPassword" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5"
+                        Height="40" Width="500" Margin="10" 
+                        FontSize="20" FontFamily="Roboto" BorderThickness="0" Foreground="Gray">
+                        </PasswordBox>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Height="Auto"
+                           FontSize="15" FontWeight="Light" FontFamily="Roboto">¿Olvidaste tu contraseña?</Label>
+
+                    <TextBlock Margin="10" VerticalAlignment="Center"
+                               Height="Auto"
+                               FontSize="15" FontWeight="DemiBold" FontFamily="Roboto">
+                        <Hyperlink x:Name="hlResetPassword" Click="hlResetPassword_Click"> Restablecer contraseña </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <Button Name="btnLogin" VerticalAlignment="Center" HorizontalAlignment="Left" Height="55" Background="#757575"
+                        Width="225" Margin="10"
+                        FontFamily="Roboto" FontSize="25" FontWeight="Bold" Foreground="#F5F5F5" Click="btnLogin_Click"> Ingresar
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

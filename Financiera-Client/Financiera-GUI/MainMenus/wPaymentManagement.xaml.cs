@@ -17,11 +17,31 @@ namespace Financiera_GUI.MainMenus
     /// <summary>
     /// Lógica de interacción para wPaymentManagment.xaml
     /// </summary>
-    public partial class wPaymentManagment : Window
+    public partial class wPaymentManagment : Page
     {
         public wPaymentManagment()
         {
             InitializeComponent();
+        }
+
+        private void BtnGeneratePaymentLayoutClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BtnRegisterCreditPaymentsClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BtnGenerateEfficiencyReportClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BtnManageUncollectableCreditsClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
