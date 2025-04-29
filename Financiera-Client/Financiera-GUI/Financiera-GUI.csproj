@@ -11,12 +11,17 @@
 
   <ItemGroup>
     <None Remove="Images\agregar_usuario_icon.png" />
+    <None Remove="Images\consult-credit-applications.png" />
     <None Remove="Images\credit_condition_icon.png" />
     <None Remove="Images\credit_policy_icon.png" />
     <None Remove="Images\document_icon.png" />
     <None Remove="Images\edit_account_icon.png" />
+    <None Remove="Images\efficency_statistics.png" />
     <None Remove="Images\financiera_logo.png" />
+    <None Remove="Images\generate_payment_layout.png" />
     <None Remove="Images\logout_icon.png" />
+    <None Remove="Images\manage_uncollectible_credits.png" />
+    <None Remove="Images\payment_register.png" />
     <None Remove="Images\sucursal_icon.png" />
   </ItemGroup>
 
@@ -28,6 +33,7 @@
     <Resource Include="Images\agregar_usuario_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\consult-credit-applications.png" />
     <Resource Include="Images\credit_condition_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -38,10 +44,14 @@
     <Resource Include="Images\edit_account_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\efficency_statistics.png" />
     <Resource Include="Images\financiera_logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\generate_payment_layout.png" />
     <Resource Include="Images\logout_icon.png" />
+    <Resource Include="Images\manage_uncollectible_credits.png" />
+    <Resource Include="Images\payment_register.png" />
     <Resource Include="Images\sucursal_icon.png" />
   </ItemGroup>
 
