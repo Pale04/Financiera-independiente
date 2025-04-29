@@ -6,6 +6,6 @@ namespace FinancieraServer.Interfaces
     public interface ISessionService
     {
         [OperationContract]
-        ResponseWithContent<string> Login();
+        ResponseWithContent<string> Login(String username, String password);
     }
 }
