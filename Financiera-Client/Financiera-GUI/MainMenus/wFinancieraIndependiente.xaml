@@ -58,7 +58,8 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <Frame Name="ContentFrame" NavigationUIVisibility="Hidden" />
+            <Frame Name="ContentFrame" NavigationUIVisibility="Hidden" 
+                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
 
     </Grid>
