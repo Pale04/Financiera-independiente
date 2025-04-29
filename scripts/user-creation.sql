@@ -1,9 +1,8 @@
-USE DATABASE independent-financial;
+--Necesitas registrar las 6 cuentas antes de ejecutar el script
 
-CREATE USER financialReader FOR login financialReader;
-GO
+USE independent_financial;
 
--- Create role able to select from all tables
+-- Se crea un ROL con solo permisos de selección en todas la tablas
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'financial_reader' AND type = 'R')
 BEGIN
     CREATE ROLE financial_reader;
@@ -12,7 +11,7 @@ GO
 
 DECLARE @TableName SYSNAME;
 DECLARE TableCursor CURSOR FOR
-SELECT TABLE_SCHEMA + '.' + TABLE_NAME
+SELECT TABLE_NAME
 FROM information_schema.TABLES
 WHERE TABLE_TYPE = 'BASE TABLE';
 
@@ -32,29 +31,31 @@ CLOSE TableCursor;
 DEALLOCATE TableCursor;
 GO
 
--- Asign role to reader user
+-- Se crea un usuario para la cuenta que solo tendrá permisos de selección y hereda los permisos del rol que los tiene
+CREATE USER financialReader FOR login financialReader;
 ALTER ROLE financial_reader ADD MEMBER financialReader;
+GRANT VIEW DEFINITION TO financialReader;
 GO
 
--- Create user for each company role
+--Se crea un usuario para cada cuenta, añadiendo solo permisos necesarios
 CREATE USER financialAdmin FOR login financialAdmin;
-GRANT CREATE, UPDATE ON OBJECT::CreditPolicy TO financialAdmin;
-GRANT CREATE, UPDATE ON OBJECT::CreditCondition TO financialAdmin;
-GRANT CREATE, UPDATE ON OBJECT::Subsidiary TO financialAdmin;
-GRANT CREATE, UPDATE ON OBJECT::RequiredDocument TO financialAdmin;
-GRANT CREATE ON OBJECT::Employee TO financialAdmin;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::CreditPolicy TO financialAdmin;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::CreditCondition TO financialAdmin;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::Subsidiary TO financialAdmin;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::RequiredDocumentation TO financialAdmin;
+GRANT INSERT, SELECT ON OBJECT::Employee TO financialAdmin;
 
 CREATE USER financialAnalist FOR login financialAnalist;
-GRANT UPDATE ON OBJECT::Credit TO financialAnalist;
+GRANT SELECT, UPDATE ON OBJECT::Credit TO financialAnalist;
 
 CREATE USER financialLoanOfficer FOR login financialLoanOfficer;
-GRANT CREATE ON OBJECT::Credit TO financialLoanOfficer;
-GRANT CREATE, UPDATE ON OBJECT::Document TO financialLoanOfficer;
-GRANT CREATE, UPDATE ON OBJECT::BankAccount TO financialLoanOfficer;
-GRANT CREATE, UPDATE ON OBJECT::Client TO financialLoanOfficer;
+GRANT INSERT, SELECT ON OBJECT::Credit TO financialLoanOfficer;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::Document TO financialLoanOfficer;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::BankAccount TO financialLoanOfficer;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::Client TO financialLoanOfficer;
 
 CREATE USER financialCollectionsAgent FOR login financialCollectionsAgent;
-GRANT CREATE, UPDATE ON OBJECT::Payment TO financialCollectionsAgent;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::Payment TO financialCollectionsAgent;
 
 CREATE USER financialAccountModificator FOR login financialAccountModificator;
-GRANT UPDATE ON OBJECT::Employee TO financialAccountModificator;
+GRANT SELECT, UPDATE ON OBJECT::Employee TO financialAccountModificator;
