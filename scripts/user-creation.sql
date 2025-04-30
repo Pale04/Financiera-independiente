@@ -7,7 +7,6 @@ IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'financial_rea
 BEGIN
     CREATE ROLE financial_reader;
 END
-GO
 
 DECLARE @TableName SYSNAME;
 DECLARE TableCursor CURSOR FOR
@@ -29,13 +28,11 @@ END;
 
 CLOSE TableCursor;
 DEALLOCATE TableCursor;
-GO
 
 -- Se crea un usuario para la cuenta que solo tendrá permisos de selección y hereda los permisos del rol que los tiene
 CREATE USER financialReader FOR login financialReader;
 ALTER ROLE financial_reader ADD MEMBER financialReader;
 GRANT VIEW DEFINITION TO financialReader;
-GO
 
 --Se crea un usuario para cada cuenta, añadiendo solo permisos necesarios
 CREATE USER financialAdmin FOR login financialAdmin;
@@ -59,3 +56,4 @@ GRANT INSERT, SELECT, UPDATE ON OBJECT::Payment TO financialCollectionsAgent;
 
 CREATE USER financialAccountModificator FOR login financialAccountModificator;
 GRANT SELECT, UPDATE ON OBJECT::Employee TO financialAccountModificator;
+GO

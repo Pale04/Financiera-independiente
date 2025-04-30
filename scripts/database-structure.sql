@@ -1,8 +1,5 @@
-IF NOT EXISTS (SELECT * FROM master.sys.databases WHERE name = 'independent_financial')
-BEGIN
-    CREATE DATABASE independent_financial;
-END
-GO
+DROP DATABASE independent_financial
+CREATE DATABASE independent_financial;
 
 USE independent_financial;
 
@@ -18,14 +15,12 @@ CREATE TABLE [Employee] (
   [role] VARCHAR(9) NOT NULL CHECK (role in ('analist','admin','adviser','collector')),
   [sucursalId] int NOT NULL
 )
-GO
 
 CREATE TABLE [Subsidiary] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [Address] varchar(400) NOT NULL,
   [state] bit NOT NULL
 )
-GO
 
 CREATE TABLE [Credit] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -36,7 +31,6 @@ CREATE TABLE [Credit] (
   [registrer] int NOT NULL,
   [conditionId] int NOT NULL
 )
-GO
 
 CREATE TABLE [Document] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -46,7 +40,6 @@ CREATE TABLE [Document] (
   [documentationId] int NOT NULL,
   [creditId] int NOT NULL
 )
-GO
 
 CREATE TABLE [RequiredDocumentation] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -54,7 +47,6 @@ CREATE TABLE [RequiredDocumentation] (
   [state] BIT NOT NULL,
   [fileType] VARCHAR(5) NOT NULL CHECK (fileType in ('image','pdf'))
 )
-GO
 
 CREATE TABLE [Client] (
   [rfc] char(13) PRIMARY KEY NOT NULL,
@@ -67,7 +59,6 @@ CREATE TABLE [Client] (
   [mail] varchar(100) NOT NULL,
   [state] bit NOT NULL
 )
-GO
 
 CREATE TABLE [BankAccount] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -75,7 +66,6 @@ CREATE TABLE [BankAccount] (
   [purpose] VARCHAR(7) NOT NULL CHECK (purpose in ('receive','collect')),
   [clientId] char(13) NOT NULL
 )
-GO
 
 CREATE TABLE [Payment] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -85,7 +75,6 @@ CREATE TABLE [Payment] (
   [registrer] int NOT NULL,
   [creditId] int NOT NULL
 )
-GO
 
 CREATE TABLE [CreditCondition] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -95,7 +84,6 @@ CREATE TABLE [CreditCondition] (
   [paymentsPerMonth] int NOT NULL,
   [registrer] int NOT NULL
 )
-GO
 
 CREATE TABLE [CreditPolicy] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -105,52 +93,36 @@ CREATE TABLE [CreditPolicy] (
   [effectiveDate] Date NOT NULL,
   [registrer] int NOT NULL
 )
-GO
 
 ALTER TABLE [Employee] ADD FOREIGN KEY ([sucursalId]) REFERENCES [Subsidiary] ([id])
-GO
 
 ALTER TABLE [Credit] ADD FOREIGN KEY ([beneficiary]) REFERENCES [Client] ([rfc])
-GO
 
 ALTER TABLE [Credit] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee] ([id])
-GO
 
 ALTER TABLE [Credit] ADD FOREIGN KEY ([conditionId]) REFERENCES [CreditCondition] ([id])
-GO
 
 ALTER TABLE [Document] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee] ([id])
-GO
 
 ALTER TABLE [Document] ADD FOREIGN KEY ([documentationId]) REFERENCES [RequiredDocumentation] ([id])
-GO
 
 ALTER TABLE [Document] ADD FOREIGN KEY ([creditId]) REFERENCES [Credit] ([id])
-GO
 
 ALTER TABLE [BankAccount] ADD FOREIGN KEY ([clientId]) REFERENCES [Client] ([rfc])
-GO
 
 ALTER TABLE [Payment] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee] ([id])
-GO
 
 ALTER TABLE [Payment] ADD FOREIGN KEY ([creditId]) REFERENCES [Credit] ([id])
-GO
 
 ALTER TABLE [CreditCondition] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee] ([id])
-GO
 
 ALTER TABLE [CreditPolicy] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee] ([id])
-GO
 
 --Create users for every role
---:r user-creation.sql
---GO
+:r user-creation.sql
 
 --Charge store procedures to the database
---:r stored-procedures.sql
---GO
+:r stored-procedures.sql
 
 --Assign permissions to every role for esecut stored procedures
---:r stored-procedures-permissions.sql
---GO
+:r stored-procedures-permissions.sql

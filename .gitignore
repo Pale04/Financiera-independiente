@@ -883,3 +883,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# database users creation file
+scripts/create_db_logins.sql
