@@ -10,8 +10,6 @@
     [DataContract]
     public class Response
     {
-        public Response() { }
-
         [DataMember]
         public int StatusCode { get; set; }
 

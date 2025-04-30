@@ -59,3 +59,28 @@ GRANT INSERT, SELECT, UPDATE ON OBJECT::Payment TO financialCollectionsAgent;
 
 CREATE USER financialAccountModificator FOR login financialAccountModificator;
 GRANT SELECT, UPDATE ON OBJECT::Employee TO financialAccountModificator;
+
+CREATE USER financialTester FOR login financialTester;
+GRANT VIEW DEFINITION TO financialTester;
+--Dar permisos de inserción y eliminación en todas las tablas
+DECLARE @TableName SYSNAME;
+DECLARE TableCursor CURSOR FOR
+SELECT TABLE_NAME
+FROM information_schema.TABLES
+WHERE TABLE_TYPE = 'BASE TABLE';
+
+OPEN TableCursor;
+
+FETCH NEXT FROM TableCursor INTO @TableName;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    DECLARE @GrantStatement NVARCHAR(MAX);
+    SET @GrantStatement = 'GRANT SELECT, INSERT, DELETE ON OBJECT::' + QUOTENAME(@TableName) + ' TO financialTester;';
+    EXEC (@GrantStatement);
+    FETCH NEXT FROM TableCursor INTO @TableName;
+END;
+
+CLOSE TableCursor;
+DEALLOCATE TableCursor;
+GO
