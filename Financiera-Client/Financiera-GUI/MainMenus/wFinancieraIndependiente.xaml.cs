@@ -7,7 +7,7 @@ namespace Financiera_GUI.MainMenus
         public wFinancieraIndependiente()
         {
             InitializeComponent();
-            ContentFrame.Content = new wPaymentManagment();
+            ContentFrame.Content = new Catalogs.wDocumentationManagement();
         }
     }
 }

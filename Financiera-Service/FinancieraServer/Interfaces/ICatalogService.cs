@@ -6,6 +6,6 @@ namespace FinancieraServer.Interfaces
     public interface ICatalogService
     {
         [OperationContract]
-        Response registerCreditCondition();
+        ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPagination(int pageSize, int lastId);
     }
 }

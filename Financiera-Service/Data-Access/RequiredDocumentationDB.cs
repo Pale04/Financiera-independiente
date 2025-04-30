@@ -1,30 +1,77 @@
 ﻿using Data_Access.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data_Access
 {
     public class RequiredDocumentationDB
     {
-        public int addDocument()
+        public List<RequiredDocumentation> GetByPagination(int pageSize, int lastId)
         {
-            int result = -1;
-            using (var context = new independent_financialContext(ConnectionsStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
+            List<RequiredDocumentation> documents = [];
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                var document = new RequiredDocumentation
+                documents = context.RequiredDocumentations
+                    .OrderBy(d => d.id)
+                    .Where(d => d.id > lastId)
+                    .Take(pageSize)
+                    .ToList();
+            }
+            return documents;
+        }
+
+        public bool Exists(string name, string fileType)
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                return context.RequiredDocumentations.Any(d => d.name == name && d.fileType == fileType);
+            }
+        }
+
+        public int Add(string name, string fileType)
+        {
+            int result = 0;
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
+            {
+                var newDocument = new RequiredDocumentation
                 {
-                    name = "Test",
+                    name = name,
                     state = true,
-                    fileType = "pdf"
+                    fileType = fileType
                 };
 
-                context.RequiredDocumentations.Add(document);
+                context.RequiredDocumentations.Add(newDocument);
                 result = context.SaveChanges();
             }
+            return result;
+        }
 
+        public int Update(int id, string name, string fileType)
+        {
+            int result = 0;
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
+            {
+                var document = context.RequiredDocumentations.Find(id);
+                if (document != null)
+                {
+                    document.name = name;
+                    document.fileType = fileType;
+                    result = context.SaveChanges();
+                }
+            }
+            return result;
+        }
+
+        public int UpdateState(int id, bool isActive)
+        {
+            int result = 0;
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
+            {
+                var document = context.RequiredDocumentations.Find(id);
+                if (document != null)
+                {
+                    document.state = isActive;
+                    result = context.SaveChanges();
+                }
+            }
             return result;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using FinancieraServer.Interfaces;
 using FinancieraServer.ServiceImplementations;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder();
 
@@ -10,6 +11,10 @@ builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddr
 builder.Services.AddSingleton<SessionService>();
 builder.Services.AddSingleton<AccountService>();
 builder.Services.AddSingleton<CatalogService>();
+
+Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
+Log.Information("Configuration ready for start the server");
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 
@@ -25,5 +30,7 @@ app.UseServiceModel(serviceBuilder =>
     var serviceMetadataBehavior = app.Services.GetRequiredService<ServiceMetadataBehavior>();
     serviceMetadataBehavior.HttpsGetEnabled = true;
 });
+
+
 
 app.Run();
