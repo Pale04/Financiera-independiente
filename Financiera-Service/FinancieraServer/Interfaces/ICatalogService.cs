@@ -7,5 +7,14 @@ namespace FinancieraServer.Interfaces
     {
         [OperationContract]
         ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPagination(int pageSize, int lastId);
+
+        [OperationContract]
+        Response AddRequiredDocument(RequiredDocumentDC requiredDocument);
+
+        [OperationContract]
+        Response UpdateRequiredDocument(RequiredDocumentDC requiredDocument);
+
+        [OperationContract]
+        Response UpdateRequiredDocumentState(int id, bool isActive);
     }
 }

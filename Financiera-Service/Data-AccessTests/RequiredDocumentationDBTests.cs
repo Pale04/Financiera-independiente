@@ -65,15 +65,51 @@ namespace Data_AccessTests
         [TestMethod()]
         public void ExistsSuccessfulTest()
         {
-            bool x = _requiredDocumentationDB.Exists(_testDocument1.name,_testDocument1.fileType);
+            Data_Access.Entities.RequiredDocumentation document = new()
+            {
+                name = _testDocument1.name,
+                fileType = _testDocument1.fileType,
+            };
+            bool x = _requiredDocumentationDB.Exists(document);
             Assert.IsTrue(x, "ExistsTest");
         }
 
         [TestMethod()]
         public void ExistsFalseTest()
         {
-            bool x = _requiredDocumentationDB.Exists("IFE", "image");
+            Data_Access.Entities.RequiredDocumentation document = new()
+            {
+                name = "IFE",
+                fileType = _testDocument1.fileType,
+            };
+            bool x = _requiredDocumentationDB.Exists(document);
             Assert.IsFalse(x, "ExistsFalseTest");
+        }
+
+        [TestMethod()]
+        public void AnotherExistsSuccessfulTest()
+        {
+            Data_Access.Entities.RequiredDocumentation document = new()
+            {
+                id = 10,
+                name = _testDocument1.name,
+                fileType = _testDocument1.fileType,
+            };
+            bool x = _requiredDocumentationDB.AnotherExists(document);
+            Assert.IsTrue(x, "AnotherExistsTest");
+        }
+
+        [TestMethod()]
+        public void AnotherExistsFalseTest()
+        {
+            Data_Access.Entities.RequiredDocumentation document = new()
+            {
+                id = _testDocument1.id,
+                name = _testDocument1.name,
+                fileType = _testDocument1.fileType,
+            };
+            bool x = _requiredDocumentationDB.AnotherExists(document);
+            Assert.IsFalse(x, "AnotherExistsFalseTest");
         }
 
         [TestMethod()]
