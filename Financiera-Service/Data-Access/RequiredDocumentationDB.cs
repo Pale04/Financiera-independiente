@@ -18,11 +18,19 @@ namespace Data_Access
             return documents;
         }
 
-        public bool Exists(string name, string fileType)
+        public bool AnotherExists(RequiredDocumentation document)
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                return context.RequiredDocumentations.Any(d => d.name == name && d.fileType == fileType);
+                return context.RequiredDocumentations.Any(d => d.name == document.name && d.fileType == document.fileType && d.id != document.id);
+            }
+        }
+
+        public bool Exists(RequiredDocumentation document)
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                return context.RequiredDocumentations.Any(d => d.name == document.name && d.fileType == document.fileType);
             }
         }
 
