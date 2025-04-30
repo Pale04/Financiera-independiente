@@ -1,38 +1,75 @@
-﻿using FinancieraServer.DataContracts;
+﻿using Data_Access.Entities;
+using Data_Access;
+using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
+using System.Data.Common;
 
 namespace FinancieraServer.ServiceImplementations
 {
-    public class SessionService : ISessionService
+    public partial class SessionService : ISessionService
     {
+        private ILogger<SessionService> _logger;
         readonly List<String> ACTIVE_SESSIONS = new List<String>();
-        public ResponseWithContent<string> Login(String username, String password)
-        {
-            var Session = new ResponseWithContent<string>();
 
-            //TODO: Get the object user to compare
-            if (false || 1 == 1)
+        public SessionService(ILogger<SessionService> logger)
+        {
+            _logger = logger;
+        }
+
+        public ResponseWithContent<Employee> Login(String username, String password)
+        {
+            var UserLogin = new AccountDC()
             {
-                if (ACTIVE_SESSIONS.Contains(username))
+                username = username,
+                password = password
+            };
+
+            EmployeeDB employeeDB = new EmployeeDB();
+            Employee employeeLogin = new()
+            {
+                user = username,
+                password = password
+            };
+
+
+            try
+            {
+                if (employeeDB.Exists(employeeLogin))
                 {
-                    Session.StatusCode = 1;
-                    Session.Message = "Ya existe una sesión activa con esta cuenta";
+                    if (employeeDB.IsCorrectPassword(employeeLogin))
+                    {
+                        if (ACTIVE_SESSIONS.Contains(username))
+                        {
+                            return new ResponseWithContent<Employee>(3, "There is a active session already");
+                        }
+                        else
+                        {
+                            employeeLogin = employeeDB.GetEmployeeData(employeeLogin);
+                            _logger.LogInformation($"Session initiated for {employeeLogin.user} at {DateTime.Now}");
+                            ACTIVE_SESSIONS.Add(employeeLogin.user);
+                            return new ResponseWithContent<Employee> (0, employeeLogin);
+
+                            
+                        }
+                    }
+                    else
+                    {
+                        return new ResponseWithContent<Employee>(1, "Incorrect username or password");
+                    }
                 }
                 else
                 {
-                    Session.StatusCode = 0;
-                    //TODO: Send the assigned role for the account
+                    return new ResponseWithContent<Employee>(1);
                 }
             }
-            else
+            catch (DbException error)
             {
-                Session.StatusCode = 1;
-                Session.Message = "Usuario o contraseña incorrectos";
+                _logger.LogWarning($"An Error Ocurred trying to get Employee Information: {error.Message}");
+                return new ResponseWithContent<Employee>(1, "An error ocurred, please try again later");
+
             }
 
-            
-
-                return Session;
+           
         }
     }
 }
