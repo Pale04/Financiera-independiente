@@ -21,7 +21,7 @@ var app = builder.Build();
 app.UseServiceModel(serviceBuilder =>
 {
     serviceBuilder.AddService<SessionService>();
-    serviceBuilder.AddServiceEndpoint<SessionService, ISessionService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/Service.svc");
+    serviceBuilder.AddServiceEndpoint<SessionService, ISessionService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/SessionService.svc");
     serviceBuilder.AddService<AccountService>();
     serviceBuilder.AddServiceEndpoint<AccountService, IAccountService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/AccountService.svc");
     serviceBuilder.AddService<CatalogService>();

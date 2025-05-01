@@ -1,4 +1,4 @@
-﻿using Data_Access.Entities;
+﻿    using Data_Access.Entities;
 using Data_Access;
 using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
@@ -44,7 +44,7 @@ namespace FinancieraServer.ServiceImplementations
                         }
                         else
                         {
-                            employeeLogin = employeeDB.GetEmployeeData(employeeLogin);
+                            
                             _logger.LogInformation($"Session initiated for {employeeLogin.user} at {DateTime.Now}");
                             ACTIVE_SESSIONS.Add(employeeLogin.user);
                             return new ResponseWithContent<Employee> (0, employeeLogin);
@@ -71,5 +71,36 @@ namespace FinancieraServer.ServiceImplementations
 
            
         }
+
+        public ResponseWithContent<Employee> GetAccountInfo(string username)
+        {
+            EmployeeDB employeeLogin = new EmployeeDB();
+            Employee employeeData = new()
+            {
+                user = username
+            };
+
+
+
+            try
+            {
+                if (employeeLogin.Exists(employeeData))
+                {
+                    employeeData = employeeLogin.GetEmployeeData(employeeData);
+                    return new ResponseWithContent<Employee>(0, employeeData);
+                }
+                else
+                {
+                    return new ResponseWithContent<Employee>(1, "Incorrect username or password");
+                }
+            }
+            catch (DbException error)
+            {
+                _logger.LogWarning($"An Error Ocurred trying to get Employee Information: {error.Message}");
+                return new ResponseWithContent<Employee>(1, "An error ocurred, please try again later");
+            }
+        }
     }
+
+    
 }
