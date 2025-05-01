@@ -6,7 +6,10 @@ namespace FinancieraServer.Interfaces
     public interface ICatalogService
     {
         [OperationContract]
-        ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPagination(int pageSize, int lastId);
+        ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPaginationNext(int pageSize, int lastId);
+
+        [OperationContract]
+        ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId);
 
         [OperationContract]
         Response AddRequiredDocument(RequiredDocumentDC requiredDocument);

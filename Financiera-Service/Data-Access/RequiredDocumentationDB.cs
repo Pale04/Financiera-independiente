@@ -4,7 +4,7 @@ namespace Data_Access
 {
     public class RequiredDocumentationDB
     {
-        public List<RequiredDocumentation> GetByPagination(int pageSize, int lastId)
+        public List<RequiredDocumentation> GetByPaginationNext(int pageSize, int lastId)
         {
             List<RequiredDocumentation> documents = [];
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
@@ -13,6 +13,21 @@ namespace Data_Access
                     .OrderBy(d => d.id)
                     .Where(d => d.id > lastId)
                     .Take(pageSize)
+                    .ToList();
+            }
+            return documents;
+        }
+
+        public List<RequiredDocumentation> GetByPaginationPrevious(int pageSize, int firstId)
+        {
+            List<RequiredDocumentation> documents = new();
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                documents = context.RequiredDocumentations
+                    .OrderBy(d => d.id)
+                    .Where(d => d.id < firstId)
+                    .ToList()
+                    .TakeLast(pageSize)
                     .ToList();
             }
             return documents;

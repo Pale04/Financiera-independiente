@@ -48,7 +48,7 @@ namespace FinancieraServer.ServiceImplementations
             return new Response(0);
         }
 
-        public ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPagination(int pageSize, int lastId)
+        public ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPaginationNext(int pageSize, int lastId)
         {
             if (pageSize <= 0 || lastId < 0)
             {
@@ -61,7 +61,7 @@ namespace FinancieraServer.ServiceImplementations
 
             try
             {
-                databaseRequiredDocuements = requiredDocumentationDB.GetByPagination(pageSize, lastId);
+                databaseRequiredDocuements = requiredDocumentationDB.GetByPaginationNext(pageSize, lastId);
             }
             catch (DbException error)
             {
@@ -70,6 +70,42 @@ namespace FinancieraServer.ServiceImplementations
             }
 
             List<RequiredDocumentDC> requiredDocuments = [];
+            foreach (RequiredDocumentation document in databaseRequiredDocuements)
+            {
+                requiredDocuments.Add(new RequiredDocumentDC
+                {
+                    Id = document.id,
+                    Name = document.name,
+                    FileType = document.fileType,
+                    State = document.state
+                });
+            }
+
+            return new ResponseWithContent<List<RequiredDocumentDC>>(0, requiredDocuments);
+        }
+
+        public ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId)
+        {
+            if (pageSize <= 0 || firstId < 0)
+            {
+                _logger.LogInformation("Attempt of get required documentation with {0} page size and {1} first id", pageSize, firstId);
+                return new ResponseWithContent<List<RequiredDocumentDC>>(2, "Invalid page size or last ID");
+            }
+
+            RequiredDocumentationDB requiredDocumentationDB = new();
+            List<RequiredDocumentation> databaseRequiredDocuements = new();
+
+            try
+            {
+                databaseRequiredDocuements = requiredDocumentationDB.GetByPaginationPrevious(pageSize, firstId);
+            }
+            catch (DbException error)
+            {
+                _logger.LogWarning("Error while attempting to get RequiredDocumentations {0}", error);
+                return new ResponseWithContent<List<RequiredDocumentDC>>(1, "Error while attempting to get RequiredDocumentations");
+            }
+
+            List<RequiredDocumentDC> requiredDocuments = new();
             foreach (RequiredDocumentation document in databaseRequiredDocuements)
             {
                 requiredDocuments.Add(new RequiredDocumentDC
