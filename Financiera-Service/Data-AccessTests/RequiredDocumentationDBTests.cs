@@ -58,7 +58,7 @@ namespace Data_AccessTests
         [TestMethod()]
         public void GetByPaginationSuccessfulTest()
         {
-            var x = _requiredDocumentationDB.GetByPagination(5, 0);
+            var x = _requiredDocumentationDB.GetByPaginationNext(5, 0);
             Assert.IsTrue(x.Count > 0, "GetByPaginationTest");
         }
 

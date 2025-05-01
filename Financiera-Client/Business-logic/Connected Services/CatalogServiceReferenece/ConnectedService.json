@@ -11,6 +11,7 @@
       "*, CatalogServiceReferenece"
     ],
     "references": [
+      "C:\\Users\\epale\\Documents\\Practicas_de_programacion\\6to semestre\\financiera-independiente\\Financiera-Client\\Business-logic\\bin\\Debug\\net8.0\\DomainClasses.dll",
       "Microsoft.Extensions.ObjectPool, {Microsoft.Extensions.ObjectPool, 6.0.16}",
       "Microsoft.IdentityModel.Logging, {Microsoft.IdentityModel.Logging, 6.8.0}",
       "Microsoft.IdentityModel.Protocols.WsTrust, {Microsoft.IdentityModel.Protocols.WsTrust, 6.8.0}",

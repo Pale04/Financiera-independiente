@@ -144,11 +144,39 @@ namespace CatalogServiceReferenece
     public interface ICatalogService
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationResponse")]
-        CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPagination(int pageSize, int lastId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationNext", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationNextRespon" +
+            "se")]
+        CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationNext(int pageSize, int lastId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationResponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationAsync(int pageSize, int lastId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationNext", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationNextRespon" +
+            "se")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationNextAsync(int pageSize, int lastId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationPrevious", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationPreviousRe" +
+            "sponse")]
+        CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationPrevious", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationPreviousRe" +
+            "sponse")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationPreviousAsync(int pageSize, int firstId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/AddRequiredDocumentResponse")]
+        CatalogServiceReferenece.Response AddRequiredDocument(CatalogServiceReferenece.RequiredDocumentDC requiredDocument);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/AddRequiredDocumentResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> AddRequiredDocumentAsync(CatalogServiceReferenece.RequiredDocumentDC requiredDocument);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentResponse")]
+        CatalogServiceReferenece.Response UpdateRequiredDocument(CatalogServiceReferenece.RequiredDocumentDC requiredDocument);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentAsync(CatalogServiceReferenece.RequiredDocumentDC requiredDocument);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocumentState", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentStateResponse")]
+        CatalogServiceReferenece.Response UpdateRequiredDocumentState(int id, bool isActive);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocumentState", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentStateResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentStateAsync(int id, bool isActive);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -201,14 +229,54 @@ namespace CatalogServiceReferenece
         {
         }
         
-        public CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPagination(int pageSize, int lastId)
+        public CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationNext(int pageSize, int lastId)
         {
-            return base.Channel.GetRequiredDocumentationByPagination(pageSize, lastId);
+            return base.Channel.GetRequiredDocumentationByPaginationNext(pageSize, lastId);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationAsync(int pageSize, int lastId)
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationNextAsync(int pageSize, int lastId)
         {
-            return base.Channel.GetRequiredDocumentationByPaginationAsync(pageSize, lastId);
+            return base.Channel.GetRequiredDocumentationByPaginationNextAsync(pageSize, lastId);
+        }
+        
+        public CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId)
+        {
+            return base.Channel.GetRequiredDocumentationByPaginationPrevious(pageSize, firstId);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationPreviousAsync(int pageSize, int firstId)
+        {
+            return base.Channel.GetRequiredDocumentationByPaginationPreviousAsync(pageSize, firstId);
+        }
+        
+        public CatalogServiceReferenece.Response AddRequiredDocument(CatalogServiceReferenece.RequiredDocumentDC requiredDocument)
+        {
+            return base.Channel.AddRequiredDocument(requiredDocument);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> AddRequiredDocumentAsync(CatalogServiceReferenece.RequiredDocumentDC requiredDocument)
+        {
+            return base.Channel.AddRequiredDocumentAsync(requiredDocument);
+        }
+        
+        public CatalogServiceReferenece.Response UpdateRequiredDocument(CatalogServiceReferenece.RequiredDocumentDC requiredDocument)
+        {
+            return base.Channel.UpdateRequiredDocument(requiredDocument);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentAsync(CatalogServiceReferenece.RequiredDocumentDC requiredDocument)
+        {
+            return base.Channel.UpdateRequiredDocumentAsync(requiredDocument);
+        }
+        
+        public CatalogServiceReferenece.Response UpdateRequiredDocumentState(int id, bool isActive)
+        {
+            return base.Channel.UpdateRequiredDocumentState(id, isActive);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentStateAsync(int id, bool isActive)
+        {
+            return base.Channel.UpdateRequiredDocumentStateAsync(id, isActive);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
