@@ -1,4 +1,7 @@
-﻿namespace DomainClasses;
+﻿using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+
+namespace DomainClasses;
 
 public enum FileType
 {
@@ -15,11 +18,11 @@ public class RequiredDocument
 
     public bool IsValidForCreation()
     {
-        return !string.IsNullOrEmpty(Name);
+        return !string.IsNullOrWhiteSpace(Name);
     }
 
     public bool IsValidForUpdate()
     {
-        return Id > 0 && !string.IsNullOrEmpty(Name);
+        return Id > 0 && !string.IsNullOrWhiteSpace(Name);
     }
 }

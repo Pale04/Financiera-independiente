@@ -2,6 +2,7 @@
 using Financiera_GUI.Utilities;
 using Business_logic.Catalogs;
 using DomainClasses;
+using System.Windows;
 
 namespace Financiera_GUI.Catalogs
 {
@@ -55,7 +56,7 @@ namespace Financiera_GUI.Catalogs
             documentsTable.Children.RemoveRange(1, documentsTable.Children.Count);
             foreach (RequiredDocument document in requiredDocuments)
             {
-                documentsTable.Children.Add(new wDocumentationManagementRow(document.Name, document.FileType.ToString(), document.Status ? "Activado" : "Desactivado"));
+                documentsTable.Children.Add(new wDocumentationManagementRow(document));
             }
 
             _actualPage += forward ? 1 : -1;
@@ -65,11 +66,11 @@ namespace Financiera_GUI.Catalogs
 
             if (_actualPage == 1)
             {
-                previousPageButton.Visibility = System.Windows.Visibility.Hidden;
+                previousPageButton.Visibility = Visibility.Hidden;
             }
             else
             {
-                previousPageButton.Visibility = System.Windows.Visibility.Visible;
+                previousPageButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -93,29 +94,34 @@ namespace Financiera_GUI.Catalogs
                 _nextPage.Add(document);
             }
 
-            nextPageButton.Visibility = _nextPage.Count == 0 ? System.Windows.Visibility.Hidden : System.Windows.Visibility.Visible;
+            nextPageButton.Visibility = _nextPage.Count == 0 ? Visibility.Hidden : Visibility.Visible;
         }
 
-        public void NextPage(object sender, System.Windows.RoutedEventArgs e)
+        public void NextPage(object sender, RoutedEventArgs e)
         {
             LoadPage(true);
         }
 
-        public void PreviousPage(object sender, System.Windows.RoutedEventArgs e)
+        public void PreviousPage(object sender, RoutedEventArgs e)
         {
             LoadPage(false);
         }
 
-        public void Back(object sender, System.Windows.RoutedEventArgs e)
+        public void Back(object sender, RoutedEventArgs e)
         {
             //TODO: Implementar la lógica para regresar a la página anterior
         }
 
-        public void RegisterDocument(object sender, System.Windows.RoutedEventArgs e)
+        public void RegisterDocument(object sender, RoutedEventArgs e)
         {
             RequiredDocumentationManager requiredDocumentationManagement = new();
             
-            //TODO: validar campos
+            if (!ValidFields())
+            {
+                //TODO: show autoclosable message
+                MessageBox.Show("Por favor, complete todos los campos requeridos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             string name = documentNameInput.Text;
             FileType fileType;
@@ -148,6 +154,11 @@ namespace Financiera_GUI.Catalogs
 
             //TODO: show autoclosable message
             RebootPages();
+        }
+
+        private bool ValidFields()
+        {
+            return !string.IsNullOrWhiteSpace(documentNameInput.Text) && !string.IsNullOrEmpty((string)fileTypeInput.SelectionBoxItem);
         }
     }
 }

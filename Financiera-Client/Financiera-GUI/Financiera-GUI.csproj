@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoClosingMessageBox" Version="1.0.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Business-logic\Business-logic.csproj" />
     <ProjectReference Include="..\DomainClasses\DomainClasses.csproj" />
   </ItemGroup>

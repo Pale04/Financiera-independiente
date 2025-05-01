@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Financiera_GUI.Utilities"
              mc:Ignorable="d" 
-             d:DesignHeight="70" d:DesignWidth="1280">
+             d:DesignHeight="40" d:DesignWidth="1280">
     
-    <Grid Margin="0,5,0,5" Height="Auto" Background="#E3E3E3">
+    <Grid x:Name="row" Margin="0,5,0,5" Height="Auto" Background="#E3E3E3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="150"/>
@@ -18,15 +18,33 @@
 
         <Label x:Name="documentNameLabel" Margin="0,0,10,0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center"
                 FontFamily="Roboto" FontSize="16" >Documento</Label>
+        <TextBox x:Name="documentNameInput" Grid.Column="0" Margin="10,3,10,3" MaxLength="50"
+                FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center"
+                 Visibility="Collapsed"/>
+        
         <Label x:Name="formatLabel" Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center"
                 FontFamily="Roboto" FontSize="16" >Formato</Label>
+        <ComboBox x:Name="fileTypeInput" Grid.Column="1" Margin="10,3,10,3"
+                  FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center"
+                  Visibility="Collapsed">
+            <ComboBoxItem Content="PDF" />
+            <ComboBoxItem Content="Image" />
+        </ComboBox>
+
         <Label x:Name="stateLabel" Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center" VerticalAlignment="Center"
                 FontFamily="Roboto" FontSize="16" >Estado</Label>
-        <Border Grid.Column="3" Margin="0,0,10,0" Style="{StaticResource ButtonBehaviorGlobal}"
+        
+        <Border x:Name="updateButton" Grid.Column="3" Margin="0,0,10,0" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Update"
                 Height="25" Width="25" CornerRadius="5">
             <Image Source="../images/edit_icon.png" Stretch="Uniform"/>
         </Border>
-        <Border Grid.Column="4" Style="{StaticResource ButtonBehaviorGlobal}"
+        <Border x:Name="saveChangesButton" Grid.Column="3" Margin="2" Height="23" MouseLeftButtonDown="SaveChanges"
+                Visibility="Collapsed" Style="{StaticResource ButtonBehaviourPrincipal}"  >
+            <Label FontSize="11" FontFamily="Roboto" Foreground="White"
+                   VerticalContentAlignment="Center" HorizontalAlignment="Center">Guardar</Label>
+        </Border>
+
+        <Border Grid.Column="4" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="UpdateState"
                 Height="25" Width="25" CornerRadius="20">
             <Image x:Name="changeStateIcon" Stretch="Uniform"/>
         </Border>

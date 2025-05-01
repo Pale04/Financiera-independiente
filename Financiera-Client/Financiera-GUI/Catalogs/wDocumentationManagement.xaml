@@ -47,7 +47,7 @@
 
                     <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Label Margin="10,10,10,5" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontFamily="Roboto">Nombre del documento</Label>
-                        <TextBox x:Name="documentNameInput" Margin="10,0,5,15" Width="282" Height="30"
+                        <TextBox x:Name="documentNameInput" Margin="10,0,5,15" Width="282" Height="30" MaxLength="50"
                                  FontSize="16" FontFamily="Roboto" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
