@@ -8,5 +8,8 @@ namespace FinancieraServer.Interfaces
     {
         [OperationContract]
         ResponseWithContent<Employee> Login(String username, String password);
+
+        [OperationContract]
+        ResponseWithContent<Employee> GetAccountInfo(String username);
     }
 }
