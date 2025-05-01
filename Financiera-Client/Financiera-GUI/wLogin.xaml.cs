@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Financiera_GUI
 {
-    /// <summary>
-    /// Lógica de interacción para wLogin.xaml
-    /// </summary>
     public partial class wLogin : Window
     {
         public wLogin()
@@ -26,12 +23,28 @@ namespace Financiera_GUI
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Make logic for each user
+            if (tbUsername.Text.Equals(null) || psbPassword.Password.Equals(null))
+            {
+                lbPasswordEmptyField.Visibility = Visibility.Visible;
+                lbUserEmptyField.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //TODO: Make logic for role menu display
+            }
         }
 
         private void hlResetPassword_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Add Funtionality for Use Case 3
+            if (tbUsername.Text.Equals(null))
+            {
+                lbUserEmptyField.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //TODO: Add Funtionality for Use Case 3
+            }
+
         }
 
         private void tbUsername_GotFocus(object sender, RoutedEventArgs e)

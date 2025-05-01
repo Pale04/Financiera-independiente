@@ -35,7 +35,7 @@
                 <Label Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center"
                        Height="Auto"
                        FontSize="50" FontWeight="DemiBold" FontFamily="Roboto">Iniciar Sesión</Label>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
                     <Label Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top"
                            Height="Auto"
                            FontSize="25" FontWeight="Normal"  FontFamily="Roboto">Nombre de Usuario</Label>
@@ -44,9 +44,12 @@
                         Height="40" Width="500" Margin="10" 
                         FontSize="20" FontFamily="Roboto" TextAlignment="Justify" BorderThickness="0" Foreground="Gray">Ej. Usuario123</TextBox>
                     </Border>
+                    <Label Name="lbUserEmptyField" VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Height="Auto"
+                           FontFamily="Roboto" FontSize="10" Foreground="Red" Visibility="Hidden"> *Este campo es obligatorio </Label>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
                     <Label Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Height="Auto"
                     FontSize="25" FontWeight="Normal"  FontFamily="Roboto">Contraseña</Label>
@@ -56,9 +59,12 @@
                         FontSize="20" FontFamily="Roboto" BorderThickness="0" Foreground="Gray">
                         </PasswordBox>
                     </Border>
+                    <Label Name="lbPasswordEmptyField" VerticalAlignment="Center" HorizontalAlignment="Left"
+                    Height="Auto"
+                    FontFamily="Roboto" FontSize="10" Foreground="Red" Visibility="Hidden">*Este campo es obligatorio</Label>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
                     <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"
                            Height="Auto"
                            FontSize="15" FontWeight="Light" FontFamily="Roboto">¿Olvidaste tu contraseña?</Label>
