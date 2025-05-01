@@ -61,6 +61,15 @@ namespace Business_logic {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ya existe una sesión activa con esta cuenta.
+        /// </summary>
+        internal static string ActiveSession {
+            get {
+                return ResourceManager.GetString("ActiveSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ocurrió un error en la aplicación. Inténtelo más tarde o llame a soporte técnico.
         /// </summary>
         internal static string BadRequest {

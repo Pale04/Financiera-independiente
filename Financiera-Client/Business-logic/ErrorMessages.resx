@@ -129,4 +129,7 @@
   <data name="InvalidFields" xml:space="preserve">
     <value>Campos incompletos o inválidos. Por favor revisa los errores indicados.</value>
   </data>
+  <data name="ActiveSession" xml:space="preserve">
+    <value>Ya existe una sesión activa con esta cuenta</value>
+  </data>
 </root>

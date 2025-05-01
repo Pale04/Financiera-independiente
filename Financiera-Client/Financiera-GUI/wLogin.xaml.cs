@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Business_logic;
+using DomainClasses;
+using Financiera_GUI.MainMenus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +19,8 @@ namespace Financiera_GUI
 {
     public partial class wLogin : Window
     {
+        LoginManager loginManager = new LoginManager();
+        EmployeeClass employeeLogin = new EmployeeClass();
         public wLogin()
         {
             InitializeComponent();
@@ -30,7 +35,34 @@ namespace Financiera_GUI
             }
             else
             {
-                //TODO: Make logic for role menu display
+                employeeLogin.user = tbUsername.Text;
+                employeeLogin.password = psbPassword.Password;
+
+                int codeLogin = loginManager.Login(employeeLogin);
+                if(codeLogin == 0)
+                {
+                    employeeLogin = loginManager.getSessionInfo(employeeLogin.user);
+                    switch (employeeLogin.role)
+                    {
+                        case "admin":
+                            //TODO: Change to wSystemManagment
+                            break;
+                        case "analist":
+                            //TODO: Change to wCreditApplication
+                            break;
+                        case "adviser":
+                            //TODO: Change to adviser menu
+                            break;
+                        case "collector":
+                            //TODO: Change to wPaymentManagment
+                            break;
+                    }
+                }
+                else
+                {
+                    //TODO: SendMessage
+                }
+                
             }
         }
 
