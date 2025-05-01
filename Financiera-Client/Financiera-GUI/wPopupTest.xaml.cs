@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,19 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Financiera_GUI.CatalogManagement
+namespace Financiera_GUI
 {
     /// <summary>
-    /// Lógica de interacción para wFinancialBranchManagement.xaml
+    /// Lógica de interacción para wPopupTest.xaml
     /// </summary>
-    public partial class wFinancialBranchManagement : Page
+    public partial class wPopupTest : Window
     {
-        public wFinancialBranchManagement()
+        public wPopupTest()
         {
             InitializeComponent();
+            var notificationManager = new NotificationManager();
+            notificationManager.Show("Prueba", "Hola mundo, soy una notificación temporal", NotificationType.Information, "WindowArea");
         }
     }
 }

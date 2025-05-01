@@ -24,8 +24,6 @@
     <None Remove="Images\financiera_logo.png" />
     <None Remove="Images\generate_payment_layout.png" />
     <None Remove="Images\logout_icon.png" />
-    <None Remove="Images\next_page_icon.png" />
-    <None Remove="Images\previous_page_icon.png" />
     <None Remove="Images\register-icon.png" />
     <None Remove="Images\manage_uncollectible_credits.png" />
     <None Remove="Images\payment_register.png" />
@@ -33,12 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoClosingMessageBox" Version="1.0.0.5" />
+    <PackageReference Include="Notification.Wpf" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Business-logic\Business-logic.csproj" />
-    <ProjectReference Include="..\DomainClasses\DomainClasses.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,8 +63,6 @@
     </Resource>
     <Resource Include="Images\generate_payment_layout.png" />
     <Resource Include="Images\logout_icon.png" />
-    <Resource Include="Images\next_page_icon.png" />
-    <Resource Include="Images\previous_page_icon.png" />
     <Resource Include="Images\register-icon.png" />
     <Resource Include="Images\manage_uncollectible_credits.png" />
     <Resource Include="Images\payment_register.png" />
