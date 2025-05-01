@@ -23,6 +23,10 @@ namespace Financiera_GUI
         public wPopupTest()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             var notificationManager = new NotificationManager();
             notificationManager.Show("Prueba", "Hola mundo, soy una notificación temporal", NotificationType.Information, "WindowArea");
         }

@@ -3,9 +3,9 @@ using Financiera_GUI.Utilities;
 
 namespace Financiera_GUI.Catalogs
 {
-    public partial class wDocumentationManagement : Page
+    public partial class _wDocumentationManagement : Page
     {
-        public wDocumentationManagement()
+        public _wDocumentationManagement()
         {
             InitializeComponent();
         }
@@ -17,7 +17,7 @@ namespace Financiera_GUI.Catalogs
 
         public void RegisterDocument(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.documentsTable.Children.Add(new wDocumentationManagementRow("IFE","PDF","Desactivado"));
+            //this.documentsTable.Children.Add(new wDocumentationManagementRow("IFE","PDF","Desactivado"));
         }
     }
 }

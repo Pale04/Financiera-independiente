@@ -9,5 +9,6 @@
         Title="wPopupTest" Height="450" Width="800">
     <Grid>
         <notifications:NotificationArea x:Name="WindowArea" Position="TopLeft" MaxItems="3"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="333,193,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>
