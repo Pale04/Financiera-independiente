@@ -3,6 +3,7 @@ using Financiera_GUI.Utilities;
 using Business_logic.Catalogs;
 using DomainClasses;
 using System.Windows;
+using Notification.Wpf;
 
 namespace Financiera_GUI.Catalogs
 {
@@ -17,7 +18,7 @@ namespace Financiera_GUI.Catalogs
         public wDocumentationManagement()
         {
             InitializeComponent();
-            _pageSize = 10;
+            _pageSize = 11;
             RebootPages();
         }
 
@@ -152,7 +153,8 @@ namespace Financiera_GUI.Catalogs
                 return;
             }
 
-            //TODO: show autoclosable message
+            var notificationManager = new NotificationManager();
+            notificationManager.Show("Documento registrado exitosamente", NotificationType.Success, "WindowArea");
             RebootPages();
         }
 

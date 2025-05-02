@@ -1,19 +1,21 @@
-﻿<Page x:Class="Financiera_GUI.Catalogs._wDocumentationManagement"
+﻿<Page x:Class="Financiera_GUI.Catalogs.wDocumentationManagement"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Financiera_GUI.Catalogs"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="wDocumentationManagement">
 
-    <Grid Margin="10" Background="White">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -22,7 +24,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Border Margin="10" Grid.Column="0" Height="50" Width="50" CornerRadius="50" MouseLeftButtonDown="ReturnPage" Style="{StaticResource ButtonBehaviorGlobal}">
+            <Border Margin="10" Grid.Column="0" Height="50" Width="50" CornerRadius="50" MouseLeftButtonDown="Back" Style="{StaticResource ButtonBehaviorGlobal}">
                 <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
             </Border>
 
@@ -47,13 +49,15 @@
 
                     <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Label Margin="10,10,10,5" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontFamily="Roboto">Nombre del documento</Label>
-                        <TextBox Margin="10,0,5,15" Width="282" Height="30"
+                        <TextBox x:Name="documentNameInput" Margin="10,0,5,15" Width="282" Height="30" MaxLength="50"
                                  FontSize="16" FontFamily="Roboto" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Label Margin="5,10,10,5" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontFamily="Roboto">Formato</Label>
-                        <ComboBox Margin="5,0,10,15" Width="108" Height="30"
+                        <ComboBox x:Name="fileTypeInput" Margin="5,0,10,15" Width="108" Height="30"
                                   FontSize="16" FontFamily="Roboto" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="PDF" />
+                            <ComboBoxItem Content="Image" />
                         </ComboBox>
                     </StackPanel>
                     <Border Grid.Column="2" Margin="5,10,10,10" Height="50" CornerRadius="50" MouseLeftButtonDown="RegisterDocument" Style="{StaticResource ButtonBehaviorGlobal}">
@@ -63,7 +67,32 @@
             </Border>
         </Grid>
 
-        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="20" x:Name="documentsTable">
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="previousPageButton" Grid.Column="1" Margin="0,0,10,0" MouseLeftButtonDown="PreviousPage"
+                    BorderThickness="1" BorderBrush="Black" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}"  >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Margin="5" Source="../images/previous_page_icon.png" Stretch="Uniform"/>
+                    <Label FontSize="12" FontFamily="Roboto" VerticalContentAlignment="Center">Página anterior </Label>
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="nextPageButton" Grid.Column="2" Margin="0,0,20,0" MouseLeftButtonDown="NextPage"
+                     BorderThickness="1" BorderBrush="Black" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}"  >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label FontSize="12" FontFamily="Roboto" VerticalContentAlignment="Center"> Siguiente página</Label>
+                    <Image Margin="5" Source="../images/next_page_icon.png" Stretch="Uniform"/>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+        
+        <StackPanel Grid.Row="3" Orientation="Vertical" Margin="20,15,20,10" x:Name="documentsTable">
             <Border Padding="5" Background="#778DA9" CornerRadius="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -88,6 +117,8 @@
             </Border>
         </StackPanel>
 
-        
+        <Grid Grid.Row="4" Margin="0,0,5,5">
+            <notifications:NotificationArea Margin="0" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
+        </Grid>
     </Grid>
 </Page>

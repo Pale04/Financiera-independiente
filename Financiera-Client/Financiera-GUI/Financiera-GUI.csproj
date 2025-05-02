@@ -24,6 +24,8 @@
     <None Remove="Images\financiera_logo.png" />
     <None Remove="Images\generate_payment_layout.png" />
     <None Remove="Images\logout_icon.png" />
+    <None Remove="Images\next_page_icon.png" />
+    <None Remove="Images\previous_page_icon.png" />
     <None Remove="Images\register-icon.png" />
     <None Remove="Images\manage_uncollectible_credits.png" />
     <None Remove="Images\payment_register.png" />
@@ -63,6 +65,8 @@
     </Resource>
     <Resource Include="Images\generate_payment_layout.png" />
     <Resource Include="Images\logout_icon.png" />
+    <Resource Include="Images\next_page_icon.png" />
+    <Resource Include="Images\previous_page_icon.png" />
     <Resource Include="Images\register-icon.png" />
     <Resource Include="Images\manage_uncollectible_credits.png" />
     <Resource Include="Images\payment_register.png" />
