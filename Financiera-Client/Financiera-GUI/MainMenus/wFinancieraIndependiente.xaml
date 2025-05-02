@@ -10,12 +10,9 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition />
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Background="#FF0D1B2A">
             <Grid.ColumnDefinitions>
@@ -28,7 +25,7 @@
 
             <Label Margin="10" Grid.Column="1" Height="Auto"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="50" FontFamily="Roboto" FontWeight="Bold" Foreground="White" >Financiera Independiente</Label>
+                   FontSize="40" FontFamily="Roboto" FontWeight="Bold" Foreground="White" >Financiera Independiente</Label>
           
             <Button Grid.Column="2" Margin="10" Height="40" Width="120">
                 <Button.Template>
@@ -57,10 +54,6 @@
             </Button>
         </Grid>
 
-        <Grid Grid.Row="1">
-            <Frame Name="ContentFrame" NavigationUIVisibility="Hidden" 
-                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        </Grid>
-
+        <Frame Grid.Row="1" Name="ContentFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

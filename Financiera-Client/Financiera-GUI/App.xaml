@@ -11,7 +11,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
         <Style x:Key="ButtonBehaviourPrincipal" TargetType="Border">
             <Style.Setters>
                 <Setter Property="Background" Value="#1B263B" />
@@ -26,4 +25,5 @@
             </Style.Triggers>
         </Style>
     </Application.Resources>
+
 </Application>
