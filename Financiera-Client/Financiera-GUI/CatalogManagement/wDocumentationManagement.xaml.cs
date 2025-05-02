@@ -14,11 +14,14 @@ namespace Financiera_GUI.Catalogs
         private int _pageSize;
         private int _actualPage;
         private List<RequiredDocument> _nextPage;
+        private readonly NotificationManager _notificationManager;
 
         public wDocumentationManagement()
         {
             InitializeComponent();
-            _pageSize = 11;
+            _notificationManager = new NotificationManager();
+
+            _pageSize = 10;
             RebootPages();
         }
 
@@ -50,7 +53,7 @@ namespace Financiera_GUI.Catalogs
                 }
                 catch (Exception error)
                 {
-                    //TODO: show autoclosable message
+                    _notificationManager.Show(error.Message, NotificationType.Warning, "WindowArea");
                 }
             }
             
@@ -86,7 +89,7 @@ namespace Financiera_GUI.Catalogs
             }
             catch (Exception error)
             {
-                //TODO: show autoclosable message
+                _notificationManager.Show(error.Message, NotificationType.Success, "WindowArea");
             }
 
             _nextPage.Clear();
@@ -119,8 +122,7 @@ namespace Financiera_GUI.Catalogs
             
             if (!ValidFields())
             {
-                //TODO: show autoclosable message
-                MessageBox.Show("Por favor, complete todos los campos requeridos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                _notificationManager.Show(NotificationMessages.GlobalEmptyFields, NotificationType.Warning, "WindowArea");
                 return;
             }
 
@@ -131,11 +133,11 @@ namespace Financiera_GUI.Catalogs
                 case "PDF":
                     fileType = FileType.pdf;
                     break;
-                case "Image":
+                case "Imagen":
                     fileType = FileType.image;
                     break;
                 default:
-                    //TODO: show error message
+                    _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
                     return;
             };
 
@@ -149,12 +151,12 @@ namespace Financiera_GUI.Catalogs
             }
             catch (Exception error)
             {
-                //TODO: show autoclosable message
+                _notificationManager.Show(error.Message, NotificationType.Warning, "WindowArea");
                 return;
             }
 
-            var notificationManager = new NotificationManager();
-            notificationManager.Show("Documento registrado exitosamente", NotificationType.Success, "WindowArea");
+            _notificationManager.Show(NotificationMessages.GlobalRegistrationSuccess, NotificationType.Success, "WindowArea");
+            documentNameInput.Text = string.Empty;
             RebootPages();
         }
 

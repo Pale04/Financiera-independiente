@@ -37,7 +37,7 @@ namespace Data_Access
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                return context.RequiredDocumentations.Any(d => d.name == document.name && d.fileType == document.fileType && d.id != document.id);
+                return context.RequiredDocumentations.Any(d => d.name == document.name && d.id != document.id);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Data_Access
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                return context.RequiredDocumentations.Any(d => d.name == document.name && d.fileType == document.fileType);
+                return context.RequiredDocumentations.Any(d => d.name == document.name);
             }
         }
 

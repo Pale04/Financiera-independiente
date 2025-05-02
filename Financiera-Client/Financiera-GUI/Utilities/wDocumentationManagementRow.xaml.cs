@@ -1,5 +1,6 @@
 ﻿using Business_logic.Catalogs;
 using DomainClasses;
+using Notification.Wpf;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -9,11 +10,13 @@ namespace Financiera_GUI.Utilities
     public partial class wDocumentationManagementRow : UserControl
     {
         private RequiredDocument _document;
+        private readonly NotificationManager _notificationManager;
 
         public wDocumentationManagementRow(RequiredDocument document)
         {
             InitializeComponent();
             _document = document;
+            _notificationManager = new NotificationManager();
             UpdateInformation();
             UpdateStatusIcon();
         }
@@ -54,11 +57,11 @@ namespace Financiera_GUI.Utilities
             }
             catch (Exception error)
             {
-                //TODO: show autoclosable message
+                _notificationManager.Show(error.Message, NotificationType.Warning, "WindowArea");
                 return;
             }
 
-            //TODO: show autoclosable message
+            _notificationManager.Show(NotificationMessages.GlobalStatusUpdateSuccess, NotificationType.Success, "WindowArea");
             _document.Status = updatedRequiredDocument.Status;
             UpdateStatusIcon();
         }
@@ -74,7 +77,7 @@ namespace Financiera_GUI.Utilities
         {
             if (!ValidFields())
             {
-                //TODO: show autoclosable message
+                _notificationManager.Show(NotificationMessages.GlobalEmptyFields, NotificationType.Warning, "WindowArea");
                 return;
             }
 
@@ -85,11 +88,11 @@ namespace Financiera_GUI.Utilities
                 case "PDF":
                     fileType = FileType.pdf;
                     break;
-                case "Image":
+                case "Imagen":
                     fileType = FileType.image;
                     break;
                 default:
-                    //TODO: show error message
+                    _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
                     return;
             };
 
@@ -109,11 +112,11 @@ namespace Financiera_GUI.Utilities
                 }
                 catch (Exception error)
                 {
-                    //TODO: show autoclosable message
+                    _notificationManager.Show(error.Message, NotificationType.Warning, "WindowArea");
                     return;
                 }
 
-                //TODO: show autoclosable message
+                _notificationManager.Show(NotificationMessages.GlobalUpdateSuccess, NotificationType.Success, "WindowArea");
                 _document.Name = updatedRequiredDocument.Name;
                 _document.FileType = updatedRequiredDocument.FileType;
             }

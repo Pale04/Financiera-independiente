@@ -28,7 +28,7 @@
                   FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center"
                   Visibility="Collapsed">
             <ComboBoxItem Content="PDF" />
-            <ComboBoxItem Content="Image" />
+            <ComboBoxItem Content="Imagen" />
         </ComboBox>
 
         <Label x:Name="stateLabel" Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center" VerticalAlignment="Center"
