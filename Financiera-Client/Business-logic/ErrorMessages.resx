@@ -127,9 +127,12 @@
     <value>Ya existe un documento reigstrado con los mismos datos.</value>
   </data>
   <data name="InvalidFields" xml:space="preserve">
-    <value>Campos incompletos o inválidos. Por favor revisa los errores indicados.</value>
+    <value>Campos incompletos o inválidos.</value>
   </data>
   <data name="ActiveSession" xml:space="preserve">
     <value>Ya existe una sesión activa con esta cuenta</value>
+  </data>
+  <data name="DuplicatedCreditCondition" xml:space="preserve">
+    <value>Ya existe una condición de crédito registrada con los mismos datos.</value>
   </data>
 </root>
