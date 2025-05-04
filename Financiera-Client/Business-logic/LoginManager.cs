@@ -13,7 +13,7 @@ namespace Business_logic
     {
         public int Login(EmployeeClass employee)
         {
-            if (employee.isValidForLogin())
+            if (!employee.isValidForLogin())
             {
                 throw new Exception(ErrorMessages.InvalidFields);
             }

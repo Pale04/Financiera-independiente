@@ -55,7 +55,34 @@ namespace AccountServiceReference
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/createAccount", ReplyAction="http://tempuri.org/IAccountService/createAccountResponse")]
+        AccountServiceReference.Response createAccount();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/createAccount", ReplyAction="http://tempuri.org/IAccountService/createAccountResponse")]
         System.Threading.Tasks.Task<AccountServiceReference.Response> createAccountAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/SendEmail", ReplyAction="http://tempuri.org/IAccountService/SendEmailResponse")]
+        void SendEmail(string mail, string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/SendEmail", ReplyAction="http://tempuri.org/IAccountService/SendEmailResponse")]
+        System.Threading.Tasks.Task SendEmailAsync(string mail, string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/ChangePassword", ReplyAction="http://tempuri.org/IAccountService/ChangePasswordResponse")]
+        AccountServiceReference.Response ChangePassword(string user, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/ChangePassword", ReplyAction="http://tempuri.org/IAccountService/ChangePasswordResponse")]
+        System.Threading.Tasks.Task<AccountServiceReference.Response> ChangePasswordAsync(string user, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/GenerateVerificationCode", ReplyAction="http://tempuri.org/IAccountService/GenerateVerificationCodeResponse")]
+        string GenerateVerificationCode(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/GenerateVerificationCode", ReplyAction="http://tempuri.org/IAccountService/GenerateVerificationCodeResponse")]
+        System.Threading.Tasks.Task<string> GenerateVerificationCodeAsync(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/CheckVerificationCode", ReplyAction="http://tempuri.org/IAccountService/CheckVerificationCodeResponse")]
+        bool CheckVerificationCode(string clientCode, string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/CheckVerificationCode", ReplyAction="http://tempuri.org/IAccountService/CheckVerificationCodeResponse")]
+        System.Threading.Tasks.Task<bool> CheckVerificationCodeAsync(string clientCode, string user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -108,9 +135,54 @@ namespace AccountServiceReference
         {
         }
         
+        public AccountServiceReference.Response createAccount()
+        {
+            return base.Channel.createAccount();
+        }
+        
         public System.Threading.Tasks.Task<AccountServiceReference.Response> createAccountAsync()
         {
             return base.Channel.createAccountAsync();
+        }
+        
+        public void SendEmail(string mail, string code)
+        {
+            base.Channel.SendEmail(mail, code);
+        }
+        
+        public System.Threading.Tasks.Task SendEmailAsync(string mail, string code)
+        {
+            return base.Channel.SendEmailAsync(mail, code);
+        }
+        
+        public AccountServiceReference.Response ChangePassword(string user, string password)
+        {
+            return base.Channel.ChangePassword(user, password);
+        }
+        
+        public System.Threading.Tasks.Task<AccountServiceReference.Response> ChangePasswordAsync(string user, string password)
+        {
+            return base.Channel.ChangePasswordAsync(user, password);
+        }
+        
+        public string GenerateVerificationCode(string user)
+        {
+            return base.Channel.GenerateVerificationCode(user);
+        }
+        
+        public System.Threading.Tasks.Task<string> GenerateVerificationCodeAsync(string user)
+        {
+            return base.Channel.GenerateVerificationCodeAsync(user);
+        }
+        
+        public bool CheckVerificationCode(string clientCode, string user)
+        {
+            return base.Channel.CheckVerificationCode(clientCode, user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckVerificationCodeAsync(string clientCode, string user)
+        {
+            return base.Channel.CheckVerificationCodeAsync(clientCode, user);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

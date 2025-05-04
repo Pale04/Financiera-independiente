@@ -50,6 +50,7 @@ GRANT INSERT, SELECT ON OBJECT::Credit TO financialLoanOfficer;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::Document TO financialLoanOfficer;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::BankAccount TO financialLoanOfficer;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::Client TO financialLoanOfficer;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::PersonalReference TO financialLoanOfficer;--New
 
 CREATE USER financialCollectionsAgent FOR login financialCollectionsAgent;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::Payment TO financialCollectionsAgent;

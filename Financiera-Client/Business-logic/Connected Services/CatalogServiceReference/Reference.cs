@@ -15,6 +15,7 @@ namespace CatalogServiceReferenece
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui))]
     public partial class Response : object
     {
@@ -46,6 +47,28 @@ namespace CatalogServiceReferenece
             set
             {
                 this.StatusCodeField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui : CatalogServiceReferenece.Response
+    {
+        
+        private CatalogServiceReferenece.CreditConditionDC[] DataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReferenece.CreditConditionDC[] Data
+        {
+            get
+            {
+                return this.DataField;
+            }
+            set
+            {
+                this.DataField = value;
             }
         }
     }
@@ -139,6 +162,103 @@ namespace CatalogServiceReferenece
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreditConditionDC", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class CreditConditionDC : object
+    {
+        
+        private int IVAField;
+        
+        private int IdField;
+        
+        private int InterestRateField;
+        
+        private int PaymentsPerMonthField;
+        
+        private int RegistrerIdField;
+        
+        private bool StateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IVA
+        {
+            get
+            {
+                return this.IVAField;
+            }
+            set
+            {
+                this.IVAField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int InterestRate
+        {
+            get
+            {
+                return this.InterestRateField;
+            }
+            set
+            {
+                this.InterestRateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PaymentsPerMonth
+        {
+            get
+            {
+                return this.PaymentsPerMonthField;
+            }
+            set
+            {
+                this.PaymentsPerMonthField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RegistrerId
+        {
+            get
+            {
+                return this.RegistrerIdField;
+            }
+            set
+            {
+                this.RegistrerIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool State
+        {
+            get
+            {
+                return this.StateField;
+            }
+            set
+            {
+                this.StateField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CatalogServiceReferenece.ICatalogService")]
     public interface ICatalogService
@@ -177,6 +297,30 @@ namespace CatalogServiceReferenece
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocumentState", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentStateResponse")]
         System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentStateAsync(int id, bool isActive);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetCreditConditionsByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetCreditConditionsByPaginationResponse")]
+        CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui GetCreditConditionsByPagination(int pageSize, int markId, bool next);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetCreditConditionsByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetCreditConditionsByPaginationResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetCreditConditionsByPaginationAsync(int pageSize, int markId, bool next);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/AddCreditConditionResponse")]
+        CatalogServiceReferenece.Response AddCreditCondition(CatalogServiceReferenece.CreditConditionDC creditCondition);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/AddCreditConditionResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> AddCreditConditionAsync(CatalogServiceReferenece.CreditConditionDC creditCondition);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditConditionResponse")]
+        CatalogServiceReferenece.Response UpdateCreditCondition(CatalogServiceReferenece.CreditConditionDC creditCondition);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditConditionResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateCreditConditionAsync(CatalogServiceReferenece.CreditConditionDC creditCondition);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditConditionState", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditConditionStateResponse")]
+        CatalogServiceReferenece.Response UpdateCreditConditionState(int id, bool state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditConditionState", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditConditionStateResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateCreditConditionStateAsync(int id, bool state);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -277,6 +421,46 @@ namespace CatalogServiceReferenece
         public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentStateAsync(int id, bool isActive)
         {
             return base.Channel.UpdateRequiredDocumentStateAsync(id, isActive);
+        }
+        
+        public CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui GetCreditConditionsByPagination(int pageSize, int markId, bool next)
+        {
+            return base.Channel.GetCreditConditionsByPagination(pageSize, markId, next);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetCreditConditionsByPaginationAsync(int pageSize, int markId, bool next)
+        {
+            return base.Channel.GetCreditConditionsByPaginationAsync(pageSize, markId, next);
+        }
+        
+        public CatalogServiceReferenece.Response AddCreditCondition(CatalogServiceReferenece.CreditConditionDC creditCondition)
+        {
+            return base.Channel.AddCreditCondition(creditCondition);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> AddCreditConditionAsync(CatalogServiceReferenece.CreditConditionDC creditCondition)
+        {
+            return base.Channel.AddCreditConditionAsync(creditCondition);
+        }
+        
+        public CatalogServiceReferenece.Response UpdateCreditCondition(CatalogServiceReferenece.CreditConditionDC creditCondition)
+        {
+            return base.Channel.UpdateCreditCondition(creditCondition);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateCreditConditionAsync(CatalogServiceReferenece.CreditConditionDC creditCondition)
+        {
+            return base.Channel.UpdateCreditConditionAsync(creditCondition);
+        }
+        
+        public CatalogServiceReferenece.Response UpdateCreditConditionState(int id, bool state)
+        {
+            return base.Channel.UpdateCreditConditionState(id, state);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateCreditConditionStateAsync(int id, bool state)
+        {
+            return base.Channel.UpdateCreditConditionStateAsync(id, state);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

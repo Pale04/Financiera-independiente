@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business_logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,12 @@ namespace Financiera_GUI
 {
     public partial class wResetPassword : Window
     {
-        public wResetPassword()
+        string user;
+        Business_logic.AccountManager accountManager = new AccountManager();
+
+        public wResetPassword(string username)
         {
+            user = username;
             InitializeComponent();
         }
 
@@ -84,10 +89,7 @@ namespace Financiera_GUI
 
         }
 
-        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
+        
 
         private void hlReenvio_Click(object sender, RoutedEventArgs e)
         {

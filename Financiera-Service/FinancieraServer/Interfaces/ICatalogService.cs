@@ -19,5 +19,17 @@ namespace FinancieraServer.Interfaces
 
         [OperationContract]
         Response UpdateRequiredDocumentState(int id, bool isActive);
+
+        [OperationContract]
+        ResponseWithContent<List<CreditConditionDC>> GetCreditConditionsByPagination(int pageSize, int markId, bool next);
+
+        [OperationContract]
+        Response AddCreditCondition(CreditConditionDC creditCondition);
+
+        [OperationContract]
+        Response UpdateCreditCondition(CreditConditionDC creditCondition);
+
+        [OperationContract]
+        Response UpdateCreditConditionState(int id, bool state);
     }
 }

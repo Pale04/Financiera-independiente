@@ -1,14 +1,14 @@
 {
   "ExtendedData": {
     "inputs": [
-      "https://localhost:5001/AccountService.svc"
+      "https://localhost:5001/CatalogService.svc"
     ],
     "collectionTypes": [
       "System.Array",
       "System.Collections.Generic.Dictionary`2"
     ],
     "namespaceMappings": [
-      "*, AccountServiceReference"
+      "*, CatalogServiceReferenece"
     ],
     "sync": true,
     "targetFramework": "net8.0",
