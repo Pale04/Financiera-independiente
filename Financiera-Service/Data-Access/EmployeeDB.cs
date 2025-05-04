@@ -34,5 +34,26 @@ namespace Data_Access
                 return employeeData = context.Employees.SingleOrDefault(e => e.user == employee.user);
             }
         }
+
+        public int ChangePassword(string username, string newPassword)
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.AccountModificator)))
+            {
+                var account = context.Employees.SingleOrDefault(u => u.user == username);
+                int statusCode = 1;
+
+                if(account != null)
+                {
+                    account.password = newPassword;
+                    context.SaveChanges();
+                    statusCode = 0;
+                }
+                else
+                {
+                    return statusCode;
+                }
+                return statusCode;
+            }
+        }
     }
 }

@@ -74,7 +74,9 @@ namespace Financiera_GUI
             }
             else
             {
-                //TODO: Add Funtionality for Use Case 3
+                wResetPassword resetPassword = new wResetPassword(tbUsername.Text);
+                resetPassword.Show();
+                this.Close();
             }
 
         }
