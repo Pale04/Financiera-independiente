@@ -67,6 +67,14 @@ CREATE TABLE [BankAccount] (
   [clientId] char(13) NOT NULL
 )
 
+CREATE TABLE [PersonalReference] ( --New Table
+  [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [name] varchar(100) NOT NULL,
+  [phoneNumber] char(10) NOT NULL,
+  [relationship] char(13) NOT NULL,
+  [clientRfc] char(13) NOT NULL
+)
+
 CREATE TABLE [Payment] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [collectionDate] Date NOT NULL,
@@ -117,6 +125,8 @@ ALTER TABLE [Payment] ADD FOREIGN KEY ([creditId]) REFERENCES [Credit] ([id])
 ALTER TABLE [CreditCondition] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee] ([id])
 
 ALTER TABLE [CreditPolicy] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee] ([id])
+
+ALTER TABLE [PersonalReference] ADD FOREIGN KEY ([clientRfc]) REFERENCES [Client] ([rfc]) --New reference
 
 --Create users for every role
 :r user-creation.sql
