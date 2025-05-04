@@ -1,7 +1,7 @@
-DROP DATABASE independent_financial
+
 CREATE DATABASE independent_financial;
 
-USE independent_financial;
+USE independent_financial
 
 CREATE TABLE [Employee] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -119,10 +119,10 @@ ALTER TABLE [CreditCondition] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee
 ALTER TABLE [CreditPolicy] ADD FOREIGN KEY ([registrer]) REFERENCES [Employee] ([id])
 
 --Create users for every role
-:r user-creation.sql
+--:r user-creation.sql
 
 --Charge store procedures to the database
-:r stored-procedures.sql
+--:r stored-procedures.sql
 
 --Assign permissions to every role for esecut stored procedures
-:r stored-procedures-permissions.sql
+--:r stored-procedures-permissions.sql

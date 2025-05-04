@@ -60,24 +60,24 @@ GRANT SELECT, UPDATE ON OBJECT::Employee TO financialAccountModificator;
 CREATE USER financialTester FOR login financialTester;
 GRANT VIEW DEFINITION TO financialTester;
 --Dar permisos de inserci�n y eliminaci�n en todas las tablas
-DECLARE @TableName SYSNAME;
-DECLARE TableCursor CURSOR FOR
+DECLARE @TableName2 SYSNAME;
+DECLARE TableCursor2 CURSOR FOR
 SELECT TABLE_NAME
 FROM information_schema.TABLES
 WHERE TABLE_TYPE = 'BASE TABLE';
 
-OPEN TableCursor;
+OPEN TableCursor2;
 
-FETCH NEXT FROM TableCursor INTO @TableName;
+FETCH NEXT FROM TableCursor2 INTO @TableName2;
 
 WHILE @@FETCH_STATUS = 0
 BEGIN
-    DECLARE @GrantStatement NVARCHAR(MAX);
-    SET @GrantStatement = 'GRANT SELECT, INSERT, DELETE ON OBJECT::' + QUOTENAME(@TableName) + ' TO financialTester;';
-    EXEC (@GrantStatement);
-    FETCH NEXT FROM TableCursor INTO @TableName;
+    DECLARE @GrantStatement2 NVARCHAR(MAX);
+    SET @GrantStatement2 = 'GRANT SELECT, INSERT, DELETE ON OBJECT::' + QUOTENAME(@TableName2) + ' TO financialTester;';
+    EXEC (@GrantStatement2);
+    FETCH NEXT FROM TableCursor2 INTO @TableName2;
 END;
 
-CLOSE TableCursor;
-DEALLOCATE TableCursor;
+CLOSE TableCursor2;
+DEALLOCATE TableCursor2;
 GO
