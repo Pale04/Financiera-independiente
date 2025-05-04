@@ -42,21 +42,10 @@ namespace Financiera_GUI
                 if(codeLogin == 0)
                 {
                     employeeLogin = loginManager.getSessionInfo(employeeLogin.user);
-                    switch (employeeLogin.role)
-                    {
-                        case "admin":
-                            //TODO: Change to wSystemManagment
-                            break;
-                        case "analist":
-                            //TODO: Change to wCreditApplication
-                            break;
-                        case "adviser":
-                            //TODO: Change to adviser menu
-                            break;
-                        case "collector":
-                            //TODO: Change to wPaymentManagment
-                            break;
-                    }
+                    UserSession.Instance.Employee = employeeLogin;
+                    wFinancieraIndependiente mainMenu = new wFinancieraIndependiente();
+                    mainMenu.Show();
+                    this.Close();
                 }
                 else
                 {

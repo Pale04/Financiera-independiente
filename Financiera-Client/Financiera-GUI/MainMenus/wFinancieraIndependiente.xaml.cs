@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Business_logic;
 
 namespace Financiera_GUI.MainMenus
 {
@@ -7,7 +8,22 @@ namespace Financiera_GUI.MainMenus
         public wFinancieraIndependiente()
         {
             InitializeComponent();
-            ContentFrame.Content = new Catalogs.wDocumentationManagement();
+
+            switch (UserSession.Instance.Employee.role)
+            {
+                case "admin":
+                    ContentFrame.NavigationService.Navigate(new wSystemManagement());
+                    break;
+                case "analist":
+                    //TODO: Change to wCreditApplication
+                    break;
+                case "adviser":
+                    //TODO: Change to adviser menu
+                    break;
+                case "collector":
+                    //TODO: Change to wPaymentManagment
+                    break;
+            }
         }
     }
 }

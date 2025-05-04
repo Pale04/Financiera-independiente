@@ -5,7 +5,7 @@ using DomainClasses;
 using System.Windows;
 using Notification.Wpf;
 
-namespace Financiera_GUI.Catalogs
+namespace Financiera_GUI.CatalogManagement
 {
     public partial class wDocumentationManagement : Page
     {
@@ -21,11 +21,11 @@ namespace Financiera_GUI.Catalogs
             InitializeComponent();
             _notificationManager = new NotificationManager();
 
-            _pageSize = 10;
+            _pageSize = 12;
             RebootPages();
         }
 
-        public void RebootPages()
+        private void RebootPages()
         {
             _actualPage = 0;
             _lastId = 0;
@@ -68,14 +68,7 @@ namespace Financiera_GUI.Catalogs
             _lastId = requiredDocuments.LastOrDefault()?.Id ?? _lastId;
             SaveNextPage();
 
-            if (_actualPage == 1)
-            {
-                previousPageButton.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                previousPageButton.Visibility = Visibility.Visible;
-            }
+            previousPageButton.Visibility = _actualPage == 1 ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void SaveNextPage()
@@ -89,7 +82,7 @@ namespace Financiera_GUI.Catalogs
             }
             catch (Exception error)
             {
-                _notificationManager.Show(error.Message, NotificationType.Success, "WindowArea");
+                _notificationManager.Show(error.Message, NotificationType.Error, "WindowArea");
             }
 
             _nextPage.Clear();
@@ -98,7 +91,10 @@ namespace Financiera_GUI.Catalogs
                 _nextPage.Add(document);
             }
 
-            nextPageButton.Visibility = _nextPage.Count == 0 ? Visibility.Hidden : Visibility.Visible;
+            if (_actualPage > 0)
+            {
+                nextPageButton.Visibility = _nextPage.Count == 0 ? Visibility.Hidden : Visibility.Visible;
+            }
         }
 
         public void NextPage(object sender, RoutedEventArgs e)
@@ -110,16 +106,14 @@ namespace Financiera_GUI.Catalogs
         {
             LoadPage(false);
         }
-
+    
         public void Back(object sender, RoutedEventArgs e)
         {
-            //TODO: Implementar la lógica para regresar a la página anterior
+            NavigationService.GoBack();
         }
 
         public void RegisterDocument(object sender, RoutedEventArgs e)
         {
-            RequiredDocumentationManager requiredDocumentationManagement = new();
-            
             if (!ValidFields())
             {
                 _notificationManager.Show(NotificationMessages.GlobalEmptyFields, NotificationType.Warning, "WindowArea");
@@ -141,6 +135,7 @@ namespace Financiera_GUI.Catalogs
                     return;
             };
 
+            RequiredDocumentationManager requiredDocumentationManagement = new();
             try
             {
                 requiredDocumentationManagement.AddRequiredDocument(new RequiredDocument

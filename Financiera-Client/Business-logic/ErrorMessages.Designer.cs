@@ -79,6 +79,15 @@ namespace Business_logic {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ya existe una condición de crédito registrada con los mismos datos..
+        /// </summary>
+        internal static string DuplicatedCreditCondition {
+            get {
+                return ResourceManager.GetString("DuplicatedCreditCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ya existe un documento reigstrado con los mismos datos..
         /// </summary>
         internal static string DuplicatedRequiredDocument {

@@ -17,20 +17,24 @@ namespace Financiera_GUI.Utilities
             InitializeComponent();
             _document = document;
             _notificationManager = new NotificationManager();
-            UpdateInformation();
-            UpdateStatusIcon();
+            LoadInformation();
+            LoadStatusIcon();
         }
 
-        private void UpdateStatusIcon()
+        private void LoadStatusIcon()
         {
             stateLabel.Content = _document.Status ? "Activado" : "Desactivado";
             changeStateIcon.Source = _document.Status ? new BitmapImage(new Uri("pack://application:,,,/Images/deactivate_icon.png")) : new BitmapImage(new Uri("pack://application:,,,/Images/activate_icon.png"));
         }
 
-        private void UpdateInformation()
+        private void LoadInformation()
         {
             documentNameLabel.Content = _document.Name;
-            formatLabel.Content = _document.FileType.ToString();
+            formatLabel.Content = _document.FileType switch
+            {
+                FileType.pdf => "PDF",
+                _ => "Imagen",
+            };
         }
 
         public void UpdateState(object sender, RoutedEventArgs e)
@@ -63,7 +67,7 @@ namespace Financiera_GUI.Utilities
 
             _notificationManager.Show(NotificationMessages.GlobalStatusUpdateSuccess, NotificationType.Success, "WindowArea");
             _document.Status = updatedRequiredDocument.Status;
-            UpdateStatusIcon();
+            LoadStatusIcon();
         }
 
         public void Update(object sender, RoutedEventArgs e)
@@ -121,7 +125,7 @@ namespace Financiera_GUI.Utilities
                 _document.FileType = updatedRequiredDocument.FileType;
             }
 
-            UpdateInformation();
+            LoadInformation();
             ChangeEditableFields();
         }
 
