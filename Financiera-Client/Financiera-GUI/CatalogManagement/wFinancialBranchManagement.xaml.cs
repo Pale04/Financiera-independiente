@@ -1,4 +1,5 @@
-﻿using Notification.Wpf;
+﻿using DomainClasses;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,13 @@ using System.Windows.Shapes;
 
 namespace Financiera_GUI.CatalogManagement
 {
-    /// <summary>
-    /// Lógica de interacción para wFinancialBranchManagement.xaml
-    /// </summary>
     public partial class wFinancialBranchManagement : Page
     {
+        private List<Subsidiary> subsidiaries;
         public wFinancialBranchManagement()
         {
             InitializeComponent();
+            subsidiaries = Catalog
         }
     }
 }
