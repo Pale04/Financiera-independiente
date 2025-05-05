@@ -9,9 +9,8 @@ namespace Data_Access
             List<Subsidiary> subsidiaries = [];
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                subsidiaries = context.Subsidiary
+                subsidiaries = context.Subsidiaries
                     .OrderBy(d => d.id)
-                    .Where(d => d.id > lastId)
                     .ToList();
             }
             return subsidiaries;
@@ -21,14 +20,21 @@ namespace Data_Access
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-              // todo: make addresess to lowercase
-                return context.Subsidiary.Any(d => d.Address == subsidiary.Address && d.id != subsidiary.id);
+                return context.Subsidiaries.Any(d => d.Address.ToLower() == subsidiary.Address.ToLower() && d.id != subsidiary.id);
+            }
+        }
+
+        public bool Exists(string address)
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                return context.Subsidiaries.Any(d => d.Address.ToLower() == address.ToLower());
             }
         }
 
         public int Add(string address)
         {
-            int result = 0;
+            int result = 1;
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
             {
                 var newSubsidiary = new Subsidiary
@@ -37,18 +43,18 @@ namespace Data_Access
                     state = true,
                 };
 
-                context.Subsidiary.Add(newSubsidiary);
+                context.Subsidiaries.Add(newSubsidiary);
                 result = context.SaveChanges();
             }
             return result;
         }
 
-        public int Update(int id, string address)
+        public int UpdateAddress(int id, string address)
         {
-            int result = 0;
+            int result = 1;
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
             {
-                var subsidiary = context.Subsidiary.Find(id);
+                var subsidiary = context.Subsidiaries.Find(id);
                 if (subsidiary != null)
                 {
                     subsidiary.Address = address;
@@ -60,10 +66,10 @@ namespace Data_Access
 
         public int UpdateState(int id, bool isActive)
         {
-            int result = 0;
+            int result = 1;
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
             {
-                var subsidiary = context.Subsidiary.Find(id);
+                var subsidiary = context.Subsidiaries.Find(id);
                 if (subsidiary != null)
                 {
                     subsidiary.state = isActive;
