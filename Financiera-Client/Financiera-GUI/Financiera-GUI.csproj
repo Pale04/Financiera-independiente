@@ -88,4 +88,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Login\" />
+  </ItemGroup>
+
 </Project>
