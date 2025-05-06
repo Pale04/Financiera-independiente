@@ -93,6 +93,7 @@ namespace Financiera_GUI
             verificationCode += Code4.Text;
             verificationCode += Code5.Text;
             verificationCode += Code6.Text;
+            return "";
         }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
@@ -105,6 +106,11 @@ namespace Financiera_GUI
         private void hlReenvio_Click(object sender, RoutedEventArgs e)
         {
             accountManager.SentEmail(employee);
+        }
+
+        private void MouseLeftButtonDow(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

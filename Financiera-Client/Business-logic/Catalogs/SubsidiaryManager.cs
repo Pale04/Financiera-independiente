@@ -1,4 +1,4 @@
-﻿using CatalogServiceReferenece;
+﻿using CatalogServiceReference;
 using DomainClasses;
 using System;
 using System.Collections.Generic;

@@ -117,5 +117,10 @@ namespace Financiera_GUI.CatalogManagement
             pageCounter.Content = (int)pageCounter.Content + 1;
             UpdateList();
         }
+
+        private void Back(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
