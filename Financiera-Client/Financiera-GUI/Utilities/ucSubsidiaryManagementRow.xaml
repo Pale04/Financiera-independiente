@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Financiera_GUI.Utilities.ucSubsidiaryManagementRow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Financiera_GUI.Utilities"
+             mc:Ignorable="d"              
+             d:DesignHeight="40" d:DesignWidth="1280">
+
+    <Grid x:Name="row" Margin="0,2,0,2" Height="Auto" Background="#E3E3E3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="idLabel" Margin="0,0,10,0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+        FontFamily="Roboto" FontSize="16" >Id</Label>
+        
+
+        <Label x:Name="addressLabel" Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+        FontFamily="Roboto" FontSize="16" >Dirección</Label>
+        <TextBox x:Name="addressInput" Grid.Column="0" Margin="10,3,10,3" MaxLength="50"
+            FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center"
+            Visibility="Collapsed"/>
+
+        <Label x:Name="stateLabel" Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+        FontFamily="Roboto" FontSize="16" >Estado</Label>
+
+        <Border x:Name="updateButton" Grid.Column="3" Margin="0,0,10,0" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="UpdateAddress"
+        Height="25" Width="25" CornerRadius="5">
+            <Image Source="../images/edit_icon.png" Stretch="Uniform"/>
+        </Border>
+        <Border x:Name="saveChangesButton" Grid.Column="3" Margin="2" Height="23" MouseLeftButtonDown="SaveChanges"
+        Visibility="Collapsed" Style="{StaticResource ButtonBehaviourPrincipal}"  >
+            <Label FontSize="11" FontFamily="Roboto" Foreground="White"
+           VerticalContentAlignment="Center" HorizontalAlignment="Center">Guardar</Label>
+        </Border>
+
+        <Border Grid.Column="4" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="UpdateState"
+        Height="25" Width="25" CornerRadius="20">
+            <Image x:Name="changeStateIcon" Stretch="Uniform"/>
+        </Border>
+    </Grid>
+</UserControl>

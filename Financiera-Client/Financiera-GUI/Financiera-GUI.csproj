@@ -23,6 +23,7 @@
     <None Remove="Images\efficency_statistics.png" />
     <None Remove="Images\financiera_logo.png" />
     <None Remove="Images\generate_payment_layout.png" />
+    <None Remove="Images\group_icon.png" />
     <None Remove="Images\logout_icon.png" />
     <None Remove="Images\next_page_icon.png" />
     <None Remove="Images\previous_page_icon.png" />
@@ -64,6 +65,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\generate_payment_layout.png" />
+    <Resource Include="Images\group_icon.png" />
     <Resource Include="Images\logout_icon.png" />
     <Resource Include="Images\next_page_icon.png" />
     <Resource Include="Images\previous_page_icon.png" />

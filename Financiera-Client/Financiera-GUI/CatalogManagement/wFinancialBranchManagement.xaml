@@ -53,7 +53,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <TextBox x:Name="ivaInput" Grid.Column="0" Width="300" Height="50" MaxLength="3" TextAlignment="Left"
+                            <TextBox x:Name="addressInput" Grid.Column="0" Width="300" Height="50" MaxLength="3" TextAlignment="Left"
                                  FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center" TextWrapping="Wrap"/>
                         </Grid>
                     </StackPanel>
@@ -69,21 +69,26 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Border x:Name="previousPageButton" Grid.Column="1" Margin="0,0,10,0" MouseLeftButtonDown="PreviousPage"
                 BorderThickness="1" BorderBrush="Black" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}"
-                Visibility="Hidden">
+                Visibility="Visible">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Margin="5" Source="../images/previous_page_icon.png" Stretch="Uniform"/>
                     <Label FontSize="12" FontFamily="Roboto" VerticalContentAlignment="Center">Página anterior</Label>
                 </StackPanel>
             </Border>
 
-            <Border x:Name="nextPageButton" Grid.Column="2" Margin="0,0,20,0" MouseLeftButtonDown="NextPage"
+            <Border Grid.Column="2" VerticalAlignment="Center">
+                <Label x:Name="pageCounter" VerticalContentAlignment="Center" Content="1"/>
+            </Border>
+
+            <Border x:Name="nextPageButton" Grid.Column="3" Margin="0,0,20,0" MouseLeftButtonDown="NextPage"
                 BorderThickness="1" BorderBrush="Black" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}"
-                Visibility="Hidden">
+                Visibility="Visible">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label FontSize="12" FontFamily="Roboto" VerticalContentAlignment="Center">Siguiente página</Label>
                     <Image Margin="5" Source="../images/next_page_icon.png" Stretch="Uniform"/>
@@ -91,7 +96,7 @@
             </Border>
         </Grid>
 
-        <StackPanel Grid.Row="3" Orientation="Vertical" Margin="20,10,20,10" x:Name="creditConditionsTable">
+        <StackPanel Grid.Row="3" Orientation="Vertical" Margin="20,10,20,10" x:Name="subsidiariesTable">
             <Border Padding="5" Background="#778DA9" CornerRadius="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -110,7 +115,7 @@
                        FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Estado</Label>
                     <Label Margin="0,0,10,0" Grid.Column="3" HorizontalContentAlignment="Center"
                        FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Editar</Label>
-                    <Label Grid.Column="5" HorizontalContentAlignment="Center"
+                    <Label Grid.Column="4" HorizontalContentAlignment="Center"
                        FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Activar/Desactivar</Label>
                 </Grid>
             </Border>
