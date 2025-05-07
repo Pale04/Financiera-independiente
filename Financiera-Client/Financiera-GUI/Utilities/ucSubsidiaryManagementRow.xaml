@@ -22,7 +22,7 @@
 
         <Label x:Name="addressLabel" Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center"
         FontFamily="Roboto" FontSize="16" >Dirección</Label>
-        <TextBox x:Name="addressInput" Grid.Column="0" Margin="10,3,10,3" MaxLength="50"
+        <TextBox x:Name="addressInput" Grid.Column="1" Margin="10,3,10,3" MaxLength="400"
             FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center"
             Visibility="Collapsed"/>
 

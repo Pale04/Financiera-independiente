@@ -15,7 +15,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -53,7 +52,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <TextBox x:Name="addressInput" Grid.Column="0" Width="300" Height="50" MaxLength="3" TextAlignment="Left"
+                            <TextBox x:Name="addressInput" Grid.Column="0" Width="300" Height="50" MaxLength="400" TextAlignment="Left"
                                  FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center" TextWrapping="Wrap"/>
                         </Grid>
                     </StackPanel>
@@ -121,6 +120,6 @@
             </Border>
         </StackPanel>
 
-        <notifications:NotificationArea Grid.Row="4" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
+        <notifications:NotificationArea Grid.Row="3" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1" Height="120" Width="600" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>
