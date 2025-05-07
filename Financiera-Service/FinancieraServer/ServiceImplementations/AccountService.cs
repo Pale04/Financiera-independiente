@@ -20,10 +20,47 @@ namespace FinancieraServer.ServiceImplementations
             _logger = logger;
         }
 
-        public Response createAccount()
+        public Response createAccount(EmployeeDC employee)
         {
-            _logger.LogInformation("Prueba superada");
-            throw new NotImplementedException();
+            if (!employee.isValid())
+            {
+                return new Response(2, "Invalid data");
+            }
+            
+            EmployeeDB employeeDB = new EmployeeDB();
+
+            Employee newEmployee = new Employee()
+            {
+                user = employee.user,
+                password = employee.password,
+                role = employee.role,
+                name = employee.name,
+                mail = employee.mail,
+                phoneNumber = employee.phone,
+                address = employee.address,
+                birthday = employee.birthday,
+                sucursalId = employee.subsidiaryId
+            };
+
+            try
+            {
+                if (employeeDB.Exists(newEmployee))
+                {
+                    return new Response(3, "An account with the same user or email already exists");
+                }
+                else if (employeeDB.Add(newEmployee) != 0)
+                {
+                    return new Response(1, "An error ocurred, please try again later");
+                }
+            }
+            catch (DbException error)
+            {
+                _logger.LogWarning("An error ocurred while trying to create an account: ", error);
+                return new Response(1, "An error ocurred, please try again later");
+            }
+
+            _logger.LogInformation($"Account for user {employee.user} created at {DateTime.Now}");
+            return new Response(0, "Account created successfully");
         }
 
         Response IAccountService.ChangePassword(string user, string password)
