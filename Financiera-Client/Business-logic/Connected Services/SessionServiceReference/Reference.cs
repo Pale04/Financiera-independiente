@@ -1440,6 +1440,12 @@ namespace SessionServiceReference
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessionService/GetAccountInfo", ReplyAction="http://tempuri.org/ISessionService/GetAccountInfoResponse")]
         System.Threading.Tasks.Task<SessionServiceReference.ResponseWithContentOfEmployeeefOWEHwa> GetAccountInfoAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessionService/Logout", ReplyAction="http://tempuri.org/ISessionService/LogoutResponse")]
+        SessionServiceReference.Response Logout(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISessionService/Logout", ReplyAction="http://tempuri.org/ISessionService/LogoutResponse")]
+        System.Threading.Tasks.Task<SessionServiceReference.Response> LogoutAsync(string username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -1510,6 +1516,16 @@ namespace SessionServiceReference
         public System.Threading.Tasks.Task<SessionServiceReference.ResponseWithContentOfEmployeeefOWEHwa> GetAccountInfoAsync(string username)
         {
             return base.Channel.GetAccountInfoAsync(username);
+        }
+        
+        public SessionServiceReference.Response Logout(string username)
+        {
+            return base.Channel.Logout(username);
+        }
+        
+        public System.Threading.Tasks.Task<SessionServiceReference.Response> LogoutAsync(string username)
+        {
+            return base.Channel.LogoutAsync(username);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

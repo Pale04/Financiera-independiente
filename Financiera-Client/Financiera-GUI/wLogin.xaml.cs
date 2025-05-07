@@ -1,6 +1,7 @@
 ﻿using Business_logic;
 using DomainClasses;
 using Financiera_GUI.MainMenus;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Financiera_GUI
 {
-    public partial class wLogin : Window
+    public partial class wLogin : Page
     {
         LoginManager loginManager = new LoginManager();
         EmployeeClass employeeLogin = new EmployeeClass();
+        private readonly NotificationManager _notificationManager;
         public wLogin()
         {
             InitializeComponent();
@@ -43,13 +46,34 @@ namespace Financiera_GUI
                 {
                     employeeLogin = loginManager.getSessionInfo(employeeLogin.user);
                     UserSession.Instance.Employee = employeeLogin;
-                    wFinancieraIndependiente mainMenu = new wFinancieraIndependiente();
-                    mainMenu.Show();
-                    this.Close();
+
+                    switch (employeeLogin.role)
+                    {
+                        case "admin":
+                            NavigationService.Navigate(new wSystemManagement());
+                            break;
+                        case "analyst":
+                            //TODO: Navigate to the wCreditApplications Page
+                            break;
+                        case "adviser":
+                            NavigationService.Navigate(new wRequestsManagement());
+                            break;
+                        case "collector":
+                            NavigationService.Navigate(new wPaymentManagment());
+                            break;
+                    }
                 }
                 else
                 {
-                    //TODO: SendMessage
+                    switch (codeLogin)
+                    {
+                        case 1:
+                            _notificationManager.Show(NotificationMessages.LoginWrongCredentials, NotificationType.Error);
+                            break;
+                        case 3:
+                            _notificationManager.Show(NotificationMessages.LoginActiveSession, NotificationType.Warning);
+                            break;
+                    }
                 }
                 
             }
@@ -63,9 +87,7 @@ namespace Financiera_GUI
             }
             else
             {
-                wResetPassword resetPassword = new wResetPassword(tbUsername.Text);
-                resetPassword.Show();
-                this.Close();
+                
             }
 
         }
