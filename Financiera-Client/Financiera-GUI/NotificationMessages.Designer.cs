@@ -104,5 +104,23 @@ namespace Financiera_GUI {
                 return ResourceManager.GetString("GlobalUpdateSuccess", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ya existe una sesión activa con esta cuenta.
+        /// </summary>
+        internal static string LoginActiveSession {
+            get {
+                return ResourceManager.GetString("LoginActiveSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Usuario o contraseña incorrecta.
+        /// </summary>
+        internal static string LoginWrongCredentials {
+            get {
+                return ResourceManager.GetString("LoginWrongCredentials", resourceCulture);
+            }
+        }
     }
 }

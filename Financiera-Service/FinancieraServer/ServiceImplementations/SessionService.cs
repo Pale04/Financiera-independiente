@@ -6,10 +6,10 @@ using System.Data.Common;
 
 namespace FinancieraServer.ServiceImplementations
 {
-    public partial class SessionService : ISessionService
+    public  class SessionService : ISessionService
     {
         private ILogger<SessionService> _logger;
-        readonly List<String> ACTIVE_SESSIONS = new List<String>();
+        readonly List<string> ACTIVE_SESSIONS = new List<string>();
 
         public SessionService(ILogger<SessionService> logger)
         {
@@ -99,6 +99,21 @@ namespace FinancieraServer.ServiceImplementations
                 _logger.LogWarning($"An Error Ocurred trying to get Employee Information: {error.Message}");
                 return new ResponseWithContent<Employee>(1, "An error ocurred, please try again later");
             }
+        }
+
+        Response ISessionService.Logout(string username)
+        {
+            
+            if (ACTIVE_SESSIONS.Contains(username))
+            {
+                ACTIVE_SESSIONS.Remove(username);
+                return new Response(0);
+            }
+            else
+            {
+                return new Response(1);
+            }
+
         }
     }
 

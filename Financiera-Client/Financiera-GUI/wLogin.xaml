@@ -1,12 +1,15 @@
-﻿<Window x:Class="Financiera_GUI.wLogin"
+﻿<Page x:Class="Financiera_GUI.wLogin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Financiera_GUI"
         mc:Ignorable="d"
-        Title="wLogin" Height="720" Width="1280">
-    <Grid>
+        Title="wLogin" Height="720" Width="1280"
+        xmlns:notifications ="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf">
+        
+    
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition />
@@ -88,4 +91,4 @@
             </StackPanel>
         </Grid>
     </Grid>
-</Window>
+</Page>

@@ -11,6 +11,7 @@
       "*, SessionServiceReference"
     ],
     "references": [
+      "C:\\desarrollo-software\\financiera-independiente\\Financiera-Client\\Business-logic\\bin\\Debug\\net8.0\\DomainClasses.dll",
       "Microsoft.Extensions.ObjectPool, {Microsoft.Extensions.ObjectPool, 6.0.16}",
       "Microsoft.IdentityModel.Logging, {Microsoft.IdentityModel.Logging, 6.8.0}",
       "Microsoft.IdentityModel.Protocols.WsTrust, {Microsoft.IdentityModel.Protocols.WsTrust, 6.8.0}",

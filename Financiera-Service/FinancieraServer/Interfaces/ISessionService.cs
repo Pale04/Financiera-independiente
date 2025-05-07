@@ -11,5 +11,8 @@ namespace FinancieraServer.Interfaces
 
         [OperationContract]
         ResponseWithContent<Employee> GetAccountInfo(String username);
+
+        [OperationContract]
+        Response Logout(string username);
     }
 }
