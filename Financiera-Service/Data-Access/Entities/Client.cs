@@ -26,4 +26,6 @@ public partial class Client
     public virtual ICollection<BankAccount> BankAccounts { get; set; } = new List<BankAccount>();
 
     public virtual ICollection<Credit> Credits { get; set; } = new List<Credit>();
+
+    public virtual ICollection<PersonalReference> PersonalReferences { get; set; } = new List<PersonalReference>();
 }

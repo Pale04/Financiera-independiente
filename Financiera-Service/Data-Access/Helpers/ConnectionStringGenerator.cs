@@ -39,7 +39,8 @@
                     //TODO
                     break;
                 case ConnectionRole.LoanOfficer:
-                    //TODO
+                    password = Environment.GetEnvironmentVariable("IndependentFinancial_LoanOfficerPwd");
+                    connectionString = string.Format(connectionStringPlaceholder, server, "financialLoanOfficer", password);
                     break;
             }
 
