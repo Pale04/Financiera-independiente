@@ -71,7 +71,7 @@ namespace Financiera_GUI
                             _notificationManager.Show(NotificationMessages.LoginWrongCredentials, NotificationType.Error);
                             break;
                         case 3:
-                            _notificationManager.Show(NotificationMessages.LoginActiveSession, NotificationType.Warning);
+                            _notificationManager.Show(NotificationMessages.LoginActiveSessions, NotificationType.Warning);
                             break;
                     }
                 }
@@ -87,7 +87,7 @@ namespace Financiera_GUI
             }
             else
             {
-                
+                NavigationService.Navigate(new wResetPassword(tbUsername.Text));
             }
 
         }

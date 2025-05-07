@@ -97,7 +97,7 @@ namespace Business_logic {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Campos incompletos o inválidos. Por favor revisa los errores indicados..
+        ///   Busca una cadena traducida similar a Campos incompletos o inválidos..
         /// </summary>
         internal static string InvalidFields {
             get {
@@ -111,6 +111,15 @@ namespace Business_logic {
         internal static string ServerError {
             get {
                 return ResourceManager.GetString("ServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código de verificación incorrecto.
+        /// </summary>
+        internal static string WrongCode {
+            get {
+                return ResourceManager.GetString("WrongCode", resourceCulture);
             }
         }
     }

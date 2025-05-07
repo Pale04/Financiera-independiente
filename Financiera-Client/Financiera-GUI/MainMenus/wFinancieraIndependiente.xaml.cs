@@ -28,13 +28,13 @@ namespace Financiera_GUI.MainMenus
             }
         }
 
-        private void BtnLogout(object sender, RoutedEventArgs e)
+        private void BtnLogoutClick(object sender, RoutedEventArgs e)
         {
             int response = manager.Logout(UserSession.Instance.Employee.user);
 
-            if(response == 0)
+            if (response == 0)
             {
-                ContentFrame.NavigationService.Navigate(new wLogin);
+                ContentFrame.NavigationService.Navigate(new wLogin());
             }
         }
     }

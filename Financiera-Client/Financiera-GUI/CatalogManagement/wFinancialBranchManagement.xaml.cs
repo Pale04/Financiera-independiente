@@ -24,7 +24,7 @@ namespace Financiera_GUI.CatalogManagement
         public wFinancialBranchManagement()
         {
             InitializeComponent();
-            subsidiaries = Catalog
+            //subsidiaries = Catalog
         }
     }
 }

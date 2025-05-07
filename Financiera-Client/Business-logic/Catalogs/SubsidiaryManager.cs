@@ -1,4 +1,4 @@
-﻿using CatalogServiceReferenece;
+﻿using CatalogServiceReference;
 using DomainClasses;
 using System;
 using System.Collections.Generic;
@@ -10,11 +10,11 @@ namespace Business_logic.Catalogs
 {
     internal class SubsidiaryManager
     {
-        public List<Subsidiary> GetAll()
+        /*public List<Subsidiary> GetAll()
         {
             CatalogServiceClient client = new();
 
             return client.getSubsidiariesList();
-        }
+        }*/
     }
 }

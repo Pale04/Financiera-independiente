@@ -14,7 +14,7 @@ namespace Business_logic
 {
     public class AccountManager
     {
-        public int SentEmail(EmployeeClass account)
+        public int SendEmail(EmployeeClass account)
         {
 
             if (account.isValidForLogin())
@@ -102,6 +102,30 @@ namespace Business_logic
             else
             {
                 return false;
+            }
+        }
+    
+
+    public bool isCodeValid(string user, string code)
+        {
+            AccountServiceClient client = new();
+            bool valid = false;
+            try
+            {
+                valid = client.CheckVerificationCode(code, user);
+                if (!valid)
+                {
+                    throw new Exception(ErrorMessages.WrongCode);
+                }
+                else
+                {
+                    valid = true;
+                    return valid;
+                }
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
             }
         }
     }

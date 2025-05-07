@@ -106,11 +106,11 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Ya existe una sesión activa con esta cuenta.
+        ///   Busca una cadena traducida similar a Ya existe una sesión activa con este usuario.
         /// </summary>
-        internal static string LoginActiveSession {
+        internal static string LoginActiveSessions {
             get {
-                return ResourceManager.GetString("LoginActiveSession", resourceCulture);
+                return ResourceManager.GetString("LoginActiveSessions", resourceCulture);
             }
         }
         
@@ -120,6 +120,33 @@ namespace Financiera_GUI {
         internal static string LoginWrongCredentials {
             get {
                 return ResourceManager.GetString("LoginWrongCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Complete todos los campos.
+        /// </summary>
+        internal static string ResetEmptyFields {
+            get {
+                return ResourceManager.GetString("ResetEmptyFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código de verificación incorrecto.
+        /// </summary>
+        internal static string ResetIncorrectCode {
+            get {
+                return ResourceManager.GetString("ResetIncorrectCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Usuario no encontrado.
+        /// </summary>
+        internal static string ResetInvalidCredentials {
+            get {
+                return ResourceManager.GetString("ResetInvalidCredentials", resourceCulture);
             }
         }
     }

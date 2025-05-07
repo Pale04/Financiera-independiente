@@ -1,5 +1,6 @@
 ﻿using Business_logic;
 using DomainClasses;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,17 @@ using System.Windows.Shapes;
 
 namespace Financiera_GUI
 {
-    public partial class wResetPassword : Window
+    public partial class wResetPassword : Page
     {
         EmployeeClass employee;
         Business_logic.AccountManager accountManager = new AccountManager();
+        private readonly NotificationManager _notificationManager;
 
         public wResetPassword(string username)
         {
             employee.user = username;
             InitializeComponent();
+            SendEmail(employee);
         }
 
         private void Code1_KeyDown(object sender, KeyEventArgs e)
@@ -73,7 +76,23 @@ namespace Financiera_GUI
         {
             if (Code6.Text.Length == 1)
             {
-                
+                string code = getVerificationCode();
+                if(code.Length < 6)
+                {
+                    _notificationManager.Show(NotificationMessages.ResetEmptyFields, NotificationType.Warning);
+                }
+                else
+                {
+
+                    if (accountManager.isCodeValid(employee.user, code))
+                    {
+                        EnableFields();
+                    }
+                    else
+                    {
+                        _notificationManager.Show(NotificationMessages.ResetIncorrectCode);
+                    }
+                }
             }
         }
 
@@ -93,18 +112,39 @@ namespace Financiera_GUI
             verificationCode += Code4.Text;
             verificationCode += Code5.Text;
             verificationCode += Code6.Text;
+
+            return verificationCode;
         }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
+            int response = accountManager.ChangePassword(employee, psbNewPassword.Password, psbConfirm.Password);
 
+            switch (response)
+            {
+                case 0:
+                    _notificationManager.Show(NotificationMessages.GlobalUpdateSuccess, NotificationType.Information);
+                    break;
+
+                case 1:
+                    _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
+                    break;
+                case 2:
+                    _notificationManager.Show(NotificationMessages.ResetInvalidCredentials, NotificationType.Warning);
+                    break;
+            }
         }
 
         
 
         private void hlReenvio_Click(object sender, RoutedEventArgs e)
         {
-            accountManager.SentEmail(employee);
+            accountManager.SendEmail(employee);
+        }
+
+        private void SendEmail(EmployeeClass employee)
+        {
+            accountManager.SendEmail(employee);
         }
     }
 }
