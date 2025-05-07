@@ -5,6 +5,8 @@ namespace Financiera_GUI.MainMenus
 {
     public partial class wFinancieraIndependiente : Window
     {
+        LoginManager manager = new LoginManager();
+
         public wFinancieraIndependiente()
         {
             InitializeComponent();
@@ -23,6 +25,16 @@ namespace Financiera_GUI.MainMenus
                 case "collector":
                     //TODO: Change to wPaymentManagment
                     break;
+            }
+        }
+
+        private void BtnLogout(object sender, RoutedEventArgs e)
+        {
+            int response = manager.Logout(UserSession.Instance.Employee.user);
+
+            if(response == 0)
+            {
+                ContentFrame.NavigationService.Navigate(new wLogin());
             }
         }
     }

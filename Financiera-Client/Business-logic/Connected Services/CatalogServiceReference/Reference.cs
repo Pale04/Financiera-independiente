@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CatalogServiceReferenece
+namespace CatalogServiceReference
 {
     using System.Runtime.Serialization;
     
@@ -15,8 +15,9 @@ namespace CatalogServiceReferenece
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReference.ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui))]
     public partial class Response : object
     {
         
@@ -54,13 +55,35 @@ namespace CatalogServiceReferenece
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
-    public partial class ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui : CatalogServiceReferenece.Response
+    public partial class ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui : CatalogServiceReference.Response
     {
         
-        private CatalogServiceReferenece.CreditConditionDC[] DataField;
+        private CatalogServiceReference.CreditConditionDC[] DataField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CatalogServiceReferenece.CreditConditionDC[] Data
+        public CatalogServiceReference.CreditConditionDC[] Data
+        {
+            get
+            {
+                return this.DataField;
+            }
+            set
+            {
+                this.DataField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui : CatalogServiceReference.Response
+    {
+        
+        private CatalogServiceReference.SubsidiaryDC[] DataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.SubsidiaryDC[] Data
         {
             get
             {
@@ -76,13 +99,13 @@ namespace CatalogServiceReferenece
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
-    public partial class ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui : CatalogServiceReferenece.Response
+    public partial class ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui : CatalogServiceReference.Response
     {
         
-        private CatalogServiceReferenece.RequiredDocumentDC[] DataField;
+        private CatalogServiceReference.RequiredDocumentDC[] DataField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CatalogServiceReferenece.RequiredDocumentDC[] Data
+        public CatalogServiceReference.RequiredDocumentDC[] Data
         {
             get
             {
@@ -259,78 +282,154 @@ namespace CatalogServiceReferenece
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CatalogServiceReferenece.ICatalogService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SubsidiaryDC", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class SubsidiaryDC : object
+    {
+        
+        private string AddressField;
+        
+        private int IdField;
+        
+        private bool StateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address
+        {
+            get
+            {
+                return this.AddressField;
+            }
+            set
+            {
+                this.AddressField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool State
+        {
+            get
+            {
+                return this.StateField;
+            }
+            set
+            {
+                this.StateField = value;
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CatalogServiceReference.ICatalogService")]
     public interface ICatalogService
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationNext", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationNextRespon" +
             "se")]
-        CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationNext(int pageSize, int lastId);
+        CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationNext(int pageSize, int lastId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationNext", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationNextRespon" +
             "se")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationNextAsync(int pageSize, int lastId);
+        System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationNextAsync(int pageSize, int lastId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationPrevious", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationPreviousRe" +
             "sponse")]
-        CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId);
+        CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationPrevious", ReplyAction="http://tempuri.org/ICatalogService/GetRequiredDocumentationByPaginationPreviousRe" +
             "sponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationPreviousAsync(int pageSize, int firstId);
+        System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationPreviousAsync(int pageSize, int firstId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/AddRequiredDocumentResponse")]
-        CatalogServiceReferenece.Response AddRequiredDocument(CatalogServiceReferenece.RequiredDocumentDC requiredDocument);
+        CatalogServiceReference.Response AddRequiredDocument(CatalogServiceReference.RequiredDocumentDC requiredDocument);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/AddRequiredDocumentResponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> AddRequiredDocumentAsync(CatalogServiceReferenece.RequiredDocumentDC requiredDocument);
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> AddRequiredDocumentAsync(CatalogServiceReference.RequiredDocumentDC requiredDocument);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentResponse")]
-        CatalogServiceReferenece.Response UpdateRequiredDocument(CatalogServiceReferenece.RequiredDocumentDC requiredDocument);
+        CatalogServiceReference.Response UpdateRequiredDocument(CatalogServiceReference.RequiredDocumentDC requiredDocument);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentResponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentAsync(CatalogServiceReferenece.RequiredDocumentDC requiredDocument);
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateRequiredDocumentAsync(CatalogServiceReference.RequiredDocumentDC requiredDocument);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocumentState", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentStateResponse")]
-        CatalogServiceReferenece.Response UpdateRequiredDocumentState(int id, bool isActive);
+        CatalogServiceReference.Response UpdateRequiredDocumentState(int id, bool isActive);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateRequiredDocumentState", ReplyAction="http://tempuri.org/ICatalogService/UpdateRequiredDocumentStateResponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentStateAsync(int id, bool isActive);
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateRequiredDocumentStateAsync(int id, bool isActive);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetCreditConditionsByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetCreditConditionsByPaginationResponse")]
-        CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui GetCreditConditionsByPagination(int pageSize, int markId, bool next);
+        CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui GetCreditConditionsByPagination(int pageSize, int markId, bool next);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetCreditConditionsByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetCreditConditionsByPaginationResponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetCreditConditionsByPaginationAsync(int pageSize, int markId, bool next);
+        System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetCreditConditionsByPaginationAsync(int pageSize, int markId, bool next);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/AddCreditConditionResponse")]
-        CatalogServiceReferenece.Response AddCreditCondition(CatalogServiceReferenece.CreditConditionDC creditCondition);
+        CatalogServiceReference.Response AddCreditCondition(CatalogServiceReference.CreditConditionDC creditCondition);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/AddCreditConditionResponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> AddCreditConditionAsync(CatalogServiceReferenece.CreditConditionDC creditCondition);
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> AddCreditConditionAsync(CatalogServiceReference.CreditConditionDC creditCondition);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditConditionResponse")]
-        CatalogServiceReferenece.Response UpdateCreditCondition(CatalogServiceReferenece.CreditConditionDC creditCondition);
+        CatalogServiceReference.Response UpdateCreditCondition(CatalogServiceReference.CreditConditionDC creditCondition);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditConditionResponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateCreditConditionAsync(CatalogServiceReferenece.CreditConditionDC creditCondition);
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateCreditConditionAsync(CatalogServiceReference.CreditConditionDC creditCondition);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditConditionState", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditConditionStateResponse")]
-        CatalogServiceReferenece.Response UpdateCreditConditionState(int id, bool state);
+        CatalogServiceReference.Response UpdateCreditConditionState(int id, bool state);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditConditionState", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditConditionStateResponse")]
-        System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateCreditConditionStateAsync(int id, bool state);
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateCreditConditionStateAsync(int id, bool state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetSubsidiaries", ReplyAction="http://tempuri.org/ICatalogService/GetSubsidiariesResponse")]
+        CatalogServiceReference.ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui GetSubsidiaries();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetSubsidiaries", ReplyAction="http://tempuri.org/ICatalogService/GetSubsidiariesResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui> GetSubsidiariesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddSubsidiary", ReplyAction="http://tempuri.org/ICatalogService/AddSubsidiaryResponse")]
+        CatalogServiceReference.Response AddSubsidiary(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddSubsidiary", ReplyAction="http://tempuri.org/ICatalogService/AddSubsidiaryResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> AddSubsidiaryAsync(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateSubsidiaryAddress", ReplyAction="http://tempuri.org/ICatalogService/UpdateSubsidiaryAddressResponse")]
+        CatalogServiceReference.Response UpdateSubsidiaryAddress(int id, string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateSubsidiaryAddress", ReplyAction="http://tempuri.org/ICatalogService/UpdateSubsidiaryAddressResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateSubsidiaryAddressAsync(int id, string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateSubsidiaryState", ReplyAction="http://tempuri.org/ICatalogService/UpdateSubsidiaryStateResponse")]
+        CatalogServiceReference.Response UpdateSubsidiaryState(int id, bool activeSubsidiary);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateSubsidiaryState", ReplyAction="http://tempuri.org/ICatalogService/UpdateSubsidiaryStateResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateSubsidiaryStateAsync(int id, bool activeSubsidiary);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    public interface ICatalogServiceChannel : CatalogServiceReferenece.ICatalogService, System.ServiceModel.IClientChannel
+    public interface ICatalogServiceChannel : CatalogServiceReference.ICatalogService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    public partial class CatalogServiceClient : System.ServiceModel.ClientBase<CatalogServiceReferenece.ICatalogService>, CatalogServiceReferenece.ICatalogService
+    public partial class CatalogServiceClient : System.ServiceModel.ClientBase<CatalogServiceReference.ICatalogService>, CatalogServiceReference.ICatalogService
     {
         
         /// <summary>
@@ -373,94 +472,134 @@ namespace CatalogServiceReferenece
         {
         }
         
-        public CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationNext(int pageSize, int lastId)
+        public CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationNext(int pageSize, int lastId)
         {
             return base.Channel.GetRequiredDocumentationByPaginationNext(pageSize, lastId);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationNextAsync(int pageSize, int lastId)
+        public System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationNextAsync(int pageSize, int lastId)
         {
             return base.Channel.GetRequiredDocumentationByPaginationNextAsync(pageSize, lastId);
         }
         
-        public CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId)
+        public CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId)
         {
             return base.Channel.GetRequiredDocumentationByPaginationPrevious(pageSize, firstId);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationPreviousAsync(int pageSize, int firstId)
+        public System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationPreviousAsync(int pageSize, int firstId)
         {
             return base.Channel.GetRequiredDocumentationByPaginationPreviousAsync(pageSize, firstId);
         }
         
-        public CatalogServiceReferenece.Response AddRequiredDocument(CatalogServiceReferenece.RequiredDocumentDC requiredDocument)
+        public CatalogServiceReference.Response AddRequiredDocument(CatalogServiceReference.RequiredDocumentDC requiredDocument)
         {
             return base.Channel.AddRequiredDocument(requiredDocument);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> AddRequiredDocumentAsync(CatalogServiceReferenece.RequiredDocumentDC requiredDocument)
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> AddRequiredDocumentAsync(CatalogServiceReference.RequiredDocumentDC requiredDocument)
         {
             return base.Channel.AddRequiredDocumentAsync(requiredDocument);
         }
         
-        public CatalogServiceReferenece.Response UpdateRequiredDocument(CatalogServiceReferenece.RequiredDocumentDC requiredDocument)
+        public CatalogServiceReference.Response UpdateRequiredDocument(CatalogServiceReference.RequiredDocumentDC requiredDocument)
         {
             return base.Channel.UpdateRequiredDocument(requiredDocument);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentAsync(CatalogServiceReferenece.RequiredDocumentDC requiredDocument)
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateRequiredDocumentAsync(CatalogServiceReference.RequiredDocumentDC requiredDocument)
         {
             return base.Channel.UpdateRequiredDocumentAsync(requiredDocument);
         }
         
-        public CatalogServiceReferenece.Response UpdateRequiredDocumentState(int id, bool isActive)
+        public CatalogServiceReference.Response UpdateRequiredDocumentState(int id, bool isActive)
         {
             return base.Channel.UpdateRequiredDocumentState(id, isActive);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateRequiredDocumentStateAsync(int id, bool isActive)
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateRequiredDocumentStateAsync(int id, bool isActive)
         {
             return base.Channel.UpdateRequiredDocumentStateAsync(id, isActive);
         }
         
-        public CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui GetCreditConditionsByPagination(int pageSize, int markId, bool next)
+        public CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui GetCreditConditionsByPagination(int pageSize, int markId, bool next)
         {
             return base.Channel.GetCreditConditionsByPagination(pageSize, markId, next);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetCreditConditionsByPaginationAsync(int pageSize, int markId, bool next)
+        public System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetCreditConditionsByPaginationAsync(int pageSize, int markId, bool next)
         {
             return base.Channel.GetCreditConditionsByPaginationAsync(pageSize, markId, next);
         }
         
-        public CatalogServiceReferenece.Response AddCreditCondition(CatalogServiceReferenece.CreditConditionDC creditCondition)
+        public CatalogServiceReference.Response AddCreditCondition(CatalogServiceReference.CreditConditionDC creditCondition)
         {
             return base.Channel.AddCreditCondition(creditCondition);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> AddCreditConditionAsync(CatalogServiceReferenece.CreditConditionDC creditCondition)
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> AddCreditConditionAsync(CatalogServiceReference.CreditConditionDC creditCondition)
         {
             return base.Channel.AddCreditConditionAsync(creditCondition);
         }
         
-        public CatalogServiceReferenece.Response UpdateCreditCondition(CatalogServiceReferenece.CreditConditionDC creditCondition)
+        public CatalogServiceReference.Response UpdateCreditCondition(CatalogServiceReference.CreditConditionDC creditCondition)
         {
             return base.Channel.UpdateCreditCondition(creditCondition);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateCreditConditionAsync(CatalogServiceReferenece.CreditConditionDC creditCondition)
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateCreditConditionAsync(CatalogServiceReference.CreditConditionDC creditCondition)
         {
             return base.Channel.UpdateCreditConditionAsync(creditCondition);
         }
         
-        public CatalogServiceReferenece.Response UpdateCreditConditionState(int id, bool state)
+        public CatalogServiceReference.Response UpdateCreditConditionState(int id, bool state)
         {
             return base.Channel.UpdateCreditConditionState(id, state);
         }
         
-        public System.Threading.Tasks.Task<CatalogServiceReferenece.Response> UpdateCreditConditionStateAsync(int id, bool state)
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateCreditConditionStateAsync(int id, bool state)
         {
             return base.Channel.UpdateCreditConditionStateAsync(id, state);
+        }
+        
+        public CatalogServiceReference.ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui GetSubsidiaries()
+        {
+            return base.Channel.GetSubsidiaries();
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui> GetSubsidiariesAsync()
+        {
+            return base.Channel.GetSubsidiariesAsync();
+        }
+        
+        public CatalogServiceReference.Response AddSubsidiary(string address)
+        {
+            return base.Channel.AddSubsidiary(address);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> AddSubsidiaryAsync(string address)
+        {
+            return base.Channel.AddSubsidiaryAsync(address);
+        }
+        
+        public CatalogServiceReference.Response UpdateSubsidiaryAddress(int id, string address)
+        {
+            return base.Channel.UpdateSubsidiaryAddress(id, address);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateSubsidiaryAddressAsync(int id, string address)
+        {
+            return base.Channel.UpdateSubsidiaryAddressAsync(id, address);
+        }
+        
+        public CatalogServiceReference.Response UpdateSubsidiaryState(int id, bool activeSubsidiary)
+        {
+            return base.Channel.UpdateSubsidiaryState(id, activeSubsidiary);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateSubsidiaryStateAsync(int id, bool activeSubsidiary)
+        {
+            return base.Channel.UpdateSubsidiaryStateAsync(id, activeSubsidiary);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

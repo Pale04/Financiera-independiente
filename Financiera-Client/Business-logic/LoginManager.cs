@@ -71,5 +71,31 @@ namespace Business_logic
                     return employeeInfo;
             }
         }
+
+        public int Logout(string user)
+        {
+            SessionServiceClient client = new();
+            Response response;
+            int StatusCode = 1;
+            try
+            {
+                response = client.Logout(user);
+
+                switch (response.StatusCode)
+                {
+                    case 0:
+                        StatusCode = 0;
+                        return StatusCode;
+                    case 1:
+                        StatusCode = 1;
+                        throw new Exception(ErrorMessages.BadRequest);
+                }
+            }catch(CommunicationException error)
+            {
+                StatusCode = 1;
+                throw new Exception(ErrorMessages.ServerError);
+            }
+            return StatusCode;
+        }
     }
 }

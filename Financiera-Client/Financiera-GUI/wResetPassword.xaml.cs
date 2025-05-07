@@ -1,4 +1,5 @@
 ﻿using Business_logic;
+using DomainClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,12 @@ namespace Financiera_GUI
 {
     public partial class wResetPassword : Window
     {
-        string user;
+        EmployeeClass employee;
         Business_logic.AccountManager accountManager = new AccountManager();
 
         public wResetPassword(string username)
         {
-            user = username;
+            employee.user = username;
             InitializeComponent();
         }
 
@@ -72,7 +73,7 @@ namespace Financiera_GUI
         {
             if (Code6.Text.Length == 1)
             {
-                //TODO: Check the verification code
+                
             }
         }
 
@@ -83,6 +84,17 @@ namespace Financiera_GUI
             psbNewPassword.IsEnabled = true;
         }
 
+        public string getVerificationCode()
+        {
+            string verificationCode;
+            verificationCode = Code1.Text;
+            verificationCode += Code2.Text;
+            verificationCode += Code3.Text;
+            verificationCode += Code4.Text;
+            verificationCode += Code5.Text;
+            verificationCode += Code6.Text;
+            return "";
+        }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
@@ -92,6 +104,11 @@ namespace Financiera_GUI
         
 
         private void hlReenvio_Click(object sender, RoutedEventArgs e)
+        {
+            accountManager.SentEmail(employee);
+        }
+
+        private void MouseLeftButtonDow(object sender, MouseButtonEventArgs e)
         {
 
         }
