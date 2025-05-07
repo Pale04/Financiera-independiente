@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 
 namespace Financiera_GUI
 {
-    public partial class wLogin : Page
+    public partial class wLogin : Window
     {
         LoginManager loginManager = new LoginManager();
         EmployeeClass employeeLogin = new EmployeeClass();
@@ -46,22 +46,9 @@ namespace Financiera_GUI
                 {
                     employeeLogin = loginManager.getSessionInfo(employeeLogin.user);
                     UserSession.Instance.Employee = employeeLogin;
-
-                    switch (employeeLogin.role)
-                    {
-                        case "admin":
-                            NavigationService.Navigate(new wSystemManagement());
-                            break;
-                        case "analyst":
-                            //TODO: Navigate to the wCreditApplications Page
-                            break;
-                        case "adviser":
-                            NavigationService.Navigate(new wRequestsManagement());
-                            break;
-                        case "collector":
-                            NavigationService.Navigate(new wPaymentManagment());
-                            break;
-                    }
+                    wFinancieraIndependiente mainMenu = new wFinancieraIndependiente();
+                    mainMenu.Show();
+                    this.Close();
                 }
                 else
                 {
