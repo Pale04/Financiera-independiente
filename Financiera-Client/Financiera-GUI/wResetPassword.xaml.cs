@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace Financiera_GUI
 {
-    public partial class wResetPassword : Page
+    public partial class wResetPassword : Window
     {
         string user;
         Business_logic.AccountManager accountManager = new AccountManager();

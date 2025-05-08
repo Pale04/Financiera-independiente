@@ -82,7 +82,9 @@ namespace Financiera_GUI
             else
             {
                 string username = tbUsername.Text;
-                NavigationService.Navigate(new wResetPassword(username));
+                wResetPassword wReset = new wResetPassword(username);
+                wReset.Show();
+                this.Close();
             }
 
         }
