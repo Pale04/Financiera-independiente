@@ -20,7 +20,7 @@ namespace AccountServiceReference
         
         private string addressField;
         
-        private AccountServiceReference.DateOnly birthdayField;
+        private string birthdayField;
         
         private int idField;
         
@@ -52,7 +52,7 @@ namespace AccountServiceReference
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public AccountServiceReference.DateOnly birthday
+        public string birthday
         {
             get
             {
@@ -167,13 +167,6 @@ namespace AccountServiceReference
                 this.userField = value;
             }
         }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DateOnly", Namespace="http://schemas.datacontract.org/2004/07/System")]
-    public partial struct DateOnly
-    {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
