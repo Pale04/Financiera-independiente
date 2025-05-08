@@ -35,5 +35,10 @@ namespace Financiera_GUI.MainMenus
         {
             NavigationService.Navigate(new wFinancialBranchManagement());
         }
+
+        private void BtnCreateAccountClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new wAccountCreation());
+        }
     }
 }
