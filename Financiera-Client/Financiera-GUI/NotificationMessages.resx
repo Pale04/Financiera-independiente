@@ -132,10 +132,22 @@
   <data name="GlobalUpdateSuccess" xml:space="preserve">
     <value>Se han actualizado los datos exitosamente</value>
   </data>
-  <data name="LoginActiveSession" xml:space="preserve">
-    <value>Ya existe una sesión activa con esta cuenta</value>
-  </data>
   <data name="LoginWrongCredentials" xml:space="preserve">
     <value>Usuario o contraseña incorrecta</value>
+  </data>
+  <data name="ResetEmptyFields" xml:space="preserve">
+    <value>Complete todos los campos</value>
+  </data>
+  <data name="ResetIncorrectCode" xml:space="preserve">
+    <value>Código de verificación incorrecto</value>
+  </data>
+  <data name="ResetInvalidCredentials" xml:space="preserve">
+    <value>Usuario no encontrado</value>
+  </data>
+  <data name="LoginActiveSessions" xml:space="preserve">
+    <value>Ya existe una sesión activa con este usuario</value>
+  </data>
+  <data name="LoginUserNotFund" xml:space="preserve">
+    <value>Usuario no encontrado o no existe</value>
   </data>
 </root>

@@ -61,10 +61,10 @@ namespace AccountServiceReference
         System.Threading.Tasks.Task<AccountServiceReference.Response> createAccountAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/SendEmail", ReplyAction="http://tempuri.org/IAccountService/SendEmailResponse")]
-        void SendEmail(string mail, string code);
+        int SendEmail(string mail, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/SendEmail", ReplyAction="http://tempuri.org/IAccountService/SendEmailResponse")]
-        System.Threading.Tasks.Task SendEmailAsync(string mail, string code);
+        System.Threading.Tasks.Task<int> SendEmailAsync(string mail, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/ChangePassword", ReplyAction="http://tempuri.org/IAccountService/ChangePasswordResponse")]
         AccountServiceReference.Response ChangePassword(string user, string password);
@@ -145,12 +145,12 @@ namespace AccountServiceReference
             return base.Channel.createAccountAsync();
         }
         
-        public void SendEmail(string mail, string code)
+        public int SendEmail(string mail, string code)
         {
-            base.Channel.SendEmail(mail, code);
+            return base.Channel.SendEmail(mail, code);
         }
         
-        public System.Threading.Tasks.Task SendEmailAsync(string mail, string code)
+        public System.Threading.Tasks.Task<int> SendEmailAsync(string mail, string code)
         {
             return base.Channel.SendEmailAsync(mail, code);
         }

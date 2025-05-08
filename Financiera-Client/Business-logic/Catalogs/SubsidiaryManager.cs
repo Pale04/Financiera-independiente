@@ -1,4 +1,4 @@
-﻿using CatalogServiceReference;
+using CatalogServiceReference;
 using DomainClasses;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace Business_logic.Catalogs
 {
     public class SubsidiaryManager
     {
-        public List<Subsidiary> GetAll()
+
         {
             CatalogServiceClient client = new();
             ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui response;

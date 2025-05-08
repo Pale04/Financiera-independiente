@@ -14,12 +14,12 @@ namespace Business_logic
 {
     public class AccountManager
     {
-        public int SentEmail(EmployeeClass account)
+        public int SendEmail(EmployeeClass account)
         {
 
             if (account.isValidForLogin())
             {
-                throw new Exception(ErrorMessages.InvalidFields);
+                return 2;
             }
 
             SessionServiceClient sessionClient = new();
@@ -27,25 +27,26 @@ namespace Business_logic
 
             try
             {
-                if (sessionClient.GetAccountInfo(account.user) != null)
+                ResponseWithContentOfEmployeeefOWEHwa response = sessionClient.GetAccountInfo(account.user);
+                if (response != null)
                 {
                     EmployeeClass employeeInfo = new()
                     {
-                        user = account.user,
-                        mail = account.mail
+                        user = response.Data.user,
+                        mail = response.Data.mail
                     };
 
-                    string code = accountClient.GenerateVerificationCode(account.user);
-                    accountClient.SendEmail(account.mail, code);
+                    string code = accountClient.GenerateVerificationCode(response.Data.user);
+                    accountClient.SendEmail(response.Data.mail, code);
                 }
                 else
                 {
-
+                    return 2;
                 }
             }
             catch (CommunicationException error)
             {
-                throw new Exception(ErrorMessages.ServerError);
+                return 1;
             }
 
             return 0;
@@ -66,17 +67,17 @@ namespace Business_logic
                     }
                     catch(CommunicationException error)
                     {
-                        throw new Exception(ErrorMessages.ServerError);
+                        return 1;
                     }
                 }
                 else
                 {
-                    throw new Exception(ErrorMessages.InvalidFields);
+                    return 2;
                 }
             }
             else
             {
-                throw new Exception(ErrorMessages.InvalidFields);
+                return 2;
             }
         }
 
@@ -102,6 +103,30 @@ namespace Business_logic
             else
             {
                 return false;
+            }
+        }
+    
+
+    public bool isCodeValid(string user, string code)
+        {
+            AccountServiceClient client = new();
+            bool valid = false;
+            try
+            {
+                valid = client.CheckVerificationCode(code, user);
+                if (!valid)
+                {
+                    return valid;
+                }
+                else
+                {
+                    valid = true;
+                    return valid;
+                }
+            }
+            catch (CommunicationException error)
+            {
+                return valid;
             }
         }
     }

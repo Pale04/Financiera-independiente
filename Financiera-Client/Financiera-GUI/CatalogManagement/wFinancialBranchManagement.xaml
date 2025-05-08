@@ -24,7 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <Border Margin="10" Grid.Column="0" Height="40" Width="40" CornerRadius="50" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Back">
-                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform" MouseLeftButtonDown="Back"/>
             </Border>
             <Label Grid.Column="1" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
                FontFamily="Roboto" FontSize="30" FontWeight="Bold">Gestión de sucursales</Label>

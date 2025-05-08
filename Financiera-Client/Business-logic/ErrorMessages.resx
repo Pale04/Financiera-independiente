@@ -135,4 +135,7 @@
   <data name="DuplicatedCreditCondition" xml:space="preserve">
     <value>Ya existe una condición de crédito registrada con los mismos datos.</value>
   </data>
+  <data name="WrongCode" xml:space="preserve">
+    <value>Código de verificación incorrecto</value>
+  </data>
 </root>

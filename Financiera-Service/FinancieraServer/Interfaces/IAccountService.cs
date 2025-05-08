@@ -9,7 +9,7 @@ namespace FinancieraServer.Interfaces
         Response createAccount();
 
         [OperationContract]
-        void SendEmail(string mail, string code);
+        int SendEmail(string mail, string code);
 
         [OperationContract]
         Response ChangePassword(string user, String password);

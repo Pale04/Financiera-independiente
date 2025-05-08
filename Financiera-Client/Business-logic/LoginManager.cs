@@ -15,7 +15,7 @@ namespace Business_logic
         {
             if (!employee.isValidForLogin())
             {
-                throw new Exception(ErrorMessages.InvalidFields);
+                return 1;
             }
 
             SessionServiceClient client = new();
@@ -33,9 +33,13 @@ namespace Business_logic
             switch (response.StatusCode)
             {
                 case 1:
-                    throw new Exception(ErrorMessages.InvalidFields);
+                    return 1;
+                case 2:
+                    return 2;
                 case 3:
-                    throw new Exception(ErrorMessages.ActiveSession);
+                    return 3;
+                case 4:
+                    return 4;
                 default:
                     return 0;
             }
