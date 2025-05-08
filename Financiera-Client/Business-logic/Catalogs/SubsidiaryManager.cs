@@ -59,7 +59,7 @@ namespace Business_logic.Catalogs
             return response.StatusCode;
         }
 
-        public int updateAddress(int id, string address)
+        public int UpdateAddress(int id, string address)
         {
             CatalogServiceClient client = new();
             Response response;
@@ -77,7 +77,7 @@ namespace Business_logic.Catalogs
             return response.StatusCode;
         }
 
-        public int updateState(int id, bool state)
+        public int UpdateState(int id, bool state)
         {
             CatalogServiceClient client = new();
             Response response;

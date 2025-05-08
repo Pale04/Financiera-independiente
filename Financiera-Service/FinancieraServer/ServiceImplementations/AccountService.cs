@@ -38,7 +38,7 @@ namespace FinancieraServer.ServiceImplementations
                 mail = employee.mail,
                 phoneNumber = employee.phone,
                 address = employee.address,
-                birthday = employee.birthday,
+                birthday = DateOnly.ParseExact(employee.birthday, "YYYY-MM-DD"),
                 sucursalId = employee.subsidiaryId
             };
 

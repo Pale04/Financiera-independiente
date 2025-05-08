@@ -34,7 +34,7 @@ namespace FinancieraServer.DataContracts
         public string address { get; set; }
 
         [DataMember]
-        public DateOnly birthday { get; set; }
+        public string birthday { get; set; }
 
         [DataMember]
         public int subsidiaryId { get; set; }
@@ -44,7 +44,7 @@ namespace FinancieraServer.DataContracts
 
         public bool isValid()
         {
-            Regex mailRgx = new Regex("/^[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$/gm");
+            Regex mailRgx = new Regex("^[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$");
             Regex phoneRgx = new Regex("\\d{10}");
 
             DateTime currentDate = DateTime.Now;
@@ -56,7 +56,7 @@ namespace FinancieraServer.DataContracts
                 phoneRgx.IsMatch(phone) ||
                 phone.Length == 10 ||
                 string.IsNullOrEmpty(address) ||
-                DateTime.Compare(birthday.ToDateTime(TimeOnly.MinValue), currentDate) < 0;
+                DateTime.Compare(DateOnly.ParseExact(birthday, "yyyy-MM-DD").ToDateTime(TimeOnly.MinValue), currentDate) < 0;
         }
     }
 }

@@ -1,0 +1,81 @@
+﻿<Page x:Class="Financiera_GUI.CatalogManagement.wAccountCreation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Financiera_GUI.CatalogManagement"
+      mc:Ignorable="d" 
+      xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
+      xmlns:userControls="clr-namespace:Financiera_GUI.Utilities"
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="wAccountCreation">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Margin="10" Grid.Column="0" Height="40" Width="40" CornerRadius="50" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Back">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
+            </Border>
+            <Label Grid.Column="1" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+        FontFamily="Roboto" FontSize="30" FontWeight="Bold">Crear cuenta de trabajador</Label>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="200, 10, 200, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0, 0, 40, 0">
+                <userControls:ucTextField x:Name="nameField" Text="Nombre completo" MaxLen="100"/>
+                <userControls:ucTextField x:Name="addressField" Text="Domicilio" MaxLen="400"/>
+                <userControls:ucTextField x:Name="phoneField" Text="Telefono" MaxLen="10"/>
+                <userControls:ucTextField x:Name="mailField" Text="Correo electronico" MaxLen="100"/>
+                <DatePicker x:Name="birthdayPicker" FontSize="18"/>
+                <Label Name="bdayErrorLabel" VerticalAlignment="Center" HorizontalAlignment="Left" Height="Auto" FontFamily="Roboto" FontSize="10" Foreground="Red" Visibility="Hidden">*Requerido</Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Column="1" Margin="40, 0, 0, 0">
+                <StackPanel Margin="10">
+                    <Label FontSize="18" FontWeight="SemiBold">Rol del trabajador</Label>
+                    <RadioButton x:Name="rbAdmin" Margin="15, 5, 0, 0" FontSize="14" GroupName="role" IsChecked="True">Administrador</RadioButton>
+                    <RadioButton x:Name="rbAdviser" Margin="15, 5, 0, 0" FontSize="14" GroupName="role">Asesor de crédito</RadioButton>
+                    <RadioButton x:Name="rbAnalist" Margin="15, 5, 0, 0" FontSize="14" GroupName="role">Analísta de crédito</RadioButton>
+                    <RadioButton x:Name="rbCollector" Margin="15, 5, 0, 0" FontSize="14" GroupName="role">Ejecutivo de cobranza</RadioButton>
+                </StackPanel>
+                <Label Name="roleErrorLabel" VerticalAlignment="Center" HorizontalAlignment="Left" Height="Auto" FontFamily="Roboto" FontSize="10" Foreground="Red" Visibility="Hidden">*Requerido</Label>
+
+                <userControls:ucTextField x:Name="userField" Text="Nombre de usuario" MaxLen="100"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" FontSize="20" FontWeight="Normal"  FontFamily="Roboto">Contraseña</Label>
+                    <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="2" Background="White" HorizontalAlignment="Stretch">
+                        <PasswordBox x:Name="pwdField" HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" Height="30" Margin="10" FontSize="18" FontFamily="Roboto" BorderThickness="0" Foreground="Black" MaxLength="100"/>
+                    </Border>
+                    <Label Name="pwdErrorLabel" VerticalAlignment="Center" HorizontalAlignment="Left" Height="Auto" FontFamily="Roboto" FontSize="10" Foreground="Red" Visibility="Hidden">*Requerido</Label>
+                </StackPanel>
+
+                <StackPanel>
+                    <Label>La contraseña debe ser de 8 o más caracteres y contener al menos:</Label>
+                    <Label>* Una minuscula</Label>
+                    <Label>* Una mayuscula</Label>
+                    <Label>* Un carácter especial</Label>
+                    <Label>* Un número</Label>
+                </StackPanel>
+                
+                <Button Margin="10, 30, 0, 0" FontSize="16" x:Name="saveBtn" Padding="5" Click="CreateAccount" Width="90" HorizontalAlignment="Left">Guardar</Button>
+            </StackPanel>
+        </Grid>
+        
+        <notifications:NotificationArea Grid.Row="2" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1" Height="120" Width="600" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+    </Grid>
+</Page>
