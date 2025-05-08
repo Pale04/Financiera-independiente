@@ -26,5 +26,25 @@ namespace Financiera_GUI.CatalogManagement
             InitializeComponent();
             //subsidiaries = Catalog
         }
+
+        private void Back(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void NextPage(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PreviousPage(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Register(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

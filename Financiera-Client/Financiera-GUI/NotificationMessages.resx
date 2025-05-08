@@ -147,4 +147,7 @@
   <data name="LoginActiveSessions" xml:space="preserve">
     <value>Ya existe una sesión activa con este usuario</value>
   </data>
+  <data name="LoginUserNotFund" xml:space="preserve">
+    <value>Usuario no encontrado o no existe</value>
+  </data>
 </root>

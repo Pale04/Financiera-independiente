@@ -1,6 +1,7 @@
 ﻿using Business_logic;
 using DomainClasses;
 using Notification.Wpf;
+using SessionServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,15 @@ namespace Financiera_GUI
 {
     public partial class wResetPassword : Page
     {
-        EmployeeClass employee;
+        string user;
         Business_logic.AccountManager accountManager = new AccountManager();
         private readonly NotificationManager _notificationManager;
 
         public wResetPassword(string username)
         {
-            employee.user = username;
+            this.user = username;
             InitializeComponent();
-            SendEmail(employee);
+            SendEmail(user);
         }
 
         private void Code1_KeyDown(object sender, KeyEventArgs e)
@@ -84,7 +85,7 @@ namespace Financiera_GUI
                 else
                 {
 
-                    if (accountManager.isCodeValid(employee.user, code))
+                    if (accountManager.isCodeValid(user, code))
                     {
                         EnableFields();
                     }
@@ -118,6 +119,10 @@ namespace Financiera_GUI
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
+            EmployeeClass employee = new()
+            {
+                user = user
+            };
             int response = accountManager.ChangePassword(employee, psbNewPassword.Password, psbConfirm.Password);
 
             switch (response)
@@ -139,12 +144,20 @@ namespace Financiera_GUI
 
         private void hlReenvio_Click(object sender, RoutedEventArgs e)
         {
+            EmployeeClass employee = new()
+            {
+                user = user
+            };
             accountManager.SendEmail(employee);
         }
 
-        private void SendEmail(EmployeeClass employee)
+        private void SendEmail(string employee)
         {
-            accountManager.SendEmail(employee);
+            EmployeeClass employeeAccount = new()
+            {
+                user = employee
+            };
+            accountManager.SendEmail(employeeAccount);
         }
     }
 }

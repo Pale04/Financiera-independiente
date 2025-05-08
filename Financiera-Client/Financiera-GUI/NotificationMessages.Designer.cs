@@ -115,6 +115,15 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Usuario no encontrado o no existe.
+        /// </summary>
+        internal static string LoginUserNotFund {
+            get {
+                return ResourceManager.GetString("LoginUserNotFund", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Usuario o contraseña incorrecta.
         /// </summary>
         internal static string LoginWrongCredentials {
