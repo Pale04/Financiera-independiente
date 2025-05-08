@@ -115,6 +115,7 @@ namespace Financiera_GUI
             verificationCode += Code6.Text;
 
             return verificationCode;
+
         }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
@@ -158,6 +159,13 @@ namespace Financiera_GUI
                 user = employee
             };
             accountManager.SendEmail(employeeAccount);
+        }
+
+        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+          wLogin wLogin = new wLogin();
+          wLogin.Show();
+          this.Close();
         }
     }
 }

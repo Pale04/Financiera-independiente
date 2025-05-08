@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Navigation;
 using Business_logic;
 
 namespace Financiera_GUI.MainMenus
@@ -20,10 +21,10 @@ namespace Financiera_GUI.MainMenus
                     //TODO: Change to wCreditApplication
                     break;
                 case "adviser":
-                    //TODO: Change to adviser menu
+                    ContentFrame.NavigationService.Navigate(new wRequestsManagement());
                     break;
                 case "collector":
-                    //TODO: Change to wPaymentManagment
+                    ContentFrame.NavigationService.Navigate(new wPaymentManagment());
                     break;
             }
         }

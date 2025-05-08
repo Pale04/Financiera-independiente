@@ -33,7 +33,7 @@ namespace Financiera_GUI.MainMenus
         }
         private void BtnFinancialBranchesManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //TODO: Implement the logic for navigate to the Financial Branches page
+            NavigationService.Navigate(new wFinancialBranchManagement());
         }
     }
 }
