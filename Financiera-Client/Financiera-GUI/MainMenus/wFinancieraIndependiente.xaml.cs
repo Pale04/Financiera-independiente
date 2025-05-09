@@ -30,6 +30,7 @@ namespace Financiera_GUI.MainMenus
         }
 
         private void BtnLogoutClick(object sender, RoutedEventArgs e)
+
         {
             int response = manager.Logout(UserSession.Instance.Employee.user);
 

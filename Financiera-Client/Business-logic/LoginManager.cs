@@ -70,6 +70,7 @@ namespace Business_logic
                         role = response.Data.role,
                         mail = response.Data.mail,
                         id = response.Data.id,
+                        sucursalId = response.Data.sucursalId
                     };
 
                     return employeeInfo;

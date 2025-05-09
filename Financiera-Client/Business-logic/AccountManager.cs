@@ -1,14 +1,8 @@
 ﻿using AccountServiceReference;
 using DomainClasses;
 using SessionServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Business_logic
 {
@@ -54,7 +48,7 @@ namespace Business_logic
 
         public int ChangePassword(EmployeeClass employee, string password, string confirmPassword)
         {
-            if (isSamePassword(password, confirmPassword))
+            if (Equals(password, confirmPassword))
             {
                 if (isPasswordValid(password))
                 {
@@ -81,11 +75,6 @@ namespace Business_logic
             }
         }
 
-        public bool isSamePassword(string password, string confirmPassword)
-        { 
-            return String.Equals(password, confirmPassword);
-        }
-
         public bool isPasswordValid(string password)
         {
             Regex regex = new Regex("[[^'#-%]$");
@@ -105,9 +94,8 @@ namespace Business_logic
                 return false;
             }
         }
-    
 
-    public bool isCodeValid(string user, string code)
+        public bool isCodeValid(string user, string code)
         {
             AccountServiceClient client = new();
             bool valid = false;
@@ -128,6 +116,37 @@ namespace Business_logic
             {
                 return valid;
             }
+        }
+
+        public int CreateAccount(EmployeeClass employee)
+        {
+            AccountServiceClient accountClient = new();
+            AccountServiceReference.Response response;
+
+            EmployeeDC newEmployee = new()
+            {
+                user = employee.user,
+                password = employee.password,
+                name = employee.name,
+                mail = employee.mail,
+                address = employee.address,
+                phone = employee.phoneNumber,
+                birthday = employee.birthday.ToString(),
+                role = employee.role,
+                subsidiaryId = employee.sucursalId
+
+            };
+
+            try
+            {
+                response = accountClient.createAccount(newEmployee);
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            return response.StatusCode;
         }
     }
 }

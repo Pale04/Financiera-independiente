@@ -149,6 +149,7 @@ namespace Financiera_GUI
             {
                 user = user
             };
+
             accountManager.SendEmail(employee);
         }
 
