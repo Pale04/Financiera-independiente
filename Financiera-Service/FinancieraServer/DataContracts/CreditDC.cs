@@ -20,8 +20,10 @@ namespace FinancieraServer.DataContracts
         [DataMember]
         public int registrerId { get; set; }
         [DataMember]
-        public int beneficiaryId { get; set; }
+        public string beneficiaryId { get; set; }
         [DataMember]
         public int ConditionId { get; set; }
+        [DataMember]
+        public string RegistryDate { get; set; }
     }
 }

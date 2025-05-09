@@ -14,7 +14,7 @@ namespace FinancieraServer.DataContracts
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string Date { get; set; }
+        public string RegistryDate { get; set; }
         [DataMember]
         public int RegistrerId { get; set; }
         [DataMember]

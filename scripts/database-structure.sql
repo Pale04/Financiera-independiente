@@ -18,7 +18,7 @@ CREATE TABLE [Employee] (
 
 CREATE TABLE [Subsidiary] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [Address] varchar(400) NOT NULL,
+  [address] varchar(400) NOT NULL,
   [state] bit NOT NULL
 )
 
@@ -28,6 +28,7 @@ CREATE TABLE [Credit] (
   [duration] tinyint NOT NULL,
   [capital] int NOT NULL,
   [beneficiary] char(13) NOT NULL,
+  [registryDate] DateTime NOT NULL,
   [registrer] int NOT NULL,
   [conditionId] int NOT NULL
 )
@@ -35,6 +36,8 @@ CREATE TABLE [Credit] (
 CREATE TABLE [Document] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [name] varchar(100) NOT NULL,
+  [file] blob NOT NULL,
+  [active] bool NOT NULL, 
   [registryDate] DateTime NOT NULL,
   [registrer] int NOT NULL,
   [documentationId] int NOT NULL,
@@ -71,7 +74,7 @@ CREATE TABLE [PersonalReference] ( --New Table
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [name] varchar(100) NOT NULL,
   [phoneNumber] char(10) NOT NULL,
-  [relationship] char(13) NOT NULL,
+  [relationship] char(50) NOT NULL,
   [clientRfc] char(13) NOT NULL
 )
 
