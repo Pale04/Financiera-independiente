@@ -37,9 +37,9 @@ namespace Data_Access
         public Client GetByRfc(string rfc)
         {
             Client client = new();
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
             {
-                var existingClient = context.Clients.Where(c => c.rfc == rfc).Include(c => c.PersonalReferences).Include(c => c.PersonalReferences).FirstOrDefault();
+                var existingClient = context.Clients.Where(c => c.rfc == rfc).Include(c => c.PersonalReferences).Include(c => c.BankAccounts).FirstOrDefault();
                 if (existingClient != null)
                 {
                     client = existingClient;
@@ -110,14 +110,15 @@ namespace Data_Access
                 {
                     using (var command = context.Database.GetDbConnection().CreateCommand())
                     {
-                        command.CommandText = "DeactivateClient";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandText = "EXEC DeactivateClient @rfc";
+                        command.CommandType = System.Data.CommandType.Text;
 
                         var rfcParameter = command.CreateParameter();
                         rfcParameter.ParameterName = "@rfc";
                         rfcParameter.Value = rfc;
                         command.Parameters.Add(rfcParameter);
 
+                        context.Database.OpenConnection();
                         var executionResult = command.ExecuteScalar();
                         result = Convert.ToInt32(executionResult);
                     }

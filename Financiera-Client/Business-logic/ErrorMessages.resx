@@ -135,4 +135,13 @@
   <data name="DuplicatedCreditCondition" xml:space="preserve">
     <value>Ya existe una condición de crédito registrada con los mismos datos.</value>
   </data>
+  <data name="DuplicatedCustomer" xml:space="preserve">
+    <value>Ya existe un cliente registrado con el mismo RFC</value>
+  </data>
+  <data name="SearchNotFound" xml:space="preserve">
+    <value>La búsqueda no tuvo resultados</value>
+  </data>
+  <data name="CannotDeactivateCustomer" xml:space="preserve">
+    <value>No es posible desactivar la cuenta del cliente debido a que tiene crédito activos.</value>
+  </data>
 </root>

@@ -88,7 +88,7 @@ namespace FinancieraServer.ServiceImplementations
 
         public ResponseWithContent<CustomerDC> GetCustomerByRfc(string rfc)
         {
-            if (!string.IsNullOrEmpty(rfc))
+            if (string.IsNullOrEmpty(rfc))
             {
                 _logger.LogInformation("Attempt of get customer with invalid rfc");
                 return new ResponseWithContent<CustomerDC>(2, "Invalid rfc");

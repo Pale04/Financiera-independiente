@@ -122,5 +122,14 @@ namespace Financiera_GUI {
                 return ResourceManager.GetString("LoginWrongCredentials", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La búsqueda no tuvo resultados.
+        /// </summary>
+        internal static string SearchNotFound {
+            get {
+                return ResourceManager.GetString("SearchNotFound", resourceCulture);
+            }
+        }
     }
 }

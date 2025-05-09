@@ -39,16 +39,14 @@ namespace Financiera_GUI.Utilities
 
         public void UpdateState(object sender, RoutedEventArgs e)
         {
-            RequiredDocumentationManager requiredDocumentationManager = new();
             string action = _document.Status ? "desactivar" : "activar";
-
             MessageBoxResult confirmation = MessageBox.Show($"¿Está seguro de {action} el documento?", "Confirmar actualización de estado", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
-
             if (confirmation != MessageBoxResult.Yes)
             {
                 return;
             }
 
+            RequiredDocumentationManager requiredDocumentationManager = new();
             RequiredDocument updatedRequiredDocument = new()
             {
                 Id = _document.Id,

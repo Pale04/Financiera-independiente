@@ -79,11 +79,29 @@ namespace Business_logic {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No es posible desactivar la cuenta del cliente debido a que tiene crédito activos..
+        /// </summary>
+        internal static string CannotDeactivateCustomer {
+            get {
+                return ResourceManager.GetString("CannotDeactivateCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ya existe una condición de crédito registrada con los mismos datos..
         /// </summary>
         internal static string DuplicatedCreditCondition {
             get {
                 return ResourceManager.GetString("DuplicatedCreditCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ya existe un cliente registrado con el mismo RFC.
+        /// </summary>
+        internal static string DuplicatedCustomer {
+            get {
+                return ResourceManager.GetString("DuplicatedCustomer", resourceCulture);
             }
         }
         
@@ -97,11 +115,20 @@ namespace Business_logic {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Campos incompletos o inválidos. Por favor revisa los errores indicados..
+        ///   Busca una cadena traducida similar a Campos incompletos o inválidos..
         /// </summary>
         internal static string InvalidFields {
             get {
                 return ResourceManager.GetString("InvalidFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La búsqueda no tuvo resultados.
+        /// </summary>
+        internal static string SearchNotFound {
+            get {
+                return ResourceManager.GetString("SearchNotFound", resourceCulture);
             }
         }
         

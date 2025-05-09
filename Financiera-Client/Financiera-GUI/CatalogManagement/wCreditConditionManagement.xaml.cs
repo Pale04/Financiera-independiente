@@ -129,9 +129,9 @@ namespace Financiera_GUI.CatalogManagement
                 1 => 2,
                 _ => 1
             };
-
             int interestRate;
             int iva;
+
             try
             {
                 interestRate = int.Parse(interestRateInput.Text);
@@ -142,7 +142,6 @@ namespace Financiera_GUI.CatalogManagement
                 _notificationManager.Show("La tasa de interés y el IVA deben ser números enteros", NotificationType.Warning, "WindowArea");
                 return;
             }
-
 
             CreditConditionManager creditConditionManager = new();
             try
