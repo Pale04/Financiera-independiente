@@ -18,7 +18,7 @@ namespace Financiera_GUI.CatalogManagement
             InitializeComponent();
             DateTime currentDate = DateTime.Now;
 
-            birthdayPicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddYears(-100), currentDate));
+            birthdayPicker.BlackoutDates.Add(new CalendarDateRange(currentDate.AddYears(-18), DateTime.Now.AddYears(100)));
         }
 
         private void Back(object sender, MouseButtonEventArgs e)
@@ -42,11 +42,11 @@ namespace Financiera_GUI.CatalogManagement
             saveBtn.IsEnabled = false;
 
             string name = nameField.textField.Text.Trim();
-            string address = nameField.textField.Text.Trim();
-            string phone = nameField.textField.Text.Trim();
-            string mail = nameField.textField.Text.Trim();
-            string username = nameField.textField.Text.Trim();
-            string password = nameField.textField.Text.Trim();
+            string address = addressField.textField.Text.Trim();
+            string phone = phoneField.textField.Text.Trim();
+            string mail = mailField.textField.Text.Trim();
+            string username = userField.textField.Text.Trim();
+            string password = pwdField.Password.Trim();
             DateTime? birthday = birthdayPicker.SelectedDate;
             string role = GetSelectedRole();
 
@@ -62,7 +62,8 @@ namespace Financiera_GUI.CatalogManagement
                 user = username,
                 password = password,
                 birthday = DateOnly.FromDateTime((DateTime)birthday),
-                role = role
+                role = role,
+                sucursalId = UserSession.Instance.Employee.sucursalId
             };
 
             try
@@ -133,6 +134,7 @@ namespace Financiera_GUI.CatalogManagement
         private bool CheckForEmptyOrWrongFields()
         {
             bool invalidFields = false;
+            DateOnly temp;
 
             if (String.IsNullOrEmpty(nameField.textField.Text.Trim()))
             {
@@ -149,22 +151,22 @@ namespace Financiera_GUI.CatalogManagement
                 phoneField.showError("Requerido*");
                 invalidFields = true;
             }
-            else if (phoneField.textField.Text.Trim().Length != 10 || phoneField.textField.Text.Trim().All(char.IsDigit))
+            else if (phoneField.textField.Text.Trim().Length != 10 || !phoneField.textField.Text.Trim().All(char.IsDigit))
             {
                 phoneField.showError("El telefono debe constar de 10 números");
                 invalidFields = true;
             }
-            if (String.IsNullOrEmpty(mailField.textField.Text))
+            if (String.IsNullOrEmpty(mailField.textField.Text.Trim()))
             {
                 mailField.showError("Requerido*");
                 invalidFields = true;
             }
-            else if (new Regex("^[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$").IsMatch(mailField.textField.Text.Trim()))
+            else if (!new Regex("^[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$").IsMatch(mailField.textField.Text.Trim()))
             {
                 mailField.showError("El correo no tiene una estructura valida");
                 invalidFields = true;
             }
-            if (String.IsNullOrEmpty(userField.textField.Text))
+            if (String.IsNullOrEmpty(userField.textField.Text.Trim()))
             {
                 userField.showError("Requerido*");
                 invalidFields = true;
@@ -175,7 +177,7 @@ namespace Financiera_GUI.CatalogManagement
                 pwdErrorLabel.Visibility = Visibility.Visible;
                 invalidFields = true;
             }
-            else if (new Regex("^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$").IsMatch(pwdField.Password.Trim()))
+            else if (!new Regex("(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}").IsMatch(pwdField.Password.Trim()))
             {
                 pwdErrorLabel.Content = "La contraseña no es lo suficientemente fuerte";
                 pwdErrorLabel.Visibility = Visibility.Visible;
@@ -185,11 +187,19 @@ namespace Financiera_GUI.CatalogManagement
             {
                 bdayErrorLabel.Content = "Ingrese la fecha de nacimiento del usuario";
                 bdayErrorLabel.Visibility = Visibility.Visible;
+                invalidFields = true;
+            }
+            else if (!DateOnly.TryParseExact(DateOnly.FromDateTime((DateTime)birthdayPicker.SelectedDate).ToString(), "dd/MM/yyyy", out temp))
+            {
+                bdayErrorLabel.Content = "La feecha no es valida";
+                bdayErrorLabel.Visibility = Visibility.Visible;
+                invalidFields = true;
             }
             if (GetSelectedRole() == "")
             {
                 roleErrorLabel.Content = "Ingrese el rol del usuario";
                 roleErrorLabel.Visibility = Visibility.Visible;
+                invalidFields = true;
             }
 
             return invalidFields;

@@ -105,7 +105,7 @@ namespace Financiera_GUI
 
         private void hlReenvio_Click(object sender, RoutedEventArgs e)
         {
-            accountManager.SentEmail(employee);
+            accountManager.SendEmail(employee);
         }
 
         private void MouseLeftButtonDow(object sender, MouseButtonEventArgs e)

@@ -56,7 +56,7 @@ namespace FinancieraServer.DataContracts
                 phoneRgx.IsMatch(phone) ||
                 phone.Length == 10 ||
                 string.IsNullOrEmpty(address) ||
-                DateTime.Compare(DateOnly.ParseExact(birthday, "yyyy-MM-DD").ToDateTime(TimeOnly.MinValue), currentDate) < 0;
+                DateTime.Compare(DateOnly.ParseExact(birthday, "dd/MM/yyyy").ToDateTime(TimeOnly.MinValue), currentDate) < 0;
         }
     }
 }
