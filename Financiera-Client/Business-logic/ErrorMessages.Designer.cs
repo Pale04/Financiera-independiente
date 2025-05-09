@@ -140,5 +140,14 @@ namespace Business_logic {
                 return ResourceManager.GetString("ServerError", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código de verificación incorrecto.
+        /// </summary>
+        internal static string WrongCode {
+            get {
+                return ResourceManager.GetString("WrongCode", resourceCulture);
+            }
+        }
     }
 }

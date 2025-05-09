@@ -1,5 +1,7 @@
 ﻿using Business_logic;
 using DomainClasses;
+using Notification.Wpf;
+using SessionServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +20,15 @@ namespace Financiera_GUI
 {
     public partial class wResetPassword : Window
     {
-        EmployeeClass employee;
+        string user;
         Business_logic.AccountManager accountManager = new AccountManager();
+        private readonly NotificationManager _notificationManager;
 
         public wResetPassword(string username)
         {
-            employee.user = username;
+            this.user = username;
             InitializeComponent();
+            SendEmail(user);
         }
 
         private void Code1_KeyDown(object sender, KeyEventArgs e)
@@ -73,7 +77,23 @@ namespace Financiera_GUI
         {
             if (Code6.Text.Length == 1)
             {
-                
+                string code = getVerificationCode();
+                if(code.Length < 6)
+                {
+                    _notificationManager.Show(NotificationMessages.ResetEmptyFields, NotificationType.Warning);
+                }
+                else
+                {
+
+                    if (accountManager.isCodeValid(user, code))
+                    {
+                        EnableFields();
+                    }
+                    else
+                    {
+                        _notificationManager.Show(NotificationMessages.ResetIncorrectCode);
+                    }
+                }
             }
         }
 
@@ -93,24 +113,60 @@ namespace Financiera_GUI
             verificationCode += Code4.Text;
             verificationCode += Code5.Text;
             verificationCode += Code6.Text;
-            return "";
+
+            return verificationCode;
+
         }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
+            EmployeeClass employee = new()
+            {
+                user = user
+            };
+            int response = accountManager.ChangePassword(employee, psbNewPassword.Password, psbConfirm.Password);
 
+            switch (response)
+            {
+                case 0:
+                    _notificationManager.Show(NotificationMessages.GlobalUpdateSuccess, NotificationType.Information);
+                    break;
+
+                case 1:
+                    _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
+                    break;
+                case 2:
+                    _notificationManager.Show(NotificationMessages.ResetInvalidCredentials, NotificationType.Warning);
+                    break;
+            }
         }
 
         
 
         private void hlReenvio_Click(object sender, RoutedEventArgs e)
         {
-            accountManager.SentEmail(employee);
+            EmployeeClass employee = new()
+            {
+                user = user
+            };
+
+            accountManager.SendEmail(employee);
         }
 
-        private void MouseLeftButtonDow(object sender, MouseButtonEventArgs e)
+        private void SendEmail(string employee)
         {
+            EmployeeClass employeeAccount = new()
+            {
+                user = employee
+            };
+            accountManager.SendEmail(employeeAccount);
+        }
 
+        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+          wLogin wLogin = new wLogin();
+          wLogin.Show();
+          this.Close();
         }
     }
 }

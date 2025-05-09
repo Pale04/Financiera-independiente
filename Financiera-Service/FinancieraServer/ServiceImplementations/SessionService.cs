@@ -54,12 +54,12 @@ namespace FinancieraServer.ServiceImplementations
                     }
                     else
                     {
-                        return new ResponseWithContent<Employee>(1, "Incorrect username or password");
+                        return new ResponseWithContent<Employee>(2, "Incorrect username or password");
                     }
                 }
                 else
                 {
-                    return new ResponseWithContent<Employee>(1);
+                    return new ResponseWithContent<Employee>(4, "User do not exists");
                 }
             }
             catch (DbException error)

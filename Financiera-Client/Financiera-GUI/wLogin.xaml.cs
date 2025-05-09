@@ -27,6 +27,7 @@ namespace Financiera_GUI
         public wLogin()
         {
             InitializeComponent();
+            _notificationManager = new NotificationManager();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -55,10 +56,16 @@ namespace Financiera_GUI
                     switch (codeLogin)
                     {
                         case 1:
+                            _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
+                            break;
+                        case 2:
                             _notificationManager.Show(NotificationMessages.LoginWrongCredentials, NotificationType.Error);
                             break;
                         case 3:
-                            _notificationManager.Show(NotificationMessages.LoginActiveSession, NotificationType.Warning);
+                            _notificationManager.Show(NotificationMessages.LoginActiveSessions, NotificationType.Warning);
+                            break;
+                        case 4:
+                            _notificationManager.Show(NotificationMessages.LoginUserNotFund, NotificationType.Warning);
                             break;
                     }
                 }
@@ -74,7 +81,10 @@ namespace Financiera_GUI
             }
             else
             {
-                
+                string username = tbUsername.Text;
+                wResetPassword wReset = new wResetPassword(username);
+                wReset.Show();
+                this.Close();
             }
 
         }

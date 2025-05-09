@@ -83,7 +83,7 @@ namespace Financiera_GUI.Utilities
             {
                 try
                 {
-                    subsidiaryManager.updateState(_subsidiary.Id, !_subsidiary.State);
+                    subsidiaryManager.UpdateState(_subsidiary.Id, !_subsidiary.State);
                 }
                 catch (Exception error)
                 {
@@ -105,7 +105,7 @@ namespace Financiera_GUI.Utilities
 
             try
             {
-                switch (subsidiaryManager.updateAddress(_subsidiary.Id, address))
+                switch (subsidiaryManager.UpdateAddress(_subsidiary.Id, address))
                 {
                     case 0:
                         _notificationManager.Show("Actualizado", "La sucursal se actualizó correctamente", NotificationType.Success, "WindowArea");

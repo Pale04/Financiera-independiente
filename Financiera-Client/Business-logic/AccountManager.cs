@@ -1,25 +1,19 @@
 ﻿using AccountServiceReference;
 using DomainClasses;
 using SessionServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Business_logic
 {
     public class AccountManager
     {
-        public int SentEmail(EmployeeClass account)
+        public int SendEmail(EmployeeClass account)
         {
 
             if (account.isValidForLogin())
             {
-                throw new Exception(ErrorMessages.InvalidFields);
+                return 2;
             }
 
             SessionServiceClient sessionClient = new();
@@ -27,25 +21,26 @@ namespace Business_logic
 
             try
             {
-                if (sessionClient.GetAccountInfo(account.user) != null)
+                ResponseWithContentOfEmployeeefOWEHwa response = sessionClient.GetAccountInfo(account.user);
+                if (response != null)
                 {
                     EmployeeClass employeeInfo = new()
                     {
-                        user = account.user,
-                        mail = account.mail
+                        user = response.Data.user,
+                        mail = response.Data.mail
                     };
 
-                    string code = accountClient.GenerateVerificationCode(account.user);
-                    accountClient.SendEmail(account.mail, code);
+                    string code = accountClient.GenerateVerificationCode(response.Data.user);
+                    accountClient.SendEmail(response.Data.mail, code);
                 }
                 else
                 {
-
+                    return 2;
                 }
             }
             catch (CommunicationException error)
             {
-                throw new Exception(ErrorMessages.ServerError);
+                return 1;
             }
 
             return 0;
@@ -53,7 +48,7 @@ namespace Business_logic
 
         public int ChangePassword(EmployeeClass employee, string password, string confirmPassword)
         {
-            if (isSamePassword(password, confirmPassword))
+            if (Equals(password, confirmPassword))
             {
                 if (isPasswordValid(password))
                 {
@@ -66,23 +61,18 @@ namespace Business_logic
                     }
                     catch(CommunicationException error)
                     {
-                        throw new Exception(ErrorMessages.ServerError);
+                        return 1;
                     }
                 }
                 else
                 {
-                    throw new Exception(ErrorMessages.InvalidFields);
+                    return 2;
                 }
             }
             else
             {
-                throw new Exception(ErrorMessages.InvalidFields);
+                return 2;
             }
-        }
-
-        public bool isSamePassword(string password, string confirmPassword)
-        { 
-            return String.Equals(password, confirmPassword);
         }
 
         public bool isPasswordValid(string password)
@@ -103,6 +93,60 @@ namespace Business_logic
             {
                 return false;
             }
+        }
+
+        public bool isCodeValid(string user, string code)
+        {
+            AccountServiceClient client = new();
+            bool valid = false;
+            try
+            {
+                valid = client.CheckVerificationCode(code, user);
+                if (!valid)
+                {
+                    return valid;
+                }
+                else
+                {
+                    valid = true;
+                    return valid;
+                }
+            }
+            catch (CommunicationException error)
+            {
+                return valid;
+            }
+        }
+
+        public int CreateAccount(EmployeeClass employee)
+        {
+            AccountServiceClient accountClient = new();
+            AccountServiceReference.Response response;
+
+            EmployeeDC newEmployee = new()
+            {
+                user = employee.user,
+                password = employee.password,
+                name = employee.name,
+                mail = employee.mail,
+                address = employee.address,
+                phone = employee.phoneNumber,
+                birthday = employee.birthday.ToString(),
+                role = employee.role,
+                subsidiaryId = employee.sucursalId
+
+            };
+
+            try
+            {
+                response = accountClient.createAccount(newEmployee);
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            return response.StatusCode;
         }
     }
 }

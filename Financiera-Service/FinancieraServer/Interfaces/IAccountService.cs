@@ -6,10 +6,10 @@ namespace FinancieraServer.Interfaces
     public interface IAccountService
     {
         [OperationContract]
-        Response createAccount();
+        Response createAccount(EmployeeDC employee);
 
         [OperationContract]
-        void SendEmail(string mail, string code);
+        int SendEmail(string mail, string code);
 
         [OperationContract]
         Response ChangePassword(string user, String password);
