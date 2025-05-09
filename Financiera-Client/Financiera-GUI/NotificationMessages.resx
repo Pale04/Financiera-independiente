@@ -137,6 +137,7 @@
   </data>
   <data name="SearchNotFound" xml:space="preserve">
     <value>La búsqueda no tuvo resultados</value>
+  </data>
   <data name="ResetEmptyFields" xml:space="preserve">
     <value>Complete todos los campos</value>
   </data>

@@ -143,6 +143,7 @@
   </data>
   <data name="CannotDeactivateCustomer" xml:space="preserve">
     <value>No es posible desactivar la cuenta del cliente debido a que tiene crédito activos.</value>
+  </data>
   <data name="WrongCode" xml:space="preserve">
     <value>Código de verificación incorrecto</value>
   </data>

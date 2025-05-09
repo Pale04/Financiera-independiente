@@ -133,11 +133,6 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a La búsqueda no tuvo resultados.
-        /// </summary>
-        internal static string SearchNotFound {
-            get {
-                return ResourceManager.GetString("SearchNotFound", resourceCulture);
         ///   Busca una cadena traducida similar a Complete todos los campos.
         /// </summary>
         internal static string ResetEmptyFields {
@@ -161,6 +156,15 @@ namespace Financiera_GUI {
         internal static string ResetInvalidCredentials {
             get {
                 return ResourceManager.GetString("ResetInvalidCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La búsqueda no tuvo resultados.
+        /// </summary>
+        internal static string SearchNotFound {
+            get {
+                return ResourceManager.GetString("SearchNotFound", resourceCulture);
             }
         }
     }
