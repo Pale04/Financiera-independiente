@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Data_Access.Entities;
+﻿namespace Data_Access.Entities;
 
 public partial class Credit
 {

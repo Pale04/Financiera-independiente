@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FinancieraServer.DataContracts
+﻿namespace FinancieraServer.DataContracts
 {
     [DataContract]
     public class CreditDC
@@ -18,9 +12,9 @@ namespace FinancieraServer.DataContracts
         [DataMember]
         public int Capital { get; set; }
         [DataMember]
-        public int registrerId { get; set; }
+        public int RegistrerId { get; set; }
         [DataMember]
-        public string beneficiaryId { get; set; }
+        public string BeneficiaryId { get; set; }
         [DataMember]
         public int ConditionId { get; set; }
         [DataMember]
