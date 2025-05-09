@@ -11,6 +11,7 @@ builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddr
 builder.Services.AddSingleton<SessionService>();
 builder.Services.AddSingleton<AccountService>();
 builder.Services.AddSingleton<CatalogService>();
+builder.Services.AddSingleton<CreditService>();
 
 Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
 Log.Information("Configuration ready for start the server");
@@ -26,8 +27,8 @@ app.UseServiceModel(serviceBuilder =>
     serviceBuilder.AddServiceEndpoint<AccountService, IAccountService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/AccountService.svc");
     serviceBuilder.AddService<CatalogService>();
     serviceBuilder.AddServiceEndpoint<CatalogService, ICatalogService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/CatalogService.svc");
-    serviceBuilder.AddService<CatalogService>();
-    serviceBuilder.AddServiceEndpoint<CatalogService, ICatalogService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/CreditService.svc");
+    serviceBuilder.AddService<CreditService>();
+    serviceBuilder.AddServiceEndpoint<CreditService, ICreditService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/CreditService.svc");
 
     var serviceMetadataBehavior = app.Services.GetRequiredService<ServiceMetadataBehavior>();
     serviceMetadataBehavior.HttpsGetEnabled = true;
