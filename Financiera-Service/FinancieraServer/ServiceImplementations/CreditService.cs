@@ -21,7 +21,7 @@ namespace FinancieraServer.ServiceImplementations
                 beneficiary = request.Credit.BeneficiaryId,
                 registrer = request.Credit.RegistrerId,
                 conditionId = request.Credit.ConditionId,
-                registryDate = DateTime.ParseExact(request.Credit.RegistryDate, "yyyy-MM-dd HH:mm:ss[.nnn]", CultureInfo.InvariantCulture)
+                //registryDate = DateTime.ParseExact(request.Credit.RegistryDate, "yyyy-MM-dd HH:mm:ss[.nnn]", CultureInfo.InvariantCulture)
             };
 
             CreditDB creditDB = new();
@@ -49,12 +49,12 @@ namespace FinancieraServer.ServiceImplementations
                 documents.Add(new()
                 {
                     name = request.Documents.ElementAt(i).Name,
-                    file = request.Documents.ElementAt(i).file,
+                    //file = request.Documents.ElementAt(i).file,
                     registryDate = DateTime.ParseExact(request.Documents.ElementAt(i).RegistryDate, "yyyy-MM-dd HH:mm:ss[.nnn]", CultureInfo.InvariantCulture),
                     registrer = request.Documents.ElementAt(i).RegistrerId,
                     documentationId = request.Documents.ElementAt(i).DocumentationId,
                     creditId = credit.id,
-                    active = true
+                    //active = true
                 });
             }
 

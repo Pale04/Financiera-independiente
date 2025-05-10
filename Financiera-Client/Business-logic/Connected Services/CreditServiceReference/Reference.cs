@@ -55,6 +55,8 @@ namespace CreditServiceReference
     public partial class CreditDC : object
     {
         
+        private string BeneficiaryIdField;
+        
         private int CapitalField;
         
         private int ConditionIdField;
@@ -63,11 +65,24 @@ namespace CreditServiceReference
         
         private int IdField;
         
+        private int RegistrerIdField;
+        
+        private string RegistryDateField;
+        
         private string StateField;
         
-        private int beneficiaryIdField;
-        
-        private int registrerIdField;
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BeneficiaryId
+        {
+            get
+            {
+                return this.BeneficiaryIdField;
+            }
+            set
+            {
+                this.BeneficiaryIdField = value;
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Capital
@@ -122,6 +137,32 @@ namespace CreditServiceReference
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RegistrerId
+        {
+            get
+            {
+                return this.RegistrerIdField;
+            }
+            set
+            {
+                this.RegistrerIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RegistryDate
+        {
+            get
+            {
+                return this.RegistryDateField;
+            }
+            set
+            {
+                this.RegistryDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string State
         {
             get
@@ -133,32 +174,6 @@ namespace CreditServiceReference
                 this.StateField = value;
             }
         }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int beneficiaryId
-        {
-            get
-            {
-                return this.beneficiaryIdField;
-            }
-            set
-            {
-                this.beneficiaryIdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int registrerId
-        {
-            get
-            {
-                return this.registrerIdField;
-            }
-            set
-            {
-                this.registrerIdField = value;
-            }
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -166,8 +181,6 @@ namespace CreditServiceReference
     [System.Runtime.Serialization.DataContractAttribute(Name="CreditDocumentDC", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
     public partial class CreditDocumentDC : object
     {
-        
-        private string DateField;
         
         private int DocumentationIdField;
         
@@ -177,20 +190,9 @@ namespace CreditServiceReference
         
         private int RegistrerIdField;
         
-        private byte[] fileField;
+        private string RegistryDateField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Date
-        {
-            get
-            {
-                return this.DateField;
-            }
-            set
-            {
-                this.DateField = value;
-            }
-        }
+        private byte[] fileField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int DocumentationId
@@ -241,6 +243,19 @@ namespace CreditServiceReference
             set
             {
                 this.RegistrerIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RegistryDate
+        {
+            get
+            {
+                return this.RegistryDateField;
+            }
+            set
+            {
+                this.RegistryDateField = value;
             }
         }
         
