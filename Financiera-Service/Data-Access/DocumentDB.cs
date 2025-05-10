@@ -34,7 +34,7 @@ namespace Data_Access
 
                 if (document != null)
                 {
-                    //document.active = false;
+                    document.active = false;
                     context.Add(newDocument);
                     result = context.SaveChanges();
                 }
