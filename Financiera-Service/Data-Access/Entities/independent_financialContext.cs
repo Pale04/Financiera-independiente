@@ -34,6 +34,8 @@ public partial class independent_financialContext : DbContext
 
     public virtual DbSet<Payment> Payments { get; set; }
 
+    public virtual DbSet<PaymentLayout> PaymentLayouts { get; set; }
+
     public virtual DbSet<PersonalReference> PersonalReferences { get; set; }
 
     public virtual DbSet<RequiredDocumentation> RequiredDocumentations { get; set; }
@@ -243,6 +245,22 @@ public partial class independent_financialContext : DbContext
                 .HasForeignKey(d => d.registrer)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Payment__registr__5535A963");
+        });
+
+        modelBuilder.Entity<PaymentLayout>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("PaymentLayout");
+
+            entity.Property(e => e.amount).HasColumnType("decimal(7, 2)");
+            entity.Property(e => e.clabe)
+                .HasMaxLength(18)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<PersonalReference>(entity =>

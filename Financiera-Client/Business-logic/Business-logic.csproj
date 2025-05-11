@@ -13,6 +13,7 @@
     <PackageReference Include="System.ServiceModel.Http" Version="6.0.*" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="6.0.*" />
     <PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
+    <PackageReference Include="ValidaCLABE" Version="1.0.1.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,12 +7,12 @@ using System.Windows.Media.Imaging;
 
 namespace Financiera_GUI.Utilities
 {
-    public partial class wDocumentationManagementRow : UserControl
+    public partial class ucDocumentationManagementRow : UserControl
     {
         private RequiredDocument _document;
         private readonly NotificationManager _notificationManager;
 
-        public wDocumentationManagementRow(RequiredDocument document)
+        public ucDocumentationManagementRow(RequiredDocument document)
         {
             InitializeComponent();
             _document = document;

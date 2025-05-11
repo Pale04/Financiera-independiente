@@ -94,5 +94,7 @@
                 </Grid>
             </Border>
         </StackPanel>
+
+        <notifications:NotificationArea Grid.Row="3" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
     </Grid>
 </Page>

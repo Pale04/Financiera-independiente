@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Financiera_GUI.Utilities.ucPaymentLayoutRow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Financiera_GUI.Utilities"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="1280">
+    
+    <Grid Margin="0,2,0,2" Height="Auto" Background="#E3E3E3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="idLabel" Margin="0,0,10,0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+            FontFamily="Roboto" FontSize="16" >Folio</Label>
+        <Label x:Name="clientNameLabel" Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+            FontFamily="Roboto" FontSize="16" >Cliente</Label>
+        <Label x:Name="collectionDateLabel" Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+            FontFamily="Roboto" FontSize="16" >Fecha de cobro</Label>
+        <Label x:Name="amountLabel" Margin="0,0,10,0" Grid.Column="3" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+            FontFamily="Roboto" FontSize="16" >Importe</Label>
+        <Label x:Name="bankLabel" Margin="0,0,10,0" Grid.Column="4" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+            FontFamily="Roboto" FontSize="16" >Banco</Label>
+        <Label x:Name="clabeLabel" Grid.Column="5" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+            FontFamily="Roboto" FontSize="16" >CLABE</Label>
+    </Grid>
+</UserControl>

@@ -7,12 +7,12 @@ using System.Windows.Media.Imaging;
 
 namespace Financiera_GUI.Utilities
 {
-    public partial class wCreditConditionManagementRow : UserControl
+    public partial class ucCreditConditionManagementRow : UserControl
     {
         private readonly CreditCondition _creditCondition;
         private readonly NotificationManager _notificationManager;
 
-        public wCreditConditionManagementRow(CreditCondition creditCondition)
+        public ucCreditConditionManagementRow(CreditCondition creditCondition)
         {
             InitializeComponent();
             _creditCondition = creditCondition;

@@ -153,4 +153,10 @@
   <data name="LoginUserNotFund" xml:space="preserve">
     <value>Usuario no encontrado o no existe</value>
   </data>
+  <data name="PaymentLayoutGenerationFailed" xml:space="preserve">
+    <value>No fue posible generar el layout de cobro. Contacte a soporte técnico si el problema persiste.</value>
+  </data>
+  <data name="PaymentLayoutGenerationSuccessful" xml:space="preserve">
+    <value>Se ha guardado correctamente el layout de cobro en su carpeta de Descargas.</value>
+  </data>
 </root>

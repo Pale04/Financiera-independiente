@@ -147,4 +147,13 @@
   <data name="WrongCode" xml:space="preserve">
     <value>Código de verificación incorrecto</value>
   </data>
+  <data name="PaymentLayoutMissingDirectory" xml:space="preserve">
+    <value>No fue posible descargar el layout de cobro. Verifique que existe su carpeta de descargas.</value>
+  </data>
+  <data name="PaymentLayoutGenerationError" xml:space="preserve">
+    <value>No es posible descargar el layout de cobro. Inténtelo más tarde.</value>
+  </data>
+  <data name="PaymentLayoutMissingPermission" xml:space="preserve">
+    <value>No es posible descargar el layout de cobro. Asegurese de encontrarse en la cuenta de administrador de su computadora.</value>
+  </data>
 </root>

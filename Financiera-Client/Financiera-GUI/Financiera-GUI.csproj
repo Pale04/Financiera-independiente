@@ -18,6 +18,7 @@
     <None Remove="Images\credit_policy_icon.png" />
     <None Remove="Images\deactivate_icon.png" />
     <None Remove="Images\document_icon.png" />
+    <None Remove="Images\download_icon.png" />
     <None Remove="Images\edit_account_icon.png" />
     <None Remove="Images\edit_icon.png" />
     <None Remove="Images\efficency_statistics.png" />
@@ -58,6 +59,7 @@
     </Resource>
     <Resource Include="Images\deactivate_icon.png" />
     <Resource Include="Images\document_icon.png" />
+    <Resource Include="Images\download_icon.png" />
     <Resource Include="Images\edit_account_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

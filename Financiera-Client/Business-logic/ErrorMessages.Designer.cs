@@ -124,6 +124,33 @@ namespace Business_logic {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No es posible descargar el layout de cobro. Inténtelo más tarde..
+        /// </summary>
+        internal static string PaymentLayoutGenerationError {
+            get {
+                return ResourceManager.GetString("PaymentLayoutGenerationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No fue posible descargar el layout de cobro. Verifique que existe su carpeta de descargas..
+        /// </summary>
+        internal static string PaymentLayoutMissingDirectory {
+            get {
+                return ResourceManager.GetString("PaymentLayoutMissingDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No es posible descargar el layout de cobro. Asegurese de encontrarse en la cuenta de administrador de su computadora..
+        /// </summary>
+        internal static string PaymentLayoutMissingPermission {
+            get {
+                return ResourceManager.GetString("PaymentLayoutMissingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La búsqueda no tuvo resultados.
         /// </summary>
         internal static string SearchNotFound {

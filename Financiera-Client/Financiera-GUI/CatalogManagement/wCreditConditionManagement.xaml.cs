@@ -90,7 +90,7 @@ namespace Financiera_GUI.CatalogManagement
             creditConditionsTable.Children.RemoveRange(1, creditConditionsTable.Children.Count);
             foreach(CreditCondition creditCondition in creditConditions)
             {
-                creditConditionsTable.Children.Add(new wCreditConditionManagementRow(creditCondition));
+                creditConditionsTable.Children.Add(new ucCreditConditionManagementRow(creditCondition));
             }
 
             _actualPage += next ? 1 : -1;
