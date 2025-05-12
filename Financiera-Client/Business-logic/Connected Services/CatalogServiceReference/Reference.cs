@@ -355,6 +355,12 @@ namespace CatalogServiceReference
             "sponse")]
         System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetRequiredDocumentationByPaginationPreviousAsync(int pageSize, int firstId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetActiveRequiredDocumentation", ReplyAction="http://tempuri.org/ICatalogService/GetActiveRequiredDocumentationResponse")]
+        CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetActiveRequiredDocumentation();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetActiveRequiredDocumentation", ReplyAction="http://tempuri.org/ICatalogService/GetActiveRequiredDocumentationResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetActiveRequiredDocumentationAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddRequiredDocument", ReplyAction="http://tempuri.org/ICatalogService/AddRequiredDocumentResponse")]
         CatalogServiceReference.Response AddRequiredDocument(CatalogServiceReference.RequiredDocumentDC requiredDocument);
         
@@ -378,6 +384,12 @@ namespace CatalogServiceReference
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetCreditConditionsByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetCreditConditionsByPaginationResponse")]
         System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetCreditConditionsByPaginationAsync(int pageSize, int markId, bool next);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetActiveCreditConditions", ReplyAction="http://tempuri.org/ICatalogService/GetActiveCreditConditionsResponse")]
+        CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui GetActiveCreditConditions();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetActiveCreditConditions", ReplyAction="http://tempuri.org/ICatalogService/GetActiveCreditConditionsResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetActiveCreditConditionsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddCreditCondition", ReplyAction="http://tempuri.org/ICatalogService/AddCreditConditionResponse")]
         CatalogServiceReference.Response AddCreditCondition(CatalogServiceReference.CreditConditionDC creditCondition);
@@ -492,6 +504,16 @@ namespace CatalogServiceReference
             return base.Channel.GetRequiredDocumentationByPaginationPreviousAsync(pageSize, firstId);
         }
         
+        public CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui GetActiveRequiredDocumentation()
+        {
+            return base.Channel.GetActiveRequiredDocumentation();
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui> GetActiveRequiredDocumentationAsync()
+        {
+            return base.Channel.GetActiveRequiredDocumentationAsync();
+        }
+        
         public CatalogServiceReference.Response AddRequiredDocument(CatalogServiceReference.RequiredDocumentDC requiredDocument)
         {
             return base.Channel.AddRequiredDocument(requiredDocument);
@@ -530,6 +552,16 @@ namespace CatalogServiceReference
         public System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetCreditConditionsByPaginationAsync(int pageSize, int markId, bool next)
         {
             return base.Channel.GetCreditConditionsByPaginationAsync(pageSize, markId, next);
+        }
+        
+        public CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui GetActiveCreditConditions()
+        {
+            return base.Channel.GetActiveCreditConditions();
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui> GetActiveCreditConditionsAsync()
+        {
+            return base.Channel.GetActiveCreditConditionsAsync();
         }
         
         public CatalogServiceReference.Response AddCreditCondition(CatalogServiceReference.CreditConditionDC creditCondition)

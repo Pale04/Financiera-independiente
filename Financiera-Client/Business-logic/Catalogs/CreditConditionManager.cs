@@ -55,7 +55,7 @@ namespace Business_logic.Catalogs
 
             try
             {
-                response = client.getActiveCreditConditions();
+                response = client.GetActiveCreditConditions();
             }
             catch (CommunicationException error)
             {
