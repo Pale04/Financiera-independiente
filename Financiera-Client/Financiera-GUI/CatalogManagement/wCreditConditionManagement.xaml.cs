@@ -152,7 +152,7 @@ namespace Financiera_GUI.CatalogManagement
                     PaymentsPerMonth = paymentsPerMonth,
                     InterestRate = interestRate,
                     IVA = iva,
-                    RegistrerId = UserSession.Instance.Employee.id
+                    RegistrerId = UserSession.Instance.Employee.Id
                 });
             }
             catch (Exception error)

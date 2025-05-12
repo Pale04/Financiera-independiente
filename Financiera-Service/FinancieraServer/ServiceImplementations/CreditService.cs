@@ -49,7 +49,7 @@ namespace FinancieraServer.ServiceImplementations
                 documents.Add(new()
                 {
                     name = request.Documents.ElementAt(i).Name,
-                    file = request.Documents.ElementAt(i).file,
+                    file = request.Documents.ElementAt(i).File,
                     registryDate = DateTime.ParseExact(request.Documents.ElementAt(i).RegistryDate, "yyyy-MM-dd HH:mm:ss[.nnn]", CultureInfo.InvariantCulture),
                     registrer = request.Documents.ElementAt(i).RegistrerId,
                     documentationId = request.Documents.ElementAt(i).DocumentationId,

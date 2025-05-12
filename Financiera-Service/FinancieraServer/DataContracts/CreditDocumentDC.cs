@@ -14,6 +14,6 @@
         [DataMember]
         public int DocumentationId { get; set; }
         [DataMember]
-        public byte[] file { get; set; }
+        public byte[] File { get; set; }
     }
 }

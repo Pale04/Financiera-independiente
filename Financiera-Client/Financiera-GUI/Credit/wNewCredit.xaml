@@ -52,23 +52,21 @@ FontFamily="Roboto" FontSize="30" FontWeight="Bold">Crear cuenta de trabajador</
                 <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="5" x:Name="conditionsPanel"/>
                 </ScrollViewer>
-                <Label Name="roleErrorLabel" VerticalAlignment="Center" HorizontalAlignment="Left" Height="Auto" FontFamily="Roboto" FontSize="10" Foreground="Red" Visibility="Hidden">*Requerido</Label>
             </StackPanel>
 
-            <Grid x:Name="documentsGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-            </Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="250">
+                <Grid x:Name="documentsGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </ScrollViewer>
         </Grid>
 
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="200, 0, 0, 50">
-            <Button FontSize="20" Padding="20, 5, 20, 5" x:Name="SignBtn" Click="ShowSignWindow" Content="Firmar" Margin="0, 0, 30, 0"/>
-            <Button FontSize="20" Padding="15, 5, 15, 5" x:Name="SaveBtn" Click="CreateCreditRequest" Content="Crear solicitud"/>
-        </StackPanel>
+        <Button Grid.Row="2" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 0, 0, 40" Width="200" Padding="15, 5, 15, 5" x:Name="SaveBtn" Click="CreateCreditRequest" Content="Crear solicitud"/>
         <notifications:NotificationArea Grid.Row="2" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1" Height="120" Width="600" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>

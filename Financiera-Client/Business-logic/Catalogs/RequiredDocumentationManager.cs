@@ -155,5 +155,35 @@ namespace Business_logic.Catalogs
                     return 0;
             }
         }
+
+        public List<RequiredDocument> GetActive()
+        {
+            CatalogServiceClient client = new();
+            ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui response;
+
+            try
+            {
+                response = client.GetActiveRequiredDocumentation();
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            List<RequiredDocumentDC> serializedDocumentsList = response.Data.ToList();
+            List<RequiredDocument> requiredDocuments = new();
+            foreach (RequiredDocumentDC document in serializedDocumentsList)
+            {
+                requiredDocuments.Add(new RequiredDocument
+                {
+                    Id = document.Id,
+                    Name = document.Name,
+                    FileType = (FileType)Enum.Parse(typeof(FileType), document.FileType.ToString()),
+                    Status = document.State
+                });
+            }
+
+            return requiredDocuments;
+        }
     }
 }

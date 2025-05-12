@@ -1,4 +1,7 @@
-﻿namespace Data_Access.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Data_Access.Entities;
 
 public partial class Credit
 {
@@ -11,6 +14,8 @@ public partial class Credit
     public int capital { get; set; }
 
     public string beneficiary { get; set; } = null!;
+
+    public DateTime registryDate { get; set; }
 
     public int registrer { get; set; }
 

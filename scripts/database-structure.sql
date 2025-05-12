@@ -1,7 +1,19 @@
-
-CREATE DATABASE independent_financial;
+--CREATE DATABASE independent_financial;
 
 USE independent_financial
+
+/*drop table [Payment];
+drop table [Document];
+drop table [Credit];
+drop table [RequiredDocumentation];
+drop table [CreditPolicy];
+drop table [Creditcondition];
+drop table [BankAccount];
+drop table [PersonalReference];
+drop table [Client];
+drop table [Employee];
+drop table [Subsidiary];
+*/
 
 CREATE TABLE [Employee] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -36,8 +48,8 @@ CREATE TABLE [Credit] (
 CREATE TABLE [Document] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [name] varchar(100) NOT NULL,
-  [file] blob NOT NULL,
-  [active] bool NOT NULL, 
+  [file] varbinary(8000) NOT NULL,
+  [active] bit NOT NULL, 
   [registryDate] DateTime NOT NULL,
   [registrer] int NOT NULL,
   [documentationId] int NOT NULL,

@@ -13,6 +13,9 @@ namespace FinancieraServer.Interfaces
         ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPaginationPrevious(int pageSize, int firstId);
 
         [OperationContract]
+        ResponseWithContent<List<RequiredDocumentDC>> GetActiveRequiredDocumentation();
+
+        [OperationContract]
         Response AddRequiredDocument(RequiredDocumentDC requiredDocument);
 
         [OperationContract]
@@ -24,6 +27,9 @@ namespace FinancieraServer.Interfaces
         // Credit conditions methods -------------------------------------
         [OperationContract]
         ResponseWithContent<List<CreditConditionDC>> GetCreditConditionsByPagination(int pageSize, int markId, bool next);
+
+        [OperationContract]
+        ResponseWithContent<List<CreditConditionDC>> GetActiveCreditConditions();
 
         [OperationContract]
         Response AddCreditCondition(CreditConditionDC creditCondition);
