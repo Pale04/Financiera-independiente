@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Maxim\\source\\repos\\WPFLocalization\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E23AE7EA-988C-448B-BEB0-D6CB1A177F43}|..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\WPFLocalization.csproj|c:\\users\\maxim\\onedrive\\escritorio\\tecnolog\u00EDas\\wpflocalization1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E23AE7EA-988C-448B-BEB0-D6CB1A177F43}|..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\WPFLocalization.csproj|c:\\users\\maxim\\onedrive\\escritorio\\tecnolog\u00EDas\\wpflocalization1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E23AE7EA-988C-448B-BEB0-D6CB1A177F43}|..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\WPFLocalization.csproj|c:\\users\\maxim\\onedrive\\escritorio\\tecnolog\u00EDas\\wpflocalization1\\selectlanguage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Maxim\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\App.xaml.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\Maxim\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\App.xaml.cs",
+              "RelativeToolTip": "..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\App.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T20:25:37.071Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Maxim\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Maxim\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\MainWindow.xaml",
+              "RelativeToolTip": "..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-09-10T19:44:50.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SelectLanguage.xaml",
+              "DocumentMoniker": "C:\\Users\\Maxim\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\SelectLanguage.xaml",
+              "RelativeDocumentMoniker": "..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\SelectLanguage.xaml",
+              "ToolTip": "C:\\Users\\Maxim\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\SelectLanguage.xaml",
+              "RelativeToolTip": "..\\..\\..\\OneDrive\\Escritorio\\Tecnolog\u00EDas\\WPFLocalization1\\SelectLanguage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-09-10T19:33:32.476Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
