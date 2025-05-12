@@ -150,4 +150,7 @@
   <data name="LoginUserNotFund" xml:space="preserve">
     <value>Usuario no encontrado o no existe</value>
   </data>
+  <data name="GlobalInvalidFields" xml:space="preserve">
+    <value>Campos inválidos, Por favor verifique la información</value>
+  </data>
 </root>

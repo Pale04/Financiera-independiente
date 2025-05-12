@@ -79,6 +79,15 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Campos inválidos, Por favor verifique la información.
+        /// </summary>
+        internal static string GlobalInvalidFields {
+            get {
+                return ResourceManager.GetString("GlobalInvalidFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El registro se ha completado exitosamente.
         /// </summary>
         internal static string GlobalRegistrationSuccess {

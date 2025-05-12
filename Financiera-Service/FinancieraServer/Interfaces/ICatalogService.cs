@@ -1,4 +1,5 @@
-﻿using FinancieraServer.DataContracts;
+﻿using Data_Access.Entities;
+using FinancieraServer.DataContracts;
 
 namespace FinancieraServer.Interfaces
 {
@@ -52,5 +53,20 @@ namespace FinancieraServer.Interfaces
 
         [OperationContract]
         Response UpdateSubsidiaryState(int id, bool activeSubsidiary);
+
+
+        //Policies Methods -------------------------------------------------
+        [OperationContract]
+        ResponseWithContent<List<CreditPolicyDC>> GetCreditPoliciesByPagination(int pageSize, int markId, bool next);
+
+        [OperationContract]
+        Response AddCreditPolicy(CreditPolicyDC newPolicy);
+
+        [OperationContract]
+        Response UpdateCreditPolicy(CreditPolicyDC policyUpdated);
+
+        [OperationContract]
+        Response UpdateCreditPolicyState(int id, bool statePolicyUpdated);
+
     }
 }
