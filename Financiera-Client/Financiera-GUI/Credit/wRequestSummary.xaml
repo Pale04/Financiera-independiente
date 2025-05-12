@@ -1,0 +1,19 @@
+﻿<Window x:Class="Financiera_GUI.Credit.wRequestSummary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financiera_GUI.Credit"
+        mc:Ignorable="d"
+        Title="wRequestSummary" Height="450" Width="500"
+        WindowStyle="None">
+    <StackPanel Margin="30">
+        <Label FontSize="25" FontWeight="SemiBold">Resumen del crédito</Label>
+        <TextBlock Height="270" Name="textField" Margin="20">text</TextBlock>
+        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button FontSize="14" Padding="10, 3, 10, 3" Margin="0, 0, 30, 0" Click="Accept" Content="Aceptar"/>
+            <Button FontSize="14" Padding="10, 3, 10, 3" Click="Close" Content="Cancelar"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
