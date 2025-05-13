@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Financiera_GUI"
              StartupUri="../wLogin.xaml">
     <Application.Resources>
+        
         <Style x:Key="ButtonBehaviorGlobal" TargetType="Border">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -11,6 +12,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="ButtonBehaviourPrincipal" TargetType="Border">
             <Style.Setters>
                 <Setter Property="Background" Value="#1B263B" />
@@ -21,6 +23,34 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="LightSteelBlue" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ButtonBehaviourSecondary" TargetType="Border">
+            <Style.Setters>
+                <Setter Property="Background" Value="#778DA9" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="Black" />
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightSteelBlue" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ButtonBehaviourCancel" TargetType="Border">
+            <Style.Setters>
+                <Setter Property="Background" Value="Red" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="DarkRed" />
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightCoral" />
                 </Trigger>
             </Style.Triggers>
         </Style>

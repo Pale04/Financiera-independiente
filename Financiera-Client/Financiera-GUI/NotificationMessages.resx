@@ -135,6 +135,9 @@
   <data name="LoginWrongCredentials" xml:space="preserve">
     <value>Usuario o contraseña incorrecta</value>
   </data>
+  <data name="SearchNotFound" xml:space="preserve">
+    <value>La búsqueda no tuvo resultados</value>
+  </data>
   <data name="ResetEmptyFields" xml:space="preserve">
     <value>Complete todos los campos</value>
   </data>
@@ -149,5 +152,11 @@
   </data>
   <data name="LoginUserNotFund" xml:space="preserve">
     <value>Usuario no encontrado o no existe</value>
+  </data>
+  <data name="PaymentLayoutGenerationFailed" xml:space="preserve">
+    <value>No fue posible generar el layout de cobro. Contacte a soporte técnico si el problema persiste.</value>
+  </data>
+  <data name="PaymentLayoutGenerationSuccessful" xml:space="preserve">
+    <value>Se ha guardado correctamente el layout de cobro en su carpeta de Descargas.</value>
   </data>
 </root>

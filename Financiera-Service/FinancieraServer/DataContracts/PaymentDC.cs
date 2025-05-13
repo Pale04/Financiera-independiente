@@ -15,7 +15,7 @@
     public class PaymentDC
     {
         [DataMember]
-        public int Folio { get; set; }
+        public int Folio { get; set; }  
         [DataMember]
         public string CollectionDate { get; set; }
         [DataMember]
@@ -26,7 +26,5 @@
         public int RegistrerId { get; set; }
         [DataMember]
         public int CreditId { get; set; }
-        [DataMember]
-        public string BeneficiaryRfc { get; set; }
     }
 }

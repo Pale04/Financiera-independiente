@@ -79,11 +79,29 @@ namespace Business_logic {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No es posible desactivar la cuenta del cliente debido a que tiene crédito activos..
+        /// </summary>
+        internal static string CannotDeactivateCustomer {
+            get {
+                return ResourceManager.GetString("CannotDeactivateCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ya existe una condición de crédito registrada con los mismos datos..
         /// </summary>
         internal static string DuplicatedCreditCondition {
             get {
                 return ResourceManager.GetString("DuplicatedCreditCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ya existe un cliente registrado con el mismo RFC.
+        /// </summary>
+        internal static string DuplicatedCustomer {
+            get {
+                return ResourceManager.GetString("DuplicatedCustomer", resourceCulture);
             }
         }
         
@@ -102,6 +120,42 @@ namespace Business_logic {
         internal static string InvalidFields {
             get {
                 return ResourceManager.GetString("InvalidFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No es posible descargar el layout de cobro. Inténtelo más tarde..
+        /// </summary>
+        internal static string PaymentLayoutGenerationError {
+            get {
+                return ResourceManager.GetString("PaymentLayoutGenerationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No fue posible descargar el layout de cobro. Verifique que existe su carpeta de descargas..
+        /// </summary>
+        internal static string PaymentLayoutMissingDirectory {
+            get {
+                return ResourceManager.GetString("PaymentLayoutMissingDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No es posible descargar el layout de cobro. Asegurese de encontrarse en la cuenta de administrador de su computadora..
+        /// </summary>
+        internal static string PaymentLayoutMissingPermission {
+            get {
+                return ResourceManager.GetString("PaymentLayoutMissingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La búsqueda no tuvo resultados.
+        /// </summary>
+        internal static string SearchNotFound {
+            get {
+                return ResourceManager.GetString("SearchNotFound", resourceCulture);
             }
         }
         

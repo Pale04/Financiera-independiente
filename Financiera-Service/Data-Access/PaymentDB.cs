@@ -5,18 +5,18 @@ namespace Data_Access
 {
     public class PaymentDB
     {
-        public List<Payment> GetPaymentLayout(DateOnly fisrtdDate, DateOnly endDate)
+
+        public List<PaymentLayout> GetPaymentLayout(DateOnly firstdDate, DateOnly endDate)
         {
-            List<Payment> payments = new();
+            List<PaymentLayout> paymentLayout = new();
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.CollectionsAgent)))
             {
-                payments = context.Payments
+                paymentLayout = context.PaymentLayouts
+                    .Where(p => p.collectionDate >= firstdDate && p.collectionDate <= endDate)
                     .OrderBy(p => p.collectionDate)
-                    .Where(p => p.collectionDate >= fisrtdDate && p.collectionDate <= endDate && p.state == "pending")
-                    .Include(p => p.credit.beneficiary)
                     .ToList();
             }
-            return payments;
+            return paymentLayout;
         }
     }
 }

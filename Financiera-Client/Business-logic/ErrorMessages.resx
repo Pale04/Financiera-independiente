@@ -135,7 +135,25 @@
   <data name="DuplicatedCreditCondition" xml:space="preserve">
     <value>Ya existe una condición de crédito registrada con los mismos datos.</value>
   </data>
+  <data name="DuplicatedCustomer" xml:space="preserve">
+    <value>Ya existe un cliente registrado con el mismo RFC</value>
+  </data>
+  <data name="SearchNotFound" xml:space="preserve">
+    <value>La búsqueda no tuvo resultados</value>
+  </data>
+  <data name="CannotDeactivateCustomer" xml:space="preserve">
+    <value>No es posible desactivar la cuenta del cliente debido a que tiene crédito activos.</value>
+  </data>
   <data name="WrongCode" xml:space="preserve">
     <value>Código de verificación incorrecto</value>
+  </data>
+  <data name="PaymentLayoutMissingDirectory" xml:space="preserve">
+    <value>No fue posible descargar el layout de cobro. Verifique que existe su carpeta de descargas.</value>
+  </data>
+  <data name="PaymentLayoutGenerationError" xml:space="preserve">
+    <value>No es posible descargar el layout de cobro. Inténtelo más tarde.</value>
+  </data>
+  <data name="PaymentLayoutMissingPermission" xml:space="preserve">
+    <value>No es posible descargar el layout de cobro. Asegurese de encontrarse en la cuenta de administrador de su computadora.</value>
   </data>
 </root>

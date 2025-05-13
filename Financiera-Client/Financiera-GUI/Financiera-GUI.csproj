@@ -18,6 +18,7 @@
     <None Remove="Images\credit_policy_icon.png" />
     <None Remove="Images\deactivate_icon.png" />
     <None Remove="Images\document_icon.png" />
+    <None Remove="Images\download_icon.png" />
     <None Remove="Images\edit_account_icon.png" />
     <None Remove="Images\edit_icon.png" />
     <None Remove="Images\efficency_statistics.png" />
@@ -30,6 +31,8 @@
     <None Remove="Images\register-icon.png" />
     <None Remove="Images\manage_uncollectible_credits.png" />
     <None Remove="Images\payment_register.png" />
+    <None Remove="Images\search_icon.png" />
+    <None Remove="Images\showDetails_icon.png" />
     <None Remove="Images\sucursal_icon.png" />
   </ItemGroup>
 
@@ -56,6 +59,7 @@
     </Resource>
     <Resource Include="Images\deactivate_icon.png" />
     <Resource Include="Images\document_icon.png" />
+    <Resource Include="Images\download_icon.png" />
     <Resource Include="Images\edit_account_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -72,7 +76,13 @@
     <Resource Include="Images\register-icon.png" />
     <Resource Include="Images\manage_uncollectible_credits.png" />
     <Resource Include="Images\payment_register.png" />
+    <Resource Include="Images\search_icon.png" />
+    <Resource Include="Images\showDetails_icon.png" />
     <Resource Include="Images\sucursal_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Login\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,10 +98,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NotificationMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Login\" />
   </ItemGroup>
 
 </Project>

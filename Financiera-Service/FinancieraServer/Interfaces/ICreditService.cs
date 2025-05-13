@@ -12,12 +12,13 @@ namespace FinancieraServer.Interfaces
         ResponseWithContent<List<CreditDC>> GetActiveCredits();
 
         [OperationContract]
-        ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(int beneficiaryId);
+        ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(string beneficiaryId);
 
         [OperationContract]
         ResponseWithContent<List<CreditRequestDC>> GetCreditRequests();
 
         [OperationContract]
         Response DetermineRequest(int requestId, bool granted);
+
     }
 }

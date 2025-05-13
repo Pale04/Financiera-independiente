@@ -9,7 +9,12 @@ namespace FinancieraServer.ServiceImplementations
 {
     public class CreditService : ICreditService
     {
-        private ILogger<AccountService> _logger;
+        private ILogger<CreditService> _logger;
+
+        public CreditService(ILogger<CreditService> logger)
+        {
+            _logger = logger;
+        }
 
         public Response AddCreditRequest(CreditRequestDC request)
         {
@@ -98,7 +103,7 @@ namespace FinancieraServer.ServiceImplementations
             throw new NotImplementedException();
         }
 
-        public ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(int beneficiaryId)
+        public ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(string beneficiaryId)
         {
             throw new NotImplementedException();
         }

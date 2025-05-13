@@ -34,14 +34,15 @@ public partial class independent_financialContext : DbContext
 
     public virtual DbSet<Payment> Payments { get; set; }
 
+    public virtual DbSet<PaymentLayout> PaymentLayouts { get; set; }
+
     public virtual DbSet<PersonalReference> PersonalReferences { get; set; }
 
     public virtual DbSet<RequiredDocumentation> RequiredDocumentations { get; set; }
 
     public virtual DbSet<Subsidiary> Subsidiaries { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(_connectionString);
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(_connectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -274,6 +275,50 @@ public partial class independent_financialContext : DbContext
                 .HasForeignKey(d => d.clientRfc)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__PersonalR__clien__662B2B3B");
+        });
+
+        modelBuilder.Entity<PaymentLayout>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("PaymentLayout");
+
+            entity.Property(e => e.amount).HasColumnType("decimal(7, 2)");
+            entity.Property(e => e.clabe)
+                .HasMaxLength(18)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<PersonalReference>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PK__Personal__3213E83F36080A35");
+
+            entity.ToTable("PersonalReference");
+
+            entity.Property(e => e.clientRfc)
+                .HasMaxLength(13)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.phoneNumber)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.relationship)
+                .HasMaxLength(13)
+                .IsUnicode(false)
+                .IsFixedLength();
+
+            entity.HasOne(d => d.clientRfcNavigation).WithMany(p => p.PersonalReferences)
+                .HasForeignKey(d => d.clientRfc)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__PersonalR__clien__5CD6CB2B");
         });
 
         modelBuilder.Entity<RequiredDocumentation>(entity =>

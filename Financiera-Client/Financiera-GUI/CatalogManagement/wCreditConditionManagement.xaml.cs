@@ -90,7 +90,7 @@ namespace Financiera_GUI.CatalogManagement
             creditConditionsTable.Children.RemoveRange(1, creditConditionsTable.Children.Count);
             foreach(CreditCondition creditCondition in creditConditions)
             {
-                creditConditionsTable.Children.Add(new wCreditConditionManagementRow(creditCondition));
+                creditConditionsTable.Children.Add(new ucCreditConditionManagementRow(creditCondition));
             }
 
             _actualPage += next ? 1 : -1;
@@ -129,9 +129,9 @@ namespace Financiera_GUI.CatalogManagement
                 1 => 2,
                 _ => 1
             };
-
             int interestRate;
             int iva;
+
             try
             {
                 interestRate = int.Parse(interestRateInput.Text);
@@ -142,7 +142,6 @@ namespace Financiera_GUI.CatalogManagement
                 _notificationManager.Show("La tasa de interés y el IVA deben ser números enteros", NotificationType.Warning, "WindowArea");
                 return;
             }
-
 
             CreditConditionManager creditConditionManager = new();
             try
