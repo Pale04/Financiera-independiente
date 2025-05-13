@@ -24,7 +24,7 @@ namespace Financiera_GUI.CatalogManagement
 
             try
             {
-                _subsidiaries = subsidiaryManager.GetAll();
+                //_subsidiaries = subsidiaryManager.GetAll();
             }
             catch (Exception error)
             {

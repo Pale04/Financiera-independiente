@@ -12,7 +12,7 @@ namespace Business_logic.Catalogs
     public class SubsidiaryManager
     {
 
-        public List<Subsidiary> GetAll()
+        public List<DomainClasses.Subsidiary> GetSubsidiaries()
         {
             CatalogServiceClient client = new();
             ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui response;
@@ -27,11 +27,11 @@ namespace Business_logic.Catalogs
                 throw new Exception(ErrorMessages.ServerError);
             }
 
-            List<Subsidiary> subsidiaries = new List<Subsidiary>();
+            List<DomainClasses.Subsidiary> subsidiaries = new List<DomainClasses.Subsidiary>();
 
             foreach (SubsidiaryDC subsidiary in response.Data) 
             {
-                subsidiaries.Add(new Subsidiary()
+                subsidiaries.Add(new DomainClasses.Subsidiary()
                 {
                     Id = subsidiary.Id,
                     Address = subsidiary.Address,
