@@ -184,6 +184,8 @@ namespace CreditServiceReference
         
         private int DocumentationIdField;
         
+        private byte[] FileField;
+        
         private int IdField;
         
         private string NameField;
@@ -191,8 +193,6 @@ namespace CreditServiceReference
         private int RegistrerIdField;
         
         private string RegistryDateField;
-        
-        private byte[] fileField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int DocumentationId
@@ -204,6 +204,19 @@ namespace CreditServiceReference
             set
             {
                 this.DocumentationIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] File
+        {
+            get
+            {
+                return this.FileField;
+            }
+            set
+            {
+                this.FileField = value;
             }
         }
         
@@ -256,19 +269,6 @@ namespace CreditServiceReference
             set
             {
                 this.RegistryDateField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] file
-        {
-            get
-            {
-                return this.fileField;
-            }
-            set
-            {
-                this.fileField = value;
             }
         }
     }
@@ -374,10 +374,10 @@ namespace CreditServiceReference
         System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui> GetActiveCreditsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetCreditsByBeneficiary", ReplyAction="http://tempuri.org/ICreditService/GetCreditsByBeneficiaryResponse")]
-        CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui GetCreditsByBeneficiary(int beneficiaryId);
+        CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui GetCreditsByBeneficiary(string beneficiaryId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetCreditsByBeneficiary", ReplyAction="http://tempuri.org/ICreditService/GetCreditsByBeneficiaryResponse")]
-        System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui> GetCreditsByBeneficiaryAsync(int beneficiaryId);
+        System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui> GetCreditsByBeneficiaryAsync(string beneficiaryId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetCreditRequests", ReplyAction="http://tempuri.org/ICreditService/GetCreditRequestsResponse")]
         CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestDC1nk_PiFui GetCreditRequests();
@@ -462,12 +462,12 @@ namespace CreditServiceReference
             return base.Channel.GetActiveCreditsAsync();
         }
         
-        public CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui GetCreditsByBeneficiary(int beneficiaryId)
+        public CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui GetCreditsByBeneficiary(string beneficiaryId)
         {
             return base.Channel.GetCreditsByBeneficiary(beneficiaryId);
         }
         
-        public System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui> GetCreditsByBeneficiaryAsync(int beneficiaryId)
+        public System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui> GetCreditsByBeneficiaryAsync(string beneficiaryId)
         {
             return base.Channel.GetCreditsByBeneficiaryAsync(beneficiaryId);
         }
