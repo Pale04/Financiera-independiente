@@ -30,7 +30,6 @@ namespace Business_logic.Catalogs
             {
                 case 1:
                     throw new Exception(ErrorMessages.ServerError);
-
                 case 2:
                     throw new Exception(ErrorMessages.BadRequest);
                 default:
@@ -46,6 +45,7 @@ namespace Business_logic.Catalogs
                         });
                     }
                     return policies;
+                
             }
         }
 

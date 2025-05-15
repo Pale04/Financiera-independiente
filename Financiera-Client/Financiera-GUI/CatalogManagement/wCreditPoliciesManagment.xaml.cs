@@ -7,6 +7,7 @@ using Financiera_GUI.Utilities;
 
 using Business_logic.Catalogs;
 using Business_logic;
+using System.ServiceModel;
 
 namespace Financiera_GUI.CatalogManagement
 {
@@ -51,7 +52,7 @@ namespace Financiera_GUI.CatalogManagement
             }
             catch (Exception error)
             {
-                _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
+                _notificationManager.Show("Error al cargar las políticas de la base de datos", NotificationType.Error, "WindowArea");
                 return;
             }
 
@@ -82,15 +83,15 @@ namespace Financiera_GUI.CatalogManagement
             {
                 try
                 {
-                    creditPolicies = manager.GetPoliciesByPagination(_pageSize, _firstId, next);
+                    creditPolicies = manager.GetPoliciesByPagination(_pageSize, _firstId, false);
                 }
                 catch (Exception error)
                 {
-                    _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
+                    _notificationManager.Show($"Error al cargar las políticas en la tabla: {error.Message}", NotificationType.Error, "WindowArea");
                     return;
                 }
             }
-
+            TbCreditPolicies.Children.RemoveRange(1, TbCreditPolicies.Children.Count);
             foreach (var policy in creditPolicies)
             {
                 TbCreditPolicies.Children.Add(new wCreditPolicyManagmentRow(policy));
@@ -122,7 +123,7 @@ namespace Financiera_GUI.CatalogManagement
         {
             if (!IsValid())
             {
-                _notificationManager.Show(NotificationMessages.GlobalEmptyFields);
+                _notificationManager.Show(NotificationMessages.GlobalEmptyFields, NotificationType.Warning, "WindowArea");
             }
             else
             {
@@ -134,23 +135,35 @@ namespace Financiera_GUI.CatalogManagement
                     State = true
                 };
                 CreditPolicyManager manager = new();
-                int response = new();
-                response = manager.AddPolicy(newPolicy);
-
-                switch (response)
+                try
                 {
-                    case 1:
-                        _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
-                        break;
-                    case 2:
-                        _notificationManager.Show(NotificationMessages.GlobalInvalidFields, NotificationType.Error);
-                        break;
-                    case 0:
-                        _notificationManager.Show(NotificationMessages.GlobalRegistrationSuccess, NotificationType.Success);
-                        Clear();
-                        RebootPages();
-                        break;
-                        
+                    int response = new();
+                    response = manager.AddPolicy(newPolicy);
+
+                    switch (response)
+                    {
+                        case 1:
+                            _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
+                            break;
+                        case 2:
+                            _notificationManager.Show(NotificationMessages.GlobalInvalidFields, NotificationType.Warning, "WindowArea");
+                            break;
+                        case 3:
+                            _notificationManager.Show(NotificationMessages.PolicyDuplicated, NotificationType.Warning, "WindowArea");
+                            break;
+                        case 4:
+                            _notificationManager.Show(NotificationMessages.PolicyNotFound, NotificationType.Error, "WindowArea");
+                            break;
+                        case 0:
+                            _notificationManager.Show(NotificationMessages.GlobalRegistrationSuccess, NotificationType.Success, "WindowArea");
+                            break;
+                    }
+                    Clear();
+                    RebootPages();
+                }
+                catch (CommunicationException error)
+                {
+                    _notificationManager.Show($"Error: {error.Message}", NotificationType.Error, "WindowArea");
                 }
             }
         }

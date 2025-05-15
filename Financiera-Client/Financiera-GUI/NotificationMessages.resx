@@ -153,4 +153,10 @@
   <data name="GlobalInvalidFields" xml:space="preserve">
     <value>Campos inválidos, Por favor verifique la información</value>
   </data>
+  <data name="PolicyDuplicated" xml:space="preserve">
+    <value>Politica ya registrada</value>
+  </data>
+  <data name="PolicyNotFound" xml:space="preserve">
+    <value>No se encontró la politica seleccionada</value>
+  </data>
 </root>

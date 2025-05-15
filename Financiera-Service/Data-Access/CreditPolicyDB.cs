@@ -15,7 +15,7 @@ namespace Data_Access
                 previousCreditPolicies = context.CreditPolicies
                    .OrderBy(p => p.id)
                    .Where(p => p.id < firstId)
-                   .Take(pageSize)
+                   .TakeLast(pageSize)
                    .ToList();
             }
             return previousCreditPolicies;
@@ -46,9 +46,7 @@ namespace Data_Access
 
         public int AddCreditPolicy(CreditPolicy creditPolicy)
         {
-            int code = 0;
-            DateOnly dateExpired = new DateOnly();
-            dateExpired = makeExpireDate();
+            DateOnly dateExpired = makeExpireDate();
 
             creditPolicy.effectiveDate = dateExpired;
 
@@ -63,15 +61,21 @@ namespace Data_Access
                     effectiveDate = creditPolicy.effectiveDate,
                 };
                 context.CreditPolicies.Add(policy);
-                code = context.SaveChanges();
+                if (context.SaveChanges() > 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+                    
             }
-            return code;
         }
 
 
         public int UpdateCreditPolicy(CreditPolicy creditPolicy)
         {
-            int code = 0;
             using(var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
             {
                 var policy = context.CreditPolicies.Find(creditPolicy.id);
@@ -81,27 +85,44 @@ namespace Data_Access
                     policy.description = creditPolicy.description;
                     policy.effectiveDate = creditPolicy.effectiveDate;
                     policy.registrer = creditPolicy.registrer;
-                    code = context.SaveChanges();
-                }   
+                    if (context.SaveChanges() > 0)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return 4;
+                } 
             }
-
-            return code;
         }
 
         public int UpdateStateCreditPolicy(bool newState, int id)
         {
-            int code = 0;
             using(var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
             {
                 var policyUpdated = context.CreditPolicies.Find(id);
                 if(policyUpdated != null)
                 {
                     policyUpdated.state = newState;
-                    code = context.SaveChanges();
+                    if (context.SaveChanges() > 0)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return 4;
                 }
             }
-
-            return code;
         }
 
         public DateOnly makeExpireDate()
@@ -110,6 +131,20 @@ namespace Data_Access
             DateOnly fechaActual = DateOnly.FromDateTime(DateTime.Today);
             expireDate = fechaActual.AddYears(5);
             return expireDate;
+        }
+
+
+        public bool IdExists(int idPolicy)
+        {
+            using(var context =new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                var dbResponse =context.CreditPolicies.Find(idPolicy);
+                if(dbResponse != null)
+                {
+                    return true;
+                }
+                return false;
+            } 
         }
     }
 }

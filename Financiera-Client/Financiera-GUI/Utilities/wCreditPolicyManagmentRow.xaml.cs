@@ -1,8 +1,12 @@
-﻿using DomainClasses;
+﻿using Business_logic;
+using Business_logic.Catalogs;
+using CatalogServiceReference;
+using DomainClasses;
 using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,6 +33,8 @@ namespace Financiera_GUI.Utilities
             InitializeComponent();
             _policy = policy;
             _notificationManager = new NotificationManager();
+            LoadInformation();
+            LoadStateIcon();
         }
 
 
@@ -70,19 +76,109 @@ namespace Financiera_GUI.Utilities
 
         private void Update(object sender, MouseButtonEventArgs e)
         {
-            EnableEdit();
-  
-            
+            EnableEdit(); 
         }
 
         private void SaveChanges(object sender, MouseButtonEventArgs e)
         {
+            if (!IsValid())
+            {
+                _notificationManager.Show(NotificationMessages.GlobalEmptyFields, NotificationType.Warning, "WindowArea");
+            }
 
+            CreditPolicyManager manager = new();
+            Policy policyUpdated = new()
+            {
+                Id = _policy.Id,
+                Title = titleInput.Text,
+                Description = descriptionInput.Text,
+                Registrer = UserSession.Instance.Employee.id
+            };
+
+            try
+            {
+                int statusCode = manager.UpdatePolicy(policyUpdated);
+
+                switch (statusCode)
+                {
+                    case 1:
+                        _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
+                        break;
+                    case 2:
+                        _notificationManager.Show(NotificationMessages.GlobalInvalidFields, NotificationType.Warning, "WindowArea");
+                        break;
+                    case 3:
+                        _notificationManager.Show(NotificationMessages.PolicyDuplicated, NotificationType.Warning, "WindowArea");
+                        break;
+                    case 4:
+                        _notificationManager.Show(NotificationMessages.PolicyNotFound, NotificationType.Error, "WindowArea");
+                        break;
+                    case 0:
+                        _notificationManager.Show(NotificationMessages.GlobalRegistrationSuccess, NotificationType.Success, "WindowArea");
+                        break;
+                }
+
+                _policy.Title = policyUpdated.Title;
+                _policy.Description = policyUpdated.Description;
+                _policy.Registrer = policyUpdated.Registrer;
+                LoadInformation();
+                EnableEdit();
+            }
+            catch(CommunicationException error)
+            {
+                _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
+            }
         }
 
         private void UpdateState(object sender, MouseButtonEventArgs e)
         {
+            CreditPolicyManager manager = new();
+            string newState = _policy.State ? "Desactivar" : "Activar";
+            MessageBoxResult messageBox = MessageBox.Show($"Se selecciono la opción {newState}, ¿Está seguro de continuar?", "Cambiar estado de política",MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (messageBox != MessageBoxResult.Yes)
+            {
+                return;
+            }
+            bool state = !_policy.State;
+            try
+            {
+                int statusCode = manager.UpdatePolicyState(_policy.Id, state);
+                switch (statusCode)
+                {
+                    case 1:
+                        _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
+                        break;
+                    case 2:
+                        _notificationManager.Show(NotificationMessages.GlobalInvalidFields, NotificationType.Warning, "WindowArea");
+                        break;
+                    case 3:
+                        _notificationManager.Show(NotificationMessages.PolicyDuplicated, NotificationType.Warning, "WindowArea");
+                        break;
+                    case 4:
+                        _notificationManager.Show(NotificationMessages.PolicyNotFound, NotificationType.Error, "WindowArea");
+                        break;
+                    case 0:
+                        _notificationManager.Show(NotificationMessages.GlobalRegistrationSuccess, NotificationType.Success, "WindowArea");
+                        break;
+                }
+            }
+            catch (CommunicationException error)
+            {
+                _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error, "WindowArea");
+            }
 
+            _policy.State = !_policy.State;
+            LoadStateIcon();
+        }
+
+        public bool IsValid()
+        {
+            bool isValid = false;
+            if (!string.IsNullOrWhiteSpace(titleInput.Text) ||  !string.IsNullOrWhiteSpace(descriptionInput.Text) || !string.IsNullOrEmpty(titleInput.Text) || !string.IsNullOrEmpty(descriptionInput.Text)) 
+            {
+                isValid = true;
+            }
+            return isValid;
         }
     }
 }

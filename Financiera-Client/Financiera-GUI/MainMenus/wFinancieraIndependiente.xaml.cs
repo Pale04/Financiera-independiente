@@ -35,7 +35,9 @@ namespace Financiera_GUI.MainMenus
 
             if (response == 0)
             {
-                ContentFrame.NavigationService.Navigate(new wLogin());
+                wLogin login = new wLogin();
+                login.Show();
+                this.Close();
             }
         }
     }

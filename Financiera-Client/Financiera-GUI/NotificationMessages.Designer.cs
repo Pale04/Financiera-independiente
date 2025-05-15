@@ -142,6 +142,24 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Politica ya registrada.
+        /// </summary>
+        internal static string PolicyDuplicated {
+            get {
+                return ResourceManager.GetString("PolicyDuplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se encontró la politica seleccionada.
+        /// </summary>
+        internal static string PolicyNotFound {
+            get {
+                return ResourceManager.GetString("PolicyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Complete todos los campos.
         /// </summary>
         internal static string ResetEmptyFields {

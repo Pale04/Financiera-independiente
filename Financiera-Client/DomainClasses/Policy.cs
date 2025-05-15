@@ -22,9 +22,14 @@ namespace DomainClasses
 
         public bool isValid()
         {
-            return Title.Length > 50 && Title.Length < 10 && Description.Length > 100 && Description.Length < 10;
-        }
+            if (string.IsNullOrWhiteSpace(Title) || string.IsNullOrWhiteSpace(Description))
+                return false;
 
-        
+            var trimmedTitle = Title.Trim();
+            var trimmedDescription = Description.Trim();
+
+            return trimmedTitle.Length >= 10 && trimmedTitle.Length <= 50 &&
+                   trimmedDescription.Length >= 10 && trimmedDescription.Length <= 100;
+        }
     }
 }
