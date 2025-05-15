@@ -122,7 +122,7 @@ namespace Financiera_GUI
         {
             EmployeeClass employee = new()
             {
-                user = user
+                User = user
             };
             int response = accountManager.ChangePassword(employee, psbNewPassword.Password, psbConfirm.Password);
 
@@ -147,7 +147,7 @@ namespace Financiera_GUI
         {
             EmployeeClass employee = new()
             {
-                user = user
+                User = user
             };
 
             accountManager.SendEmail(employee);
@@ -157,7 +157,7 @@ namespace Financiera_GUI
         {
             EmployeeClass employeeAccount = new()
             {
-                user = employee
+                User = employee
             };
             accountManager.SendEmail(employeeAccount);
         }

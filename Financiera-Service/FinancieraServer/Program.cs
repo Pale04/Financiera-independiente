@@ -13,6 +13,7 @@ builder.Services.AddSingleton<AccountService>();
 builder.Services.AddSingleton<CatalogService>();
 builder.Services.AddSingleton<CustomerService>();
 builder.Services.AddSingleton<PaymentService>();
+builder.Services.AddSingleton<CreditService>();
 
 Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
 Log.Information("Configuration ready for start the server");
@@ -32,6 +33,8 @@ app.UseServiceModel(serviceBuilder =>
     serviceBuilder.AddServiceEndpoint<CustomerService, ICustomerService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/CustomerService.svc");
     serviceBuilder.AddService<PaymentService>();
     serviceBuilder.AddServiceEndpoint<PaymentService, IPaymentService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/PaymentService.svc");
+    serviceBuilder.AddService<CreditService>();
+    serviceBuilder.AddServiceEndpoint<CreditService, ICreditService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/CreditService.svc");
 
     var serviceMetadataBehavior = app.Services.GetRequiredService<ServiceMetadataBehavior>();
     serviceMetadataBehavior.HttpsGetEnabled = true;

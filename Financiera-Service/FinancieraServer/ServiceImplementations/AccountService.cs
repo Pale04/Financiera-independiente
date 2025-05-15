@@ -3,9 +3,7 @@ using Data_Access.Entities;
 using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
 using System.Data.Common;
-using System.Net;
 using System.Net.Mail;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace FinancieraServer.ServiceImplementations

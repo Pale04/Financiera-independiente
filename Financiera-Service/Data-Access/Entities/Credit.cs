@@ -15,6 +15,8 @@ public partial class Credit
 
     public string beneficiary { get; set; } = null!;
 
+    public DateTime registryDate { get; set; }
+
     public int registrer { get; set; }
 
     public int conditionId { get; set; }

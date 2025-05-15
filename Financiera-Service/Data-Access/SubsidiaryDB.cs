@@ -20,7 +20,7 @@ namespace Data_Access
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                return context.Subsidiaries.Any(d => d.Address.ToLower() == subsidiary.Address.ToLower() && d.id != subsidiary.id);
+                return context.Subsidiaries.Any(d => d.address.ToLower() == subsidiary.address.ToLower() && d.id != subsidiary.id);
             }
         }
 
@@ -28,7 +28,7 @@ namespace Data_Access
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                return context.Subsidiaries.Any(d => d.Address.ToLower() == address.ToLower());
+                return context.Subsidiaries.Any(d => d.address.ToLower() == address.ToLower());
             }
         }
 
@@ -39,7 +39,7 @@ namespace Data_Access
             {
                 var newSubsidiary = new Subsidiary
                 {
-                    Address = address,
+                    address = address,
                     state = true,
                 };
 
@@ -57,7 +57,7 @@ namespace Data_Access
                 var subsidiary = context.Subsidiaries.Find(id);
                 if (subsidiary != null)
                 {
-                    subsidiary.Address = address;
+                    subsidiary.address = address;
                     result = context.SaveChanges();
                 }
             }

@@ -1,7 +1,19 @@
-
-CREATE DATABASE independent_financial;
+--CREATE DATABASE independent_financial;
 
 USE independent_financial
+
+/*drop table [Payment];
+drop table [Document];
+drop table [Credit];
+drop table [RequiredDocumentation];
+drop table [CreditPolicy];
+drop table [Creditcondition];
+drop table [BankAccount];
+drop table [PersonalReference];
+drop table [Client];
+drop table [Employee];
+drop table [Subsidiary];
+*/
 
 CREATE TABLE [Employee] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -18,7 +30,7 @@ CREATE TABLE [Employee] (
 
 CREATE TABLE [Subsidiary] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [Address] varchar(400) NOT NULL,
+  [address] varchar(400) NOT NULL,
   [state] bit NOT NULL
 )
 
@@ -28,6 +40,7 @@ CREATE TABLE [Credit] (
   [duration] tinyint NOT NULL,
   [capital] int NOT NULL,
   [beneficiary] char(13) NOT NULL,
+  [registryDate] DateTime NOT NULL,
   [registrer] int NOT NULL,
   [conditionId] int NOT NULL
 )
@@ -35,6 +48,8 @@ CREATE TABLE [Credit] (
 CREATE TABLE [Document] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [name] varchar(100) NOT NULL,
+  [file] varbinary(8000) NOT NULL,
+  [active] bit NOT NULL, 
   [registryDate] DateTime NOT NULL,
   [registrer] int NOT NULL,
   [documentationId] int NOT NULL,
@@ -71,7 +86,7 @@ CREATE TABLE [PersonalReference] ( --New Table
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [name] varchar(100) NOT NULL,
   [phoneNumber] char(10) NOT NULL,
-  [relationship] char(13) NOT NULL,
+  [relationship] char(50) NOT NULL,
   [clientRfc] char(13) NOT NULL
 )
 

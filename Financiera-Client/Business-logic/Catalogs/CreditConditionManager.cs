@@ -1,6 +1,8 @@
 ﻿using CatalogServiceReference;
 using DomainClasses;
+using System.Drawing;
 using System.ServiceModel;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Business_logic.Catalogs
 {
@@ -14,6 +16,46 @@ namespace Business_logic.Catalogs
             try
             {
                 response = client.GetCreditConditionsByPagination(size, markId, next);
+            }
+            catch (CommunicationException error)
+            {
+                //TODO: Log the error
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            if (response.StatusCode == 1)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+            else if (response.StatusCode == 2)
+            {
+                throw new Exception(ErrorMessages.BadRequest);
+            }
+
+            List<CreditConditionDC> serializedConditionsList = response.Data.ToList();
+            List<CreditCondition> creditConditions = new();
+            foreach (CreditConditionDC condition in serializedConditionsList)
+            {
+                creditConditions.Add(new CreditCondition
+                {
+                    Id = condition.Id,
+                    State = condition.State,
+                    InterestRate = condition.InterestRate,
+                    IVA = condition.IVA,
+                    PaymentsPerMonth = condition.PaymentsPerMonth
+                });
+            }
+
+            return creditConditions;
+        }
+
+        public List<CreditCondition> GetActive() {
+            CatalogServiceClient client = new();
+            ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui response;
+
+            try
+            {
+                response = client.GetActiveCreditConditions();
             }
             catch (CommunicationException error)
             {

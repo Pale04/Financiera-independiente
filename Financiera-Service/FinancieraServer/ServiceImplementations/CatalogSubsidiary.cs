@@ -35,7 +35,7 @@ namespace FinancieraServer.ServiceImplementations
                 subsidiariesDC.Add(new SubsidiaryDC()
                 {
                     Id = subsidiary.id,
-                    Address = subsidiary.Address,
+                    Address = subsidiary.address,
                     State = subsidiary.state
                 });
             }
@@ -83,7 +83,7 @@ namespace FinancieraServer.ServiceImplementations
             Subsidiary subsidiary = new Subsidiary()
             {
                 id = id,
-                Address = address,
+                address = address,
                 state = true
             };
 
@@ -116,7 +116,7 @@ namespace FinancieraServer.ServiceImplementations
             Subsidiary subsidiary = new Subsidiary()
             {
                 id = id,
-                Address = "",
+                address = "",
                 state = activeSubsidiary
             };
 

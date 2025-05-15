@@ -1,4 +1,5 @@
 ﻿using Data_Access.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data_Access
 {

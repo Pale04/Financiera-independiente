@@ -11,7 +11,7 @@ namespace Business_logic
         public int SendEmail(EmployeeClass account)
         {
 
-            if (account.isValidForLogin())
+            if (account.IsValidForLogin())
             {
                 return 2;
             }
@@ -21,13 +21,13 @@ namespace Business_logic
 
             try
             {
-                ResponseWithContentOfEmployeeefOWEHwa response = sessionClient.GetAccountInfo(account.user);
+                ResponseWithContentOfEmployeeefOWEHwa response = sessionClient.GetAccountInfo(account.User);
                 if (response != null)
                 {
                     EmployeeClass employeeInfo = new()
                     {
-                        user = response.Data.user,
-                        mail = response.Data.mail
+                        User = response.Data.user,
+                        Mail = response.Data.mail
                     };
 
                     string code = accountClient.GenerateVerificationCode(response.Data.user);
@@ -55,7 +55,7 @@ namespace Business_logic
                     AccountServiceClient accountClient = new();
                     AccountServiceReference.Response response;
                     try{
-                        response = accountClient.ChangePassword(employee.user, password);
+                        response = accountClient.ChangePassword(employee.User, password);
                         return response.StatusCode;
 
                     }
@@ -125,15 +125,15 @@ namespace Business_logic
 
             EmployeeDC newEmployee = new()
             {
-                user = employee.user,
-                password = employee.password,
-                name = employee.name,
-                mail = employee.mail,
-                address = employee.address,
-                phone = employee.phoneNumber,
-                birthday = employee.birthday.ToString(),
-                role = employee.role,
-                subsidiaryId = employee.sucursalId
+                user = employee.User,
+                password = employee.Password,
+                name = employee.Name,
+                mail = employee.Mail,
+                address = employee.Address,
+                phone = employee.PhoneNumber,
+                birthday = employee.Birthday.ToString(),
+                role = employee.Role,
+                subsidiaryId = employee.SucursalId
 
             };
 

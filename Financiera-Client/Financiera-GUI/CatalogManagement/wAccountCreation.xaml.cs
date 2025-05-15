@@ -55,15 +55,15 @@ namespace Financiera_GUI.CatalogManagement
 
             EmployeeClass employee = new()
             {
-                name = name,
-                address = address,
-                phoneNumber = phone,
-                mail = mail,
-                user = username,
-                password = password,
-                birthday = DateOnly.FromDateTime((DateTime)birthday),
-                role = role,
-                sucursalId = UserSession.Instance.Employee.sucursalId
+                Name = name,
+                Address = address,
+                PhoneNumber = phone,
+                Mail = mail,
+                User = username,
+                Password = password,
+                Birthday = DateOnly.FromDateTime((DateTime)birthday),
+                Role = role,
+                SucursalId = UserSession.Instance.Employee.SucursalId
             };
 
             try

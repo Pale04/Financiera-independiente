@@ -12,7 +12,7 @@ namespace Financiera_GUI.MainMenus
         {
             InitializeComponent();
 
-            switch (UserSession.Instance.Employee.role)
+            switch (UserSession.Instance.Employee.Role)
             {
                 case "admin":
                     ContentFrame.NavigationService.Navigate(new wSystemManagement());
@@ -32,7 +32,7 @@ namespace Financiera_GUI.MainMenus
         private void BtnLogoutClick(object sender, RoutedEventArgs e)
 
         {
-            int response = manager.Logout(UserSession.Instance.Employee.user);
+            int response = manager.Logout(UserSession.Instance.Employee.User);
 
             if (response == 0)
             {
