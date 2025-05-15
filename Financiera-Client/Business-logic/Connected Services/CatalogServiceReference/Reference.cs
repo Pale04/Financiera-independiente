@@ -17,6 +17,7 @@ namespace CatalogServiceReference
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReference.ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReference.ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReference.ResponseWithContentOfArrayOfCreditPolicyDC1nk_PiFui))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CatalogServiceReference.ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui))]
     public partial class Response : object
     {
@@ -84,6 +85,28 @@ namespace CatalogServiceReference
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public CatalogServiceReference.SubsidiaryDC[] Data
+        {
+            get
+            {
+                return this.DataField;
+            }
+            set
+            {
+                this.DataField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfArrayOfCreditPolicyDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class ResponseWithContentOfArrayOfCreditPolicyDC1nk_PiFui : CatalogServiceReference.Response
+    {
+        
+        private CatalogServiceReference.CreditPolicyDC[] DataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.CreditPolicyDC[] Data
         {
             get
             {
@@ -334,6 +357,1470 @@ namespace CatalogServiceReference
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreditPolicyDC", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class CreditPolicyDC : object
+    {
+        
+        private string DescriptionField;
+        
+        private CatalogServiceReference.DateOnly EffectiveDateField;
+        
+        private int IdField;
+        
+        private bool StateField;
+        
+        private string TitleField;
+        
+        private int registerField;
+        
+        private CatalogServiceReference.Employee registerNavigationField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.DateOnly EffectiveDate
+        {
+            get
+            {
+                return this.EffectiveDateField;
+            }
+            set
+            {
+                this.EffectiveDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool State
+        {
+            get
+            {
+                return this.StateField;
+            }
+            set
+            {
+                this.StateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title
+        {
+            get
+            {
+                return this.TitleField;
+            }
+            set
+            {
+                this.TitleField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int register
+        {
+            get
+            {
+                return this.registerField;
+            }
+            set
+            {
+                this.registerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Employee registerNavigation
+        {
+            get
+            {
+                return this.registerNavigationField;
+            }
+            set
+            {
+                this.registerNavigationField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DateOnly", Namespace="http://schemas.datacontract.org/2004/07/System")]
+    public partial struct DateOnly
+    {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Employee", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class Employee : object
+    {
+        
+        private CatalogServiceReference.CreditCondition[] CreditConditionsField;
+        
+        private CatalogServiceReference.CreditPolicy[] CreditPoliciesField;
+        
+        private CatalogServiceReference.Credit[] CreditsField;
+        
+        private CatalogServiceReference.Document[] DocumentsField;
+        
+        private CatalogServiceReference.Payment[] PaymentsField;
+        
+        private string addressField;
+        
+        private CatalogServiceReference.DateOnly birthdayField;
+        
+        private int idField;
+        
+        private string mailField;
+        
+        private string nameField;
+        
+        private string passwordField;
+        
+        private string phoneNumberField;
+        
+        private string roleField;
+        
+        private CatalogServiceReference.Subsidiary sucursalField;
+        
+        private int sucursalIdField;
+        
+        private string userField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.CreditCondition[] CreditConditions
+        {
+            get
+            {
+                return this.CreditConditionsField;
+            }
+            set
+            {
+                this.CreditConditionsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.CreditPolicy[] CreditPolicies
+        {
+            get
+            {
+                return this.CreditPoliciesField;
+            }
+            set
+            {
+                this.CreditPoliciesField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Credit[] Credits
+        {
+            get
+            {
+                return this.CreditsField;
+            }
+            set
+            {
+                this.CreditsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Document[] Documents
+        {
+            get
+            {
+                return this.DocumentsField;
+            }
+            set
+            {
+                this.DocumentsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Payment[] Payments
+        {
+            get
+            {
+                return this.PaymentsField;
+            }
+            set
+            {
+                this.PaymentsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string address
+        {
+            get
+            {
+                return this.addressField;
+            }
+            set
+            {
+                this.addressField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.DateOnly birthday
+        {
+            get
+            {
+                return this.birthdayField;
+            }
+            set
+            {
+                this.birthdayField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string mail
+        {
+            get
+            {
+                return this.mailField;
+            }
+            set
+            {
+                this.mailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password
+        {
+            get
+            {
+                return this.passwordField;
+            }
+            set
+            {
+                this.passwordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string phoneNumber
+        {
+            get
+            {
+                return this.phoneNumberField;
+            }
+            set
+            {
+                this.phoneNumberField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string role
+        {
+            get
+            {
+                return this.roleField;
+            }
+            set
+            {
+                this.roleField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Subsidiary sucursal
+        {
+            get
+            {
+                return this.sucursalField;
+            }
+            set
+            {
+                this.sucursalField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int sucursalId
+        {
+            get
+            {
+                return this.sucursalIdField;
+            }
+            set
+            {
+                this.sucursalIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string user
+        {
+            get
+            {
+                return this.userField;
+            }
+            set
+            {
+                this.userField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Subsidiary", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class Subsidiary : object
+    {
+        
+        private string AddressField;
+        
+        private CatalogServiceReference.Employee[] EmployeesField;
+        
+        private int idField;
+        
+        private bool stateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address
+        {
+            get
+            {
+                return this.AddressField;
+            }
+            set
+            {
+                this.AddressField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Employee[] Employees
+        {
+            get
+            {
+                return this.EmployeesField;
+            }
+            set
+            {
+                this.EmployeesField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool state
+        {
+            get
+            {
+                return this.stateField;
+            }
+            set
+            {
+                this.stateField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreditCondition", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class CreditCondition : object
+    {
+        
+        private CatalogServiceReference.Credit[] CreditsField;
+        
+        private int IVAField;
+        
+        private int idField;
+        
+        private int interestRateField;
+        
+        private int paymentsPerMonthField;
+        
+        private int registrerField;
+        
+        private CatalogServiceReference.Employee registrerNavigationField;
+        
+        private bool stateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Credit[] Credits
+        {
+            get
+            {
+                return this.CreditsField;
+            }
+            set
+            {
+                this.CreditsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IVA
+        {
+            get
+            {
+                return this.IVAField;
+            }
+            set
+            {
+                this.IVAField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int interestRate
+        {
+            get
+            {
+                return this.interestRateField;
+            }
+            set
+            {
+                this.interestRateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int paymentsPerMonth
+        {
+            get
+            {
+                return this.paymentsPerMonthField;
+            }
+            set
+            {
+                this.paymentsPerMonthField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int registrer
+        {
+            get
+            {
+                return this.registrerField;
+            }
+            set
+            {
+                this.registrerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Employee registrerNavigation
+        {
+            get
+            {
+                return this.registrerNavigationField;
+            }
+            set
+            {
+                this.registrerNavigationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool state
+        {
+            get
+            {
+                return this.stateField;
+            }
+            set
+            {
+                this.stateField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreditPolicy", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class CreditPolicy : object
+    {
+        
+        private string descriptionField;
+        
+        private CatalogServiceReference.DateOnly effectiveDateField;
+        
+        private int idField;
+        
+        private int registrerField;
+        
+        private CatalogServiceReference.Employee registrerNavigationField;
+        
+        private bool stateField;
+        
+        private string titleField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.DateOnly effectiveDate
+        {
+            get
+            {
+                return this.effectiveDateField;
+            }
+            set
+            {
+                this.effectiveDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int registrer
+        {
+            get
+            {
+                return this.registrerField;
+            }
+            set
+            {
+                this.registrerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Employee registrerNavigation
+        {
+            get
+            {
+                return this.registrerNavigationField;
+            }
+            set
+            {
+                this.registrerNavigationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool state
+        {
+            get
+            {
+                return this.stateField;
+            }
+            set
+            {
+                this.stateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string title
+        {
+            get
+            {
+                return this.titleField;
+            }
+            set
+            {
+                this.titleField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Credit", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class Credit : object
+    {
+        
+        private CatalogServiceReference.Document[] DocumentsField;
+        
+        private CatalogServiceReference.Payment[] PaymentsField;
+        
+        private string beneficiaryField;
+        
+        private CatalogServiceReference.Client beneficiaryNavigationField;
+        
+        private int capitalField;
+        
+        private CatalogServiceReference.CreditCondition conditionField;
+        
+        private int conditionIdField;
+        
+        private byte durationField;
+        
+        private int idField;
+        
+        private int registrerField;
+        
+        private CatalogServiceReference.Employee registrerNavigationField;
+        
+        private string stateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Document[] Documents
+        {
+            get
+            {
+                return this.DocumentsField;
+            }
+            set
+            {
+                this.DocumentsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Payment[] Payments
+        {
+            get
+            {
+                return this.PaymentsField;
+            }
+            set
+            {
+                this.PaymentsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string beneficiary
+        {
+            get
+            {
+                return this.beneficiaryField;
+            }
+            set
+            {
+                this.beneficiaryField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Client beneficiaryNavigation
+        {
+            get
+            {
+                return this.beneficiaryNavigationField;
+            }
+            set
+            {
+                this.beneficiaryNavigationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int capital
+        {
+            get
+            {
+                return this.capitalField;
+            }
+            set
+            {
+                this.capitalField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.CreditCondition condition
+        {
+            get
+            {
+                return this.conditionField;
+            }
+            set
+            {
+                this.conditionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int conditionId
+        {
+            get
+            {
+                return this.conditionIdField;
+            }
+            set
+            {
+                this.conditionIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte duration
+        {
+            get
+            {
+                return this.durationField;
+            }
+            set
+            {
+                this.durationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int registrer
+        {
+            get
+            {
+                return this.registrerField;
+            }
+            set
+            {
+                this.registrerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Employee registrerNavigation
+        {
+            get
+            {
+                return this.registrerNavigationField;
+            }
+            set
+            {
+                this.registrerNavigationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string state
+        {
+            get
+            {
+                return this.stateField;
+            }
+            set
+            {
+                this.stateField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Document", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class Document : object
+    {
+        
+        private CatalogServiceReference.Credit creditField;
+        
+        private int creditIdField;
+        
+        private CatalogServiceReference.RequiredDocumentation documentationField;
+        
+        private int documentationIdField;
+        
+        private int idField;
+        
+        private string nameField;
+        
+        private int registrerField;
+        
+        private CatalogServiceReference.Employee registrerNavigationField;
+        
+        private System.DateTime registryDateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Credit credit
+        {
+            get
+            {
+                return this.creditField;
+            }
+            set
+            {
+                this.creditField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int creditId
+        {
+            get
+            {
+                return this.creditIdField;
+            }
+            set
+            {
+                this.creditIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.RequiredDocumentation documentation
+        {
+            get
+            {
+                return this.documentationField;
+            }
+            set
+            {
+                this.documentationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int documentationId
+        {
+            get
+            {
+                return this.documentationIdField;
+            }
+            set
+            {
+                this.documentationIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int registrer
+        {
+            get
+            {
+                return this.registrerField;
+            }
+            set
+            {
+                this.registrerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Employee registrerNavigation
+        {
+            get
+            {
+                return this.registrerNavigationField;
+            }
+            set
+            {
+                this.registrerNavigationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime registryDate
+        {
+            get
+            {
+                return this.registryDateField;
+            }
+            set
+            {
+                this.registryDateField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Payment", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class Payment : object
+    {
+        
+        private decimal amountField;
+        
+        private CatalogServiceReference.DateOnly collectionDateField;
+        
+        private CatalogServiceReference.Credit creditField;
+        
+        private int creditIdField;
+        
+        private int idField;
+        
+        private int registrerField;
+        
+        private CatalogServiceReference.Employee registrerNavigationField;
+        
+        private string stateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal amount
+        {
+            get
+            {
+                return this.amountField;
+            }
+            set
+            {
+                this.amountField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.DateOnly collectionDate
+        {
+            get
+            {
+                return this.collectionDateField;
+            }
+            set
+            {
+                this.collectionDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Credit credit
+        {
+            get
+            {
+                return this.creditField;
+            }
+            set
+            {
+                this.creditField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int creditId
+        {
+            get
+            {
+                return this.creditIdField;
+            }
+            set
+            {
+                this.creditIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int registrer
+        {
+            get
+            {
+                return this.registrerField;
+            }
+            set
+            {
+                this.registrerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Employee registrerNavigation
+        {
+            get
+            {
+                return this.registrerNavigationField;
+            }
+            set
+            {
+                this.registrerNavigationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string state
+        {
+            get
+            {
+                return this.stateField;
+            }
+            set
+            {
+                this.stateField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Client", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class Client : object
+    {
+        
+        private CatalogServiceReference.BankAccount[] BankAccountsField;
+        
+        private CatalogServiceReference.Credit[] CreditsField;
+        
+        private CatalogServiceReference.DateOnly birthdayField;
+        
+        private string houseAddressField;
+        
+        private string mailField;
+        
+        private string nameField;
+        
+        private string phoneNumber1Field;
+        
+        private string phoneNumber2Field;
+        
+        private string rfcField;
+        
+        private bool stateField;
+        
+        private string workAddressField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.BankAccount[] BankAccounts
+        {
+            get
+            {
+                return this.BankAccountsField;
+            }
+            set
+            {
+                this.BankAccountsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Credit[] Credits
+        {
+            get
+            {
+                return this.CreditsField;
+            }
+            set
+            {
+                this.CreditsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.DateOnly birthday
+        {
+            get
+            {
+                return this.birthdayField;
+            }
+            set
+            {
+                this.birthdayField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string houseAddress
+        {
+            get
+            {
+                return this.houseAddressField;
+            }
+            set
+            {
+                this.houseAddressField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string mail
+        {
+            get
+            {
+                return this.mailField;
+            }
+            set
+            {
+                this.mailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string phoneNumber1
+        {
+            get
+            {
+                return this.phoneNumber1Field;
+            }
+            set
+            {
+                this.phoneNumber1Field = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string phoneNumber2
+        {
+            get
+            {
+                return this.phoneNumber2Field;
+            }
+            set
+            {
+                this.phoneNumber2Field = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string rfc
+        {
+            get
+            {
+                return this.rfcField;
+            }
+            set
+            {
+                this.rfcField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool state
+        {
+            get
+            {
+                return this.stateField;
+            }
+            set
+            {
+                this.stateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string workAddress
+        {
+            get
+            {
+                return this.workAddressField;
+            }
+            set
+            {
+                this.workAddressField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequiredDocumentation", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class RequiredDocumentation : object
+    {
+        
+        private CatalogServiceReference.Document[] DocumentsField;
+        
+        private string fileTypeField;
+        
+        private int idField;
+        
+        private string nameField;
+        
+        private bool stateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Document[] Documents
+        {
+            get
+            {
+                return this.DocumentsField;
+            }
+            set
+            {
+                this.DocumentsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string fileType
+        {
+            get
+            {
+                return this.fileTypeField;
+            }
+            set
+            {
+                this.fileTypeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool state
+        {
+            get
+            {
+                return this.stateField;
+            }
+            set
+            {
+                this.stateField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BankAccount", Namespace="http://schemas.datacontract.org/2004/07/Data_Access.Entities")]
+    public partial class BankAccount : object
+    {
+        
+        private string clabeField;
+        
+        private CatalogServiceReference.Client clientField;
+        
+        private string clientIdField;
+        
+        private int idField;
+        
+        private string purposeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string clabe
+        {
+            get
+            {
+                return this.clabeField;
+            }
+            set
+            {
+                this.clabeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CatalogServiceReference.Client client
+        {
+            get
+            {
+                return this.clientField;
+            }
+            set
+            {
+                this.clientField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string clientId
+        {
+            get
+            {
+                return this.clientIdField;
+            }
+            set
+            {
+                this.clientIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string purpose
+        {
+            get
+            {
+                return this.purposeField;
+            }
+            set
+            {
+                this.purposeField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CatalogServiceReference.ICatalogService")]
     public interface ICatalogService
@@ -432,6 +1919,30 @@ namespace CatalogServiceReference
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateSubsidiaryState", ReplyAction="http://tempuri.org/ICatalogService/UpdateSubsidiaryStateResponse")]
         System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateSubsidiaryStateAsync(int id, bool activeSubsidiary);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetCreditPoliciesByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetCreditPoliciesByPaginationResponse")]
+        CatalogServiceReference.ResponseWithContentOfArrayOfCreditPolicyDC1nk_PiFui GetCreditPoliciesByPagination(int pageSize, int markId, bool next);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/GetCreditPoliciesByPagination", ReplyAction="http://tempuri.org/ICatalogService/GetCreditPoliciesByPaginationResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfCreditPolicyDC1nk_PiFui> GetCreditPoliciesByPaginationAsync(int pageSize, int markId, bool next);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddCreditPolicy", ReplyAction="http://tempuri.org/ICatalogService/AddCreditPolicyResponse")]
+        CatalogServiceReference.Response AddCreditPolicy(CatalogServiceReference.CreditPolicyDC newPolicy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/AddCreditPolicy", ReplyAction="http://tempuri.org/ICatalogService/AddCreditPolicyResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> AddCreditPolicyAsync(CatalogServiceReference.CreditPolicyDC newPolicy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditPolicy", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditPolicyResponse")]
+        CatalogServiceReference.Response UpdateCreditPolicy(CatalogServiceReference.CreditPolicyDC policyUpdated);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditPolicy", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditPolicyResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateCreditPolicyAsync(CatalogServiceReference.CreditPolicyDC policyUpdated);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditPolicyState", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditPolicyStateResponse")]
+        CatalogServiceReference.Response UpdateCreditPolicyState(int id, bool statePolicyUpdated);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogService/UpdateCreditPolicyState", ReplyAction="http://tempuri.org/ICatalogService/UpdateCreditPolicyStateResponse")]
+        System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateCreditPolicyStateAsync(int id, bool statePolicyUpdated);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -632,6 +2143,46 @@ namespace CatalogServiceReference
         public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateSubsidiaryStateAsync(int id, bool activeSubsidiary)
         {
             return base.Channel.UpdateSubsidiaryStateAsync(id, activeSubsidiary);
+        }
+        
+        public CatalogServiceReference.ResponseWithContentOfArrayOfCreditPolicyDC1nk_PiFui GetCreditPoliciesByPagination(int pageSize, int markId, bool next)
+        {
+            return base.Channel.GetCreditPoliciesByPagination(pageSize, markId, next);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.ResponseWithContentOfArrayOfCreditPolicyDC1nk_PiFui> GetCreditPoliciesByPaginationAsync(int pageSize, int markId, bool next)
+        {
+            return base.Channel.GetCreditPoliciesByPaginationAsync(pageSize, markId, next);
+        }
+        
+        public CatalogServiceReference.Response AddCreditPolicy(CatalogServiceReference.CreditPolicyDC newPolicy)
+        {
+            return base.Channel.AddCreditPolicy(newPolicy);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> AddCreditPolicyAsync(CatalogServiceReference.CreditPolicyDC newPolicy)
+        {
+            return base.Channel.AddCreditPolicyAsync(newPolicy);
+        }
+        
+        public CatalogServiceReference.Response UpdateCreditPolicy(CatalogServiceReference.CreditPolicyDC policyUpdated)
+        {
+            return base.Channel.UpdateCreditPolicy(policyUpdated);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateCreditPolicyAsync(CatalogServiceReference.CreditPolicyDC policyUpdated)
+        {
+            return base.Channel.UpdateCreditPolicyAsync(policyUpdated);
+        }
+        
+        public CatalogServiceReference.Response UpdateCreditPolicyState(int id, bool statePolicyUpdated)
+        {
+            return base.Channel.UpdateCreditPolicyState(id, statePolicyUpdated);
+        }
+        
+        public System.Threading.Tasks.Task<CatalogServiceReference.Response> UpdateCreditPolicyStateAsync(int id, bool statePolicyUpdated)
+        {
+            return base.Channel.UpdateCreditPolicyStateAsync(id, statePolicyUpdated);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

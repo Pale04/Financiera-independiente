@@ -153,6 +153,15 @@
   <data name="LoginUserNotFund" xml:space="preserve">
     <value>Usuario no encontrado o no existe</value>
   </data>
+  <data name="GlobalInvalidFields" xml:space="preserve">
+    <value>Campos inválidos, Por favor verifique la información</value>
+  </data>
+  <data name="PolicyDuplicated" xml:space="preserve">
+    <value>Politica ya registrada</value>
+  </data>
+  <data name="PolicyNotFound" xml:space="preserve">
+    <value>No se encontró la politica seleccionada</value>
+   </data>
   <data name="PaymentLayoutGenerationFailed" xml:space="preserve">
     <value>No fue posible generar el layout de cobro. Contacte a soporte técnico si el problema persiste.</value>
   </data>

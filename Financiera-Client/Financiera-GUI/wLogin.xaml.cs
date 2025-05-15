@@ -32,7 +32,7 @@ namespace Financiera_GUI
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (tbUsername.Text.Equals(null) || psbPassword.Password.Equals(null))
+            if (string.IsNullOrEmpty(tbUsername.Text) || string.IsNullOrEmpty(psbPassword.Password))
             {
                 lbPasswordEmptyField.Visibility = Visibility.Visible;
                 lbUserEmptyField.Visibility = Visibility.Visible;

@@ -8,7 +8,7 @@ namespace Business_logic.Catalogs
 {
     public class CreditConditionManager
     {
-        public List<CreditCondition> GetByPagination(int size, int markId, bool next)
+        public List<DomainClasses.CreditCondition> GetByPagination(int size, int markId, bool next)
         {
             CatalogServiceClient client = new();
             ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui response;
@@ -33,10 +33,10 @@ namespace Business_logic.Catalogs
             }
 
             List<CreditConditionDC> serializedConditionsList = response.Data.ToList();
-            List<CreditCondition> creditConditions = new();
+            List<DomainClasses.CreditCondition> creditConditions = new();
             foreach (CreditConditionDC condition in serializedConditionsList)
             {
-                creditConditions.Add(new CreditCondition
+                creditConditions.Add(new DomainClasses.CreditCondition
                 {
                     Id = condition.Id,
                     State = condition.State,
@@ -48,6 +48,7 @@ namespace Business_logic.Catalogs
 
             return creditConditions;
         }
+
 
         public List<CreditCondition> GetActive() {
             CatalogServiceClient client = new();
@@ -130,7 +131,7 @@ namespace Business_logic.Catalogs
             }
         }
 
-        public int UpdateCreditCondition(CreditCondition creditCondition)
+        public int UpdateCreditCondition(DomainClasses.CreditCondition creditCondition)
         {
             if (!creditCondition.IsValidForUpdate())
             {

@@ -21,7 +21,7 @@ namespace Financiera_GUI.MainMenus
         }
         private void BtnCreditPoliciesManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //TODO: Implement the logic for navigate to the credit policies page
+            NavigationService.Navigate(new wCreditPoliciesManagment());
         }
         private void BtnCreditConditionManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

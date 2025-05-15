@@ -79,6 +79,15 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Campos inválidos, Por favor verifique la información.
+        /// </summary>
+        internal static string GlobalInvalidFields {
+            get {
+                return ResourceManager.GetString("GlobalInvalidFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El registro se ha completado exitosamente.
         /// </summary>
         internal static string GlobalRegistrationSuccess {
@@ -133,6 +142,14 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Politica ya registrada.
+        /// </summary>
+        internal static string PolicyDuplicated {
+            get {
+                return ResourceManager.GetString("PolicyDuplicated", resourceCulture);
+                }
+        }
+        /// <summary>
         ///   Busca una cadena traducida similar a No fue posible generar el layout de cobro. Contacte a soporte técnico si el problema persiste..
         /// </summary>
         internal static string PaymentLayoutGenerationFailed {
@@ -141,6 +158,14 @@ namespace Financiera_GUI {
             }
         }
         
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se encontró la politica seleccionada.
+        /// </summary>
+        internal static string PolicyNotFound {
+            get {
+                return ResourceManager.GetString("PolicyNotFound", resourceCulture);
+                }
+        }
         /// <summary>
         ///   Busca una cadena traducida similar a Se ha guardado correctamente el layout de cobro en su carpeta de Descargas..
         /// </summary>
