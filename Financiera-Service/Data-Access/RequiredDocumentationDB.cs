@@ -33,6 +33,17 @@ namespace Data_Access
             return documents;
         }
 
+        public List<RequiredDocumentation>GetActive()
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                return context.RequiredDocumentations
+                    .OrderBy(d => d.id)
+                    .Where(d => d.state)
+                    .ToList();
+            }
+        }
+
         public bool AnotherExists(RequiredDocumentation document)
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))

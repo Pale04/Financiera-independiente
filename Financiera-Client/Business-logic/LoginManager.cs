@@ -13,7 +13,7 @@ namespace Business_logic
     {
         public int Login(EmployeeClass employee)
         {
-            if (!employee.isValidForLogin())
+            if (!employee.IsValidForLogin())
             {
                 return 1;
             }
@@ -23,7 +23,7 @@ namespace Business_logic
 
             try
             {
-                response = client.Login(employee.user, employee.password);
+                response = client.Login(employee.User, employee.Password);
             }
             catch (CommunicationException error)
             {
@@ -66,10 +66,11 @@ namespace Business_logic
                 default:
                     EmployeeClass employeeInfo = new()
                     {
-                        user = response.Data.user,
-                        role = response.Data.role,
-                        mail = response.Data.mail,
-                        id = response.Data.id,
+                        User = response.Data.user,
+                        Role = response.Data.role,
+                        Mail = response.Data.mail,
+                        Id = response.Data.id,
+                        SucursalId = response.Data.sucursalId
                     };
 
                     return employeeInfo;

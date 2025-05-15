@@ -1,14 +1,8 @@
 ﻿using AccountServiceReference;
 using DomainClasses;
 using SessionServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Business_logic
 {
@@ -17,7 +11,7 @@ namespace Business_logic
         public int SendEmail(EmployeeClass account)
         {
 
-            if (account.isValidForLogin())
+            if (account.IsValidForLogin())
             {
                 return 2;
             }
@@ -27,13 +21,13 @@ namespace Business_logic
 
             try
             {
-                ResponseWithContentOfEmployeeefOWEHwa response = sessionClient.GetAccountInfo(account.user);
+                ResponseWithContentOfEmployeeefOWEHwa response = sessionClient.GetAccountInfo(account.User);
                 if (response != null)
                 {
                     EmployeeClass employeeInfo = new()
                     {
-                        user = response.Data.user,
-                        mail = response.Data.mail
+                        User = response.Data.user,
+                        Mail = response.Data.mail
                     };
 
                     string code = accountClient.GenerateVerificationCode(response.Data.user);
@@ -54,14 +48,14 @@ namespace Business_logic
 
         public int ChangePassword(EmployeeClass employee, string password, string confirmPassword)
         {
-            if (isSamePassword(password, confirmPassword))
+            if (Equals(password, confirmPassword))
             {
                 if (isPasswordValid(password))
                 {
                     AccountServiceClient accountClient = new();
                     AccountServiceReference.Response response;
                     try{
-                        response = accountClient.ChangePassword(employee.user, password);
+                        response = accountClient.ChangePassword(employee.User, password);
                         return response.StatusCode;
 
                     }
@@ -79,11 +73,6 @@ namespace Business_logic
             {
                 return 2;
             }
-        }
-
-        public bool isSamePassword(string password, string confirmPassword)
-        { 
-            return String.Equals(password, confirmPassword);
         }
 
         public bool isPasswordValid(string password)
@@ -105,9 +94,8 @@ namespace Business_logic
                 return false;
             }
         }
-    
 
-    public bool isCodeValid(string user, string code)
+        public bool isCodeValid(string user, string code)
         {
             AccountServiceClient client = new();
             bool valid = false;
@@ -128,6 +116,37 @@ namespace Business_logic
             {
                 return valid;
             }
+        }
+
+        public int CreateAccount(EmployeeClass employee)
+        {
+            AccountServiceClient accountClient = new();
+            AccountServiceReference.Response response;
+
+            EmployeeDC newEmployee = new()
+            {
+                user = employee.User,
+                password = employee.Password,
+                name = employee.Name,
+                mail = employee.Mail,
+                address = employee.Address,
+                phone = employee.PhoneNumber,
+                birthday = employee.Birthday.ToString(),
+                role = employee.Role,
+                subsidiaryId = employee.SucursalId
+
+            };
+
+            try
+            {
+                response = accountClient.createAccount(newEmployee);
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            return response.StatusCode;
         }
     }
 }

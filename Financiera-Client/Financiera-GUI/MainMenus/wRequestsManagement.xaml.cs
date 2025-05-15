@@ -28,7 +28,7 @@ namespace Financiera_GUI.MainMenus
 
         private void BtnSearchCustomerClick(object sender, MouseButtonEventArgs e)
         {
-
+            NavigationService.Navigate(new CustomerManagement.wCustomerManagement());
         }
     }
 }

@@ -92,5 +92,17 @@ namespace Data_Access
             }
             return result > 0;
         }
+
+        public List<CreditCondition> GetActive()
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                return context.CreditConditions
+                    .OrderBy(d => d.id)
+                    .Where(d => d.state == true)
+                    .ToList()
+                    .ToList();
+            }
+        }
     }
 }

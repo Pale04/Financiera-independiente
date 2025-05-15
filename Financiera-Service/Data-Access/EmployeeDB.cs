@@ -13,7 +13,7 @@ namespace Data_Access
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                return context.Employees.Any(e => e.user == employee.user);
+                return context.Employees.Any(e => e.user == employee.user || e.mail == employee.mail);
             }
         }
 
@@ -29,9 +29,16 @@ namespace Data_Access
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
-                var employeeData = new Employee();
+                Employee? employeeData;
                 
-                return employeeData = context.Employees.SingleOrDefault(e => e.user == employee.user);
+                employeeData = context.Employees.SingleOrDefault(e => e.user == employee.user);
+
+                if (employeeData != null)
+                {
+                    employeeData.password = "";
+                }
+
+                return employeeData;
             }
         }
 
@@ -53,6 +60,25 @@ namespace Data_Access
                     return statusCode;
                 }
                 return statusCode;
+            }
+        }
+
+        public int Add(Employee employee)
+        {
+            int result = 1;
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
+            {
+                context.Add(employee);
+                result = context.SaveChanges();
+            }
+
+            if (result >= 1)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
             }
         }
     }

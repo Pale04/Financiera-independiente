@@ -12,7 +12,8 @@ namespace Business_logic.Catalogs
     public class SubsidiaryManager
     {
 
-        public List<DomainClasses.Subsidiary> GetAll(){
+        public List<Subsidiary> GetAll()
+        {
             CatalogServiceClient client = new();
             ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui response;
 
@@ -59,7 +60,7 @@ namespace Business_logic.Catalogs
             return response.StatusCode;
         }
 
-        public int updateAddress(int id, string address)
+        public int UpdateAddress(int id, string address)
         {
             CatalogServiceClient client = new();
             Response response;
@@ -77,7 +78,7 @@ namespace Business_logic.Catalogs
             return response.StatusCode;
         }
 
-        public int updateState(int id, bool state)
+        public int UpdateState(int id, bool state)
         {
             CatalogServiceClient client = new();
             Response response;

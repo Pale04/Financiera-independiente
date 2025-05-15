@@ -8,34 +8,34 @@ namespace DomainClasses
 {
     public class EmployeeClass
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string user { get; set; } = null!;
+        public string User { get; set; } = null!;
 
-        public string password { get; set; } = null!;
+        public string Password { get; set; } = null!;
 
-        public string name { get; set; } = null!;
+        public string Name { get; set; } = null!;
 
-        public string mail { get; set; } = null!;
+        public string Mail { get; set; } = null!;
 
-        public string address { get; set; } = null!;
+        public string Address { get; set; } = null!;
 
-        public string phoneNumber { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
 
-        public DateOnly birthday { get; set; }
+        public DateOnly Birthday { get; set; }
 
-        public string role { get; set; } = null!;
+        public string Role { get; set; } = null!;
 
-        public int sucursalId { get; set; }
+        public int SucursalId { get; set; }
 
-        public bool isValidForLogin()
+        public bool IsValidForLogin()
         {
-            return !string.IsNullOrWhiteSpace(user) && !string.IsNullOrWhiteSpace(password);
+            return !string.IsNullOrWhiteSpace(User) && !string.IsNullOrWhiteSpace(Password);
         }
 
-        public bool isValidforPasswordReset()
+        public bool IsValidforPasswordReset()
         {
-            return !string.IsNullOrWhiteSpace(user);
+            return !string.IsNullOrWhiteSpace(User);
         }
     }
 }

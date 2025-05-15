@@ -43,6 +43,38 @@ namespace FinancieraServer.ServiceImplementations
 
             return new ResponseWithContent<List<CreditConditionDC>>(0, creditConditions);
         }
+
+        public ResponseWithContent<List<CreditConditionDC>> GetActiveCreditConditions()
+        {
+            CreditConditionDB creditConditionDB = new();
+            List<CreditCondition> databaseCreditConditions = new();
+
+            try
+            {
+                creditConditionDB.GetActive();
+            }
+            catch (DbException error)
+            {
+                _logger.LogWarning("Error while attempting to get CreditConditions {error}", error);
+                return new ResponseWithContent<List<CreditConditionDC>>(1, "Error while attempting to get CreditConditions");
+            }
+
+            List<CreditConditionDC> creditConditions = new();
+            foreach (var creditCondition in databaseCreditConditions)
+            {
+                creditConditions.Add(new CreditConditionDC
+                {
+                    Id = creditCondition.id,
+                    State = creditCondition.state,
+                    InterestRate = creditCondition.interestRate,
+                    IVA = creditCondition.IVA,
+                    PaymentsPerMonth = creditCondition.paymentsPerMonth
+                });
+            }
+
+            return new ResponseWithContent<List<CreditConditionDC>>(0, creditConditions);
+        }
+
         public Response AddCreditCondition(CreditConditionDC creditCondition)
         {
             if (creditCondition.InterestRate < 0 || creditCondition.IVA < 0 || creditCondition.PaymentsPerMonth < 1)

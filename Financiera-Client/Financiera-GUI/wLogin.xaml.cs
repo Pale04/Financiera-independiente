@@ -39,13 +39,13 @@ namespace Financiera_GUI
             }
             else
             {
-                employeeLogin.user = tbUsername.Text;
-                employeeLogin.password = psbPassword.Password;
+                employeeLogin.User = tbUsername.Text;
+                employeeLogin.Password = psbPassword.Password;
 
                 int codeLogin = loginManager.Login(employeeLogin);
                 if(codeLogin == 0)
                 {
-                    employeeLogin = loginManager.getSessionInfo(employeeLogin.user);
+                    employeeLogin = loginManager.getSessionInfo(employeeLogin.User);
                     UserSession.Instance.Employee = employeeLogin;
                     wFinancieraIndependiente mainMenu = new wFinancieraIndependiente();
                     mainMenu.Show();

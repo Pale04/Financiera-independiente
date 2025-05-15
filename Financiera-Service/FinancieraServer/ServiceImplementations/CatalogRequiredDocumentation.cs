@@ -40,6 +40,36 @@ namespace FinancieraServer.ServiceImplementations
             return new Response(0);
         }
 
+        public ResponseWithContent<List<RequiredDocumentDC>> GetActiveRequiredDocumentation()
+        {
+            RequiredDocumentationDB requiredDocumentationDB = new();
+            List<RequiredDocumentation> databaseRequiredDocuments = [];
+
+            try
+            {
+                databaseRequiredDocuments = requiredDocumentationDB.GetActive();
+            }
+            catch (DbException error)
+            {
+                _logger.LogWarning("Error while attempting to get RequiredDocumentations {error}", error);
+                return new ResponseWithContent<List<RequiredDocumentDC>>(1, "Error while retreiving required documentation");
+            }
+
+            List<RequiredDocumentDC> requiredDocumentation = [];
+
+            foreach (RequiredDocumentation document in databaseRequiredDocuments)
+            {
+                requiredDocumentation.Add(new()
+                {
+                    Id = document.id,
+                    Name = document.name,
+                    FileType = document.fileType,
+                });
+            }
+
+            return new(0, requiredDocumentation);
+        }
+
         public ResponseWithContent<List<RequiredDocumentDC>> GetRequiredDocumentationByPaginationNext(int pageSize, int lastId)
         {
             if (pageSize <= 0 || lastId < 0)

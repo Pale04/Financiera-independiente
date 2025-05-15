@@ -147,6 +147,14 @@ namespace Financiera_GUI {
         internal static string PolicyDuplicated {
             get {
                 return ResourceManager.GetString("PolicyDuplicated", resourceCulture);
+                }
+        }
+        /// <summary>
+        ///   Busca una cadena traducida similar a No fue posible generar el layout de cobro. Contacte a soporte técnico si el problema persiste..
+        /// </summary>
+        internal static string PaymentLayoutGenerationFailed {
+            get {
+                return ResourceManager.GetString("PaymentLayoutGenerationFailed", resourceCulture);
             }
         }
         
@@ -156,6 +164,14 @@ namespace Financiera_GUI {
         internal static string PolicyNotFound {
             get {
                 return ResourceManager.GetString("PolicyNotFound", resourceCulture);
+                }
+        }
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se ha guardado correctamente el layout de cobro en su carpeta de Descargas..
+        /// </summary>
+        internal static string PaymentLayoutGenerationSuccessful {
+            get {
+                return ResourceManager.GetString("PaymentLayoutGenerationSuccessful", resourceCulture);
             }
         }
         
@@ -183,6 +199,15 @@ namespace Financiera_GUI {
         internal static string ResetInvalidCredentials {
             get {
                 return ResourceManager.GetString("ResetInvalidCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La búsqueda no tuvo resultados.
+        /// </summary>
+        internal static string SearchNotFound {
+            get {
+                return ResourceManager.GetString("SearchNotFound", resourceCulture);
             }
         }
     }

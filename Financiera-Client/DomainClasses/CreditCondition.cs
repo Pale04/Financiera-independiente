@@ -18,5 +18,10 @@
         {
             return Id > 0 && InterestRate >= 0 && IVA >= 0 && PaymentsPerMonth > 0;
         }
+
+        override public string ToString()
+        {
+            return $"{InterestRate}% de interes a {PaymentsPerMonth} pagos mensuales";
+        }
     }
 }

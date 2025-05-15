@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financiera-GUI", "Financiera-GUI\Financiera-GUI.csproj", "{37322772-F627-49D5-985F-C0AE1A2F0622}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financiera-GUI", "Financiera-GUI\Financiera-GUI.csproj", "{37322772-F627-49D5-985F-C0AE1A2F0622}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business-logic", "Business-logic\Business-logic.csproj", "{02154433-3453-49D7-86C8-0345E3DE4744}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business-logic", "Business-logic\Business-logic.csproj", "{02154433-3453-49D7-86C8-0345E3DE4744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainClasses", "DomainClasses\DomainClasses.csproj", "{08F4523D-6F16-4AEC-A705-73DDA8743CCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainClasses", "DomainClasses\DomainClasses.csproj", "{08F4523D-6F16-4AEC-A705-73DDA8743CCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{599AB52C-3FE4-4C1C-8814-9372CE07760C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,18 @@ Global
 		{08F4523D-6F16-4AEC-A705-73DDA8743CCF}.Release|x64.Build.0 = Release|Any CPU
 		{08F4523D-6F16-4AEC-A705-73DDA8743CCF}.Release|x86.ActiveCfg = Release|Any CPU
 		{08F4523D-6F16-4AEC-A705-73DDA8743CCF}.Release|x86.Build.0 = Release|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Debug|x64.Build.0 = Debug|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Debug|x86.Build.0 = Debug|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Release|x64.ActiveCfg = Release|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Release|x64.Build.0 = Release|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Release|x86.ActiveCfg = Release|Any CPU
+		{599AB52C-3FE4-4C1C-8814-9372CE07760C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

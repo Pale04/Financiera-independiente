@@ -90,7 +90,7 @@ namespace Financiera_GUI.CatalogManagement
             creditConditionsTable.Children.RemoveRange(1, creditConditionsTable.Children.Count);
             foreach(CreditCondition creditCondition in creditConditions)
             {
-                creditConditionsTable.Children.Add(new wCreditConditionManagementRow(creditCondition));
+                creditConditionsTable.Children.Add(new ucCreditConditionManagementRow(creditCondition));
             }
 
             _actualPage += next ? 1 : -1;
@@ -129,9 +129,9 @@ namespace Financiera_GUI.CatalogManagement
                 1 => 2,
                 _ => 1
             };
-
             int interestRate;
             int iva;
+
             try
             {
                 interestRate = int.Parse(interestRateInput.Text);
@@ -143,7 +143,6 @@ namespace Financiera_GUI.CatalogManagement
                 return;
             }
 
-
             CreditConditionManager creditConditionManager = new();
             try
             {
@@ -152,7 +151,7 @@ namespace Financiera_GUI.CatalogManagement
                     PaymentsPerMonth = paymentsPerMonth,
                     InterestRate = interestRate,
                     IVA = iva,
-                    RegistrerId = UserSession.Instance.Employee.id
+                    RegistrerId = UserSession.Instance.Employee.Id
                 });
             }
             catch (Exception error)

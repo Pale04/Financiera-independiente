@@ -1,0 +1,41 @@
+{
+  "rowSeperator": "\r\n",
+  "columnSeperator": ",",
+  "hasHeaderRow": true,
+  "columns": {
+    "1": {
+      "name": "Folio",
+      "isRequired": true,
+      "unique": true,
+      "isNumerical": true
+    },
+    "2": {
+      "name": "Nombre del cliente",
+      "isRequired": true
+    },
+    "3": {
+      "name": "Fecha de cobro",
+      "isRequired": true,
+      "pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+    },
+    "4": {
+      "name": "Importe",
+      "isRequired": true,
+      "isNumeric": true
+    },
+    "5": {
+      "name": "Banco",
+      "isRequired": true
+    },
+    "6": {
+      "name": "CLABE",
+      "isRequired": true,
+      "pattern": "^\\d{18}$"
+    },
+    "7": {
+      "name": "Cobrado",
+      "isRequired": true,
+      "pattern": "^(?i)(si|no)$"
+    }
+  }
+}

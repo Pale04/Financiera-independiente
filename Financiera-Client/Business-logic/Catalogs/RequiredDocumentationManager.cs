@@ -109,17 +109,14 @@ namespace Business_logic.Catalogs
             }
             catch (CommunicationException error)
             {
-                //TODO: Log the error
                 throw new Exception(ErrorMessages.ServerError);
             }
 
             switch (response.StatusCode)
             {
                 case 1:
-                    //TODO: log the error
                     throw new Exception(ErrorMessages.ServerError);
                 case 2:
-                    //TODO: log the error
                     throw new Exception(ErrorMessages.BadRequest);
                 case 3:
                     throw new Exception(ErrorMessages.DuplicatedRequiredDocument);
@@ -139,21 +136,48 @@ namespace Business_logic.Catalogs
             }
             catch (CommunicationException error)
             {
-                //TODO: Log the error
                 throw new Exception(ErrorMessages.ServerError);
             }
 
             switch (response.StatusCode)
             {
                 case 1:
-                    //TODO: log the error
                     throw new Exception(ErrorMessages.ServerError);
                 case 2:
-                    //TODO: log the error
                     throw new Exception(ErrorMessages.BadRequest);
                 default:
                     return 0;
             }
+        }
+
+        public List<RequiredDocument> GetActive()
+        {
+            CatalogServiceClient client = new();
+            ResponseWithContentOfArrayOfRequiredDocumentDC1nk_PiFui response;
+
+            try
+            {
+                response = client.GetActiveRequiredDocumentation();
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            List<RequiredDocumentDC> serializedDocumentsList = response.Data.ToList();
+            List<RequiredDocument> requiredDocuments = new();
+            foreach (RequiredDocumentDC document in serializedDocumentsList)
+            {
+                requiredDocuments.Add(new RequiredDocument
+                {
+                    Id = document.Id,
+                    Name = document.Name,
+                    FileType = (FileType)Enum.Parse(typeof(FileType), document.FileType.ToString()),
+                    Status = document.State
+                });
+            }
+
+            return requiredDocuments;
         }
     }
 }

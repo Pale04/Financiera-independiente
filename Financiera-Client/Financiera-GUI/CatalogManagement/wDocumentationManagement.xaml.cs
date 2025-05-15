@@ -60,7 +60,7 @@ namespace Financiera_GUI.CatalogManagement
             documentsTable.Children.RemoveRange(1, documentsTable.Children.Count);
             foreach (RequiredDocument document in requiredDocuments)
             {
-                documentsTable.Children.Add(new wDocumentationManagementRow(document));
+                documentsTable.Children.Add(new ucDocumentationManagementRow(document));
             }
 
             _actualPage += forward ? 1 : -1;
