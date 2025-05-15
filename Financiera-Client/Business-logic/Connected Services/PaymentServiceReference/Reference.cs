@@ -154,6 +154,115 @@ namespace PaymentServiceReference
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PaymentDC", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class PaymentDC : object
+    {
+        
+        private decimal AmountField;
+        
+        private string CollectionDateField;
+        
+        private int CreditIdField;
+        
+        private int IdField;
+        
+        private PaymentServiceReference.PaymentState PaymentStateField;
+        
+        private int RegistrerIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Amount
+        {
+            get
+            {
+                return this.AmountField;
+            }
+            set
+            {
+                this.AmountField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CollectionDate
+        {
+            get
+            {
+                return this.CollectionDateField;
+            }
+            set
+            {
+                this.CollectionDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CreditId
+        {
+            get
+            {
+                return this.CreditIdField;
+            }
+            set
+            {
+                this.CreditIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PaymentServiceReference.PaymentState PaymentState
+        {
+            get
+            {
+                return this.PaymentStateField;
+            }
+            set
+            {
+                this.PaymentStateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RegistrerId
+        {
+            get
+            {
+                return this.RegistrerIdField;
+            }
+            set
+            {
+                this.RegistrerIdField = value;
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PaymentState", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public enum PaymentState : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Collected = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NotCollected = 1,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PaymentServiceReference.IPaymentService")]
     public interface IPaymentService
@@ -164,6 +273,12 @@ namespace PaymentServiceReference
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/GetPaymentLayout", ReplyAction="http://tempuri.org/IPaymentService/GetPaymentLayoutResponse")]
         System.Threading.Tasks.Task<PaymentServiceReference.ResponseWithContentOfArrayOfPaymentLayoutDC1nk_PiFui> GetPaymentLayoutAsync(string firstDate, string endDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/UpdatePaymentState", ReplyAction="http://tempuri.org/IPaymentService/UpdatePaymentStateResponse")]
+        PaymentServiceReference.Response UpdatePaymentState(PaymentServiceReference.PaymentDC payment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/UpdatePaymentState", ReplyAction="http://tempuri.org/IPaymentService/UpdatePaymentStateResponse")]
+        System.Threading.Tasks.Task<PaymentServiceReference.Response> UpdatePaymentStateAsync(PaymentServiceReference.PaymentDC payment);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -224,6 +339,16 @@ namespace PaymentServiceReference
         public System.Threading.Tasks.Task<PaymentServiceReference.ResponseWithContentOfArrayOfPaymentLayoutDC1nk_PiFui> GetPaymentLayoutAsync(string firstDate, string endDate)
         {
             return base.Channel.GetPaymentLayoutAsync(firstDate, endDate);
+        }
+        
+        public PaymentServiceReference.Response UpdatePaymentState(PaymentServiceReference.PaymentDC payment)
+        {
+            return base.Channel.UpdatePaymentState(payment);
+        }
+        
+        public System.Threading.Tasks.Task<PaymentServiceReference.Response> UpdatePaymentStateAsync(PaymentServiceReference.PaymentDC payment)
+        {
+            return base.Channel.UpdatePaymentStateAsync(payment);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

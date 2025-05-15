@@ -133,6 +133,15 @@ namespace Business_logic {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El archivo contiene pagos con información incompleta.
+        /// </summary>
+        internal static string PaymentLayoutIncomplete {
+            get {
+                return ResourceManager.GetString("PaymentLayoutIncomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No fue posible descargar el layout de cobro. Verifique que existe su carpeta de descargas..
         /// </summary>
         internal static string PaymentLayoutMissingDirectory {
@@ -142,11 +151,29 @@ namespace Business_logic {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a No es posible descargar el layout de cobro. Asegurese de encontrarse en la cuenta de administrador de su computadora..
+        ///   Busca una cadena traducida similar a No es posible realizar la acción. Asegúrese de encontrarse en la cuenta de administrador de su computadora..
         /// </summary>
         internal static string PaymentLayoutMissingPermission {
             get {
                 return ResourceManager.GetString("PaymentLayoutMissingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No fue posible procesar el archivo. Inténtelo más tarde..
+        /// </summary>
+        internal static string PaymentLayoutUploadError {
+            get {
+                return ResourceManager.GetString("PaymentLayoutUploadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No existe un pago con el folio especificado.
+        /// </summary>
+        internal static string PaymentNotFound {
+            get {
+                return ResourceManager.GetString("PaymentNotFound", resourceCulture);
             }
         }
         

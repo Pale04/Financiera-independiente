@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using Business_logic;
 using DomainClasses;
 using Financiera_GUI.Utilities;

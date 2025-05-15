@@ -52,22 +52,11 @@ namespace Business_logic
 
         public string GeneratePaymentLayoutCsv(List<PaymentLayout> paymentLayout, DateOnly startDate, DateOnly endDate)
         {
-            string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            string filePath = Path.Combine(downloadsPath, $"LayoutCobro_{startDate:dd-MM-yyyy}_{endDate:dd-MM-yyyy}.csv");
-
+            PaymentLayoutFile paymentLayoutFile = new(paymentLayout);
+            string savingPath;
             try
             {
-                using StreamWriter writer = new StreamWriter(filePath);
-                writer.WriteLine("Folio,Nombre del cliente,Fecha de cobro,Importe,Banco,CLABE");
-                foreach (PaymentLayout payment in paymentLayout)
-                {
-                    writer.Write($"{payment.Folio},");
-                    writer.Write($"{payment.ClientName},");
-                    writer.Write($"{payment.CollectionDate},");
-                    writer.Write($"{payment.Amount},");
-                    writer.Write($"{payment.Bank},");
-                    writer.WriteLine($"{payment.BankAccountClabe}");
-                }
+                savingPath = paymentLayoutFile.SaveToCsv(startDate.ToString("dd-MM-yyyy"), endDate.ToString("dd-MM-yyyy"));
             }
             catch (UnauthorizedAccessException error)
             {
@@ -85,7 +74,86 @@ namespace Business_logic
                 throw new Exception(ErrorMessages.PaymentLayoutGenerationError);
             }
 
-            return filePath;
+            return savingPath;
+        }
+
+        /// <summary>
+        /// Validate and transform the payment layout csv file to a list of payments
+        /// </summary>
+        /// <param name="filePath">csv path</param>
+        /// <returns>Payments list</returns>
+        /// <exception cref="InvalidOperationException">When the file has an invalid format</exception>
+        /// <exception cref="Exception">when a error ocurred with the file access</exception>"
+        public List<Payment> GetPaymentsFromCsv(string filePath)
+        {
+            PaymentLayoutFile paymentLayoutFile = new(filePath);
+
+            try
+            {
+                string errorMessage = paymentLayoutFile.Validate();
+                if (string.IsNullOrEmpty(errorMessage))
+                {
+                    return paymentLayoutFile.GetPaymentsFromCsv();
+                }
+                else
+                {
+                    throw new InvalidOperationException(errorMessage);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                throw new Exception(ErrorMessages.PaymentLayoutMissingPermission);
+            }
+            catch (FileNotFoundException)
+            {
+                throw new Exception(ErrorMessages.BadRequest);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                throw new Exception(ErrorMessages.BadRequest);
+            }
+            catch (IOException)
+            {
+                throw new Exception(ErrorMessages.PaymentLayoutUploadError);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new Exception(ErrorMessages.PaymentLayoutIncomplete);
+            }
+        }
+
+        public int UpdatePaymentsState(Payment payment)
+        {
+            PaymentServiceClient client = new PaymentServiceClient();
+            Response response = new();
+
+            PaymentDC updatedPayment = new()
+            {
+                Id = payment.Id,
+                PaymentState = payment.GetState().Equals(PaymentStatus.Collected) ? PaymentState.Collected : PaymentState.NotCollected,
+                RegistrerId = UserSession.Instance.Employee.id
+            };
+
+            try
+            {
+                response = client.UpdatePaymentState(updatedPayment);
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            switch (response.StatusCode)
+            {
+                case 1:
+                    throw new Exception(ErrorMessages.ServerError);
+                case 2:
+                    throw new Exception(ErrorMessages.BadRequest);
+                case 4:
+                    throw new InvalidOperationException(ErrorMessages.PaymentNotFound);
+                default:
+                    return 0;
+            }
         }
     }
 }

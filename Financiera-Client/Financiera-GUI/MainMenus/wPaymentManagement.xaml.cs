@@ -18,7 +18,7 @@ namespace Financiera_GUI.MainMenus
 
         private void BtnRegisterCreditPaymentsClick(object sender, MouseButtonEventArgs e)
         {
-
+            NavigationService.Navigate(new wPaymentRecord());
         }
 
         private void BtnGenerateEfficiencyReportClick(object sender, MouseButtonEventArgs e)

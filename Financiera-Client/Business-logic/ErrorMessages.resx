@@ -154,6 +154,15 @@
     <value>No es posible descargar el layout de cobro. Inténtelo más tarde.</value>
   </data>
   <data name="PaymentLayoutMissingPermission" xml:space="preserve">
-    <value>No es posible descargar el layout de cobro. Asegurese de encontrarse en la cuenta de administrador de su computadora.</value>
+    <value>No es posible realizar la acción. Asegúrese de encontrarse en la cuenta de administrador de su computadora.</value>
+  </data>
+  <data name="PaymentLayoutUploadError" xml:space="preserve">
+    <value>No fue posible procesar el archivo. Inténtelo más tarde.</value>
+  </data>
+  <data name="PaymentLayoutIncomplete" xml:space="preserve">
+    <value>El archivo contiene pagos con información incompleta</value>
+  </data>
+  <data name="PaymentNotFound" xml:space="preserve">
+    <value>No existe un pago con el folio especificado</value>
   </data>
 </root>
