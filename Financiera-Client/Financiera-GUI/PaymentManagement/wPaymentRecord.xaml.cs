@@ -4,9 +4,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Business_logic;
 using DomainClasses;
 using System.Text;
+using Business_logic.Payments;
 
 namespace Financiera_GUI.PaymentManagement
 {

@@ -109,17 +109,14 @@ namespace Business_logic.Catalogs
             }
             catch (CommunicationException error)
             {
-                //TODO: Log the error
                 throw new Exception(ErrorMessages.ServerError);
             }
 
             switch (response.StatusCode)
             {
                 case 1:
-                    //TODO: log the error
                     throw new Exception(ErrorMessages.ServerError);
                 case 2:
-                    //TODO: log the error
                     throw new Exception(ErrorMessages.BadRequest);
                 case 3:
                     throw new Exception(ErrorMessages.DuplicatedRequiredDocument);
@@ -139,17 +136,14 @@ namespace Business_logic.Catalogs
             }
             catch (CommunicationException error)
             {
-                //TODO: Log the error
                 throw new Exception(ErrorMessages.ServerError);
             }
 
             switch (response.StatusCode)
             {
                 case 1:
-                    //TODO: log the error
                     throw new Exception(ErrorMessages.ServerError);
                 case 2:
-                    //TODO: log the error
                     throw new Exception(ErrorMessages.BadRequest);
                 default:
                     return 0;

@@ -3,7 +3,7 @@ using PaymentServiceReference;
 using System.ServiceModel;
 using ValidaCLABE;
 
-namespace Business_logic
+namespace Business_logic.Payments
 {
     public class PaymentManager
     {
@@ -46,7 +46,7 @@ namespace Business_logic
                             Bank = result.Banco.Institucion
                         });
                     }
-                    return paymentLayout;   
+                    return paymentLayout;
             }
         }
 

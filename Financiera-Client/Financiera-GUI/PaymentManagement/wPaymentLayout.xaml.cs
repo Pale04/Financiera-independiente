@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using Business_logic;
+using Business_logic.Payments;
 using DomainClasses;
 using Financiera_GUI.Utilities;
 using Notification.Wpf;

@@ -3,7 +3,7 @@ using FormatValidator;
 using System.Text;
 using Validator = FormatValidator.Validator;
 
-namespace Business_logic
+namespace Business_logic.Payments
 {
     class PaymentLayoutFile
     {
@@ -15,7 +15,7 @@ namespace Business_logic
         public PaymentLayoutFile(List<PaymentLayout> paymentLayout)
         {
             _paymentLayout = paymentLayout;
-            _fileHeaders = ["Folio","Nombre del cliente","Fecha de cobro","Importe","Banco","CLABE"];
+            _fileHeaders = ["Folio", "Nombre del cliente", "Fecha de cobro", "Importe", "Banco", "CLABE"];
         }
 
         public PaymentLayoutFile(string filePath)
@@ -35,11 +35,11 @@ namespace Business_logic
         public string SaveToCsv(string startDate, string endDate)
         {
             string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            string filePath = Path.Combine(downloadsPath, string.Concat("LayoutCobro_",startDate,"_",endDate,".csv"));
+            string filePath = Path.Combine(downloadsPath, string.Concat("LayoutCobro_", startDate, "_", endDate, ".csv"));
 
             using StreamWriter writer = new StreamWriter(filePath);
 
-            writer.WriteLine(string.Join(",",_fileHeaders));
+            writer.WriteLine(string.Join(",", _fileHeaders));
             foreach (PaymentLayout payment in _paymentLayout)
             {
                 writer.Write($"{payment.Folio},");
