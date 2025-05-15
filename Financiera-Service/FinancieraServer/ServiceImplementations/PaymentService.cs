@@ -63,5 +63,38 @@ namespace FinancieraServer.ServiceImplementations
 
             return new ResponseWithContent<List<PaymentLayoutDC>>(0, serializedPaymentLayout);
         }
+        
+        public Response UpdatePaymentState(PaymentDC payment)
+        {
+            if (payment.Id < 1)
+            {
+                _logger.LogInformation("Attempt of update payment state with invalid id {id}", payment.Id);
+                return new Response(2, "Invalid members");
+            }
+
+            PaymentDB paymentDB = new();
+            string state = payment.PaymentState switch
+            { 
+                PaymentState.Collected => "collected",
+                PaymentState.NotCollected => "not_collected"
+            };
+
+            try
+            {
+                if (!paymentDB.PaymentExists(payment.Id))
+                {
+                    _logger.LogInformation("Attempt of update payment state with non-existing id {id}", payment.Id);
+                    return new Response(4, "Payment does not exist");
+                }
+                paymentDB.UpdatePaymentState(payment.Id, state);
+            }
+            catch (DbException error)
+            {
+                _logger.LogWarning("Error while attempting to update payment state {error}", error);
+                return new Response(1, "Error while attempting to update payment state");
+            }
+
+            return new Response(0);
+        }
     }
 }

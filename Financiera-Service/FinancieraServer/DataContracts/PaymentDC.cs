@@ -4,29 +4,25 @@
     public enum PaymentState
     {
         [EnumMember]
-        Pending,
-        [EnumMember]
         Collected,
         [EnumMember]
-        Failed
+        NotCollected
     }
 
     [DataContract]
     public class PaymentDC
     {
         [DataMember]
-        public int Folio { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public string CollectionDate { get; set; }
         [DataMember]
         public decimal Amount { get; set; }
         [DataMember]
-        public PaymentState State { get; set; }
+        public PaymentState PaymentState { get; set; }
         [DataMember]
         public int RegistrerId { get; set; }
         [DataMember]
         public int CreditId { get; set; }
-        [DataMember]
-        public string BeneficiaryRfc { get; set; }
     }
 }

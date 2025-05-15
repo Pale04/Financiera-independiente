@@ -7,5 +7,8 @@ namespace FinancieraServer.Interfaces
     {
         [OperationContract]
         ResponseWithContent<List<PaymentLayoutDC>> GetPaymentLayout(string firstDate, string endDate);
+
+        [OperationContract]
+        Response UpdatePaymentState(PaymentDC payment);
     }
 }
