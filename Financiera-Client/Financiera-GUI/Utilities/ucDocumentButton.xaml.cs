@@ -52,7 +52,7 @@ namespace Financiera_GUI.Utilities
             switch (_acceptedFile)
             {
                 case "image":
-                    filter = "Image files (*.png, *.jpg, .jpeg)|*.png, *.jpg, .jpeg";
+                    filter = "Image files (*.png, *.jpg, *.jpeg)|*.png;*.jpg;*.jpeg";
                     break;
                 case "pdf":
                     filter = "Pdf files (*.pdf)|*.pdf";
@@ -61,7 +61,7 @@ namespace Financiera_GUI.Utilities
 
             var fileDialog = new OpenFileDialog()
             {
-                Filter = "Text files (*.txt)|*.txt",
+                Filter = filter,
                 Title = "Open text file"
             };
 

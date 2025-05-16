@@ -7,6 +7,7 @@ using Business_logic;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Windows.Media;
+using Financiera_GUI.Credit;
 
 namespace Financiera_GUI.CustomerManagement
 {
@@ -334,6 +335,13 @@ namespace Financiera_GUI.CustomerManagement
                 LoadAccountStateInformation();
                 _notificationManager.Show(NotificationMessages.GlobalStatusUpdateSuccess, NotificationType.Success, "WindowArea");
             }
+        }
+
+        private void RequestCredit(object sender, RoutedEventArgs e)
+        {
+            wNewCredit window = new();
+            window.BeneficiaryId = _customer.Rfc;
+            NavigationService.Navigate(window);
         }
     }
 }
