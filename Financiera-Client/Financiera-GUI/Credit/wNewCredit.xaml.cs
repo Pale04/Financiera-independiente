@@ -78,11 +78,9 @@ namespace Financiera_GUI.Credit
                 ucDocumentButton documentBtn = new ucDocumentButton()
                 {
                     Text = requiredDocument.Name,
-                    AcceptedFile = requiredDocument.FileType.ToString(),
-                    DocumentationId = requiredDocument.Id
+                    AcceptedFile = requiredDocument.FileType.ToString()
                 };
                 documentBtn.AcceptedFile = requiredDocument.FileType.ToString();
-                documentBtn.SetImage(".\\Images\\upload_file_icon.png");
                 documentsGrid.Children.Add(documentBtn);
                 Grid.SetColumn(documentBtn, currentDocument);
                 Grid.SetRow(documentBtn, (int)Math.Floor((double)currentDocument/4));

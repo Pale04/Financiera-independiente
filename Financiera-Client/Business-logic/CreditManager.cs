@@ -121,7 +121,7 @@ namespace Business_logic
 
             foreach (var credit in credits.Data)
             {
-                if (DateTime.Compare(DateTime.Parse(credit.RegistryDate), DateTime.Now.AddMonths(3)) >= 0)
+                if (DateTime.Compare(DateTime.ParseExact(credit.RegistryDate, "yyyy-MM-dd HH:mm:ss[.nnn]", CultureInfo.InvariantCulture), DateTime.Now.AddMonths(3)) >= 0)
                 {
                     return true;
                 }
@@ -129,6 +129,8 @@ namespace Business_logic
 
             return false;
         }
+    }
+}
 
         public List<CreditRequestSummary> GetCreditRequests()
         {
