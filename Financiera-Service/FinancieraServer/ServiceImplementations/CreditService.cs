@@ -105,7 +105,35 @@ namespace FinancieraServer.ServiceImplementations
 
         public ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(string beneficiaryId)
         {
-            throw new NotImplementedException();
+            CreditDB creditDB = new();
+
+            try
+            {
+                var creditsDb = creditDB.GetAllByCustomer(beneficiaryId);
+                List<CreditDC> credits = [];
+
+                foreach (Credit credit in creditsDb)
+                {
+                    credits.Add(new()
+                    {
+                        Id = credit.id,
+                        State = credit.state,
+                        Duration = credit.duration,
+                        Capital = credit.capital,
+                        RegistrerId = credit.registrer,
+                        BeneficiaryId = credit.beneficiary,
+                        ConditionId = credit.conditionId,
+                        RegistryDate = credit.registryDate.ToString()
+                    });
+                }
+
+                return new(0, credits);
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"An error with code {error.ErrorCode} occurred while saving credit at {DateTime.Now}: ", error.Message);
+                return new(1, "An error ocurred while saving the credit info");
+            }
         }
     }
 }

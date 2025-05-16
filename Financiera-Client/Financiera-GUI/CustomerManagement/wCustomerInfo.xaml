@@ -322,6 +322,7 @@
             </TabItem>
         </TabControl>
 
+        <Button Click="RequestCredit" Grid.Row="2" HorizontalAlignment="Left" Content="Nueva solicitud de crédito" Margin="30, 15, 20, 15" Padding="10, 5, 10, 5"/>
         <notifications:NotificationArea Grid.Row="2" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
     </Grid>
 </Page>

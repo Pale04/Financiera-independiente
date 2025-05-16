@@ -35,6 +35,7 @@ namespace Financiera_GUI.Credit
             }
             catch (Exception error)
             {
+                Console.Write("No se pudieron recuperar las condiciones");
                 _notificationManager.Show("Error", error.Message, NotificationType.Error, "WindowArea");
                 return;
             }
@@ -79,6 +80,7 @@ namespace Financiera_GUI.Credit
                     Text = requiredDocument.Name,
                     AcceptedFile = requiredDocument.FileType.ToString()
                 };
+                documentBtn.AcceptedFile = requiredDocument.FileType.ToString();
                 documentsGrid.Children.Add(documentBtn);
                 Grid.SetColumn(documentBtn, currentDocument);
                 Grid.SetRow(documentBtn, (int)Math.Floor((double)currentDocument/4));
@@ -118,12 +120,12 @@ namespace Financiera_GUI.Credit
             byte duration;
             int capital;
             
-            if (byte.TryParse(durationField.Text.Trim(), out duration))
+            if (!byte.TryParse(durationField.Text.Trim(), out duration))
             {
                 durationField.showError("Requerido*");
                 return;
             }
-            else if (int.TryParse(capitalField.Text.Trim(), out capital))
+            else if (!int.TryParse(capitalField.Text.Trim(), out capital))
             {
                 capitalField.showError("Requerido*");
                 return;
@@ -198,9 +200,10 @@ namespace Financiera_GUI.Credit
             {
                 if (button.IsChecked == true)
                 {
+                    Console.WriteLine("encontrada condicion seleccionada");
                     foreach (CreditCondition condition in _conditions)
                     {
-                        if (condition.ToString() == button.Content)
+                        if (condition.ToString().Equals(button.Content))
                         {
                             return condition;
                         }

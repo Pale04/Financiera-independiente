@@ -100,7 +100,6 @@ namespace Data_Access
                 return context.CreditConditions
                     .OrderBy(d => d.id)
                     .Where(d => d.state == true)
-                    .ToList()
                     .ToList();
             }
         }

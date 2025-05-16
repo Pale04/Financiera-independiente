@@ -3,6 +3,7 @@ using DomainClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -14,16 +15,22 @@ namespace Business_logic
     {
         public int Add(Credit credit, List<Document> documents)
         {
-            if (CustomerHasActiveCredit(credit.Beneficiary))
+            try
             {
-                return 2;
+                if (CustomerHasActiveCredit(credit.Beneficiary))
+                {
+                    return 2;
+                }
+                else if (CustomerHasRecentCreditRequest(credit.Beneficiary))
+                {
+                    return 3;
+                }
             }
-            else if (CustomerHasRecentCreditRequest(credit.Beneficiary))
+            catch (CommunicationException error)
             {
-                return 3;
+                return 1;
             }
 
-                CreditServiceClient creditService = new CreditServiceClient();
             Response response;
 
             CreditDC creditDC = new()
@@ -43,7 +50,7 @@ namespace Business_logic
                 documentsDC.Add(new()
                 {
                     Name = document.Name,
-                    file = document.File,
+                    File = document.File,
                     RegistrerId = UserSession.Instance.Employee.Id,
                     RegistryDate = DateTime.Now.ToString(),
                     DocumentationId = document.DocumentationId,
@@ -55,6 +62,9 @@ namespace Business_logic
                 Credit = creditDC,
                 Documents = documentsDC.ToArray()
             };
+
+            CreditServiceClient creditService = new CreditServiceClient();
+
             try
             {
                 return creditService.AddCreditRequest(requestDC).StatusCode;
@@ -67,12 +77,36 @@ namespace Business_logic
 
         public bool CustomerHasActiveCredit(string rfc)
         {
-            return true;
+            CreditServiceClient creditService = new CreditServiceClient();
+
+            var credits = creditService.GetCreditsByBeneficiary(rfc);
+
+            foreach (var credit in credits.Data)
+            {
+                if (credit.State == "active")
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public bool CustomerHasRecentCreditRequest(string rfc)
         {
-            return true;
+            CreditServiceClient creditService = new CreditServiceClient();
+
+            var credits = creditService.GetCreditsByBeneficiary(rfc);
+
+            foreach (var credit in credits.Data)
+            {
+                if (DateTime.Compare(DateTime.ParseExact(credit.RegistryDate, "yyyy-MM-dd HH:mm:ss[.nnn]", CultureInfo.InvariantCulture), DateTime.Now.AddMonths(3)) >= 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -51,7 +51,7 @@ namespace FinancieraServer.ServiceImplementations
 
             try
             {
-                creditConditionDB.GetActive();
+                databaseCreditConditions = creditConditionDB.GetActive();
             }
             catch (DbException error)
             {

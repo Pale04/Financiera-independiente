@@ -21,7 +21,7 @@ namespace Financiera_GUI.Utilities
         private uint _max_len;
         public string Text 
         { 
-            get => _text; 
+            get => textField.Text; 
             set 
             {
                 content.Content = value;
