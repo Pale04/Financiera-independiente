@@ -93,6 +93,7 @@ namespace FinancieraServer.ServiceImplementations
                 Document document = new()
                 {
                     name = request.Documents.ElementAt(i).Name,
+                    file = request.Documents.ElementAt(i).File,
                     registryDate = DateTime.Parse(request.Documents.ElementAt(i).RegistryDate),
                     registrer = request.Documents.ElementAt(i).RegistrerId,
                     documentationId = request.Documents.ElementAt(i).DocumentationId,
