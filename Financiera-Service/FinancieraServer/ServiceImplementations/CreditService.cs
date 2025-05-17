@@ -3,7 +3,6 @@ using Data_Access.Entities;
 using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
 using System.Data.Common;
-using System.Globalization;
 
 namespace FinancieraServer.ServiceImplementations
 {
@@ -46,16 +45,26 @@ namespace FinancieraServer.ServiceImplementations
 
             for (int i = 0; i < request.Documents.Length; i++)
             {
-                documents.Add(new()
+                Document document = new()
                 {
                     name = request.Documents.ElementAt(i).Name,
-                    file = request.Documents.ElementAt(i).File,
                     registryDate = DateTime.Parse(request.Documents.ElementAt(i).RegistryDate),
                     registrer = request.Documents.ElementAt(i).RegistrerId,
                     documentationId = request.Documents.ElementAt(i).DocumentationId,
                     creditId = credit.id,
                     active = true
-                });
+                };
+
+                DocumentManager manager = new();
+                string? name = manager.SaveDocument(document, request.Documents.ElementAt(i).File);
+
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    return new Response(1, "Error saving documents");
+                }
+
+                document.name = name;
+                documents.Add(document);
             }
 
             DocumentDB documentDB = new();

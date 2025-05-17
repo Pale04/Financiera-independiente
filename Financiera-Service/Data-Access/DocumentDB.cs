@@ -4,7 +4,7 @@ namespace Data_Access
 {
     public class DocumentDB
     {
-        public List<Entities.Document> GetByCreditId(int creditId)
+        public List<Document> GetByCreditId(int creditId)
         {
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
@@ -12,7 +12,7 @@ namespace Data_Access
             }
         }
 
-        public int Add(Entities.Document document)
+        public int Add(Document document)
         {
             int result = 0;
 
@@ -25,12 +25,12 @@ namespace Data_Access
             return result;
         }
 
-        public int ReplaceDocument(Entities.Document newDocument, int oldDocumentId)
+        public int ReplaceDocument(Document newDocument, int oldDocumentId)
         {
             int result = 0;
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
             {
-                Entities.Document document = context.Documents.Find(oldDocumentId);
+                Document document = context.Documents.Find(oldDocumentId);
 
                 if (document != null)
                 {

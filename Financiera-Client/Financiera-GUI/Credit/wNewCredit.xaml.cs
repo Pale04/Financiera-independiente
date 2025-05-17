@@ -183,7 +183,7 @@ namespace Financiera_GUI.Credit
 
                 documents.Add(new()
                 {
-                    Name = button.Name,
+                    Name = button.FileName,
                     File = button.File,
                     RegistryDate = DateTime.Now,
                     Registrer = UserSession.Instance.Employee.Id,

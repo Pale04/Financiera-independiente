@@ -48,7 +48,6 @@ CREATE TABLE [Credit] (
 CREATE TABLE [Document] (
   [id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [name] varchar(100) NOT NULL,
-  [path] varchar(50) NOT NULL,
   [active] bit NOT NULL, 
   [registryDate] DateTime NOT NULL,
   [registrer] int NOT NULL,
