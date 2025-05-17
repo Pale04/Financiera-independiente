@@ -12,7 +12,7 @@ namespace Business_logic.Catalogs
     public class SubsidiaryManager
     {
 
-        public List<Subsidiary> GetAll()
+        public List<DomainClasses.Subsidiary> GetAll()
         {
             CatalogServiceClient client = new();
             ResponseWithContentOfArrayOfSubsidiaryDC1nk_PiFui response;

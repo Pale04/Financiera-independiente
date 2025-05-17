@@ -16,7 +16,7 @@ namespace Data_Access
         {
             int result = 0;
 
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
             {
                 context.Add(document);
                 result = context.SaveChanges();
@@ -28,7 +28,7 @@ namespace Data_Access
         public int ReplaceDocument(Entities.Document newDocument, int oldDocumentId)
         {
             int result = 0;
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
             {
                 Entities.Document document = context.Documents.Find(oldDocumentId);
 
