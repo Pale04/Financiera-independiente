@@ -37,11 +37,11 @@ namespace Data_Access
         {
             int result = 0;
 
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
             {
                 context.Add(credit);
                 result = context.SaveChanges();
-                return context.Credits.Last().id;
+                return context.Credits.OrderBy(d => d.id).Last().id;
             }
 
             return result;
@@ -49,7 +49,7 @@ namespace Data_Access
 
         public int UpdateState(int creditId, string state)
         {
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Analyst)))
             {
                 Credit credit = context.Credits.Find(creditId);
 
