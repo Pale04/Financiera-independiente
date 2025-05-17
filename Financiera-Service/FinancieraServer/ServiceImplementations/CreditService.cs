@@ -5,7 +5,6 @@ using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
 using System.Collections.Immutable;
 using System.Data.Common;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FinancieraServer.ServiceImplementations
 {
@@ -93,7 +92,6 @@ namespace FinancieraServer.ServiceImplementations
                 Document document = new()
                 {
                     name = request.Documents.ElementAt(i).Name,
-                    file = request.Documents.ElementAt(i).File,
                     registryDate = DateTime.Parse(request.Documents.ElementAt(i).RegistryDate),
                     registrer = request.Documents.ElementAt(i).RegistrerId,
                     documentationId = request.Documents.ElementAt(i).DocumentationId,
@@ -102,16 +100,14 @@ namespace FinancieraServer.ServiceImplementations
                 };
 
                 DocumentManager manager = new();
-                try
+                string? name = manager.SaveDocument(document, request.Documents.ElementAt(i).File);
+
+                if (string.IsNullOrWhiteSpace(name))
                 {
-                    document.name = manager.SaveDocument(document, request.Documents.ElementAt(i).File);
-                }
-                catch (Exception error)
-                {
-                    _logger.LogError($"Error saving file at {DateTime.Now}: ", error.Message);
                     return new Response(1, "Error saving documents");
                 }
 
+                document.name = name;
                 documents.Add(document);
             }
 
