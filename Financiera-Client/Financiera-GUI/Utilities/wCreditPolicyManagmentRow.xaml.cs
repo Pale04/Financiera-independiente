@@ -92,7 +92,7 @@ namespace Financiera_GUI.Utilities
                 Id = _policy.Id,
                 Title = titleInput.Text,
                 Description = descriptionInput.Text,
-                Registrer = UserSession.Instance.Employee.id
+                Registrer = UserSession.Instance.Employee.Id
             };
 
             try

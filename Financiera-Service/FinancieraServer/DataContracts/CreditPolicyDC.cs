@@ -22,10 +22,6 @@ namespace FinancieraServer.DataContracts
 
         [DataMember]
         public int register { get; set; }
-
-        [DataMember]
-        public virtual Employee registerNavigation { get; set; } = null!;
-
     }
 }
 

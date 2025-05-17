@@ -1,5 +1,4 @@
-﻿using Data_Access.Entities;
-using FinancieraServer.DataContracts;
+﻿using FinancieraServer.DataContracts;
 
 namespace FinancieraServer.Interfaces
 {
