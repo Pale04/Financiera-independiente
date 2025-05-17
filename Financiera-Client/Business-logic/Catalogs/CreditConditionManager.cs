@@ -50,7 +50,7 @@ namespace Business_logic.Catalogs
         }
 
 
-        public List<CreditCondition> GetActive() {
+        public List<DomainClasses.CreditCondition> GetActive() {
             CatalogServiceClient client = new();
             ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui response;
 
@@ -74,10 +74,10 @@ namespace Business_logic.Catalogs
             }
 
             List<CreditConditionDC> serializedConditionsList = response.Data.ToList();
-            List<CreditCondition> creditConditions = new();
+            List<DomainClasses.CreditCondition> creditConditions = new();
             foreach (CreditConditionDC condition in serializedConditionsList)
             {
-                creditConditions.Add(new CreditCondition
+                creditConditions.Add(new DomainClasses.CreditCondition
                 {
                     Id = condition.Id,
                     State = condition.State,
@@ -90,7 +90,7 @@ namespace Business_logic.Catalogs
             return creditConditions;
         }
 
-        public int AddCreditCondition(CreditCondition creditCondition)
+        public int AddCreditCondition(DomainClasses.CreditCondition creditCondition)
         {
             if (!creditCondition.IsValidForCreation())
             {

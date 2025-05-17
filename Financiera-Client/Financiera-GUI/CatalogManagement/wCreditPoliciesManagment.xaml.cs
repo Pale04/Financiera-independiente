@@ -131,7 +131,7 @@ namespace Financiera_GUI.CatalogManagement
                 {
                     Title = TbTitle.Text,
                     Description = TbDescription.Text,
-                    Registrer = UserSession.Instance.Employee.id,
+                    Registrer = UserSession.Instance.Employee.Id,
                     State = true
                 };
                 CreditPolicyManager manager = new();
