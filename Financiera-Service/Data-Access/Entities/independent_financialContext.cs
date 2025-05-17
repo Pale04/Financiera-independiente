@@ -170,7 +170,6 @@ public partial class independent_financialContext : DbContext
 
             entity.ToTable("Document");
 
-            entity.Property(e => e.file).HasMaxLength(8000);
             entity.Property(e => e.name)
                 .HasMaxLength(100)
                 .IsUnicode(false);

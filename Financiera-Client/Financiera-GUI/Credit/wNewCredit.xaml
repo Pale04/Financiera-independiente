@@ -44,7 +44,7 @@ FontFamily="Roboto" FontSize="30" FontWeight="Bold">Crear cuenta de trabajador</
             <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0, 0, 40, 0">
                 <Label FontSize="18" FontWeight="SemiBold">Cuentas bancarias (Clabe)</Label>
                 <userControls:ucTextField x:Name="capitalField" Text="Capital" MaxLen="18"/>
-                <userControls:ucTextField x:Name="durationField" Text="Duración" MaxLen="18"/>
+                <userControls:ucTextField x:Name="durationField" Text="Duración en meses" MaxLen="18"/>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Grid.Column="1" Margin="40, 0, 0, 0">
