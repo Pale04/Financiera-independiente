@@ -100,14 +100,16 @@ namespace FinancieraServer.ServiceImplementations
                 };
 
                 DocumentManager manager = new();
-                string? name = manager.SaveDocument(document, request.Documents.ElementAt(i).File);
-
-                if (string.IsNullOrWhiteSpace(name))
+                try
                 {
+                    document.name = manager.SaveDocument(document, request.Documents.ElementAt(i).File);
+                }
+                catch (Exception error)
+                {
+                    _logger.LogError($"Error saving file at {DateTime.Now}: ", error.Message);
                     return new Response(1, "Error saving documents");
                 }
 
-                document.name = name;
                 documents.Add(document);
             }
 
