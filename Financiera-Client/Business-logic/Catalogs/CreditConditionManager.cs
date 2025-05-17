@@ -1,14 +1,12 @@
 ﻿using CatalogServiceReference;
 using DomainClasses;
-using System.Drawing;
 using System.ServiceModel;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Business_logic.Catalogs
 {
     public class CreditConditionManager
     {
-        public List<DomainClasses.CreditCondition> GetByPagination(int size, int markId, bool next)
+        public List<CreditCondition> GetByPagination(int size, int markId, bool next)
         {
             CatalogServiceClient client = new();
             ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui response;
@@ -49,8 +47,7 @@ namespace Business_logic.Catalogs
             return creditConditions;
         }
 
-
-        public List<DomainClasses.CreditCondition> GetActive() {
+        public List<CreditCondition> GetActive() {
             CatalogServiceClient client = new();
             ResponseWithContentOfArrayOfCreditConditionDC1nk_PiFui response;
 
@@ -74,10 +71,10 @@ namespace Business_logic.Catalogs
             }
 
             List<CreditConditionDC> serializedConditionsList = response.Data.ToList();
-            List<DomainClasses.CreditCondition> creditConditions = new();
+            List<CreditCondition> creditConditions = new();
             foreach (CreditConditionDC condition in serializedConditionsList)
             {
-                creditConditions.Add(new DomainClasses.CreditCondition
+                creditConditions.Add(new CreditCondition
                 {
                     Id = condition.Id,
                     State = condition.State,
@@ -90,7 +87,7 @@ namespace Business_logic.Catalogs
             return creditConditions;
         }
 
-        public int AddCreditCondition(DomainClasses.CreditCondition creditCondition)
+        public int AddCreditCondition(CreditCondition creditCondition)
         {
             if (!creditCondition.IsValidForCreation())
             {
@@ -131,7 +128,7 @@ namespace Business_logic.Catalogs
             }
         }
 
-        public int UpdateCreditCondition(DomainClasses.CreditCondition creditCondition)
+        public int UpdateCreditCondition(CreditCondition creditCondition)
         {
             if (!creditCondition.IsValidForUpdate())
             {
