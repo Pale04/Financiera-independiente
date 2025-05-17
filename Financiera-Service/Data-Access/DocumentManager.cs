@@ -5,6 +5,7 @@ namespace Data_Access
 {
     public class DocumentManager
     {
+        private ILogger<DocumentManager> _logger;
         private string _path = "creditDocuments/";
 
         public string? SaveDocument(Document documentInfo, byte[] file)
@@ -27,12 +28,15 @@ namespace Data_Access
         {
             try
             {
-                return File.ReadAllBytes(path);
+                File.WriteAllBytes(string.Format("{0}{1}", _path, documentInfo.name), file);
             }
-            catch (FileNotFoundException error)
+            catch (Exception error)
             {
+                _logger.LogError("Error saving file {}: {}", name, error);
                 return null;
             }
+
+            return name;
         }
     }
 }
