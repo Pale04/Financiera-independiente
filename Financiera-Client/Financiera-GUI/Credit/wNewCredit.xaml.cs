@@ -78,7 +78,8 @@ namespace Financiera_GUI.Credit
                 ucDocumentButton documentBtn = new ucDocumentButton()
                 {
                     Text = requiredDocument.Name,
-                    AcceptedFile = requiredDocument.FileType.ToString()
+                    AcceptedFile = requiredDocument.FileType.ToString(),
+                    DocumentationId = requiredDocument.Id
                 };
                 documentBtn.AcceptedFile = requiredDocument.FileType.ToString();
                 documentsGrid.Children.Add(documentBtn);
@@ -187,7 +188,7 @@ namespace Financiera_GUI.Credit
                     File = button.File,
                     RegistryDate = DateTime.Now,
                     Registrer = UserSession.Instance.Employee.Id,
-                    DocumentationId = 0
+                    DocumentationId = button.DocumentationId
                 });
             }
 

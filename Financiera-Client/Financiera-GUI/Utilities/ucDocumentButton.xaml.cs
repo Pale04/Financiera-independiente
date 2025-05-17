@@ -32,6 +32,8 @@ namespace Financiera_GUI.Utilities
             }
         }
 
+        public int DocumentationId { get; set; }
+
         public byte[] File;
         public string FileName;
 
