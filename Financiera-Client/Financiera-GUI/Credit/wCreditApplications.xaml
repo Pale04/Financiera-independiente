@@ -1,0 +1,117 @@
+﻿<Page x:Class="Financiera_GUI.Credit.wCreditApplications"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Financiera_GUI.Credit"
+      mc:Ignorable="d" 
+      xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
+      d:DesignHeight="720" d:DesignWidth="1280"      
+      Title="wCreditApplications"
+      xmlns:uc="clr-namespace:Financiera_GUI.Utilities"
+      uc:ucCreditRequestRow.ViewCredit="ViewCreditInfo">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="65"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Margin="10" Grid.Column="0" Panel.ZIndex="2" Height="40" Width="40" CornerRadius="50" MouseLeftButtonDown="Back" Style="{StaticResource ButtonBehaviorGlobal}">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
+            </Border>
+
+            <Label Grid.ColumnSpan="2" Grid.Column="0" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+           FontFamily="Roboto" FontSize="30" FontWeight="Bold">Solicitudes de crédito</Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="previousPageButton" Grid.Column="1" Margin="0,0,10,0" MouseLeftButtonDown="PreviousPage"
+            BorderThickness="1" BorderBrush="Black" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}"  >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Margin="5" Source="../images/previous_page_icon.png" Stretch="Uniform"/>
+                        <Label FontSize="12" FontFamily="Roboto" VerticalContentAlignment="Center">Página anterior</Label>
+                    </StackPanel>
+                </Border>
+
+                <Border x:Name="nextPageButton" Grid.Column="2" Margin="0,0,20,0" MouseLeftButtonDown="NextPage"
+             BorderThickness="1" BorderBrush="Black" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}"  >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label FontSize="12" FontFamily="Roboto" VerticalContentAlignment="Center">Siguiente página</Label>
+                        <Image Margin="5" Source="../images/next_page_icon.png" Stretch="Uniform"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Grid.Row="1" Padding="5" Background="#778DA9" CornerRadius="10" Margin="5, 10, 5, 5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Margin="0,0,10,0" Grid.Column="0" HorizontalContentAlignment="Center"
+               FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White" >Id</Label>
+                    <Label Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Center"
+               FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Beneficiario</Label>
+                    <Label Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center"
+               FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Capital</Label>
+                    <Label Margin="0,0,10,0" Grid.Column="3" HorizontalContentAlignment="Center"
+               FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Plazo</Label>
+                    <Label Grid.Column="4" HorizontalContentAlignment="Center"
+               FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Interés</Label>
+                </Grid>
+            </Border>
+
+            <StackPanel Grid.Row="2" Name="requestsPanel" Margin="5, 0, 5, 5"/>
+
+            <Border Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Margin="10, 10, 10, 20" Padding="10" Background="#E0E1DD" CornerRadius="15" Height="Auto">
+                <StackPanel HorizontalAlignment="Center">
+                    <Button Content="Aplicar filtros" Click="ApplyFilter" Width="250" FontSize="16"/>
+                    
+                    <Label FontSize="20" HorizontalAlignment="Center" Margin="0, 10, 0, 0">Capital</Label>
+                    <RadioButton Name="rdCapital1" GroupName="capitalRange" Margin="5">25,000-</RadioButton>
+                    <RadioButton Name="rdCapital2" GroupName="capitalRange" Margin="5">25,001 - 50,000</RadioButton>
+                    <RadioButton Name="rdCapital3" GroupName="capitalRange" Margin="5">50,001 - 75,000</RadioButton>
+                    <RadioButton Name="rdCapital4" GroupName="capitalRange" Margin="5">75,001 - 100,000</RadioButton>
+                    <RadioButton Name="rdCapital5" GroupName="capitalRange" Margin="5">100,000+</RadioButton>
+
+                    <Label FontSize="20" HorizontalAlignment="Center" Margin="0, 10, 0, 0">Plazo</Label>
+                    <RadioButton Name="rdPlazo1" GroupName="capitalRange" Margin="5">menos de 1 año</RadioButton>
+                    <RadioButton Name="rdPlazo2" GroupName="capitalRange" Margin="5">1 a 3 años</RadioButton>
+                    <RadioButton Name="rdPlazo3" GroupName="capitalRange" Margin="5">más de 3 años</RadioButton>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <notifications:NotificationArea Grid.Row="3" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
+    </Grid>
+</Page>
