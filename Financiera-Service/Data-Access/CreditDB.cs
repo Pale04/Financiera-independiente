@@ -88,5 +88,13 @@ namespace Data_Access
                 return context.CreditPayments.FirstOrDefault(c => c.id == id);
             }
         }
+
+        public Credit ExistsById(int id)
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                return context.Credits.Find(id);
+            }
+        }
     }
 }
