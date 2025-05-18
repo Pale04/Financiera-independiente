@@ -9,6 +9,7 @@ namespace Data_Access
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
             {
                 return context.CreditRequests
+                    .Take(100)
                     .OrderBy(d => d.id)
                     .ToList();
             }

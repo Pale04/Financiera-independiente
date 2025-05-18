@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Financiera_GUI.Utilities.ucCreditRequestRow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Financiera_GUI.Utilities"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="1280">
+
+    <Grid x:Name="row" Margin="0,2,0,2" Height="Auto" Background="#E3E3E3" MouseLeftButtonDown="ViewDetails">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="creditIdLabel" Margin="0,0,10,0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+        FontFamily="Roboto" FontSize="16">120000</Label>
+        
+        <Label x:Name="beneficiaryLabel" Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Left" Padding="10, 0, 10, 0" VerticalAlignment="Center"
+        FontFamily="Roboto" FontSize="16">John Doe</Label>
+
+        <Label x:Name="CapitalLabel" Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+        FontFamily="Roboto" FontSize="16">500,000,000</Label>
+
+        <Label x:Name="DurationLabel" Margin="0,0,10,0" Grid.Column="3" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+        FontFamily="Roboto" FontSize="16">12 meses</Label>
+        
+        <Label x:Name="InterestLabel" Margin="0,0,10,0" Grid.Column="4" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+        FontFamily="Roboto" FontSize="16">20%</Label>
+    </Grid>
+</UserControl>

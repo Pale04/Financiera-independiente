@@ -108,5 +108,31 @@ namespace Business_logic
 
             return false;
         }
+
+        public List<CreditRequestSummary> GetCreditRequests()
+        {
+            throw new NotImplementedException();
+
+            CreditServiceClient creditService = new CreditServiceClient();
+
+            try { 
+                var creditsDb = creditService.GetCreditRequests();
+
+                List<CreditRequestSummary> credits = [];
+
+                foreach (var credit in creditsDb.Data)
+                {
+                    credits.Add(new()
+                    {
+                    });
+                }
+
+                return credits;
+            }
+            catch (CommunicationException error)
+            {
+                return null;
+            }
+}
     }
 }
