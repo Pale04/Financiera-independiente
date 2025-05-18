@@ -109,9 +109,34 @@ namespace FinancieraServer.ServiceImplementations
             throw new NotImplementedException();
         }
 
-        public ResponseWithContent<List<CreditRequestDC>> GetCreditRequests()
+        public ResponseWithContent<List<CreditRequestSummaryDC>> GetCreditRequests()
         {
-            throw new NotImplementedException();
+            CreditDB creditDB = new();
+
+            try
+            {
+                var creditsDb = creditDB.GetPendingRequests();
+                List<CreditRequestSummaryDC> credits = [];
+
+                foreach (CreditRequest credit in creditsDb)
+                {
+                    credits.Add(new()
+                    {
+                        Id = credit.id,
+                        Duration = credit.duration,
+                        Capital = credit.capital,
+                        ClientName = credit.name,
+                        InterestRate = credit.interestRate
+                    });
+                }
+
+                return new(0, credits);
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"An error with code {error.ErrorCode} occurred while retrieving credits at {DateTime.Now}: ", error.Message);
+                return new(1, "An error ocurred while retrieving credits");
+            }
         }
 
         public ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(string beneficiaryId)

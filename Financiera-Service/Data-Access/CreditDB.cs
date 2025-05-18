@@ -4,12 +4,11 @@ namespace Data_Access
 {
     public class CreditDB
     {
-        public List<Credit> GetPendingRequests()
+        public List<CreditRequest> GetPendingRequests()
         {
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
             {
-                return context.Credits
-                    .Where(c => c.state == "requested")
+                return context.CreditRequests
                     .OrderBy(d => d.id)
                     .ToList();
             }
