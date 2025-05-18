@@ -15,7 +15,7 @@ namespace FinancieraServer.Interfaces
         ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(int beneficiaryId);
 
         [OperationContract]
-        ResponseWithContent<List<CreditRequestDC>> GetCreditRequests();
+        ResponseWithContent<List<CreditRequestSummaryDC>> GetCreditRequests();
 
         [OperationContract]
         Response DetermineRequest(int requestId, bool granted);
