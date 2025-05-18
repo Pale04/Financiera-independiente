@@ -13,11 +13,8 @@ namespace Financiera_GUI.Credit
 {
     public partial class wCreditDetails : Page
     {
-        private DomainClasses.Credit? _credit;
-        private DomainClasses.CreditCondition? _creditCondition;
-        private DomainClasses.Customer? _customer;
-        private List<DomainClasses.Document>? _documents;
-        private List<RequiredDocument>? _requiredDocumentation;
+        private DomainClasses.Credit _credit;
+        private DomainClasses.CreditCondition _creditCondition;
 
         NotificationManager _notificationManager = new NotificationManager();
 
@@ -116,6 +113,8 @@ namespace Financiera_GUI.Credit
             return null;
         }
 
+        private void GetCreditData()
+        {
         private DomainClasses.Credit? GetCreditData(int creditId)
         {
             CreditManager manager = new CreditManager();
