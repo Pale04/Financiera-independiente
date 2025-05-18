@@ -82,5 +82,16 @@ namespace Data_Access
             }
             return result;
         }
+
+        public int AddPayment(Payment payment)
+        {
+            using(var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.CollectionsAgent)))
+            {                
+                context.Payments.Add(payment);
+                return context.SaveChanges();
+                
+            }
+        }
+
     }
 }

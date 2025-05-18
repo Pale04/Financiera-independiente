@@ -159,5 +159,39 @@ namespace FinancieraServer.ServiceImplementations
 
 
         }
+
+
+        public ResponseWithContent<List<CreditPolicyDC>> GetActivePolicies()
+        {
+            CreditPolicyDB creditPolicyDB = new();
+            List<CreditPolicy> databaseCreditPolicies = new();
+
+            try
+            {
+                databaseCreditPolicies = creditPolicyDB.GetActivePolicies();
+                List<CreditPolicyDC> creditPolicies = new();
+
+                foreach (var policy in databaseCreditPolicies)
+                {
+                    CreditPolicyDC activeCreditPolicy = new()
+                    {
+                        Id = policy.id,
+                        Title =policy.title,
+                        Description = policy.description,
+                        register = policy.registrer,
+                        State = policy.state,
+                        EffectiveDate = policy.effectiveDate
+                    };
+                    creditPolicies.Add(activeCreditPolicy);
+                }
+
+                return new ResponseWithContent<List<CreditPolicyDC>>(0, creditPolicies);
+            }
+            catch(DbException error)
+            {
+                _logger.LogError($"An error ocurred trying to get the credit policies: {error}");
+                return new ResponseWithContent<List<CreditPolicyDC>>(1, "Error while trying to get the credit policies");
+            }
+        }
     }
 }

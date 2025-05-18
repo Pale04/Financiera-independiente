@@ -109,6 +109,28 @@ namespace Business_logic
             return false;
         }
 
+        public int DeterminateResquest(Credit credit, bool isApproved)
+        {
+            if (credit == null)
+            {
+                return 2;
+            }
+            else
+            {
+                try
+                {
+                   
+                    CreditServiceClient client = new();
+                    Response response = client.DetermineRequest(credit.Id, isApproved);
+                    return response.StatusCode;
+                }
+                catch(CommunicationException error)
+                {
+                    return 1;
+                }
+            }
+        }
+
         public List<CreditRequestSummary> GetCreditRequests()
         {
             throw new NotImplementedException();

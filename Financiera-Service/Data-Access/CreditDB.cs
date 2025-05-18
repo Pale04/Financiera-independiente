@@ -62,5 +62,13 @@ namespace Data_Access
                 return 0;
             }
         }
+
+        public Credit ExistsById(int id)
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                return context.Credits.Find(id);
+            }
+        }
     }
 }

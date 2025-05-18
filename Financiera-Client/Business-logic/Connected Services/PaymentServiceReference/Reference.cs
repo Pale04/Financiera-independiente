@@ -279,6 +279,12 @@ namespace PaymentServiceReference
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/UpdatePaymentState", ReplyAction="http://tempuri.org/IPaymentService/UpdatePaymentStateResponse")]
         System.Threading.Tasks.Task<PaymentServiceReference.Response> UpdatePaymentStateAsync(PaymentServiceReference.PaymentDC payment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/AddPayment", ReplyAction="http://tempuri.org/IPaymentService/AddPaymentResponse")]
+        PaymentServiceReference.Response AddPayment(PaymentServiceReference.PaymentDC payment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/AddPayment", ReplyAction="http://tempuri.org/IPaymentService/AddPaymentResponse")]
+        System.Threading.Tasks.Task<PaymentServiceReference.Response> AddPaymentAsync(PaymentServiceReference.PaymentDC payment);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -349,6 +355,16 @@ namespace PaymentServiceReference
         public System.Threading.Tasks.Task<PaymentServiceReference.Response> UpdatePaymentStateAsync(PaymentServiceReference.PaymentDC payment)
         {
             return base.Channel.UpdatePaymentStateAsync(payment);
+        }
+        
+        public PaymentServiceReference.Response AddPayment(PaymentServiceReference.PaymentDC payment)
+        {
+            return base.Channel.AddPayment(payment);
+        }
+        
+        public System.Threading.Tasks.Task<PaymentServiceReference.Response> AddPaymentAsync(PaymentServiceReference.PaymentDC payment)
+        {
+            return base.Channel.AddPaymentAsync(payment);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

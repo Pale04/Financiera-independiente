@@ -112,5 +112,39 @@ namespace Business_logic.Catalogs
 
             return statusCode;
         }
+
+        public List<Policy> GetActivePolicies()
+        {
+            CatalogServiceClient client = new();
+            ResponseWithContentOfArrayOfCreditPolicyDC1nk_PiFui response;
+            List<Policy> policies = new();
+
+            try
+            {
+                response = client.GetActivePolicies();
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            switch (response.StatusCode)
+            {
+                case 1:
+                    throw new Exception(ErrorMessages.ServerError);
+                default:
+                    foreach (var activePolicy in response.Data)
+                    {
+                        Policy policy = new()
+                        {
+                            Id = activePolicy.Id,
+                            Title = activePolicy.Title,
+                            Description = activePolicy.Description
+                        };
+                        policies.Add(policy);
+                    }
+                    return policies;
+            }
+        }
     }
 }

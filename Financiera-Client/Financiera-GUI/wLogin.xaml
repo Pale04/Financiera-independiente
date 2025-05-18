@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Financiera_GUI"
         mc:Ignorable="d"
         Title="wLogin" Height="720" Width="1280"
+        WindowState="Maximized"
         xmlns:notifications ="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf">
         
     
