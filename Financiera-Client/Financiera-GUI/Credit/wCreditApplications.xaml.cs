@@ -53,7 +53,7 @@ namespace Financiera_GUI.Credit
                 requestsPanel.Children.Add(new ucCreditRequestRow(_requests[i]));
             }
 
-            if (_currentPage * PAGE_SIZE < _requests.Count)
+            if (_currentPage * PAGE_SIZE > _requests.Count)
             {
                 nextPageButton.Visibility = Visibility.Collapsed;
             }
