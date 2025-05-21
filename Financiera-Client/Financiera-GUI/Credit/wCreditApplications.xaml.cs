@@ -15,7 +15,7 @@ namespace Financiera_GUI.Credit
         NotificationManager _notificationManager = new NotificationManager();
 
         private int _currentPage = 1;
-        private static int PAGE_SIZE = 12;
+        private readonly int PAGE_SIZE = 12;
 
         public wCreditApplications()
         {
@@ -87,11 +87,6 @@ namespace Financiera_GUI.Credit
         {
             _currentPage--;
             UpdateList();
-        }
-
-        private void Back(object sender, MouseButtonEventArgs e)
-        {
-            NavigationService.GoBack();
         }
 
         private void ViewCreditInfo(object sender, RoutedEventArgs e)
