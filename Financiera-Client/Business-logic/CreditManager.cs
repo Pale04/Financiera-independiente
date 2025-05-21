@@ -108,5 +108,47 @@ namespace Business_logic
 
             return false;
         }
+
+        public List<CreditRequestSummary> GetCreditRequests()
+        {
+            CreditServiceClient creditService = new CreditServiceClient();
+
+            var creditsDb = creditService.GetCreditRequests();
+
+            List<CreditRequestSummary> credits = [];
+
+            foreach (var credit in creditsDb.Data)
+            {
+                credits.Add(new()
+                {
+                    Id = credit.Id,
+                    Duration = credit.Duration,
+                    Capital = credit.Capital,
+                    ClientName = credit.ClientName,
+                    InterestRate = credit.InterestRate
+                });
+            }
+
+            return credits;
+        }
+
+        public Credit GetCredit(int creditId)
+        {
+            CreditServiceClient creditService = new CreditServiceClient();
+
+            var response = creditService.GetCredit(creditId);
+
+            CreditDC creditDb = response.Data;
+
+            return new()
+            {
+                Id = creditId,
+                State = creditDb.State,
+                Duration = (byte)creditDb.Duration,
+                Capital = creditDb.Capital,
+                Beneficiary = creditDb.BeneficiaryId,
+                ConditionId = creditDb.ConditionId,
+            };
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Financiera_GUI.Credit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Financiera_GUI.MainMenus
 
         public void BtnCreditRequestListClick(object sender, MouseButtonEventArgs e)
         {
-
+            // todo
         }
 
         private void BtnSearchCustomerClick(object sender, MouseButtonEventArgs e)

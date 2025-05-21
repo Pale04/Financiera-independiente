@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Navigation;
 using Business_logic;
+using Financiera_GUI.Credit;
 
 namespace Financiera_GUI.MainMenus
 {
@@ -18,7 +19,7 @@ namespace Financiera_GUI.MainMenus
                     ContentFrame.NavigationService.Navigate(new wSystemManagement());
                     break;
                 case "analist":
-                    //TODO: Change to wCreditApplication
+                    ContentFrame.NavigationService.Navigate(new wCreditApplications());
                     break;
                 case "adviser":
                     ContentFrame.NavigationService.Navigate(new wRequestsManagement());

@@ -97,12 +97,14 @@ namespace Financiera_GUI.CatalogManagement
         private void PreviousPage(object sender, MouseButtonEventArgs e)
         {
             pageCounter.Content = (int)pageCounter.Content - 1;
+            _currentPage--;
             UpdateList();
         }
 
         private void NextPage(object sender, MouseButtonEventArgs e)
         {
             pageCounter.Content = (int)pageCounter.Content + 1;
+            _currentPage++;
             UpdateList();
         }
 
