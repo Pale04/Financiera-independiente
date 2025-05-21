@@ -111,28 +111,44 @@ namespace Business_logic
 
         public List<CreditRequestSummary> GetCreditRequests()
         {
-            throw new NotImplementedException();
-
             CreditServiceClient creditService = new CreditServiceClient();
 
-            try { 
-                var creditsDb = creditService.GetCreditRequests();
+            var creditsDb = creditService.GetCreditRequests();
 
-                List<CreditRequestSummary> credits = [];
+            List<CreditRequestSummary> credits = [];
 
-                foreach (var credit in creditsDb.Data)
-                {
-                    credits.Add(new()
-                    {
-                    });
-                }
-
-                return credits;
-            }
-            catch (CommunicationException error)
+            foreach (var credit in creditsDb.Data)
             {
-                return null;
+                credits.Add(new()
+                {
+                    Id = credit.Id,
+                    Duration = credit.Duration,
+                    Capital = credit.Capital,
+                    ClientName = credit.ClientName,
+                    InterestRate = credit.InterestRate
+                });
             }
-}
+
+            return credits;
+        }
+
+        public Credit GetCredit(int creditId)
+        {
+            CreditServiceClient creditService = new CreditServiceClient();
+
+            var response = creditService.GetCredit(creditId);
+
+            CreditDC creditDb = response.Data;
+
+            return new()
+            {
+                Id = creditId,
+                State = creditDb.State,
+                Duration = (byte)creditDb.Duration,
+                Capital = creditDb.Capital,
+                Beneficiary = creditDb.BeneficiaryId,
+                ConditionId = creditDb.ConditionId,
+            };
+        }
     }
 }

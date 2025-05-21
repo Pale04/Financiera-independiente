@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
       d:DesignHeight="720" d:DesignWidth="1280"      
-      Title="wCreditApplications"
+      Title="Solicitudes de crédito"
       xmlns:uc="clr-namespace:Financiera_GUI.Utilities"
       uc:ucCreditRequestRow.ViewCredit="ViewCreditInfo">
 
@@ -112,6 +112,6 @@
             </Border>
         </Grid>
 
-        <notifications:NotificationArea Grid.Row="3" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
+        <notifications:NotificationArea Grid.Row="2" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
     </Grid>
 </Page>

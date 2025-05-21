@@ -2,6 +2,7 @@
 using DomainClasses;
 using Financiera_GUI.Utilities;
 using Notification.Wpf;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,7 +11,7 @@ namespace Financiera_GUI.Credit
 {
     public partial class wCreditApplications : Page
     {
-        private List<CreditRequestSummary> _requests;
+        private List<CreditRequestSummary>? _requests;
         NotificationManager _notificationManager = new NotificationManager();
 
         private int _currentPage = 1;
@@ -26,7 +27,14 @@ namespace Financiera_GUI.Credit
         {
             CreditManager manager = new();
 
-            _requests = manager.GetCreditRequests();
+            try
+            {
+                _requests = manager.GetCreditRequests();
+            }
+            catch (CommunicationException error)
+            {
+                _notificationManager.Show("No se pudieron recuperar las solicitudes de crédito", NotificationType.Error);
+            }
 
             if (_requests == null)
             {
@@ -84,7 +92,6 @@ namespace Financiera_GUI.Credit
         private void Back(object sender, MouseButtonEventArgs e)
         {
             NavigationService.GoBack();
-
         }
 
         private void ViewCreditInfo(object sender, RoutedEventArgs e)

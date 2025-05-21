@@ -1,8 +1,10 @@
 ﻿using Microsoft.Win32;
+using System.Drawing;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Financiera_GUI.Utilities
@@ -37,6 +39,8 @@ namespace Financiera_GUI.Utilities
         public byte[] File;
         public string FileName;
 
+        public bool clickable = true;
+
         public void SetImage(string path)
         {
             image.Source = new BitmapImage(new Uri(path));
@@ -49,6 +53,11 @@ namespace Financiera_GUI.Utilities
 
         private void SelectFile(object sender, MouseButtonEventArgs e)
         {
+            if (!clickable)
+            {
+                return;
+            }
+            
             string filter = "";
 
             switch (_acceptedFile)
@@ -73,6 +82,7 @@ namespace Financiera_GUI.Utilities
                 {
                     File = System.IO.File.ReadAllBytes(fileDialog.FileName);
                     FileName = fileDialog.FileName;
+                    button.Background = Brushes.LightGreen;
                 }
                 catch (SecurityException ex)
                 {

@@ -6,7 +6,7 @@ namespace Data_Access
     {
         public Credit? GetCredit(int id)
         {
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
                 return context.Credits.Find(id);
             }
