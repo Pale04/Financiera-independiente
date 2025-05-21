@@ -32,14 +32,14 @@
 
         <StackPanel Grid.Row="1" Margin="20">
             <Label FontWeight="SemiBold" FontSize="35">Cliente</Label>
-            <Label Name="clientNameLabel"/>
-            <Label Name="clientAddressLabel"/>
+            <Label Name="clientNameLabel" FontSize="20"/>
+            <Label Name="clientAddressLabel" FontSize="20"/>
 
             <Label FontWeight="SemiBold" FontSize="35">Promoción</Label>
-            <Label Name="capitalLabel"/>
-            <Label Name="durationLabel"/>
-            <Label Name="paymentsLabel"/>
-            <Label Name="interestLabel"/>
+            <Label Name="capitalLabel" FontSize="20"/>
+            <Label Name="durationLabel" FontSize="20"/>
+            <Label Name="paymentsLabel" FontSize="20"/>
+            <Label Name="interestLabel" FontSize="20"/>
 
             <Label FontWeight="SemiBold" FontSize="35">Documentos</Label>
             <StackPanel Orientation="Horizontal" Name="documentsPanel"/>

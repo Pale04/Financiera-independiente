@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Windows.Controls;
 using Financiera_GUI.Utilities;
 using CatalogServiceReference;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Financiera_GUI.Credit
 {
@@ -34,6 +35,11 @@ namespace Financiera_GUI.Credit
                 if (_customer != null && _creditCondition != null && _documents != null)
                 {
                     LoadData();
+                }
+                else
+                {
+                    _notificationManager.Show("No se pudo cargar la información del crédito", NotificationType.Error);
+
                 }
             }
         }
@@ -89,7 +95,7 @@ namespace Financiera_GUI.Credit
 
             try
             {
-                var conditions = manager.GetByPagination(1000, 0, false);
+                var conditions = manager.GetByPagination(1000, 1000, false);
 
                 foreach(var condition in conditions)
                 {
@@ -105,6 +111,7 @@ namespace Financiera_GUI.Credit
                 return null;
             }
 
+            _notificationManager.Show("No se pudo recuperar la información del crédito", NotificationType.Error);
             return null;
         }
 
@@ -134,7 +141,8 @@ namespace Financiera_GUI.Credit
         private void LoadData()
         {
             int monthlyPayments = (int)Math.Floor(_credit.Capital / (double)_creditCondition.PaymentsPerMonth);
-            
+
+            titleLabel.Content = $"Crédito N.{_credit.Id}";
             clientNameLabel.Content = $"Cliente: {_customer.Name}";
             clientAddressLabel.Content = $"Dirección: {_customer.HouseAddress}";
 

@@ -1,4 +1,5 @@
 ﻿using DomainClasses;
+using Microsoft.IdentityModel.Protocols.WsTrust;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,6 +14,7 @@ namespace Financiera_GUI.Utilities
         public ucCreditRequestRow(CreditRequestSummary request)
         {
             InitializeComponent();
+            CreditId = request.Id;
             creditIdLabel.Content = request.Id;
             beneficiaryLabel.Content = request.ClientName;
             CapitalLabel.Content = request.Capital;
@@ -21,7 +23,7 @@ namespace Financiera_GUI.Utilities
         }
 
         public static readonly RoutedEvent ViewCreditEvent = EventManager.RegisterRoutedEvent(
-            name: "ViewCreditClick",
+            name: "ViewCredit",
             routingStrategy: RoutingStrategy.Bubble,
             handlerType: typeof(RoutedEventHandler),
             ownerType: typeof(ucCreditRequestRow));
