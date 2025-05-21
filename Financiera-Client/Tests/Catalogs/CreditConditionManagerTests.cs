@@ -2,7 +2,7 @@
 using Business_logic.Catalogs;
 using DomainClasses;
 
-namespace Catalogs.Tests
+namespace Tests.Catalogs
 {
     [TestClass()]
     public class CreditConditionManagerTests
