@@ -263,13 +263,14 @@ namespace Financiera_GUI.Credit
 
         private void LoadData()
         {
-            int monthlyPayments = (int)Math.Floor(_credit.Capital / (double)_creditCondition.PaymentsPerMonth);
+            double total = (double)_credit.Capital + (((double)_credit.Capital * ((double)_creditCondition.InterestRate / 100)) * (1.0 + ((double)_creditCondition.IVA / 100)));
+            int monthlyPayments = (int)Math.Floor(total / (double)_creditCondition.PaymentsPerMonth);
 
             titleLabel.Content = $"Crédito N.{_credit.Id}";
             clientNameLabel.Content = $"Cliente: {_customer.Name}";
             clientAddressLabel.Content = $"Dirección: {_customer.HouseAddress}";
 
-            capitalLabel.Content = $"Capital: {_credit.Capital}";
+            capitalLabel.Content = $"Capital: ${_credit.Capital}";
             durationLabel.Content = $"Plazo: {_credit.Duration}";
             paymentsLabel.Content = $"{_creditCondition.PaymentsPerMonth} pagos mensuales de ${monthlyPayments}";
             interestLabel.Content = $"Tasa de interés: {_creditCondition.InterestRate}%";
