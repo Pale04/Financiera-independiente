@@ -24,7 +24,7 @@ namespace Financiera_GUI.MainMenus
 
         public void BtnCreditRequestListClick(object sender, MouseButtonEventArgs e)
         {
-            // todo
+            NavigationService.Navigate(new wCreditApplications());
         }
 
         private void BtnSearchCustomerClick(object sender, MouseButtonEventArgs e)

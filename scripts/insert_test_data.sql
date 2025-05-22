@@ -18,7 +18,7 @@ insert into Employee ([user], password, name, mail, address, phoneNumber, birthd
 	('pale', '1234', 'pale', 'correo@ejemplo.com', 'fei', '1237897892', '2004/12/12', 'adviser', ident_current('Subsidiary')),
 	('admin', '1234', 'david', 'correo@ejemplo.com', 'fei', '1122334455', '2000/11/21', 'admin', ident_current('Subsidiary')),
 	('analist', '1234', 'max', 'correo@ejemplo.com', 'fei', '1122334455', '2004/06/04', 'analist', ident_current('Subsidiary')),
-	('collector', '1234', 'example', 'correo@ejemplo.com', 'fei', '1122334455', '2001/09/11', 'collector', ident_current('Subsidiary'));
+	('collector', '1234', 'example', 'correo@ejemplo.com', 'fei', '1122334455', '2001/09/11', 'collector', ident_current('Subsidiary')),
 	('max', '1234', 'max', 'correo@ejemplo.com', 'fei', '7897897893', '2004/11/11', 'analist', ident_current('Subsidiary'));
 
 insert into Client (rfc, name, birthday, houseAddress, workAddress, phoneNumber1, phoneNumber2, mail, state) values
@@ -43,10 +43,16 @@ insert into PersonalReference (name, phoneNumber, relationship, clientRfc) value
 	('merengana', '5555555555', 'madre', '1111111111111');
 
 insert into CreditCondition (state, interestRate, IVA, paymentsPerMonth, registrer)
-	values (1, 12, 16, 2, ident_current('Employee')), (1, 15, 16, 1, IDENT_CURRENT('Employee')), 
+	values (1, 12, 16, 2, ident_current('Employee')), (1, 15, 16, 1, IDENT_CURRENT('Employee')); 
 insert into CreditCondition (state, interestRate, IVA, paymentsPerMonth, registrer) values
 	(1, 12, 16, 2, ident_current('Employee')), (1, 15, 16, 1, IDENT_CURRENT('Employee')), 
 	(1, 10, 16, 4, IDENT_CURRENT('Employee')), (0, 10, 16, 4, IDENT_CURRENT('Employee'));
+
+insert into CreditPolicy (title, description, state ,effectiveDate, register) values
+	('Mayor de edad', 'El solicitante es mayor de 18 años',1, '2030/05/20', 2),
+	('Menor de 60 años', 'El solicitante tiene 60 años o menos',1, '2030/05/20', 2),
+	('Lista negra', 'El solicitante no aparece en ninguna lista negra de protección',1, '2030/05/20', 2),
+	('Capacidad de crédito', 'La capacidad de crédito es de al menos 30%',1, '2030/05/20', 2);
 
 insert into RequiredDocumentation (name, state, fileType) values ('Identificación', 1, 'image'), ('Curp', 1, 'pdf'), ('pato', 0, 'pdf');
 insert into RequiredDocumentation (name, state, fileType) values ('Identificación oficial', 1, 'image'), ('Curp', 1, 'pdf'), ('pato', 0, 'pdf');

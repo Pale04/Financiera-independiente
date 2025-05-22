@@ -15,7 +15,7 @@ namespace Financiera_GUI.Credit
         private DomainClasses.Credit? _credit;
         private DomainClasses.CreditCondition? _creditCondition;
         private DomainClasses.Customer? _customer;
-        private List<Document>? _documents;
+        private List<DomainClasses.Document>? _documents;
         private List<RequiredDocument>? _requiredDocumentation;
 
         NotificationManager _notificationManager = new NotificationManager();
@@ -59,7 +59,7 @@ namespace Financiera_GUI.Credit
             }
         }
 
-        private List<Document>? GetDocuments(int creditId)
+        private List<DomainClasses.Document>? GetDocuments(int creditId)
         {
             CreditDocumentManager manager = new();
             
@@ -89,7 +89,7 @@ namespace Financiera_GUI.Credit
             }
         }
 
-        private CreditCondition? GetCreditCondition(int conditionId)
+        private DomainClasses.CreditCondition? GetCreditCondition(int conditionId)
         {
             CreditConditionManager manager = new();
 
@@ -184,7 +184,7 @@ namespace Financiera_GUI.Credit
 
         private void DetermineCredit(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new wEvaluateApplication_S1(_credit));
         }
 
         private void Back(object sender, System.Windows.Input.MouseButtonEventArgs e)
