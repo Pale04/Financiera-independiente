@@ -14,13 +14,14 @@ namespace Data_Access
 
         public List<CreditRequest> GetPendingRequests()
         {
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
+            throw new NotImplementedException("This method is not implemented yet.");
+            /*using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.LoanOfficer)))
             {
                 return context.CreditRequests
                     .Take(100)
                     .OrderBy(d => d.id)
                     .ToList();
-            }
+            }*/
         }
 
         public List<Credit> GetActiveCredits()
