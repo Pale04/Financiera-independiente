@@ -256,7 +256,7 @@ namespace FinancieraServer.ServiceImplementations
                 foreach (var document in documents)
                 {
                     DocumentManager manager = new();
-                    byte[]? file = manager.GetDocument($"/creditDocuments/{document.name}");
+                    byte[]? file = manager.GetDocument($"creditDocuments/{document.name}");
 
                     if (file == null)
                     {

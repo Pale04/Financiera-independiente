@@ -178,7 +178,6 @@ namespace Financiera_GUI.Credit
                     AcceptedFile = documentation.FileType.ToString(),
                     DocumentationId = document.DocumentationId
                 };
-                button.SetImage(".\\Images\\upload_file_icon.png");
 
                 documentsPanel.Children.Add(button);
             }
