@@ -126,7 +126,7 @@ namespace Financiera_GUI.CustomerManagement
 
         private void RegisterCustomer(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            NavigationService.Navigate(new wCustomerRegistration());
+            NavigationService.Navigate(new wCustomerRegistration(this));
         }
 
         private void PreviousPage(object sender, System.Windows.Input.MouseButtonEventArgs e)

@@ -11,10 +11,12 @@ namespace Financiera_GUI.CustomerManagement
     public partial class wCustomerRegistration : Page
     {
         private readonly NotificationManager _notificationManager;
+        private wCustomerManagement _previousReference;
 
-        public wCustomerRegistration()
+        public wCustomerRegistration(wCustomerManagement previousReference)
         {
             _notificationManager = new NotificationManager();
+            _previousReference = previousReference;
             InitializeComponent();
             CustomizeDatePicker();
         }
@@ -28,6 +30,7 @@ namespace Financiera_GUI.CustomerManagement
 
         private void Back(object sender, MouseButtonEventArgs e)
         {
+            _previousReference.Reload();
             NavigationService.GoBack();
         }
 
