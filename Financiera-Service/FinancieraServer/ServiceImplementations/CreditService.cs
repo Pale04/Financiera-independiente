@@ -282,7 +282,7 @@ namespace FinancieraServer.ServiceImplementations
             }
             catch (DbException error)
             {
-                _logger.LogError($"An error with code {error.ErrorCode} occurred while retrieving documents at {DateTime.Now}: ", error.Message);
+                _logger.LogError($"An error with code {error.Message} occurred while retrieving documents at {DateTime.Now}: ", error.Message);
                 return new(1, "An error ocurred while retrieving documents");
             }
         }
@@ -319,7 +319,7 @@ namespace FinancieraServer.ServiceImplementations
             }
             catch (DbException error)
             {
-                _logger.LogError($"An error with code {error.ErrorCode} trying to get the condition and capital information ");
+                _logger.LogError($"An error with code {error.Message} trying to get the condition and capital information ");
                 return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
             }
         }

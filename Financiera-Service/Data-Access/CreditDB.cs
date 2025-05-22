@@ -83,7 +83,7 @@ namespace Data_Access
 
         public CreditPayment GetCreditPaymentInfo(int id)
         {
-            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Analyst)))
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
             {
                 return context.CreditPayments.FirstOrDefault(c => c.id == id);
             }

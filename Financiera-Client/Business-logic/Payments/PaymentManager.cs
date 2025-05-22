@@ -159,7 +159,6 @@ namespace Business_logic.Payments
         public int AddPolicy(Payment payment)
         {
             PaymentServiceClient client = new();
-            payment.State = payment._state;
             
             System.DateOnly currentDate = payment.CollectionDate;
             
