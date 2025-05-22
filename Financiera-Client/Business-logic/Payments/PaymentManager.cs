@@ -155,5 +155,25 @@ namespace Business_logic.Payments
                     return 0;
             }
         }
+
+        public int AddPolicy(Payment payment)
+        {
+            PaymentServiceClient client = new();
+            payment.State = payment._state;
+            
+            System.DateOnly currentDate = payment.CollectionDate;
+            
+            PaymentDC paymentDC = new()
+            {
+                Amount = payment.Amount,
+                CreditId = payment.CreditId,
+                CollectionDate = currentDate.ToString("yyyy-MM-dd"),
+                RegistrerId = payment.RegistrerId
+
+            };
+            Response response = client.AddPayment(paymentDC);
+            int statusCode = response.StatusCode;
+            return statusCode;
+        }
     }
 }

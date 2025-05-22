@@ -61,6 +61,24 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El credito enviado no existe.
+        /// </summary>
+        internal static string EvaluationEmptyCredit {
+            get {
+                return ResourceManager.GetString("EvaluationEmptyCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El crédito no se ingresó o es  Inválido..
+        /// </summary>
+        internal static string EvaluationInvalidCredit {
+            get {
+                return ResourceManager.GetString("EvaluationInvalidCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Todos los campos son obligatorios.
         /// </summary>
         internal static string GlobalEmptyFields {
@@ -142,14 +160,6 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Politica ya registrada.
-        /// </summary>
-        internal static string PolicyDuplicated {
-            get {
-                return ResourceManager.GetString("PolicyDuplicated", resourceCulture);
-                }
-        }
-        /// <summary>
         ///   Busca una cadena traducida similar a No fue posible generar el layout de cobro. Contacte a soporte técnico si el problema persiste..
         /// </summary>
         internal static string PaymentLayoutGenerationFailed {
@@ -159,19 +169,29 @@ namespace Financiera_GUI {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a No se encontró la politica seleccionada.
-        /// </summary>
-        internal static string PolicyNotFound {
-            get {
-                return ResourceManager.GetString("PolicyNotFound", resourceCulture);
-                }
-        }
-        /// <summary>
         ///   Busca una cadena traducida similar a Se ha guardado correctamente el layout de cobro en su carpeta de Descargas..
         /// </summary>
         internal static string PaymentLayoutGenerationSuccessful {
             get {
                 return ResourceManager.GetString("PaymentLayoutGenerationSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Politica ya registrada.
+        /// </summary>
+        internal static string PolicyDuplicated {
+            get {
+                return ResourceManager.GetString("PolicyDuplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se encontró la politica seleccionada.
+        /// </summary>
+        internal static string PolicyNotFound {
+            get {
+                return ResourceManager.GetString("PolicyNotFound", resourceCulture);
             }
         }
         

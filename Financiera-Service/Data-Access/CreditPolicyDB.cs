@@ -1,4 +1,4 @@
-﻿using Data_Access.Entities;
+﻿ using Data_Access.Entities;
 using System.ComponentModel;
 using System.Data;
 
@@ -145,6 +145,19 @@ namespace Data_Access
                 }
                 return false;
             } 
+        }
+
+        public List<CreditPolicy> GetActivePolicies()
+        {
+            List<CreditPolicy> activePolicies = new();
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader)))
+            {
+                activePolicies = context.CreditPolicies
+                    .OrderBy(p => p.id)
+                    .Where(p => p.state == true)
+                    .ToList();
+            }
+            return activePolicies;
         }
     }
 }

@@ -96,5 +96,51 @@ namespace FinancieraServer.ServiceImplementations
 
             return new Response(0);
         }
+
+        Response IPaymentService.AddPayment(PaymentDC payment)
+        {
+            if (payment == null)
+            {
+                return new Response(2);
+            }
+
+            try
+            {
+                PaymentDB paymentDB = new();
+
+                if (paymentDB.PaymentExists(payment.Id))
+                {
+                    return new Response(3);
+                }
+                int response = paymentDB.AddPayment(new Payment()
+                {
+                    state = payment.PaymentState.ToString(),
+                    amount = payment.Amount,
+                    creditId = payment.CreditId,
+                    collectionDate = ConvertDate(payment.CollectionDate),
+                    registrer = payment.RegistrerId
+                });
+                if(response > 0)
+                {
+                    return new Response(0);
+                }
+                else
+                {
+                    return new Response(1);
+                }
+                
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"Error trying to add the Payment {error.Message}");
+                return new Response(1, "Error trying to add the payment");
+            }
+        }
+
+        public DateOnly ConvertDate(string paymentDate)
+        {
+            DateOnly dateconverted = DateOnly.Parse(paymentDate);
+            return dateconverted;
+        }
     }
 }

@@ -15,6 +15,11 @@
             set { _state = value; } 
         }
 
+        public DateOnly CollectionDate { get; set; }
+        public decimal Amount { get; set; }
+
+        public int CreditId { get; set; }
+
         public int RegistrerId { get; set; }
 
         public string GetState()

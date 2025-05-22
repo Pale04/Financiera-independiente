@@ -67,5 +67,8 @@ namespace FinancieraServer.Interfaces
         [OperationContract]
         Response UpdateCreditPolicyState(int id, bool statePolicyUpdated);
 
+        [OperationContract]
+        ResponseWithContent<List<CreditPolicyDC>> GetActivePolicies();
+
     }
 }

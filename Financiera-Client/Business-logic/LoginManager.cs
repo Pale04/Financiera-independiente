@@ -68,6 +68,7 @@ namespace Business_logic
                     {
                         User = response.Data.user,
                         Role = response.Data.role,
+                        Name = response.Data.name,
                         Mail = response.Data.mail,
                         Id = response.Data.id,
                         SucursalId = response.Data.sucursalId

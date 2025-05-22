@@ -1,0 +1,47 @@
+Feat: CU09
+
+added the evaluation process for the credit application
+
+# Conflicts:
+#	Financiera-Client/Business-logic/Catalogs/CreditConditionManager.cs
+#	Financiera-Client/Business-logic/Connected Services/CatalogServiceReference/Reference.cs
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# interactive rebase in progress; onto fdf2fc6
+# Last command done (1 command done):
+#    pick eb414b2 Feat: CU09
+# No commands remaining.
+# You are currently rebasing branch 'feat_credit_evaluation' on 'fdf2fc6'.
+#
+# Changes to be committed:
+#	modified:   Financiera-Client/Business-logic/Catalogs/CreditConditionManager.cs
+#	modified:   Financiera-Client/Business-logic/Catalogs/CreditPolicyManager.cs
+#	modified:   Financiera-Client/Business-logic/Connected Services/CatalogServiceReference/Reference.cs
+#	modified:   Financiera-Client/Business-logic/Connected Services/PaymentServiceReference/Reference.cs
+#	modified:   Financiera-Client/Business-logic/CreditManager.cs
+#	modified:   Financiera-Client/Business-logic/LoginManager.cs
+#	modified:   Financiera-Client/DomainClasses/Policy.cs
+#	new file:   Financiera-Client/DomainClasses/PolicyViewModel.cs
+#	new file:   Financiera-Client/Financiera-GUI/Credit/wEvaluateApplication_S1.xaml
+#	new file:   Financiera-Client/Financiera-GUI/Credit/wEvaluateApplication_S1.xaml.cs
+#	new file:   Financiera-Client/Financiera-GUI/Credit/wEvaluateApplication_S2.xaml
+#	new file:   Financiera-Client/Financiera-GUI/Credit/wEvaluateApplication_S2.xaml.cs
+#	modified:   Financiera-Client/Financiera-GUI/MainMenus/wFinancieraIndependiente.xaml.cs
+#	renamed:    Financiera-Client/Financiera-GUI/Utilities/wCreditPolicyManagmentRow.xaml -> Financiera-Client/Financiera-GUI/Utilities/ucCreditPolicyManagmentRow.xaml
+#	renamed:    Financiera-Client/Financiera-GUI/Utilities/wCreditPolicyManagmentRow.xaml.cs -> Financiera-Client/Financiera-GUI/Utilities/ucCreditPolicyManagmentRow.xaml.cs
+#	modified:   Financiera-Client/Financiera-GUI/wLogin.xaml
+#	modified:   Financiera-Service/Data-Access/CreditDB.cs
+#	modified:   Financiera-Service/Data-Access/CreditPolicyDB.cs
+#	modified:   Financiera-Service/Data-Access/PaymentDB.cs
+#	modified:   Financiera-Service/FinancieraServer/Interfaces/ICatalogService.cs
+#	modified:   Financiera-Service/FinancieraServer/Interfaces/IPaymentService.cs
+#	modified:   Financiera-Service/FinancieraServer/ServiceImplementations/CatalogCreditPolicy.cs
+#	modified:   Financiera-Service/FinancieraServer/ServiceImplementations/CreditService.cs
+#	modified:   Financiera-Service/FinancieraServer/ServiceImplementations/PaymentService.cs
+#	modified:   source/repos/WPFLocalization/obj/Debug/net8.0-windows/WPFLocalization..AssemblyInfo.cs
+#	modified:   source/repos/WPFLocalization/obj/Debug/net8.0-windows/WPFLocalization..AssemblyInfoInputs.cache
+#	modified:   source/repos/WPFLocalization/obj/Debug/net8.0-windows/WPFLocalization..GeneratedMSBuildEditorConfig.editorconfig
+#	modified:   source/repos/WPFLocalization/obj/Debug/net8.0-windows/WPFLocalization..assets.cache
+#

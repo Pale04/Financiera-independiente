@@ -1,0 +1,89 @@
+﻿<Page x:Class="Financiera_GUI.Credit.wEvaluateApplication_S2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Financiera_GUI.Credit"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="wEvaluateApplication_S2">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Margin="10" Grid.Column="0" Height="40" Width="40" CornerRadius="50" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Back">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="620"/>
+                <ColumnDefinition Width="560"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Roboto"
+                FontSize="30" FontWeight="Medium">Paso 2: Dictamen de Crédito</Label>
+
+            <StackPanel Grid.Column="1" Margin="50,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Border x:Name="Step1" Background="LimeGreen" Height="25" Width="150" BorderBrush="Black" BorderThickness="3" CornerRadius="5" Margin="10">
+                </Border>
+                <Border x:Name="Step2" Background="LimeGreen" Height="25" Width="150" BorderBrush="Black" BorderThickness="3" CornerRadius="5" Margin="10">
+                </Border>
+                <Border x:Name="Step3" Background="LightGray" Height="25" Width="150" BorderBrush="Black" BorderThickness="3" CornerRadius="5" Margin="10">
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Background="#D9D9D9" Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" FontFamily="Roboto" FontSize="20" FontWeight="Bold" Margin="20,0,0,10"> Ingrese todos los datos para el dictamen de crédito</Label>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Label Name="LbEmployeeName" FontFamily="Roboto" FontSize="30" FontWeight="Regular">Analista: </Label>
+
+                <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
+                    <Label FontFamily="Roboto" FontSize="30" Margin="0,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Center"> Estado: </Label>
+                    <ComboBox Name="CbState" Margin="25,0,0,0" Height="50" Width="500" FontFamily="Roboto" FontSize="25" Foreground="Black" Background="White"
+                              VerticalAlignment="Center" HorizontalAlignment="Center"></ComboBox>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label FontFamily="Roboto" FontSize="30" Margin="0,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Top"> Observaciones: </Label>
+                    <TextBox x:Name="TbComments" Margin="10" 
+                             Height="200" Width="750" 
+                             FontFamily="Roboto" FontSize="14">
+                    </TextBox>
+                </StackPanel>
+                <Label Name="LbDate" Margin="10,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       FontFamily="Roboto" FontSize="30" FontWeight="Regular">Fecha y Hora: </Label>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Button Name="btnEvaluate" VerticalAlignment="Center" HorizontalAlignment="Right" Height="55" Background="#757575"
+            Width="225" Margin="0,0,25,15"
+            FontFamily="Roboto" FontSize="25" FontWeight="DemiBold" Foreground="#F5F5F5" Click="EvaluatePolicies"> Realizar Dictamen
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

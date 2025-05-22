@@ -89,6 +89,12 @@ namespace Financiera_GUI.Credit
             UpdateList();
         }
 
+        private void Back(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
+
+        }
+
         private void ViewCreditInfo(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wCreditDetails(((ucCreditRequestRow)sender).CreditId));

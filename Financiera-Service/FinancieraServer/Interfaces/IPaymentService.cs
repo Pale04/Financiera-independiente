@@ -10,5 +10,8 @@ namespace FinancieraServer.Interfaces
 
         [OperationContract]
         Response UpdatePaymentState(PaymentDC payment);
+
+        [OperationContract]
+        Response AddPayment(PaymentDC payment);
     }
 }

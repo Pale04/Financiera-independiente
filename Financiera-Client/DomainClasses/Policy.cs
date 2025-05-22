@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,5 +32,6 @@ namespace DomainClasses
             return trimmedTitle.Length >= 10 && trimmedTitle.Length <= 50 &&
                    trimmedDescription.Length >= 10 && trimmedDescription.Length <= 100;
         }
+
     }
 }

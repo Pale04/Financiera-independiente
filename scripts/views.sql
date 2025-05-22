@@ -12,3 +12,14 @@ INNER JOIN dbo.CreditCondition ON dbo.Credit.conditionId = dbo.CreditCondition.i
 WHERE dbo.Credit.state = 'requested';
 
 GO
+
+
+--new
+CREATE VIEW CreditPayment AS SELECT dbo.Credit.id, dbo.Credit.capital, dbo.Credit.duration, dbo.Credit.beneficiary,dbo.Credit.state,
+dbo.Credit.registrer, dbo.Credit.registryDate,dbo.Credit.conditionId, 
+dbo.CreditCondition.interestRate, dbo.CreditCondition.paymentsPerMonth, dbo.CreditCondition.IVA
+FROM dbo.Credit 
+INNER JOIN dbo.CreditCondition ON dbo.Credit.conditionId = dbo.CreditCondition.id
+WHERE dbo.Credit.state = 'active';
+
+GO

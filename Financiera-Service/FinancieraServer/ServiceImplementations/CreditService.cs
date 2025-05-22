@@ -140,7 +140,39 @@ namespace FinancieraServer.ServiceImplementations
 
         public Response DetermineRequest(int requestId, bool granted)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Credit credit = new()
+                {
+                    id = requestId
+                };
+                CreditDB creditDB = new();
+                credit = creditDB.ExistsById(credit.id);
+                int response;
+
+                if (credit != null)
+                {
+                    if (!granted)
+                    {
+                        response = creditDB.UpdateState(credit.id, "rejected");
+                        return new Response(response);
+                    }
+                    else
+                    {
+                        response = creditDB.UpdateState(credit.id, "active");
+                        return new Response(response);
+                    }
+                }
+                else
+                {
+                    return new Response(4, "Cannot find the credit specified");
+                }
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"An error happen trying to approve or reject the credit application {error.Message}");
+                return new Response(1, "An error ocurred while approve / reject the application");
+            }
         }
 
         public ResponseWithContent<List<CreditDC>> GetActiveCredits()
