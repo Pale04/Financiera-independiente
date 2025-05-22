@@ -22,5 +22,17 @@ namespace Data_Access
 
             return name;
         }
+
+        public byte[]? GetDocument(string path)
+        {
+            try
+            {
+                return File.ReadAllBytes(path);
+            }
+            catch (FileNotFoundException error)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -2,13 +2,57 @@
 using Data_Access.Entities;
 using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
+using System.Collections.Immutable;
 using System.Data.Common;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FinancieraServer.ServiceImplementations
 {
     public class CreditService : ICreditService
     {
-        private ILogger<AccountService> _logger;
+        private ILogger<CreditService> _logger;
+
+        public CreditService(ILogger<CreditService> logger)
+        {
+            _logger = logger;
+        }
+
+        public ResponseWithContent<CreditDC> GetCredit(int creditId)
+        {
+            CreditDB creditDB = new();
+
+            try
+            {
+                CreditDC creditDC = new();
+                var credit = creditDB.GetCredit(creditId);
+
+                if (credit == null)
+                {
+                    _logger.LogInformation($"Couldn´t find credit with id {creditId}");
+                }
+                else
+                {
+                    creditDC = new()
+                    {
+                        Id = creditId,
+                        State = credit.state,
+                        Duration = credit.duration,
+                        Capital = credit.capital,
+                        RegistrerId = credit.registrer,
+                        BeneficiaryId = credit.beneficiary,
+                        ConditionId = credit.conditionId,
+                        RegistryDate = credit.registryDate.ToString()
+                    };
+                }
+
+                return new(0, creditDC);
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"An error with code {error.ErrorCode} occurred while saving credit at {DateTime.Now}: ", error.Message);
+                return new(1, "An error ocurred while saving the credit info");
+            }
+        }
 
         public Response AddCreditRequest(CreditRequestDC request)
         {
@@ -166,7 +210,7 @@ namespace FinancieraServer.ServiceImplementations
             }
         }
 
-        public ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(int beneficiaryId)
+        public ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(string beneficiaryId)
         {
             CreditDB creditDB = new();
 
@@ -199,39 +243,47 @@ namespace FinancieraServer.ServiceImplementations
             }
         }
 
-        public ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId)
+        public ResponseWithContent<List<CreditDocumentDC>> GetCreditsDocuments(int creditId)
         {
-            CreditDB creditDB = new();
+            DocumentDB documentDB = new();
+
             try
             {
-                var creditPayment = creditDB.GetCreditPaymentInfo(creditId);
-                if(creditPayment != null)
-                {
-                    CreditPaymentDC creditPaymentDC = new()
-                    {
-                        id = creditPayment.id,
-                        state = creditPayment.state,
-                        duration = creditPayment.duration,
-                        capital = creditPayment.capital,
-                        beneficiary = creditPayment.beneficiary,
-                        registryDate = creditPayment.registryDate,
-                        registrer = creditPayment.registrer,
-                        conditionId = creditPayment.conditionId,
-                        interestRate = creditPayment.interestRate,
-                        IVA = creditPayment.IVA,
-                        paymentsPerMonth = creditPayment.paymentsPerMonth
+                var documents = documentDB.GetByCreditId(creditId);
 
-                    };
-                    return new ResponseWithContent<CreditPaymentDC>(0, creditPaymentDC);
-                }
-                else
+                List<CreditDocumentDC> documentsDC = [];
+
+                foreach (var document in documents)
                 {
-                    return new ResponseWithContent<CreditPaymentDC>(4, "Cannot find the credit information");
+                    DocumentManager manager = new();
+                    byte[] file = manager.GetDocument(document.name);
+                    
+                    if (file == null)
+                    {
+                        _logger.LogError($"An error occurred while retrieving documents at {DateTime.Now}: File not found \"{document.name}\"");
+                        return new(1, "An error occurred while retrieving documents");
+                    }
+
+                    if (document.active)
+                    {
+                        documentsDC.Add(new()
+                        {
+                            Id = document.id,
+                            Name = document.name,
+                            RegistryDate = document.registryDate.ToString(),
+                            RegistrerId = document.registrer,
+                            DocumentationId = document.documentationId,
+                            File = file
+                        });
+                    }
                 }
-            }catch(DbException error)
+
+                return new(0, documentsDC);
+            }
+            catch (DbException error)
             {
-                _logger.LogError($"An error with code {error.ErrorCode} trying to get the condition and capital information ");
-                return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
+                _logger.LogError($"An error with code {error.ErrorCode} occurred while retrieving documents at {DateTime.Now}: ", error.Message);
+                return new(1, "An error ocurred while retrieving documents");
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using DomainClasses;
+﻿using Financiera_GUI.Credit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,15 +24,7 @@ namespace Financiera_GUI.MainMenus
 
         public void BtnCreditRequestListClick(object sender, MouseButtonEventArgs e)
         {
-            DomainClasses.Credit credit = new() { 
-                Id = 5,
-                State = "requested",
-                Duration = 1,
-                Capital = 250000,
-                Beneficiary = "1231231231237",
-                ConditionId = 1,
-            };
-            NavigationService.Navigate(new Credit.wEvaluateApplication_S1(credit));
+            // todo
         }
 
         private void BtnSearchCustomerClick(object sender, MouseButtonEventArgs e)
