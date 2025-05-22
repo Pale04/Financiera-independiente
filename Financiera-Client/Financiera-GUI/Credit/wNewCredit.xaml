@@ -23,11 +23,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Border Margin="10" Grid.Column="0" Height="40" Width="40" CornerRadius="50" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Back">
+            <Border Margin="10" Grid.Column="0" Height="40" Panel.ZIndex="2" Width="40" CornerRadius="50" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Back">
                 <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
             </Border>
-            <Label Grid.Column="1" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
-FontFamily="Roboto" FontSize="30" FontWeight="Bold">Crear cuenta de trabajador</Label>
+            <Label Grid.Column="0" Margin="10" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+FontFamily="Roboto" FontSize="30" FontWeight="Bold">Crear solicitud de credito</Label>
         </Grid>
 
         <Grid Grid.Row="1" Margin="200, 10, 200, 20">
