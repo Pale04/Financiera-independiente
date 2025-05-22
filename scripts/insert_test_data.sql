@@ -18,7 +18,8 @@ insert into Employee ([user], password, name, mail, address, phoneNumber, birthd
 	values ('pale', '1234', 'pale', 'correo@ejemplo.com', 'fei', '1237897892', '2004/12/12', 'adviser', ident_current('Subsidiary')),
 	('admin', '1234', 'david', 'correo@ejemplo.com', 'fei', '1122334455', '2000/11/21', 'admin', ident_current('Subsidiary')),
 	('analist', '1234', 'max', 'correo@ejemplo.com', 'fei', '1122334455', '2004/06/04', 'analist', ident_current('Subsidiary')),
-	('collector', '1234', 'example', 'correo@ejemplo.com', 'fei', '1122334455', '2001/09/11', 'collector', ident_current('Subsidiary'));
+	('collector', '1234', 'example', 'correo@ejemplo.com', 'fei', '1122334455', '2001/09/11', 'collector', ident_current('Subsidiary')),
+	('max', '1234', 'max', 'correo@ejemplo.com', 'fei', '7897897893', '2004/11/11', 'analist', ident_current('Subsidiary'));
 
 
 insert into Client (rfc, name, birthday, houseAddress, workAddress, phoneNumber1, phoneNumber2, mail, state)
