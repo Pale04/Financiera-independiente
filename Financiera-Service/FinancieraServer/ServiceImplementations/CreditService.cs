@@ -257,7 +257,7 @@ namespace FinancieraServer.ServiceImplementations
                 {
                     DocumentManager manager = new();
                     byte[] file = manager.GetDocument(document.name);
-                    
+
                     if (file == null)
                     {
                         _logger.LogError($"An error occurred while retrieving documents at {DateTime.Now}: File not found \"{document.name}\"");
@@ -286,5 +286,43 @@ namespace FinancieraServer.ServiceImplementations
                 return new(1, "An error ocurred while retrieving documents");
             }
         }
+
+        public ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId)
+        {
+            CreditDB creditDB = new();
+            try
+            {
+                var creditPayment = creditDB.GetCreditPaymentInfo(creditId);
+                if (creditPayment != null)
+                {
+                    CreditPaymentDC creditPaymentDC = new()
+                    {
+                        id = creditPayment.id,
+                        state = creditPayment.state,
+                        duration = creditPayment.duration,
+                        capital = creditPayment.capital,
+                        beneficiary = creditPayment.beneficiary,
+                        registryDate = creditPayment.registryDate,
+                        registrer = creditPayment.registrer,
+                        conditionId = creditPayment.conditionId,
+                        interestRate = creditPayment.interestRate,
+                        IVA = creditPayment.IVA,
+                        paymentsPerMonth = creditPayment.paymentsPerMonth
+
+                    };
+                    return new ResponseWithContent<CreditPaymentDC>(0, creditPaymentDC);
+                }
+                else
+                {
+                    return new ResponseWithContent<CreditPaymentDC>(4, "Cannot find the credit information");
+                }
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"An error with code {error.ErrorCode} trying to get the condition and capital information ");
+                return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
+            }
+        }
     }
 }
+

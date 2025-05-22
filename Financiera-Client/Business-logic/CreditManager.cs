@@ -92,6 +92,27 @@ namespace Business_logic
             return false;
         }
 
+        public int DeterminateResquest(Credit credit, bool isApproved)
+        {
+            if (credit == null)
+            {
+                return 2;
+            }
+            else
+            {
+                try
+                {
+                    CreditServiceClient client = new();
+                    Response response = client.DetermineRequest(credit.Id, isApproved);
+                    return response.StatusCode;
+                }
+                catch (CommunicationException error)
+                {
+                    return 1;
+                }
+            }
+        }
+
         public bool CustomerHasRecentCreditRequest(string rfc)
         {
             CreditServiceClient creditService = new CreditServiceClient();
@@ -150,5 +171,33 @@ namespace Business_logic
                 ConditionId = creditDb.ConditionId,
             };
         }
+
+        public CreditCondition GetCreditCondition(int idCredit)
+        {
+            CreditServiceClient creditService = new CreditServiceClient();
+            try
+            {
+                var conditionInfo = creditService.GetPaymentInfo(idCredit);
+                if (conditionInfo.StatusCode == 0)
+                {
+                    CreditCondition creditConditionInfo = new()
+                    {
+                        InterestRate = conditionInfo.Data.interestRate,
+                        IVA = conditionInfo.Data.IVA,
+                        PaymentsPerMonth = conditionInfo.Data.paymentsPerMonth
+                    };
+                    return creditConditionInfo;
+                }
+                else
+                {
+                    throw new Exception(ErrorMessages.BadRequest);
+                }
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+        }
     }
 }
+

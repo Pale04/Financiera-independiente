@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WPFLocalization.")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09bb8e588f9206f56160092f90ea5d79c055e5a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("WPFLocalization.")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WPFLocalization.")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
