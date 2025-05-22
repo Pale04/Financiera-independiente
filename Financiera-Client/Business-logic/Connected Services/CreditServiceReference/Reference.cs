@@ -280,6 +280,7 @@ namespace CreditServiceReference
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestSummaryDC1nk_PiFui))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfCreditDC1nk_PiFui))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfArrayOfCreditDocumentDC1nk_PiFui))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui))]
     public partial class Response : object
     {
         
@@ -526,8 +527,6 @@ namespace CreditServiceReference
         
         private int interestRateField;
         
-        private string nameField;
-        
         private int paymentsPerMonthField;
         
         private int registrerField;
@@ -624,19 +623,6 @@ namespace CreditServiceReference
             set
             {
                 this.interestRateField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string name
-        {
-            get
-            {
-                return this.nameField;
-            }
-            set
-            {
-                this.nameField = value;
             }
         }
         
