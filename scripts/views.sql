@@ -1,3 +1,6 @@
+USE independent_financial;
+GO
+
 --Payment layout
 CREATE VIEW PaymentLayout AS SELECT dbo.Payment.id, dbo.Client.name, dbo.Payment.collectionDate, dbo.Payment.amount, dbo.BankAccount.clabe
 FROM dbo.Payment INNER JOIN dbo.Credit ON dbo.Payment.creditId = dbo.Credit.id 
