@@ -99,21 +99,20 @@ namespace Financiera_GUI.Credit
 
         public decimal CalculateTotal(DomainClasses.CreditCondition creditCondition, DomainClasses.Credit credit)
         {
-            int capital = credit.Capital;
-            int IVA = creditCondition.IVA / 100;
-            int interestRate = creditCondition.InterestRate / 100;
-            int years = credit.Duration;
+            decimal capital = credit.Capital;
+            decimal iva = creditCondition.IVA / 100m;
+            decimal interestRate = creditCondition.InterestRate / 100m;
+            decimal years = credit.Duration / 12m;
 
-            decimal total = capital + (capital * interestRate * years * (1 + IVA));
+            decimal total = capital + (capital * interestRate * years * (1 + iva));
             return total;
-            
+
         }
 
         public int CalculateNumberOfPayments(DomainClasses.CreditCondition creditCondition, DomainClasses.Credit credit)
         {
-            int paymentsPerYear = creditCondition.PaymentsPerMonth * 12;
-            int TotalPayments = credit.Duration * paymentsPerYear;
-            return TotalPayments;
+            int totalPayments = credit.Duration * creditCondition.PaymentsPerMonth;
+            return totalPayments;
         }
 
         public List<DomainClasses.Payment> GeneratePayments(decimal capital, int numberOfPayments, DomainClasses.Credit credit, DomainClasses.CreditCondition creditCondition)
