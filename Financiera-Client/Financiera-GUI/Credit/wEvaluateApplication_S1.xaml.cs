@@ -28,12 +28,14 @@ namespace Financiera_GUI.Credit
     {
         public ObservableCollection<PolicyViewModel> ActivePolicies { get; } = new ObservableCollection<PolicyViewModel>();
         private readonly NotificationManager _notificationManager;
-        public wEvaluateApplication_S1()
+        private DomainClasses.Credit _creditReferenced;
+        public wEvaluateApplication_S1(DomainClasses.Credit credit)
         {
             InitializeComponent();
             DataContext = this;
             _notificationManager = new NotificationManager();
             GetActivePolicies();
+            _creditReferenced = credit;
         }
 
         public void GetActivePolicies()
@@ -73,7 +75,7 @@ namespace Financiera_GUI.Credit
                 }
             }
             
-            NavigationService.Navigate(new wEvaluateApplication_S2(policiesFullfilled));
+            NavigationService.Navigate(new wEvaluateApplication_S2( _creditReferenced, policiesFullfilled));
         }
 
         private void Evaluate(object sender, RoutedEventArgs e)

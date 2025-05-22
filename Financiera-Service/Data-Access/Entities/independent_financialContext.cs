@@ -44,6 +44,8 @@ public partial class independent_financialContext : DbContext
 
     public virtual DbSet<Subsidiary> Subsidiaries { get; set; }
 
+    public virtual DbSet<CreditPayment> CreditPayments { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(_connectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -176,6 +178,18 @@ public partial class independent_financialContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
         });
+
+        modelBuilder.Entity<CreditPayment>(entity =>
+        {
+            entity
+               .HasNoKey()
+               .ToView("CreditPayment");
+            entity.Property(e => e.conditionId).IsRequired();
+            entity.Property(e => e.interestRate).IsRequired();
+            entity.Property(e => e.paymentsPerMonth).IsRequired();
+        });
+
+        OnModelCreatingPartial(modelBuilder);
 
         modelBuilder.Entity<Document>(entity =>
         {
@@ -330,7 +344,7 @@ public partial class independent_financialContext : DbContext
                 .IsUnicode(false);
         });
 
-        OnModelCreatingPartial(modelBuilder);
+        
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

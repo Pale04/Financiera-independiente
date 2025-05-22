@@ -107,7 +107,11 @@ namespace FinancieraServer.ServiceImplementations
             try
             {
                 PaymentDB paymentDB = new();
-                
+
+                if (paymentDB.PaymentExists(payment.Id))
+                {
+                    return new Response(3);
+                }
                 int response = paymentDB.AddPayment(new Payment()
                 {
                     state = payment.PaymentState.ToString(),
@@ -116,7 +120,14 @@ namespace FinancieraServer.ServiceImplementations
                     collectionDate = ConvertDate(payment.CollectionDate),
                     registrer = payment.RegistrerId
                 });
-                return new Response(response);
+                if(response > 0)
+                {
+                    return new Response(0);
+                }
+                else
+                {
+                    return new Response(1);
+                }
                 
             }
             catch (DbException error)

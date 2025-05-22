@@ -19,5 +19,9 @@ namespace FinancieraServer.Interfaces
 
         [OperationContract]
         Response DetermineRequest(int requestId, bool granted);
+
+        [OperationContract]
+        ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId);
+
     }
 }

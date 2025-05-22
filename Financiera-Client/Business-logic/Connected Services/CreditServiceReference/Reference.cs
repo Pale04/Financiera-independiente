@@ -277,7 +277,8 @@ namespace CreditServiceReference
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestDC1nk_PiFui))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestSummaryDC1nk_PiFui))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui))]
     public partial class Response : object
     {
         
@@ -336,14 +337,14 @@ namespace CreditServiceReference
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfArrayOfCreditRequestDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
-    public partial class ResponseWithContentOfArrayOfCreditRequestDC1nk_PiFui : CreditServiceReference.Response
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfArrayOfCreditRequestSummaryDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class ResponseWithContentOfArrayOfCreditRequestSummaryDC1nk_PiFui : CreditServiceReference.Response
     {
         
-        private CreditServiceReference.CreditRequestDC[] DataField;
+        private CreditServiceReference.CreditRequestSummaryDC[] DataField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public CreditServiceReference.CreditRequestDC[] Data
+        public CreditServiceReference.CreditRequestSummaryDC[] Data
         {
             get
             {
@@ -352,6 +353,297 @@ namespace CreditServiceReference
             set
             {
                 this.DataField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfCreditPaymentDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class ResponseWithContentOfCreditPaymentDC1nk_PiFui : CreditServiceReference.Response
+    {
+        
+        private CreditServiceReference.CreditPaymentDC DataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CreditServiceReference.CreditPaymentDC Data
+        {
+            get
+            {
+                return this.DataField;
+            }
+            set
+            {
+                this.DataField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreditRequestSummaryDC", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class CreditRequestSummaryDC : object
+    {
+        
+        private int CapitalField;
+        
+        private string ClientNameField;
+        
+        private int DurationField;
+        
+        private int IdField;
+        
+        private int InterestRateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Capital
+        {
+            get
+            {
+                return this.CapitalField;
+            }
+            set
+            {
+                this.CapitalField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ClientName
+        {
+            get
+            {
+                return this.ClientNameField;
+            }
+            set
+            {
+                this.ClientNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Duration
+        {
+            get
+            {
+                return this.DurationField;
+            }
+            set
+            {
+                this.DurationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int InterestRate
+        {
+            get
+            {
+                return this.InterestRateField;
+            }
+            set
+            {
+                this.InterestRateField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreditPaymentDC", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class CreditPaymentDC : object
+    {
+        
+        private int IVAField;
+        
+        private string beneficiaryField;
+        
+        private int capitalField;
+        
+        private int conditionIdField;
+        
+        private byte durationField;
+        
+        private int idField;
+        
+        private int interestRateField;
+        
+        private string nameField;
+        
+        private int paymentsPerMonthField;
+        
+        private int registrerField;
+        
+        private System.DateTime registryDateField;
+        
+        private string stateField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IVA
+        {
+            get
+            {
+                return this.IVAField;
+            }
+            set
+            {
+                this.IVAField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string beneficiary
+        {
+            get
+            {
+                return this.beneficiaryField;
+            }
+            set
+            {
+                this.beneficiaryField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int capital
+        {
+            get
+            {
+                return this.capitalField;
+            }
+            set
+            {
+                this.capitalField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int conditionId
+        {
+            get
+            {
+                return this.conditionIdField;
+            }
+            set
+            {
+                this.conditionIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte duration
+        {
+            get
+            {
+                return this.durationField;
+            }
+            set
+            {
+                this.durationField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int interestRate
+        {
+            get
+            {
+                return this.interestRateField;
+            }
+            set
+            {
+                this.interestRateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int paymentsPerMonth
+        {
+            get
+            {
+                return this.paymentsPerMonthField;
+            }
+            set
+            {
+                this.paymentsPerMonthField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int registrer
+        {
+            get
+            {
+                return this.registrerField;
+            }
+            set
+            {
+                this.registrerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime registryDate
+        {
+            get
+            {
+                return this.registryDateField;
+            }
+            set
+            {
+                this.registryDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string state
+        {
+            get
+            {
+                return this.stateField;
+            }
+            set
+            {
+                this.stateField = value;
             }
         }
     }
@@ -380,16 +672,22 @@ namespace CreditServiceReference
         System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui> GetCreditsByBeneficiaryAsync(string beneficiaryId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetCreditRequests", ReplyAction="http://tempuri.org/ICreditService/GetCreditRequestsResponse")]
-        CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestDC1nk_PiFui GetCreditRequests();
+        CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestSummaryDC1nk_PiFui GetCreditRequests();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetCreditRequests", ReplyAction="http://tempuri.org/ICreditService/GetCreditRequestsResponse")]
-        System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestDC1nk_PiFui> GetCreditRequestsAsync();
+        System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestSummaryDC1nk_PiFui> GetCreditRequestsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/DetermineRequest", ReplyAction="http://tempuri.org/ICreditService/DetermineRequestResponse")]
         CreditServiceReference.Response DetermineRequest(int requestId, bool granted);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/DetermineRequest", ReplyAction="http://tempuri.org/ICreditService/DetermineRequestResponse")]
         System.Threading.Tasks.Task<CreditServiceReference.Response> DetermineRequestAsync(int requestId, bool granted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetPaymentInfo", ReplyAction="http://tempuri.org/ICreditService/GetPaymentInfoResponse")]
+        CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui GetPaymentInfo(int creditId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetPaymentInfo", ReplyAction="http://tempuri.org/ICreditService/GetPaymentInfoResponse")]
+        System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui> GetPaymentInfoAsync(int creditId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -472,12 +770,12 @@ namespace CreditServiceReference
             return base.Channel.GetCreditsByBeneficiaryAsync(beneficiaryId);
         }
         
-        public CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestDC1nk_PiFui GetCreditRequests()
+        public CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestSummaryDC1nk_PiFui GetCreditRequests()
         {
             return base.Channel.GetCreditRequests();
         }
         
-        public System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestDC1nk_PiFui> GetCreditRequestsAsync()
+        public System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditRequestSummaryDC1nk_PiFui> GetCreditRequestsAsync()
         {
             return base.Channel.GetCreditRequestsAsync();
         }
@@ -490,6 +788,16 @@ namespace CreditServiceReference
         public System.Threading.Tasks.Task<CreditServiceReference.Response> DetermineRequestAsync(int requestId, bool granted)
         {
             return base.Channel.DetermineRequestAsync(requestId, granted);
+        }
+        
+        public CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui GetPaymentInfo(int creditId)
+        {
+            return base.Channel.GetPaymentInfo(creditId);
+        }
+        
+        public System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui> GetPaymentInfoAsync(int creditId)
+        {
+            return base.Channel.GetPaymentInfoAsync(creditId);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

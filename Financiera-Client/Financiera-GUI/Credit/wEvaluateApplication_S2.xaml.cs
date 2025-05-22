@@ -26,12 +26,14 @@ namespace Financiera_GUI.Credit
     {
         private readonly NotificationManager _notificationManager;
         private bool _policiesApproved;
-        public wEvaluateApplication_S2(bool isApproved)
+        private DomainClasses.Credit _creditReferenced;
+        public wEvaluateApplication_S2(DomainClasses.Credit creditReferenced, bool isApproved)
         {
             _policiesApproved = isApproved;
             InitializeComponent();
             _notificationManager = new NotificationManager();
             setEvaluation();
+            _creditReferenced = creditReferenced;
         }
 
         public void setEvaluation()
@@ -58,13 +60,37 @@ namespace Financiera_GUI.Credit
 
         public void Back(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate( new wEvaluateApplication_S1());
+            NavigationService.Navigate( new wEvaluateApplication_S1(_creditReferenced));
         }
 
         private void EvaluatePolicies(object sender, RoutedEventArgs e)
         {
             CreditManager manager = new();
-            int statusCode = manager.DeterminateResquest( _policiesApproved);
+            int statusCode = manager.DeterminateResquest(_creditReferenced ,_policiesApproved);
+            switch (statusCode)
+            {
+                case 1:
+                    _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
+                    break;
+                case 2:
+                    _notificationManager.Show(NotificationMessages.EvaluationInvalidCredit, NotificationType.Warning);
+                    break;
+                case 4:
+                    _notificationManager.Show(NotificationMessages.EvaluationEmptyCredit, NotificationType.Warning);
+                    break;
+                case 0:
+                    _notificationManager.Show(NotificationMessages.GlobalStatusUpdateSuccess, NotificationType.Success);
+                    if (!_policiesApproved)
+                    {
+                        NavigationService.Navigate(new wCreditDetails(_creditReferenced.Id));
+                    }
+                    else
+                    {
+                        NavigationService.Navigate(new wEvaluateApplication_S3(_creditReferenced));
+                    }
+
+                        break;
+            }
         }
     }
 }

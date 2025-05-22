@@ -86,7 +86,8 @@ namespace Data_Access
         public int AddPayment(Payment payment)
         {
             using(var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.CollectionsAgent)))
-            {                
+            {
+                payment.state = "pending";
                 context.Payments.Add(payment);
                 return context.SaveChanges();
                 

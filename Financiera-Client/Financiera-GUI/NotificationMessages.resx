@@ -161,11 +161,17 @@
   </data>
   <data name="PolicyNotFound" xml:space="preserve">
     <value>No se encontró la politica seleccionada</value>
-   </data>
+  </data>
   <data name="PaymentLayoutGenerationFailed" xml:space="preserve">
     <value>No fue posible generar el layout de cobro. Contacte a soporte técnico si el problema persiste.</value>
   </data>
   <data name="PaymentLayoutGenerationSuccessful" xml:space="preserve">
     <value>Se ha guardado correctamente el layout de cobro en su carpeta de Descargas.</value>
+  </data>
+  <data name="EvaluationEmptyCredit" xml:space="preserve">
+    <value>El credito enviado no existe</value>
+  </data>
+  <data name="EvaluationInvalidCredit" xml:space="preserve">
+    <value>El crédito no se ingresó o es  Inválido.</value>
   </data>
 </root>
