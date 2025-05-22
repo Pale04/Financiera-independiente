@@ -7,7 +7,7 @@ public partial class Subsidiary
 {
     public int id { get; set; }
 
-    public string Address { get; set; } = null!;
+    public string address { get; set; } = null!;
 
     public bool state { get; set; }
 

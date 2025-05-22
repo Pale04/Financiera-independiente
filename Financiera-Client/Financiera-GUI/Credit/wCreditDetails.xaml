@@ -1,0 +1,51 @@
+﻿<Page x:Class="Financiera_GUI.Credit.wCreditDetails"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Financiera_GUI.Credit"
+      mc:Ignorable="d" 
+      xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="wCreditDetails">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="65"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Margin="10" Grid.Column="0" Panel.ZIndex="2" Height="40" Width="40" CornerRadius="50" MouseLeftButtonDown="Back" Style="{StaticResource ButtonBehaviorGlobal}">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
+            </Border>
+
+            <Label Grid.ColumnSpan="2" Grid.Column="0" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+   FontFamily="Roboto" FontSize="30" FontWeight="Bold" Name="titleLabel">Crédito N.</Label>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Margin="20">
+            <Label FontWeight="SemiBold" FontSize="35">Cliente</Label>
+            <Label Name="clientNameLabel" FontSize="20"/>
+            <Label Name="clientAddressLabel" FontSize="20"/>
+
+            <Label FontWeight="SemiBold" FontSize="35">Promoción</Label>
+            <Label Name="capitalLabel" FontSize="20"/>
+            <Label Name="durationLabel" FontSize="20"/>
+            <Label Name="paymentsLabel" FontSize="20"/>
+            <Label Name="interestLabel" FontSize="20"/>
+
+            <Label FontWeight="SemiBold" FontSize="35">Documentos</Label>
+            <StackPanel Orientation="Horizontal" Name="documentsPanel"/>
+        </StackPanel>
+
+        <Button Grid.Row="2" HorizontalAlignment="Right" FontSize="20" Margin="15, 10, 30, 15" Padding="30, 0, 30, 0" Click="DetermineCredit">Dictaminar</Button>
+        <notifications:NotificationArea Grid.Row="2" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
+    </Grid>
+</Page>

@@ -1,0 +1,149 @@
+﻿<Page x:Class="Financiera_GUI.CatalogManagement.wCreditConditionManagement"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Financiera_GUI.CatalogManagement"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="wCreditConditionManagement"
+      xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
+      >
+       
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Margin="10" Grid.Column="0" Height="40" Width="40" CornerRadius="50" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Back">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
+            </Border>
+            <Label Grid.Column="1" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                   FontFamily="Roboto" FontSize="30" FontWeight="Bold">Gestión de condiciones de crédito</Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="1" Padding="10" Margin="5" CornerRadius="10" Background="#FFE0E1DD">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="Roboto">Periodicidad de pago</Label>
+                        <ComboBox x:Name="paymentsPerMonthInput" 
+                                  FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="Semanal" />
+                            <ComboBoxItem Content="Quincenal" />
+                            <ComboBoxItem Content="Mensual" />
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="0,0,10,0"  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="Roboto">Tasa de interés</Label>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="interestRateInput" Grid.Column="0" Width="80" MaxLength="3" TextAlignment="Right"
+                                     FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center"
+                                     PreviewTextInput="PreviewNumberInput"/>
+                            <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="Roboto">%</Label>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="2" Margin="0,0,10,0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="Roboto">IVA</Label>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="ivaInput" Grid.Column="0" Width="40" MaxLength="3" TextAlignment="Right"
+                                     FontSize="14" FontFamily="Roboto" VerticalContentAlignment="Center" Text="16"
+                                     PreviewTextInput="PreviewNumberInput"/>
+                            <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="Roboto">%</Label>
+                        </Grid>
+                    </StackPanel>
+                    <Border Grid.Column="4" Height="40" CornerRadius="40" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Register">
+                        <Image Source="../images/register-icon.png" Stretch="Uniform"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="previousPageButton" Grid.Column="1" Margin="0,0,10,0" MouseLeftButtonDown="PreviousPage"
+                    BorderThickness="1" BorderBrush="Black" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}"
+                    Visibility="Hidden">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Margin="5" Source="../images/previous_page_icon.png" Stretch="Uniform"/>
+                    <Label FontSize="12" FontFamily="Roboto" VerticalContentAlignment="Center">Página anterior</Label>
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="nextPageButton" Grid.Column="2" Margin="0,0,20,0" MouseLeftButtonDown="NextPage"
+                    BorderThickness="1" BorderBrush="Black" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}"
+                    Visibility="Hidden">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label FontSize="12" FontFamily="Roboto" VerticalContentAlignment="Center">Siguiente página</Label>
+                    <Image Margin="5" Source="../images/next_page_icon.png" Stretch="Uniform"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Vertical" Margin="20,10,20,10" x:Name="creditConditionsTable">
+            <Border Padding="5" Background="#778DA9" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="145"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Margin="0,0,10,0" Grid.Column="0" HorizontalContentAlignment="Center"
+                           FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Periodicidad de pago</Label>
+                    <Label Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Center"
+                           FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Tasa de interés</Label>
+                    <Label Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center"
+                           FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">IVA</Label>
+                    <Label Margin="0,0,10,0" Grid.Column="3" HorizontalContentAlignment="Center"
+                           FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White" Height="29" VerticalAlignment="Top">Estado</Label>
+                    <Label Margin="0,0,10,0" Grid.Column="4" HorizontalContentAlignment="Center"
+                           FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Editar</Label>
+                    <Label Grid.Column="5" HorizontalContentAlignment="Center"
+                           FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="White">Activar/Desactivar</Label>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+        <notifications:NotificationArea Grid.Row="4" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
+    </Grid>
+</Page>

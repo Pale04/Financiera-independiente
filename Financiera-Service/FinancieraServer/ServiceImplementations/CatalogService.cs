@@ -1,13 +1,15 @@
-﻿using FinancieraServer.DataContracts;
-using FinancieraServer.Interfaces;
+﻿using FinancieraServer.Interfaces;
 
 namespace FinancieraServer.ServiceImplementations
 {
     public partial class CatalogService : ICatalogService
     {
-        public Response registerCreditCondition()
+        private ILogger<CatalogService> _logger;
+
+        public CatalogService(ILogger<CatalogService> logger)
         {
-            throw new NotImplementedException();
+            _logger = logger;
         }
+
     }
 }

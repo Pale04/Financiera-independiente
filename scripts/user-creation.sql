@@ -2,12 +2,11 @@
 
 USE independent_financial;
 
--- Se crea un ROL con solo permisos de selección en todas la tablas
+-- Se crea un ROL con solo permisos de selecciï¿½n en todas la tablas
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'financial_reader' AND type = 'R')
 BEGIN
     CREATE ROLE financial_reader;
 END
-GO
 
 DECLARE @TableName SYSNAME;
 DECLARE TableCursor CURSOR FOR
@@ -29,15 +28,13 @@ END;
 
 CLOSE TableCursor;
 DEALLOCATE TableCursor;
-GO
 
--- Se crea un usuario para la cuenta que solo tendrá permisos de selección y hereda los permisos del rol que los tiene
+-- Se crea un usuario para la cuenta que solo tendrï¿½ permisos de selecciï¿½n y hereda los permisos del rol que los tiene
 CREATE USER financialReader FOR login financialReader;
 ALTER ROLE financial_reader ADD MEMBER financialReader;
 GRANT VIEW DEFINITION TO financialReader;
-GO
 
---Se crea un usuario para cada cuenta, añadiendo solo permisos necesarios
+--Se crea un usuario para cada cuenta, aï¿½adiendo solo permisos necesarios
 CREATE USER financialAdmin FOR login financialAdmin;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::CreditPolicy TO financialAdmin;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::CreditCondition TO financialAdmin;
@@ -53,9 +50,35 @@ GRANT INSERT, SELECT ON OBJECT::Credit TO financialLoanOfficer;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::Document TO financialLoanOfficer;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::BankAccount TO financialLoanOfficer;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::Client TO financialLoanOfficer;
+GRANT INSERT, SELECT, UPDATE ON OBJECT::PersonalReference TO financialLoanOfficer;--New
 
 CREATE USER financialCollectionsAgent FOR login financialCollectionsAgent;
 GRANT INSERT, SELECT, UPDATE ON OBJECT::Payment TO financialCollectionsAgent;
 
 CREATE USER financialAccountModificator FOR login financialAccountModificator;
 GRANT SELECT, UPDATE ON OBJECT::Employee TO financialAccountModificator;
+
+CREATE USER financialTester FOR login financialTester;
+GRANT VIEW DEFINITION TO financialTester;
+--Dar permisos de inserciï¿½n y eliminaciï¿½n en todas las tablas
+DECLARE @TableName2 SYSNAME;
+DECLARE TableCursor2 CURSOR FOR
+SELECT TABLE_NAME
+FROM information_schema.TABLES
+WHERE TABLE_TYPE = 'BASE TABLE';
+
+OPEN TableCursor2;
+
+FETCH NEXT FROM TableCursor2 INTO @TableName2;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    DECLARE @GrantStatement2 NVARCHAR(MAX);
+    SET @GrantStatement2 = 'GRANT SELECT, INSERT, DELETE ON OBJECT::' + QUOTENAME(@TableName2) + ' TO financialTester;';
+    EXEC (@GrantStatement2);
+    FETCH NEXT FROM TableCursor2 INTO @TableName2;
+END;
+
+CLOSE TableCursor2;
+DEALLOCATE TableCursor2;
+GO

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Financiera_GUI.CatalogManagement;
+using System.Windows.Controls;
 
 namespace Financiera_GUI.MainMenus
 {
@@ -20,19 +21,24 @@ namespace Financiera_GUI.MainMenus
         }
         private void BtnCreditPoliciesManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //TODO: Implement the logic for navigate to the credit policies page
+            NavigationService.Navigate(new wCreditPoliciesManagment());
         }
         private void BtnCreditConditionManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //TODO: Implement the logic for navigate to the credit conditions page
+            NavigationService.Navigate(new wCreditConditionManagement());
         }
         private void BtnDocumentationManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //TODO: Implement the logic for navigate to the documentation page
+            NavigationService.Navigate(new wDocumentationManagement());
         }
         private void BtnFinancialBranchesManagementClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //TODO: Implement the logic for navigate to the Financial Branches page
+            NavigationService.Navigate(new wFinancialBranchManagement());
+        }
+
+        private void BtnCreateAccountClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new wAccountCreation());
         }
     }
 }

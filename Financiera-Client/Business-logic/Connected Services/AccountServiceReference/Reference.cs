@@ -14,6 +14,163 @@ namespace AccountServiceReference
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EmployeeDC", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class EmployeeDC : object
+    {
+        
+        private string addressField;
+        
+        private string birthdayField;
+        
+        private int idField;
+        
+        private string mailField;
+        
+        private string nameField;
+        
+        private string passwordField;
+        
+        private string phoneField;
+        
+        private string roleField;
+        
+        private int subsidiaryIdField;
+        
+        private string userField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string address
+        {
+            get
+            {
+                return this.addressField;
+            }
+            set
+            {
+                this.addressField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string birthday
+        {
+            get
+            {
+                return this.birthdayField;
+            }
+            set
+            {
+                this.birthdayField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string mail
+        {
+            get
+            {
+                return this.mailField;
+            }
+            set
+            {
+                this.mailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password
+        {
+            get
+            {
+                return this.passwordField;
+            }
+            set
+            {
+                this.passwordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string phone
+        {
+            get
+            {
+                return this.phoneField;
+            }
+            set
+            {
+                this.phoneField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string role
+        {
+            get
+            {
+                return this.roleField;
+            }
+            set
+            {
+                this.roleField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int subsidiaryId
+        {
+            get
+            {
+                return this.subsidiaryIdField;
+            }
+            set
+            {
+                this.subsidiaryIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string user
+        {
+            get
+            {
+                return this.userField;
+            }
+            set
+            {
+                this.userField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
     public partial class Response : object
     {
@@ -55,7 +212,34 @@ namespace AccountServiceReference
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/createAccount", ReplyAction="http://tempuri.org/IAccountService/createAccountResponse")]
-        System.Threading.Tasks.Task<AccountServiceReference.Response> createAccountAsync();
+        AccountServiceReference.Response createAccount(AccountServiceReference.EmployeeDC employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/createAccount", ReplyAction="http://tempuri.org/IAccountService/createAccountResponse")]
+        System.Threading.Tasks.Task<AccountServiceReference.Response> createAccountAsync(AccountServiceReference.EmployeeDC employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/SendEmail", ReplyAction="http://tempuri.org/IAccountService/SendEmailResponse")]
+        int SendEmail(string mail, string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/SendEmail", ReplyAction="http://tempuri.org/IAccountService/SendEmailResponse")]
+        System.Threading.Tasks.Task<int> SendEmailAsync(string mail, string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/ChangePassword", ReplyAction="http://tempuri.org/IAccountService/ChangePasswordResponse")]
+        AccountServiceReference.Response ChangePassword(string user, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/ChangePassword", ReplyAction="http://tempuri.org/IAccountService/ChangePasswordResponse")]
+        System.Threading.Tasks.Task<AccountServiceReference.Response> ChangePasswordAsync(string user, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/GenerateVerificationCode", ReplyAction="http://tempuri.org/IAccountService/GenerateVerificationCodeResponse")]
+        string GenerateVerificationCode(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/GenerateVerificationCode", ReplyAction="http://tempuri.org/IAccountService/GenerateVerificationCodeResponse")]
+        System.Threading.Tasks.Task<string> GenerateVerificationCodeAsync(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/CheckVerificationCode", ReplyAction="http://tempuri.org/IAccountService/CheckVerificationCodeResponse")]
+        bool CheckVerificationCode(string clientCode, string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/CheckVerificationCode", ReplyAction="http://tempuri.org/IAccountService/CheckVerificationCodeResponse")]
+        System.Threading.Tasks.Task<bool> CheckVerificationCodeAsync(string clientCode, string user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -108,9 +292,54 @@ namespace AccountServiceReference
         {
         }
         
-        public System.Threading.Tasks.Task<AccountServiceReference.Response> createAccountAsync()
+        public AccountServiceReference.Response createAccount(AccountServiceReference.EmployeeDC employee)
         {
-            return base.Channel.createAccountAsync();
+            return base.Channel.createAccount(employee);
+        }
+        
+        public System.Threading.Tasks.Task<AccountServiceReference.Response> createAccountAsync(AccountServiceReference.EmployeeDC employee)
+        {
+            return base.Channel.createAccountAsync(employee);
+        }
+        
+        public int SendEmail(string mail, string code)
+        {
+            return base.Channel.SendEmail(mail, code);
+        }
+        
+        public System.Threading.Tasks.Task<int> SendEmailAsync(string mail, string code)
+        {
+            return base.Channel.SendEmailAsync(mail, code);
+        }
+        
+        public AccountServiceReference.Response ChangePassword(string user, string password)
+        {
+            return base.Channel.ChangePassword(user, password);
+        }
+        
+        public System.Threading.Tasks.Task<AccountServiceReference.Response> ChangePasswordAsync(string user, string password)
+        {
+            return base.Channel.ChangePasswordAsync(user, password);
+        }
+        
+        public string GenerateVerificationCode(string user)
+        {
+            return base.Channel.GenerateVerificationCode(user);
+        }
+        
+        public System.Threading.Tasks.Task<string> GenerateVerificationCodeAsync(string user)
+        {
+            return base.Channel.GenerateVerificationCodeAsync(user);
+        }
+        
+        public bool CheckVerificationCode(string clientCode, string user)
+        {
+            return base.Channel.CheckVerificationCode(clientCode, user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckVerificationCodeAsync(string clientCode, string user)
+        {
+            return base.Channel.CheckVerificationCodeAsync(clientCode, user);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

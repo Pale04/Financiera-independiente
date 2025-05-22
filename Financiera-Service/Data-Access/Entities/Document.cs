@@ -9,6 +9,8 @@ public partial class Document
 
     public string name { get; set; } = null!;
 
+    public bool active { get; set; }
+
     public DateTime registryDate { get; set; }
 
     public int registrer { get; set; }

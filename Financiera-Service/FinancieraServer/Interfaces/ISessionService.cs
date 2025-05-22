@@ -1,4 +1,5 @@
-﻿using FinancieraServer.DataContracts;
+﻿using Data_Access.Entities;
+using FinancieraServer.DataContracts;
 
 namespace FinancieraServer.Interfaces
 {
@@ -6,6 +7,12 @@ namespace FinancieraServer.Interfaces
     public interface ISessionService
     {
         [OperationContract]
-        ResponseWithContent<string> Login();
+        ResponseWithContent<Employee> Login(String username, String password);
+
+        [OperationContract]
+        ResponseWithContent<Employee> GetAccountInfo(String username);
+
+        [OperationContract]
+        Response Logout(string username);
     }
 }
