@@ -16,7 +16,10 @@ DBCC CHECKIDENT ('Subsidiary', RESEED, 0);
 insert into Subsidiary (address, state) values ('hola mundo', 1);
 insert into Employee ([user], password, name, mail, address, phoneNumber, birthday, role, sucursalId)
 	values ('pale', '1234', 'pale', 'correo@ejemplo.com', 'fei', '1237897892', '2004/12/12', 'adviser', ident_current('Subsidiary')),
-	('admin', '1234', 'david', 'correo@ejemplo.com', 'fei', '1122334455', '2000/11/21', 'admin', ident_current('Subsidiary'));
+	('admin', '1234', 'david', 'correo@ejemplo.com', 'fei', '1122334455', '2000/11/21', 'admin', ident_current('Subsidiary')),
+	('analist', '1234', 'max', 'correo@ejemplo.com', 'fei', '1122334455', '2004/06/04', 'analist', ident_current('Subsidiary')),
+	('collector', '1234', 'example', 'correo@ejemplo.com', 'fei', '1122334455', '2001/09/11', 'collector', ident_current('Subsidiary'));
+
 
 insert into Client (rfc, name, birthday, houseAddress, workAddress, phoneNumber1, phoneNumber2, mail, state)
 	values ('1231231231237', 'david carrion', '2000/11/21', 'dirección de mi casa', 'dirección de mi trabajo', '2288121212', '2281562389', 'correo@ejemplo.com', 1);
