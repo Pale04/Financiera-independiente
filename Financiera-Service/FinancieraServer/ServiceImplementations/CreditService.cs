@@ -464,7 +464,7 @@ namespace FinancieraServer.ServiceImplementations
             }
             catch (DbException error)
             {
-                _logger.LogError($"An error with code {error.ErrorCode} trying to get the condition and capital information ");
+                _logger.LogError($"An error with code {error.Message} trying to get the condition and capital information ");
                 return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
             }
         }

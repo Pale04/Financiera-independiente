@@ -31,7 +31,9 @@ insert into PersonalReference (name, phoneNumber, relationship, clientRfc)
 	('fernando', '1231231237', '7897897891', '1231231231237');
 
 insert into CreditCondition (state, interestRate, IVA, paymentsPerMonth, registrer)
-	values (1, 12, 16, 2, ident_current('Employee')), (1, 15, 16, 1, IDENT_CURRENT('Employee')), 
+	values (1, 12, 16, 2, ident_current('Employee')), (1, 15, 16, 1, IDENT_CURRENT('Employee')); 
+insert into CreditCondition (state, interestRate, IVA, paymentsPerMonth, registrer) values
+	(1, 12, 16, 2, ident_current('Employee')), (1, 15, 16, 1, IDENT_CURRENT('Employee')), 
 	(1, 10, 16, 4, IDENT_CURRENT('Employee')), (0, 10, 16, 4, IDENT_CURRENT('Employee'));
 insert into Client (rfc, name, birthday, houseAddress, workAddress, phoneNumber1, phoneNumber2, mail, state)
 	values ('1231231231237', 'david carrion', '2000/11/21', 'dirección de mi casa', 'dirección de mi trabajo', '2288121212', '2281562389', 'correo@ejemplo.com', 1);
@@ -43,6 +45,12 @@ insert into PersonalReference (name, phoneNumber, relationship, clientRfc)
 insert into BankAccount (clabe, purpose, clientId) values
 	('123456789123789456', 'receive', '1231231231237'), ('123789456123789456', 'collect', '1231231231237'),
 	('228877878787878887', 'receive', '1111111111111'), ('456456456666655555', 'collect', '1111111111111');
+
+insert into CreditPolicy (title, description, state ,effectiveDate, register) values
+	('Mayor de edad', 'El solicitante es mayor de 18 años',1, '2030/05/20', 2),
+	('Menor de 60 años', 'El solicitante tiene 60 años o menos',1, '2030/05/20', 2),
+	('Lista negra', 'El solicitante no aparece en ninguna lista negra de protección',1, '2030/05/20', 2),
+	('Capacidad de crédito', 'La capacidad de crédito es de al menos 30%',1, '2030/05/20', 2);
 
 insert into RequiredDocumentation (name, state, fileType) values ('Identificación', 1, 'image'), ('Curp', 1, 'pdf'), ('pato', 0, 'pdf');
 insert into PersonalReference (name, phoneNumber, relationship, clientRfc) values
