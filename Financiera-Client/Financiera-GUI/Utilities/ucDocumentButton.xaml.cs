@@ -39,7 +39,7 @@ namespace Financiera_GUI.Utilities
         public byte[] File;
         public string FileName;
 
-        public bool clickable = true;
+        public bool selectable = true;
 
         public void SetImage(string path)
         {
@@ -53,9 +53,9 @@ namespace Financiera_GUI.Utilities
 
         private void SelectFile(object sender, MouseButtonEventArgs e)
         {
-            if (!clickable)
+            if (!selectable)
             {
-                return;
+                Download();
             }
             
             string filter = "";
@@ -90,6 +90,11 @@ namespace Financiera_GUI.Utilities
                     $"Details:\n\n{ex.StackTrace}");
                 }
             }
+        }
+
+        private void Download()
+        {
+            throw new NotImplementedException();
         }
     }
 }

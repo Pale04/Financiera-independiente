@@ -1,5 +1,6 @@
 ﻿using CreditServiceReference;
 using DomainClasses;
+using SessionServiceReference;
 
 namespace Business_logic
 {
@@ -27,6 +28,30 @@ namespace Business_logic
             }
 
             return result;
+        }
+
+        public int ReplaceDocuments(List<DomainClasses.Document> documents)
+        {
+            CreditServiceClient service = new();
+
+            List<CreditDocumentDC> documentsDC = [];
+
+            foreach (DomainClasses.Document document in documents) 
+            {
+                documentsDC.Add(new()
+                {
+                    Id = document.Id,
+                    Name = document.Name,
+                    RegistryDate = document.RegistryDate.ToString(),
+                    DocumentationId = document.DocumentationId,
+                    RegistrerId = document.Registrer,
+                    File = document.File
+                });
+            }
+
+            // todo
+            //return service.ReplaceDocuments(documents[0].CreditId, documentsDC);
+            return 0;
         }
     }
 }

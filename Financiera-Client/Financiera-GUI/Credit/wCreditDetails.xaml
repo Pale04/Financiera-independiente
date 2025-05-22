@@ -20,6 +20,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Border Margin="10" Grid.Column="0" Panel.ZIndex="2" Height="40" Width="40" CornerRadius="50" MouseLeftButtonDown="Back" Style="{StaticResource ButtonBehaviorGlobal}">
@@ -28,6 +29,13 @@
 
             <Label Grid.ColumnSpan="2" Grid.Column="0" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
    FontFamily="Roboto" FontSize="30" FontWeight="Bold" Name="titleLabel">Crédito N.</Label>
+
+            <Border Margin="10" Grid.Column="2" Panel.ZIndex="2" Height="40" Width="40" CornerRadius="50" MouseLeftButtonDown="EditCredit" Style="{StaticResource ButtonBehaviorGlobal}">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/edit_icon.png" Stretch="Uniform" Name="editButton"/>
+            </Border>
+            <Border Margin="10" Grid.Column="2" Panel.ZIndex="2" Height="40" Width="40" CornerRadius="50" MouseLeftButtonDown="SaveCredit" Style="{StaticResource ButtonBehaviorGlobal}">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Images/activate_icon.png" Stretch="Uniform" Name="saveButton"/>
+            </Border>
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="20">
@@ -45,7 +53,7 @@
             <StackPanel Orientation="Horizontal" Name="documentsPanel"/>
         </StackPanel>
 
-        <Button Grid.Row="2" HorizontalAlignment="Right" FontSize="20" Margin="15, 10, 30, 15" Padding="30, 0, 30, 0" Click="DetermineCredit">Dictaminar</Button>
+        <Button x:Name="determineButton" Grid.Row="2" HorizontalAlignment="Right" FontSize="20" Margin="15, 10, 30, 15" Padding="30, 0, 30, 0" Click="DetermineCredit">Dictaminar</Button>
         <notifications:NotificationArea Grid.Row="2" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
     </Grid>
 </Page>
