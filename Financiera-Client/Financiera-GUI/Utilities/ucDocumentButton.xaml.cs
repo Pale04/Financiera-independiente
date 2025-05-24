@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Drawing;
+using System.IO;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,6 +36,7 @@ namespace Financiera_GUI.Utilities
         }
 
         public int DocumentationId { get; set; }
+        public string DocumentationName { get; set; }
 
         public byte[] File;
         public string FileName;
@@ -94,7 +96,8 @@ namespace Financiera_GUI.Utilities
 
         private void Download()
         {
-            throw new NotImplementedException();
+            string newFileName = $"{FileName.Substring(0, 2)}{DocumentationName}{Path.GetExtension(FileName)}";
+            System.IO.File.WriteAllBytes("./creditDocuments/"+newFileName, File);
         }
     }
 }

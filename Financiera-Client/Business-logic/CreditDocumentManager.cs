@@ -34,7 +34,7 @@ namespace Business_logic
         {
             CreditServiceClient service = new();
 
-            List<CreditDocumentDC> documentsDC = [];
+            List<CreditDocumentDC> documentsDC = new();
 
             foreach (DomainClasses.Document document in documents) 
             {
@@ -49,9 +49,7 @@ namespace Business_logic
                 });
             }
 
-            // todo
-            //return service.ReplaceDocuments(documents[0].CreditId, documentsDC);
-            return 0;
+            return service.UpdateCreditDocuments(documents[0].CreditId, documentsDC.ToArray()).StatusCode;
         }
     }
 }
