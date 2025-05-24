@@ -95,7 +95,7 @@ namespace Business_logic.Payments
         /// <exception cref="IOException"></exception>"
         private void ConfigureValidations()
         {
-            string configuration = File.ReadAllText("PaymentLayoutConfiguration.json");
+            string configuration = File.ReadAllText("Payments/PaymentLayoutConfiguration.json");
             _validator = Validator.FromJson(configuration);
         }
 

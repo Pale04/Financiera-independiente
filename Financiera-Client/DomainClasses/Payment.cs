@@ -22,9 +22,9 @@
 
         public int RegistrerId { get; set; }
 
-        public string GetState()
+        public PaymentStatus GetState()
         {
-            return _state.Equals(PaymentStatus.Collected) ? "collected" : "not_collected";
+            return _state;
         }
     }
 }

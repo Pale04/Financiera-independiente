@@ -47,7 +47,7 @@
 
   <ItemGroup>
     <None Update="Payments\PaymentLayoutConfiguration.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
