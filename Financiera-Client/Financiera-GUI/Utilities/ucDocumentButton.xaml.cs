@@ -35,6 +35,14 @@ namespace Financiera_GUI.Utilities
             }
         }
 
+        public Brush Color
+        {
+            set
+            {
+                button.Background = value;
+            }
+        }
+
         public int DocumentationId { get; set; }
         public string DocumentationName { get; set; }
 
@@ -58,6 +66,7 @@ namespace Financiera_GUI.Utilities
             if (!selectable)
             {
                 Download();
+                return;
             }
             
             string filter = "";
@@ -96,6 +105,11 @@ namespace Financiera_GUI.Utilities
 
         private void Download()
         {
+            if (!Path.Exists("./creditDocuments/"))
+            {
+                Directory.CreateDirectory("./creditDocuments/");
+            }
+
             string newFileName = $"{FileName.Substring(0, 2)}{DocumentationName}{Path.GetExtension(FileName)}";
             System.IO.File.WriteAllBytes("./creditDocuments/"+newFileName, File);
         }

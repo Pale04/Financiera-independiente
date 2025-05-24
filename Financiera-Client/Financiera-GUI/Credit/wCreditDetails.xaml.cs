@@ -176,13 +176,14 @@ namespace Financiera_GUI.Credit
                 {
                     Text = documentation.Name,
                     FileName = documentation.Name,
+                    File = document.File,
                     AcceptedFile = documentation.FileType.ToString(),
                     DocumentationId = document.DocumentationId,
-                    Background = Brushes.Gray,
+                    Color = Brushes.Gray,
                     selectable = false,
                     DocumentationName = documentation.Name
                 };
-                button.SetImage(".\\Images\\upload_file_icon.png");
+                //button.SetImage(".\\Images\\upload_file_icon.png");
 
                 documentsPanel.Children.Add(button);
             }
@@ -207,7 +208,7 @@ namespace Financiera_GUI.Credit
 
             foreach (ucDocumentButton button in documentsPanel.Children)
             {
-                button.Background = Brushes.LightGreen;
+                button.Color = Brushes.LightGreen;
                 button.selectable = true;
             }
         }
@@ -221,7 +222,7 @@ namespace Financiera_GUI.Credit
 
             foreach (ucDocumentButton button in documentsPanel.Children)
             {
-                button.Background = Brushes.LightGreen;
+                button.Color = Brushes.Gray;
                 button.selectable = false;
             }
 
