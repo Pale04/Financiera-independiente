@@ -43,7 +43,7 @@ namespace Business_logic.Payments
                             CollectionDate = DateOnly.Parse(payment.CollectionDate),
                             Amount = payment.Amount,
                             BankAccountClabe = payment.BankAccountClabe,
-                            Bank = result.Banco.Institucion
+                            Bank = result.Banco != null ? result.Banco.Institucion : "Banco desconocido"
                         });
                     }
                     return paymentLayout;
