@@ -886,4 +886,4 @@ $RECYCLE.BIN/
 
 # database users creation file
 scripts/create_db_logins.sql
-Financiera-Service\FinancieraServer\creditDocuments
+Financiera-Service/FinancieraServer/creditDocuments

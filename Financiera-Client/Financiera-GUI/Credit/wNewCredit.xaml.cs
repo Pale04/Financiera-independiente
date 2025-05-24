@@ -82,7 +82,7 @@ namespace Financiera_GUI.Credit
                     DocumentationId = requiredDocument.Id
                 };
                 documentBtn.AcceptedFile = requiredDocument.FileType.ToString();
-                documentBtn.SetImage(".\\Images\\upload_file_icon.png");
+                //documentBtn.SetImage("Images/upload_file_icon.png");
                 documentsGrid.Children.Add(documentBtn);
                 Grid.SetColumn(documentBtn, currentDocument);
                 Grid.SetRow(documentBtn, (int)Math.Floor((double)currentDocument/4));

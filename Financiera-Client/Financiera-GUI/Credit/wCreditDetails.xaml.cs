@@ -178,9 +178,10 @@ namespace Financiera_GUI.Credit
                     AcceptedFile = documentation.FileType.ToString(),
                     DocumentationId = document.DocumentationId,
                     Background = Brushes.Gray,
-                    selectable = false
+                    selectable = false,
+                    DocumentationName = documentation.Name
                 };
-                button.SetImage(".\\Images\\upload_file_icon.png");
+                //button.SetImage("..\\Images\\upload_file_icon.png");
 
                 documentsPanel.Children.Add(button);
             }
