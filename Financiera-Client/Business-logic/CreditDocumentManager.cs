@@ -1,16 +1,17 @@
 ﻿using CreditServiceReference;
 using DomainClasses;
+using SessionServiceReference;
 
 namespace Business_logic
 {
     public class CreditDocumentManager
     {
-        public List<Document> GetCreditDocuments(int creditId)
+        public List<DomainClasses.Document> GetCreditDocuments(int creditId)
         {
             CreditServiceClient service = new();
             var documents = service.GetCreditsDocuments(creditId);
 
-            List<Document> result = [];
+            List<DomainClasses.Document> result = [];
 
             foreach (CreditDocumentDC document in documents.Data) 
             {
@@ -27,6 +28,28 @@ namespace Business_logic
             }
 
             return result;
+        }
+
+        public int ReplaceDocuments(List<DomainClasses.Document> documents)
+        {
+            CreditServiceClient service = new();
+
+            List<CreditDocumentDC> documentsDC = new();
+
+            foreach (DomainClasses.Document document in documents) 
+            {
+                documentsDC.Add(new()
+                {
+                    Id = document.Id,
+                    Name = document.Name,
+                    RegistryDate = document.RegistryDate.ToString(),
+                    DocumentationId = document.DocumentationId,
+                    RegistrerId = document.Registrer,
+                    File = document.File
+                });
+            }
+
+            return service.UpdateCreditDocuments(documents[0].CreditId, documentsDC.ToArray()).StatusCode;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Drawing;
+using System.IO;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,11 +36,12 @@ namespace Financiera_GUI.Utilities
         }
 
         public int DocumentationId { get; set; }
+        public string DocumentationName { get; set; }
 
         public byte[] File;
         public string FileName;
 
-        public bool clickable = true;
+        public bool selectable = true;
 
         public void SetImage(string path)
         {
@@ -53,9 +55,9 @@ namespace Financiera_GUI.Utilities
 
         private void SelectFile(object sender, MouseButtonEventArgs e)
         {
-            if (!clickable)
+            if (!selectable)
             {
-                return;
+                Download();
             }
             
             string filter = "";
@@ -90,6 +92,12 @@ namespace Financiera_GUI.Utilities
                     $"Details:\n\n{ex.StackTrace}");
                 }
             }
+        }
+
+        private void Download()
+        {
+            string newFileName = $"{FileName.Substring(0, 2)}{DocumentationName}{Path.GetExtension(FileName)}";
+            System.IO.File.WriteAllBytes("./creditDocuments/"+newFileName, File);
         }
     }
 }

@@ -27,6 +27,10 @@ namespace FinancieraServer.Interfaces
         ResponseWithContent<List<CreditDocumentDC>> GetCreditsDocuments(int creditId);
 
         [OperationContract]
+        Response UpdateCreditDocuments(int creditId, List<CreditDocumentDC> documents);
+
+
+        [OperationContract]
         ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId);
 
     }
