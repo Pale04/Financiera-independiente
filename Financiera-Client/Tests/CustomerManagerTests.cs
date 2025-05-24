@@ -1,7 +1,7 @@
 ﻿using Business_logic;
 using DomainClasses;
 
-namespace Tests.Catalogs
+namespace Tests
 {
     [TestClass()]
     public class CustomerManagerTests
