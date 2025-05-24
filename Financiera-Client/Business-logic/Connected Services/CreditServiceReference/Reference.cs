@@ -530,6 +530,12 @@ namespace CreditServiceReference
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetCreditsDocuments", ReplyAction="http://tempuri.org/ICreditService/GetCreditsDocumentsResponse")]
         System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDocumentDC1nk_PiFui> GetCreditsDocumentsAsync(int creditId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/UpdateCreditDocuments", ReplyAction="http://tempuri.org/ICreditService/UpdateCreditDocumentsResponse")]
+        CreditServiceReference.Response UpdateCreditDocuments(int creditId, CreditServiceReference.CreditDocumentDC[] documents);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/UpdateCreditDocuments", ReplyAction="http://tempuri.org/ICreditService/UpdateCreditDocumentsResponse")]
+        System.Threading.Tasks.Task<CreditServiceReference.Response> UpdateCreditDocumentsAsync(int creditId, CreditServiceReference.CreditDocumentDC[] documents);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -650,6 +656,16 @@ namespace CreditServiceReference
         public System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDocumentDC1nk_PiFui> GetCreditsDocumentsAsync(int creditId)
         {
             return base.Channel.GetCreditsDocumentsAsync(creditId);
+        }
+        
+        public CreditServiceReference.Response UpdateCreditDocuments(int creditId, CreditServiceReference.CreditDocumentDC[] documents)
+        {
+            return base.Channel.UpdateCreditDocuments(creditId, documents);
+        }
+        
+        public System.Threading.Tasks.Task<CreditServiceReference.Response> UpdateCreditDocumentsAsync(int creditId, CreditServiceReference.CreditDocumentDC[] documents)
+        {
+            return base.Channel.UpdateCreditDocumentsAsync(creditId, documents);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
