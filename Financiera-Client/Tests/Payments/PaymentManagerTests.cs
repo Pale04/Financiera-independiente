@@ -2,7 +2,6 @@
 using DomainClasses;
 using Business_logic;
 using Business_logic.Catalogs;
-using PaymentServiceReference;
 
 namespace Payments.Tests
 {
@@ -135,6 +134,7 @@ namespace Payments.Tests
             _paymentManager = new PaymentManager();
             _payment1 = new()
             {
+                Id = 1,
                 Amount = 200,
                 CreditId = _credit.Id,
                 CollectionDate = DateOnly.FromDateTime(DateTime.Now),
@@ -142,19 +142,19 @@ namespace Payments.Tests
             };
             _payment2 = new()
             {
+                Id = 2,
                 Amount = 300,
                 CreditId = _credit.Id,
                 CollectionDate = DateOnly.FromDateTime(DateTime.Now.AddDays(7)),
                 RegistrerId = _employee.Id
-
             };
             _payment3 = new()
             {
+                Id = 3,
                 Amount = 400,
                 CreditId = _credit.Id,
                 CollectionDate = DateOnly.FromDateTime(DateTime.Now.AddDays(14)),
                 RegistrerId = _employee.Id
-
             };
             _paymentManager.AddPolicy(_payment1);
             _paymentManager.AddPolicy(_payment2);
@@ -169,6 +169,30 @@ namespace Payments.Tests
             DateOnly endDate = DateOnly.FromDateTime(DateTime.Now.AddMonths(1));
             List<PaymentLayout> paymentLayout = _paymentManager.GetPaymentLayout(startDate, endDate);
             Assert.IsTrue(paymentLayout.Count == 3);
+        }
+
+        [TestMethod()]
+        public void GetPaymentsFromCsvSuccesfulTest()
+        {
+            List<Payment> result = _paymentManager.GetPaymentsFromCsv(Directory.GetCurrentDirectory() + "\\Payments\\TestPaymentLayouts\\TestLayout_1.csv");
+            Assert.IsTrue(result.Count == 3);
+        }
+
+        [TestMethod()]
+        public void GetPaymentsFromCsvIncorrectFormatTest()
+        {
+            Assert.ThrowsException<Exception>(() =>
+            {
+                _paymentManager.GetPaymentsFromCsv(Directory.GetCurrentDirectory() + "\\Payments\\TestPaymentLayouts\\TestLayout_2.csv");
+            });
+        }
+
+        [TestMethod()]
+        public void UpdatePaymentSatateSuccessfulTest()
+        {
+            _payment1.State = PaymentStatus.Collected;
+            int result = _paymentManager.UpdatePaymentsState(_payment1);
+            Assert.AreEqual(0, result);
         }
     }
 }
