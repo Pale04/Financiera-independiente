@@ -1,4 +1,5 @@
 ﻿using Data_Access.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data_Access
@@ -94,5 +95,16 @@ namespace Data_Access
             }
         }
 
+        public List<Payment> GetFromDateRange(DateOnly startDate, DateOnly endDate)
+        {
+            using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Reader))) 
+            {
+                return context.Set<Payment>()
+                    .FromSqlRaw("EXEC GetCreditsByDateRange @StartDate, @EndDate",
+                    new SqlParameter("StartDate", startDate),
+                    new SqlParameter("EndDate", endDate))
+                    .ToList();
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Data_Access.Entities;
 
 public partial class independent_financialContext : DbContext
 {
-    private string _connectionString;
+    private readonly string _connectionString;
 
     public independent_financialContext(string connectionString)
     {
@@ -46,13 +46,14 @@ public partial class independent_financialContext : DbContext
 
     public virtual DbSet<Subsidiary> Subsidiaries { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(_connectionString);
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer(_connectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<BankAccount>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__BankAcco__3213E83FFCB6E62C");
+            entity.HasKey(e => e.id).HasName("PK__BankAcco__3213E83FAF3E8E2D");
 
             entity.ToTable("BankAccount");
 
@@ -71,12 +72,12 @@ public partial class independent_financialContext : DbContext
             entity.HasOne(d => d.client).WithMany(p => p.BankAccounts)
                 .HasForeignKey(d => d.clientId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__BankAccou__clien__68487DD7");
+                .HasConstraintName("FK__BankAccou__clien__2704CA5F");
         });
 
         modelBuilder.Entity<Client>(entity =>
         {
-            entity.HasKey(e => e.rfc).HasName("PK__Client__C2B03495CF780C79");
+            entity.HasKey(e => e.rfc).HasName("PK__Client__C2B03495C0D01D7F");
 
             entity.ToTable("Client");
 
@@ -108,7 +109,7 @@ public partial class independent_financialContext : DbContext
 
         modelBuilder.Entity<Credit>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__Credit__3213E83F3CBA117E");
+            entity.HasKey(e => e.id).HasName("PK__Credit__3213E83FE1C4285C");
 
             entity.ToTable("Credit");
 
@@ -124,29 +125,29 @@ public partial class independent_financialContext : DbContext
             entity.HasOne(d => d.beneficiaryNavigation).WithMany(p => p.Credits)
                 .HasForeignKey(d => d.beneficiary)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Credit__benefici__628FA481");
+                .HasConstraintName("FK__Credit__benefici__214BF109");
 
             entity.HasOne(d => d.condition).WithMany(p => p.Credits)
                 .HasForeignKey(d => d.conditionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Credit__conditio__6477ECF3");
+                .HasConstraintName("FK__Credit__conditio__2334397B");
 
             entity.HasOne(d => d.registrerNavigation).WithMany(p => p.Credits)
                 .HasForeignKey(d => d.registrer)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Credit__registre__6383C8BA");
+                .HasConstraintName("FK__Credit__registre__22401542");
         });
 
         modelBuilder.Entity<CreditCondition>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__CreditCo__3213E83F80A2CE61");
+            entity.HasKey(e => e.id).HasName("PK__CreditCo__3213E83F3918E3C6");
 
             entity.ToTable("CreditCondition");
 
             entity.HasOne(d => d.registrerNavigation).WithMany(p => p.CreditConditions)
                 .HasForeignKey(d => d.registrer)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__CreditCon__regis__6B24EA82");
+                .HasConstraintName("FK__CreditCon__regis__29E1370A");
         });
 
         modelBuilder.Entity<CreditPayment>(entity =>
@@ -167,7 +168,7 @@ public partial class independent_financialContext : DbContext
 
         modelBuilder.Entity<CreditPolicy>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__CreditPo__3213E83F6983E96B");
+            entity.HasKey(e => e.id).HasName("PK__CreditPo__3213E83FFC172135");
 
             entity.ToTable("CreditPolicy");
 
@@ -181,7 +182,7 @@ public partial class independent_financialContext : DbContext
             entity.HasOne(d => d.registrerNavigation).WithMany(p => p.CreditPolicies)
                 .HasForeignKey(d => d.registrer)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__CreditPol__regis__6C190EBB");
+                .HasConstraintName("FK__CreditPol__regis__2AD55B43");
         });
 
         modelBuilder.Entity<CreditRequest>(entity =>
@@ -197,7 +198,7 @@ public partial class independent_financialContext : DbContext
 
         modelBuilder.Entity<Document>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__Document__3213E83FE3368C7B");
+            entity.HasKey(e => e.id).HasName("PK__Document__3213E83FBBFC86DA");
 
             entity.ToTable("Document");
 
@@ -209,22 +210,22 @@ public partial class independent_financialContext : DbContext
             entity.HasOne(d => d.credit).WithMany(p => p.Documents)
                 .HasForeignKey(d => d.creditId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Document__credit__6754599E");
+                .HasConstraintName("FK__Document__credit__2610A626");
 
             entity.HasOne(d => d.documentation).WithMany(p => p.Documents)
                 .HasForeignKey(d => d.documentationId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Document__docume__66603565");
+                .HasConstraintName("FK__Document__docume__251C81ED");
 
             entity.HasOne(d => d.registrerNavigation).WithMany(p => p.Documents)
                 .HasForeignKey(d => d.registrer)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Document__regist__656C112C");
+                .HasConstraintName("FK__Document__regist__24285DB4");
         });
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__Employee__3213E83FD5817BA6");
+            entity.HasKey(e => e.id).HasName("PK__Employee__3213E83F6D6580EA");
 
             entity.ToTable("Employee");
 
@@ -254,12 +255,12 @@ public partial class independent_financialContext : DbContext
             entity.HasOne(d => d.sucursal).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.sucursalId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Employee__sucurs__619B8048");
+                .HasConstraintName("FK__Employee__sucurs__2057CCD0");
         });
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__Payment__3213E83F039E7196");
+            entity.HasKey(e => e.id).HasName("PK__Payment__3213E83F63AA7A32");
 
             entity.ToTable("Payment");
 
@@ -271,12 +272,12 @@ public partial class independent_financialContext : DbContext
             entity.HasOne(d => d.credit).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.creditId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Payment__creditI__6A30C649");
+                .HasConstraintName("FK__Payment__creditI__28ED12D1");
 
             entity.HasOne(d => d.registrerNavigation).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.registrer)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Payment__registr__693CA210");
+                .HasConstraintName("FK__Payment__registr__27F8EE98");
         });
 
         modelBuilder.Entity<PaymentLayout>(entity =>
@@ -297,7 +298,7 @@ public partial class independent_financialContext : DbContext
 
         modelBuilder.Entity<PersonalReference>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__Personal__3213E83FEA9FA8E7");
+            entity.HasKey(e => e.id).HasName("PK__Personal__3213E83F7D1D131C");
 
             entity.ToTable("PersonalReference");
 
@@ -320,12 +321,12 @@ public partial class independent_financialContext : DbContext
             entity.HasOne(d => d.clientRfcNavigation).WithMany(p => p.PersonalReferences)
                 .HasForeignKey(d => d.clientRfc)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__PersonalR__clien__6D0D32F4");
+                .HasConstraintName("FK__PersonalR__clien__2BC97F7C");
         });
 
         modelBuilder.Entity<RequiredDocumentation>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__Required__3213E83FC0A12E59");
+            entity.HasKey(e => e.id).HasName("PK__Required__3213E83F76447188");
 
             entity.ToTable("RequiredDocumentation");
 
@@ -339,7 +340,7 @@ public partial class independent_financialContext : DbContext
 
         modelBuilder.Entity<Subsidiary>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__Subsidia__3213E83FE3B0BF1C");
+            entity.HasKey(e => e.id).HasName("PK__Subsidia__3213E83FEAEC09F4");
 
             entity.ToTable("Subsidiary");
 
