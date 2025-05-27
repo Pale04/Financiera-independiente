@@ -15,6 +15,7 @@ namespace PaymentServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(PaymentServiceReference.ResponseWithContentOfArrayOfPaymentDC1nk_PiFui))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(PaymentServiceReference.ResponseWithContentOfArrayOfPaymentLayoutDC1nk_PiFui))]
     public partial class Response : object
     {
@@ -46,6 +47,28 @@ namespace PaymentServiceReference
             set
             {
                 this.StatusCodeField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfArrayOfPaymentDC1nk_PiFui", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class ResponseWithContentOfArrayOfPaymentDC1nk_PiFui : PaymentServiceReference.Response
+    {
+        
+        private PaymentServiceReference.PaymentDC[] DataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public PaymentServiceReference.PaymentDC[] Data
+        {
+            get
+            {
+                return this.DataField;
+            }
+            set
+            {
+                this.DataField = value;
             }
         }
     }
@@ -285,6 +308,12 @@ namespace PaymentServiceReference
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/AddPayment", ReplyAction="http://tempuri.org/IPaymentService/AddPaymentResponse")]
         System.Threading.Tasks.Task<PaymentServiceReference.Response> AddPaymentAsync(PaymentServiceReference.PaymentDC payment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/GetPaymentsFromDateRange", ReplyAction="http://tempuri.org/IPaymentService/GetPaymentsFromDateRangeResponse")]
+        PaymentServiceReference.ResponseWithContentOfArrayOfPaymentDC1nk_PiFui GetPaymentsFromDateRange(string startDate, string endDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPaymentService/GetPaymentsFromDateRange", ReplyAction="http://tempuri.org/IPaymentService/GetPaymentsFromDateRangeResponse")]
+        System.Threading.Tasks.Task<PaymentServiceReference.ResponseWithContentOfArrayOfPaymentDC1nk_PiFui> GetPaymentsFromDateRangeAsync(string startDate, string endDate);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -365,6 +394,16 @@ namespace PaymentServiceReference
         public System.Threading.Tasks.Task<PaymentServiceReference.Response> AddPaymentAsync(PaymentServiceReference.PaymentDC payment)
         {
             return base.Channel.AddPaymentAsync(payment);
+        }
+        
+        public PaymentServiceReference.ResponseWithContentOfArrayOfPaymentDC1nk_PiFui GetPaymentsFromDateRange(string startDate, string endDate)
+        {
+            return base.Channel.GetPaymentsFromDateRange(startDate, endDate);
+        }
+        
+        public System.Threading.Tasks.Task<PaymentServiceReference.ResponseWithContentOfArrayOfPaymentDC1nk_PiFui> GetPaymentsFromDateRangeAsync(string startDate, string endDate)
+        {
+            return base.Channel.GetPaymentsFromDateRangeAsync(startDate, endDate);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
