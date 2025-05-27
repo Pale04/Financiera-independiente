@@ -130,82 +130,6 @@ namespace Business_logic
             return false;
         }
 
-        public int DeterminateResquest(Credit credit, bool isApproved)
-        {
-            if (credit == null)
-            {
-                return 2;
-            }
-            else
-            {
-                try
-                {
-                    CreditServiceClient client = new();
-                    Response response = client.DetermineRequest(credit.Id, isApproved);
-                    return response.StatusCode;
-                }
-                catch(CommunicationException error)
-                {
-                    return 1;
-                }
-            }
-        }
-
-        public List<CreditRequestSummary> GetCreditRequests()
-        {
-            throw new NotImplementedException();
-
-            CreditServiceClient creditService = new CreditServiceClient();
-
-            try { 
-                var creditsDb = creditService.GetCreditRequests();
-
-                List<CreditRequestSummary> credits = [];
-
-                foreach (var credit in creditsDb.Data)
-                {
-                    credits.Add(new()
-                    {
-                    });
-                }
-
-                return credits;
-            }
-            catch (CommunicationException error)
-            {
-                return null;
-            }
-        }
-
-        public CreditCondition GetCreditCondition(int idCredit)
-        {
-            CreditServiceClient creditService = new CreditServiceClient();
-            try
-            {
-                var conditionInfo = creditService.GetPaymentInfo(idCredit);
-                if (conditionInfo.StatusCode == 0)
-                {
-                    CreditCondition creditConditionInfo = new()
-                    {
-                        InterestRate = conditionInfo.Data.interestRate,
-                        IVA = conditionInfo.Data.IVA,
-                        PaymentsPerMonth = conditionInfo.Data.paymentsPerMonth
-                    };
-                    return creditConditionInfo;
-                }
-                else
-                {
-                    throw new Exception(ErrorMessages.BadRequest);
-                }
-            }
-            catch(CommunicationException error)
-            {
-                throw new Exception(ErrorMessages.ServerError);
-            }
-        }
-    }
-}
-
         public List<CreditRequestSummary> GetCreditRequests()
         {
             CreditServiceClient creditService = new CreditServiceClient();
@@ -276,4 +200,3 @@ namespace Business_logic
         }
     }
 }
-

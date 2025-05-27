@@ -9,7 +9,8 @@ namespace Data_Access
 
         public string? SaveDocument(Document documentInfo, byte[] file)
         {
-            if (!Path.Exists(_path)) {
+            if (!Path.Exists(_path))
+            {
                 Directory.CreateDirectory(_path);
             }
 
@@ -21,6 +22,18 @@ namespace Data_Access
             File.WriteAllBytes(string.Format("{0}{1}", _path, name), file);
 
             return name;
+        }
+
+        public byte[]? GetDocument(string path)
+        {
+            try
+            {
+                return File.ReadAllBytes(path);
+            }
+            catch (FileNotFoundException error)
+            {
+                return null;
+            }
         }
     }
 }

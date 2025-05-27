@@ -1,10 +1,10 @@
-﻿using Azure.Core;
-using Data_Access;
+﻿using Data_Access;
 using Data_Access.Entities;
 using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
 using System.Collections.Immutable;
 using System.Data.Common;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FinancieraServer.ServiceImplementations
 {
@@ -243,54 +243,6 @@ namespace FinancieraServer.ServiceImplementations
             }
         }
 
-        public Response UpdateCreditDocuments(int creditId, List<CreditDocumentDC> documents)
-        {
-            DocumentDB documentDB = new();
-
-            try
-            {
-                var documentsDb = documentDB.GetByCreditId(creditId);
-
-                foreach (Document document in documentsDb)
-                {
-                    foreach (CreditDocumentDC documentDC in documents)
-                    {
-                        if (document.name != documentDC.Name)
-                        {
-                            Document newDocument = new()
-                            {
-                                id = documentDC.Id,
-                                name = documentDC.Name,
-                                active = true,
-                                registryDate = DateTime.Parse(documentDC.RegistryDate),
-                                registrer = documentDC.RegistrerId,
-                                documentationId = documentDC.DocumentationId,
-                                creditId = creditId,
-                            };
-
-                            if (documentDB.ReplaceDocument(newDocument, document.id) < 1)
-                            {
-                                return new(1, "Error replacing document");
-                            }
-
-                            DocumentManager manager = new();
-                            if (string.IsNullOrEmpty(manager.SaveDocument(newDocument, documentDC.File)))
-                            {
-                                return new(1, "Error saving document on server");
-                            }
-                        }
-                    }
-                }
-            }
-            catch (DbException error)
-            {
-                _logger.LogError($"An error with code {error.HResult} occurred while updating documents at {DateTime.Now}: ", error.Message);
-                return new(1, "An error ocurred while saving the credit info");
-            }
-
-            return new(0);
-        }
-
         public ResponseWithContent<List<CreditDocumentDC>> GetCreditsDocuments(int creditId)
         {
             DocumentDB documentDB = new();
@@ -304,7 +256,7 @@ namespace FinancieraServer.ServiceImplementations
                 foreach (var document in documents)
                 {
                     DocumentManager manager = new();
-                    byte[]? file = manager.GetDocument($"creditDocuments/{document.name}");
+                    byte[] file = manager.GetDocument(document.name);
 
                     if (file == null)
                     {
@@ -326,31 +278,7 @@ namespace FinancieraServer.ServiceImplementations
                     }
                 }
 
-        public ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(int beneficiaryId)
-        {
-            CreditDB creditDB = new();
-
-            try
-            {
-                var creditsDb = creditDB.GetAllByCustomer(beneficiaryId);
-                List<CreditDC> credits = [];
-
-                foreach (Credit credit in creditsDb)
-                {
-                    credits.Add(new()
-                    {
-                        Id = credit.id,
-                        State = credit.state,
-                        Duration = credit.duration,
-                        Capital = credit.capital,
-                        RegistrerId = credit.registrer,
-                        BeneficiaryId = credit.beneficiary,
-                        ConditionId = credit.conditionId,
-                        RegistryDate = credit.registryDate.ToString()
-                    });
-                }
-
-                return new(0, credits);
+                return new(0, documentsDC);
             }
             catch (DbException error)
             {
@@ -395,79 +323,5 @@ namespace FinancieraServer.ServiceImplementations
                 return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
             }
         }
-
-        public ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId)
-        {
-            CreditDB creditDB = new();
-            try
-            {
-                var creditPayment = creditDB.GetCreditPaymentInfo(creditId);
-                if(creditPayment != null)
-                {
-                    CreditPaymentDC creditPaymentDC = new()
-                    {
-                        id = creditPayment.id,
-                        state = creditPayment.state,
-                        duration = creditPayment.duration,
-                        capital = creditPayment.capital,
-                        beneficiary = creditPayment.beneficiary,
-                        registryDate = creditPayment.registryDate,
-                        registrer = creditPayment.registrer,
-                        conditionId = creditPayment.conditionId,
-                        interestRate = creditPayment.interestRate,
-                        IVA = creditPayment.IVA,
-                        paymentsPerMonth = creditPayment.paymentsPerMonth
-
-                    };
-                    return new ResponseWithContent<CreditPaymentDC>(0, creditPaymentDC);
-                }
-                else
-                {
-                    return new ResponseWithContent<CreditPaymentDC>(4, "Cannot find the credit information");
-                }
-            }catch(DbException error)
-            {
-                _logger.LogError($"An error with code {error.ErrorCode} trying to get the condition and capital information ");
-                return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
-            }
-        }
-
-        public ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId)
-        {
-            CreditDB creditDB = new();
-            try
-            {
-                var creditPayment = creditDB.GetCreditPaymentInfo(creditId);
-                if (creditPayment != null)
-                {
-                    CreditPaymentDC creditPaymentDC = new()
-                    {
-                        id = creditPayment.id,
-                        state = creditPayment.state,
-                        duration = creditPayment.duration,
-                        capital = creditPayment.capital,
-                        beneficiary = creditPayment.beneficiary,
-                        registryDate = creditPayment.registryDate,
-                        registrer = creditPayment.registrer,
-                        conditionId = creditPayment.conditionId,
-                        interestRate = creditPayment.interestRate,
-                        IVA = creditPayment.IVA,
-                        paymentsPerMonth = creditPayment.paymentsPerMonth
-
-                    };
-                    return new ResponseWithContent<CreditPaymentDC>(0, creditPaymentDC);
-                }
-                else
-                {
-                    return new ResponseWithContent<CreditPaymentDC>(4, "Cannot find the credit information");
-                }
-            }
-            catch (DbException error)
-            {
-                _logger.LogError($"An error with code {error.Message} trying to get the condition and capital information ");
-                return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
-            }
-        }
     }
 }
-

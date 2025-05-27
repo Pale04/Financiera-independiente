@@ -6,12 +6,12 @@ namespace Business_logic
 {
     public class CreditDocumentManager
     {
-        public List<Document> GetCreditDocuments(int creditId)
+        public List<DomainClasses.Document> GetCreditDocuments(int creditId)
         {
             CreditServiceClient service = new();
             var documents = service.GetCreditsDocuments(creditId);
 
-            List<Document> result = [];
+            List<DomainClasses.Document> result = [];
 
             foreach (CreditDocumentDC document in documents.Data) 
             {

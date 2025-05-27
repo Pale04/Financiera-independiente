@@ -1,4 +1,5 @@
 ﻿using DomainClasses;
+using Financiera_GUI.Credit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
