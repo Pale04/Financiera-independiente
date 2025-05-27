@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using Financiera_GUI.Utilities;
 using CatalogServiceReference;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using SessionServiceReference;
 
 namespace Financiera_GUI.Credit
 {
@@ -183,124 +182,6 @@ namespace Financiera_GUI.Credit
                     DocumentationName = documentation.Name
                 };
                 //button.SetImage("..\\Images\\upload_file_icon.png");
-
-                documentsPanel.Children.Add(button);
-            }
-        }
-
-        private void DetermineCredit(object sender, System.Windows.RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new wEvaluateApplication_S1(_credit));
-        }
-
-        private void Back(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
-
-        private void EditCredit(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            editButton.IsEnabled = false;
-            editButton.Visibility = System.Windows.Visibility.Hidden;
-            saveButton.IsEnabled = true;
-            saveButton.Visibility = System.Windows.Visibility.Visible;
-
-            foreach (ucDocumentButton button in documentsPanel.Children)
-            {
-                button.Color = Brushes.LightGreen;
-                button.selectable = true;
-            }
-        }
-
-        private void SaveCredit(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            saveButton.IsEnabled = false;
-            saveButton.Visibility = System.Windows.Visibility.Hidden;
-            editButton.IsEnabled = true;
-            editButton.Visibility = System.Windows.Visibility.Visible;
-
-            foreach (ucDocumentButton button in documentsPanel.Children)
-            {
-                button.Color = Brushes.Gray;
-                button.selectable = false;
-            }
-
-            List<DomainClasses.Document> documents = [];
-
-            foreach (ucDocumentButton button in documentsPanel.Children)
-            {
-                if (button.File == null)
-                {
-                    return;
-                }
-
-                documents.Add(new()
-                {
-                    Name = button.FileName,
-                    File = button.File,
-                    RegistryDate = DateTime.Now,
-                    Registrer = UserSession.Instance.Employee.Id,
-                    DocumentationId = button.DocumentationId,
-                    CreditId = _credit.Id
-                });
-            }
-
-            try
-            {
-                CreditDocumentManager manager = new();
-                if (manager.ReplaceDocuments(documents) != 0)
-                {
-                    _notificationManager.Show("No se pudieron actualizar los documentos", NotificationType.Error);
-                }
-            }
-            catch (CommunicationException error)
-            {
-                _notificationManager.Show("No se pudo recuperar la información del crédito", NotificationType.Error);
-            }
-
-            return null;
-        }
-
-        private void LoadData()
-        {
-            double total = (double)_credit.Capital + (((double)_credit.Capital * ((double)_creditCondition.InterestRate / 100)) * (1.0 + ((double)_creditCondition.IVA / 100)));
-            int monthlyPayments = (int)Math.Floor(total / (double)_creditCondition.PaymentsPerMonth);
-
-            titleLabel.Content = $"Crédito N.{_credit.Id}";
-            clientNameLabel.Content = $"Cliente: {_customer.Name}";
-            clientAddressLabel.Content = $"Dirección: {_customer.HouseAddress}";
-
-            capitalLabel.Content = $"Capital: ${_credit.Capital}";
-            durationLabel.Content = $"Plazo: {_credit.Duration}";
-            paymentsLabel.Content = $"{_creditCondition.PaymentsPerMonth} pagos mensuales de ${monthlyPayments}";
-            interestLabel.Content = $"Tasa de interés: {_creditCondition.InterestRate}%";
-
-            foreach (var document in _documents)
-            {
-                RequiredDocument? documentation = null;
-
-                foreach (var requiredDocument in _requiredDocumentation)
-                {
-                    if (requiredDocument.Id == document.DocumentationId)
-                    {
-                        documentation = requiredDocument;
-                        break;
-                    }
-                }
-
-                if (documentation == null)
-                {
-                    _notificationManager.Show("No se pudo recuperar la información del crédito", NotificationType.Error);
-                    return;
-                }
-
-                ucDocumentButton button = new()
-                {
-                    Text = documentation.Name,
-                    AcceptedFile = documentation.FileType.ToString(),
-                    DocumentationId = document.DocumentationId
-                };
-                button.SetImage(".\\Images\\upload_file_icon.png");
 
                 documentsPanel.Children.Add(button);
             }

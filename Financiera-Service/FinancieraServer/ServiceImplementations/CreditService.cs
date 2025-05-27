@@ -256,7 +256,7 @@ namespace FinancieraServer.ServiceImplementations
                 foreach (var document in documents)
                 {
                     DocumentManager manager = new();
-                    byte[]? file = manager.GetDocument($"/creditDocuments/{document.name}");
+                    byte[] file = manager.GetDocument(document.name);
 
                     if (file == null)
                     {
@@ -278,109 +278,12 @@ namespace FinancieraServer.ServiceImplementations
                     }
                 }
 
-        public ResponseWithContent<List<CreditDC>> GetCreditsByBeneficiary(int beneficiaryId)
-        {
-            CreditDB creditDB = new();
-
-            try
-            {
-                var creditsDb = creditDB.GetAllByCustomer(beneficiaryId);
-                List<CreditDC> credits = [];
-
-                foreach (Credit credit in creditsDb)
-                {
-                    credits.Add(new()
-                    {
-                        Id = credit.id,
-                        State = credit.state,
-                        Duration = credit.duration,
-                        Capital = credit.capital,
-                        RegistrerId = credit.registrer,
-                        BeneficiaryId = credit.beneficiary,
-                        ConditionId = credit.conditionId,
-                        RegistryDate = credit.registryDate.ToString()
-                    });
-                }
-
-                return new(0, credits);
+                return new(0, documentsDC);
             }
             catch (DbException error)
             {
                 _logger.LogError($"An error with code {error.Message} occurred while retrieving documents at {DateTime.Now}: ", error.Message);
                 return new(1, "An error ocurred while retrieving documents");
-            }
-        }
-
-        public ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId)
-        {
-            CreditDB creditDB = new();
-            try
-            {
-                var creditPayment = creditDB.GetCreditPaymentInfo(creditId);
-                if (creditPayment != null)
-                {
-                    CreditPaymentDC creditPaymentDC = new()
-                    {
-                        id = creditPayment.id,
-                        state = creditPayment.state,
-                        duration = creditPayment.duration,
-                        capital = creditPayment.capital,
-                        beneficiary = creditPayment.beneficiary,
-                        registryDate = creditPayment.registryDate,
-                        registrer = creditPayment.registrer,
-                        conditionId = creditPayment.conditionId,
-                        interestRate = creditPayment.interestRate,
-                        IVA = creditPayment.IVA,
-                        paymentsPerMonth = creditPayment.paymentsPerMonth
-
-                    };
-                    return new ResponseWithContent<CreditPaymentDC>(0, creditPaymentDC);
-                }
-                else
-                {
-                    return new ResponseWithContent<CreditPaymentDC>(4, "Cannot find the credit information");
-                }
-            }
-            catch (DbException error)
-            {
-                _logger.LogError($"An error with code {error.Message} trying to get the condition and capital information ");
-                return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
-            }
-        }
-
-        public ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId)
-        {
-            CreditDB creditDB = new();
-            try
-            {
-                var creditPayment = creditDB.GetCreditPaymentInfo(creditId);
-                if(creditPayment != null)
-                {
-                    CreditPaymentDC creditPaymentDC = new()
-                    {
-                        id = creditPayment.id,
-                        state = creditPayment.state,
-                        duration = creditPayment.duration,
-                        capital = creditPayment.capital,
-                        beneficiary = creditPayment.beneficiary,
-                        registryDate = creditPayment.registryDate,
-                        registrer = creditPayment.registrer,
-                        conditionId = creditPayment.conditionId,
-                        interestRate = creditPayment.interestRate,
-                        IVA = creditPayment.IVA,
-                        paymentsPerMonth = creditPayment.paymentsPerMonth
-
-                    };
-                    return new ResponseWithContent<CreditPaymentDC>(0, creditPaymentDC);
-                }
-                else
-                {
-                    return new ResponseWithContent<CreditPaymentDC>(4, "Cannot find the credit information");
-                }
-            }catch(DbException error)
-            {
-                _logger.LogError($"An error with code {error.ErrorCode} trying to get the condition and capital information ");
-                return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
             }
         }
 
