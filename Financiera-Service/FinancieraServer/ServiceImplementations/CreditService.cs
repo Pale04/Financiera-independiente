@@ -1,4 +1,5 @@
-﻿using Data_Access;
+﻿using Azure.Core;
+using Data_Access;
 using Data_Access.Entities;
 using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
@@ -243,6 +244,54 @@ namespace FinancieraServer.ServiceImplementations
             }
         }
 
+        public Response UpdateCreditDocuments(int creditId, List<CreditDocumentDC> documents)
+        {
+            DocumentDB documentDB = new();
+
+            try
+            {
+                var documentsDb = documentDB.GetByCreditId(creditId);
+
+                foreach (Document document in documentsDb)
+                {
+                    foreach (CreditDocumentDC documentDC in documents)
+                    {
+                        if (document.name != documentDC.Name)
+                        {
+                            Document newDocument = new()
+                            {
+                                id = documentDC.Id,
+                                name = documentDC.Name,
+                                active = true,
+                                registryDate = DateTime.Parse(documentDC.RegistryDate),
+                                registrer = documentDC.RegistrerId,
+                                documentationId = documentDC.DocumentationId,
+                                creditId = creditId,
+                            };
+
+                            if (documentDB.ReplaceDocument(newDocument, document.id) < 1)
+                            {
+                                return new(1, "Error replacing document");
+                            }
+
+                            DocumentManager manager = new();
+                            if (string.IsNullOrEmpty(manager.SaveDocument(newDocument, documentDC.File)))
+                            {
+                                return new(1, "Error saving document on server");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"An error with code {error.HResult} occurred while updating documents at {DateTime.Now}: ", error.Message);
+                return new(1, "An error ocurred while saving the credit info");
+            }
+
+            return new(0);
+        }
+
         public ResponseWithContent<List<CreditDocumentDC>> GetCreditsDocuments(int creditId)
         {
             DocumentDB documentDB = new();
@@ -256,7 +305,7 @@ namespace FinancieraServer.ServiceImplementations
                 foreach (var document in documents)
                 {
                     DocumentManager manager = new();
-                    byte[] file = manager.GetDocument(document.name);
+                    byte[]? file = manager.GetDocument($"creditDocuments/{document.name}");
 
                     if (file == null)
                     {
