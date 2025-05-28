@@ -52,8 +52,10 @@ namespace Data_Access
                 if(account != null)
                 {
                     account.password = newPassword;
-                    context.SaveChanges();
-                    statusCode = 0;
+                   if(context.SaveChanges() > 0)
+                    {
+                        statusCode = 0;
+                    }
                 }
                 else
                 {
