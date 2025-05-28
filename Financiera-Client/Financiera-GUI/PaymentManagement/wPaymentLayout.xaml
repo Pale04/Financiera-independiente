@@ -33,27 +33,36 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Margin="20,10,5,10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="Roboto">Pagos hasta el día:</Label>
-            <DatePicker Grid.Column="1" x:Name="endDateInput" VerticalAlignment="Center" FontFamily="Roboto" FontSize="14">
+            <Label Grid.Column="1" Margin="20,10,5,10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="Roboto">Desde</Label>
+            <DatePicker Grid.Column="2" x:Name="startDateInput" SelectedDateChanged="LimitEndDateInput"  VerticalAlignment="Center" FontFamily="Roboto" FontSize="14">
                 <DatePicker.Resources>
                     <Style TargetType="DatePickerTextBox">
                         <Setter Property="IsReadOnly" Value="True"/>
                     </Style>
                 </DatePicker.Resources>
             </DatePicker>
-            <Border Grid.Column="2" Margin="10,5,0,5" BorderThickness="1" BorderBrush="Black" Padding="10,5,10,5" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="GeneratePaymentLayout">
-                <TextBlock Text="Generar" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto"/>
+            <Label Grid.Column="3" Margin="20,10,5,10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="Roboto">hasta</Label>
+            <DatePicker Grid.Column="4" x:Name="endDateInput" SelectedDateChanged="LimitStartDateInput"  VerticalAlignment="Center" FontFamily="Roboto" FontSize="14">
+                <DatePicker.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="IsReadOnly" Value="True"/>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+            <Border Grid.Column="5" Margin="10,5,0,5" BorderThickness="1" BorderBrush="Black" Padding="10,5,10,5" CornerRadius="5" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="GeneratePaymentLayout">
+                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" Text="Buscar"/>
             </Border>
         </Grid>
-        
+
         <StackPanel Grid.Row="2" Orientation="Vertical" Margin="20,5,20,0">
             <Border Padding="5" Background="#778DA9" CornerRadius="10">
                 <Grid>
@@ -92,10 +101,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Vertical" Width="230">
-                <Label Grid.Column="4" x:Name="layoutDatesHelpLabel" Margin="0,0,0,5" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="14" FontFamily="Roboto" FontWeight="Heavy">Pagos de hoy</Label>
-                <Border Grid.Column="5" Margin="0" Padding="10,5,10,5" Width="150" HorizontalAlignment="Center" Style="{StaticResource ButtonBehaviourPrincipal}">
-                    <TextBlock Text="Descargar layout" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto" Foreground="White" MouseLeftButtonDown="DownloadPaymentLayout"/>
+            <StackPanel Grid.Column="0" Orientation="Vertical" Width="Auto">
+                <Border x:Name="downloadLayoutButton" Visibility="Hidden" Margin="0" Padding="10,5,10,5" Width="150" HorizontalAlignment="Center" Style="{StaticResource ButtonBehaviourPrincipal}">
+                    <TextBlock Text="Descargar layout" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto" FontSize="16" Foreground="White" MouseLeftButtonDown="DownloadPaymentLayout"/>
                 </Border>
             </StackPanel>
             <notifications:NotificationArea Grid.Column="1" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>

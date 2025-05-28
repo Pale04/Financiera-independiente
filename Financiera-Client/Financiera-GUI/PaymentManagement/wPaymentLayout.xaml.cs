@@ -9,31 +9,42 @@ namespace Financiera_GUI.PaymentManagement
     public partial class wPaymentLayout : Page
     {
         private readonly NotificationManager _notificationManager;
-        private DateOnly _actualDate;
+        private DateOnly _startDate;
         private DateOnly _endDate;
         private List<PaymentLayout> _paymentLayout;
 
         public wPaymentLayout()
         {
             InitializeComponent();
+
             _notificationManager = new NotificationManager();
-            _actualDate = DateOnly.FromDateTime(DateTime.Now);
+            _startDate = DateOnly.FromDateTime(DateTime.Now);
+            _endDate = DateOnly.FromDateTime(DateTime.Now);
+
+            startDateInput.SelectedDate = DateTime.Now;
+            startDateInput.DisplayDateStart = DateTime.Now;
+            startDateInput.DisplayDateEnd = DateTime.Now.AddDays(35);
 
             endDateInput.SelectedDate = DateTime.Now;
             endDateInput.DisplayDateStart = DateTime.Now;
-            endDateInput.DisplayDateEnd = DateTime.Now.AddMonths(1);
+            endDateInput.DisplayDateEnd = DateTime.Now.AddDays(35);
 
             LoadLayout();
         }
 
         private void LoadLayout()
         {
+            if (_startDate.CompareTo(_endDate) > 0)
+            {
+                _notificationManager.Show("El rango de fechas seleccionado es inválido", NotificationType.Warning, "WindowArea");
+                return;
+            }
+
             PaymentManager paymentManager = new PaymentManager();
-            _endDate = DateOnly.FromDateTime(endDateInput.SelectedDate.Value);
 
             try
             {
-                _paymentLayout = paymentManager.GetPaymentLayout(_actualDate, _endDate);
+                _paymentLayout = paymentManager.GetPaymentLayout(_startDate, _endDate);
             }
             catch (Exception error)
             {
@@ -44,19 +55,12 @@ namespace Financiera_GUI.PaymentManagement
             if (_paymentLayout.Count == 0)
             {
                 _notificationManager.Show("No hay pagos pendientes por mostrar", NotificationType.Information, "WindowArea");
+                downloadLayoutButton.Visibility = System.Windows.Visibility.Hidden;
             }
             else
             {
                 ChargePaymentsTable();
-            }
-
-            if (_endDate != _actualDate)
-            {
-                layoutDatesHelpLabel.Content = $"Pagos de hoy hata el {_endDate:dd/MM/yyyy}";
-            }
-            else
-            {
-                layoutDatesHelpLabel.Content = $"Pagos de hoy";
+                downloadLayoutButton.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
@@ -81,7 +85,7 @@ namespace Financiera_GUI.PaymentManagement
 
             try
             {
-                layoutPath = paymentManager.GeneratePaymentLayoutCsv(_paymentLayout, _actualDate, _endDate);
+                layoutPath = paymentManager.GeneratePaymentLayoutCsv(_paymentLayout, _startDate, _endDate);
             }
             catch (Exception error)
             {
@@ -101,6 +105,16 @@ namespace Financiera_GUI.PaymentManagement
         private void Back(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void LimitEndDateInput(object sender, SelectionChangedEventArgs e)
+        {
+            _startDate = DateOnly.FromDateTime(startDateInput.SelectedDate ?? DateTime.Now);
+        }
+
+        private void LimitStartDateInput(object sender, SelectionChangedEventArgs e)
+        {
+            _endDate = DateOnly.FromDateTime(endDateInput.SelectedDate ?? DateTime.Now);
         }
     }
 }
