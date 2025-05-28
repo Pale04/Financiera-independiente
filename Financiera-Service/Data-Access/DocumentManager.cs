@@ -9,7 +9,8 @@ namespace Data_Access
 
         public string? SaveDocument(Document documentInfo, byte[] file)
         {
-            if (!Path.Exists(_path)) {
+            if (!Path.Exists(_path))
+            {
                 Directory.CreateDirectory(_path);
             }
 

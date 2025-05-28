@@ -11,11 +11,11 @@ namespace Financiera_GUI.Credit
 {
     public partial class wCreditApplications : Page
     {
-        private List<CreditRequestSummary>? _requests;
+        private List<CreditRequestSummary> _requests;
         NotificationManager _notificationManager = new NotificationManager();
 
         private int _currentPage = 1;
-        private readonly int PAGE_SIZE = 12;
+        private static int PAGE_SIZE = 12;
 
         public wCreditApplications()
         {
@@ -29,7 +29,7 @@ namespace Financiera_GUI.Credit
 
             try
             {
-                _requests = manager.GetCreditRequests();
+            _requests = manager.GetCreditRequests();
             }
             catch (CommunicationException error)
             {
@@ -53,7 +53,7 @@ namespace Financiera_GUI.Credit
                 requestsPanel.Children.Add(new ucCreditRequestRow(_requests[i]));
             }
 
-            if (_currentPage * PAGE_SIZE > _requests.Count)
+            if (_currentPage * PAGE_SIZE < _requests.Count)
             {
                 nextPageButton.Visibility = Visibility.Collapsed;
             }

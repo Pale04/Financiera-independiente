@@ -63,7 +63,7 @@ namespace Financiera_GUI.Credit
         private List<DomainClasses.Document>? GetDocuments(int creditId)
         {
             CreditDocumentManager manager = new();
-            
+
             try
             {
                 return manager.GetCreditDocuments(creditId);
@@ -98,7 +98,7 @@ namespace Financiera_GUI.Credit
             {
                 var conditions = manager.GetByPagination(1000, 1000, false);
 
-                foreach(var condition in conditions)
+                foreach (var condition in conditions)
                 {
                     if (condition.Id == conditionId)
                     {
@@ -124,7 +124,7 @@ namespace Financiera_GUI.Credit
             {
                 var credit = manager.GetCredit(creditId);
 
-                if (credit != null) 
+                if (credit != null)
                 {
                     return credit;
                 }
@@ -183,6 +183,7 @@ namespace Financiera_GUI.Credit
                     selectable = false,
                     DocumentationName = documentation.Name
                 };
+
                 //button.SetImage(".\\Images\\upload_file_icon.png");
 
                 documentsPanel.Children.Add(button);

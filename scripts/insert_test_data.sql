@@ -14,21 +14,24 @@ DBCC CHECKIDENT ('Employee', RESEED, 0);
 DBCC CHECKIDENT ('Subsidiary', RESEED, 0);
 
 insert into Subsidiary (address, state) values ('hola mundo', 1);
-insert into Employee ([user], password, name, mail, address, phoneNumber, birthday, role, sucursalId) values
-	('pale', '1234', 'pale', 'correo@ejemplo.com', 'fei', '1237897892', '2004/12/12', 'adviser', ident_current('Subsidiary')),
+insert into Employee ([user], password, name, mail, address, phoneNumber, birthday, role, sucursalId)
+	values ('pale', '1234', 'pale', 'correo@ejemplo.com', 'fei', '1237897892', '2004/12/12', 'adviser', ident_current('Subsidiary')),
 	('admin', '1234', 'david', 'correo@ejemplo.com', 'fei', '1122334455', '2000/11/21', 'admin', ident_current('Subsidiary')),
 	('analist', '1234', 'max', 'correo@ejemplo.com', 'fei', '1122334455', '2004/06/04', 'analist', ident_current('Subsidiary')),
 	('collector', '1234', 'example', 'correo@ejemplo.com', 'fei', '1122334455', '2001/09/11', 'collector', ident_current('Subsidiary')),
 	('max', '1234', 'max', 'correo@ejemplo.com', 'fei', '7897897893', '2004/11/11', 'analist', ident_current('Subsidiary'));
 
-insert into Client (rfc, name, birthday, houseAddress, workAddress, phoneNumber1, phoneNumber2, mail, state) values
-	('1231231231237', 'david carrion', '2000/11/21', 'dirección de mi casa', 'dirección de mi trabajo', '2288121212', '2281562389', 'correo@ejemplo.com', 1),
-	('1111111111111', 'emmanuel pale', '2004/12/12', 'dirección de la casa de pale', 'dirección del trabajo de pale', '2211127878', '2288332288', 'pale@ejemplo.com', 1);
-
 insert into BankAccount (clabe, purpose, clientId) values
 	('123456789123789456', 'receive', '1231231231237'), ('123789456123789456', 'collect', '1231231231237'),
 	('228877878787878887', 'receive', '1111111111111'), ('456456456666655555', 'collect', '1111111111111');
 
+insert into CreditPolicy (title, description, state ,effectiveDate, register) values
+	('Mayor de edad', 'El solicitante es mayor de 18 años',1, '2030/05/20', 2),
+	('Menor de 60 años', 'El solicitante tiene 60 años o menos',1, '2030/05/20', 2),
+	('Lista negra', 'El solicitante no aparece en ninguna lista negra de protección',1, '2030/05/20', 2),
+	('Capacidad de crédito', 'La capacidad de crédito es de al menos 30%',1, '2030/05/20', 2);
+
+insert into RequiredDocumentation (name, state, fileType) values ('Identificación', 1, 'image'), ('Curp', 1, 'pdf'), ('pato', 0, 'pdf');
 insert into PersonalReference (name, phoneNumber, relationship, clientRfc) values
 	('cuauhtemoc', '1231231238', 'hermano', '1231231231237'),
 	('fernando', '1231231237', 'padre', '1231231231237'),

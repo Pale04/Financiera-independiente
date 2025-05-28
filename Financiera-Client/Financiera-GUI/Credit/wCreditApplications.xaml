@@ -7,8 +7,9 @@
       mc:Ignorable="d" 
       xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
       d:DesignHeight="720" d:DesignWidth="1280"      
-      Title="Solicitudes de crédito"
-      xmlns:uc="clr-namespace:Financiera_GUI.Utilities">
+      Title="wCreditApplications"
+      xmlns:uc="clr-namespace:Financiera_GUI.Utilities"
+      uc:ucCreditRequestRow.ViewCredit="ViewCreditInfo">
 
     <Grid Background="White">
         <Grid.Resources>
@@ -28,6 +29,10 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
+            <Border Margin="10" Grid.Column="0" Panel.ZIndex="2" Height="40" Width="40" CornerRadius="50" MouseLeftButtonDown="Back" Style="{StaticResource ButtonBehaviorGlobal}">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
+            </Border>
 
             <Label Grid.ColumnSpan="2" Grid.Column="0" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
            FontFamily="Roboto" FontSize="30" FontWeight="Bold">Solicitudes de crédito</Label>
@@ -113,6 +118,6 @@
             </Border>
         </Grid>
 
-        <notifications:NotificationArea Grid.Row="2" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
+        <notifications:NotificationArea Grid.Row="3" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
     </Grid>
 </Page>

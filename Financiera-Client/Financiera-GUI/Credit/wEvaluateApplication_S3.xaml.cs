@@ -106,7 +106,7 @@ namespace Financiera_GUI.Credit
 
             decimal total = capital + (capital * interestRate * years * (1 + iva));
             return total;
-
+            
         }
 
         public int CalculateNumberOfPayments(DomainClasses.CreditCondition creditCondition, DomainClasses.Credit credit)
