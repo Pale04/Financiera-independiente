@@ -61,7 +61,7 @@ namespace Financiera_GUI.Credit
 
         public void Back(object sender, RoutedEventArgs e)
         {
-            
+            NavigationService.Navigate(new wCreditApplications());
         }
 
         private void EvaluatePolicies(object sender, RoutedEventArgs e)

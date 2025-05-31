@@ -18,7 +18,7 @@
 
         <Label x:Name="creditIdLabel" Margin="0,0,10,0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center"
         FontFamily="Roboto" FontSize="16">120000</Label>
-        
+
         <Label x:Name="beneficiaryLabel" Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Left" Padding="10, 0, 10, 0" VerticalAlignment="Center"
         FontFamily="Roboto" FontSize="16">John Doe</Label>
 
@@ -27,7 +27,7 @@
 
         <Label x:Name="DurationLabel" Margin="0,0,10,0" Grid.Column="3" HorizontalContentAlignment="Center" VerticalAlignment="Center"
         FontFamily="Roboto" FontSize="16">12 meses</Label>
-        
+
         <Label x:Name="InterestLabel" Margin="0,0,10,0" Grid.Column="4" HorizontalContentAlignment="Center" VerticalAlignment="Center"
         FontFamily="Roboto" FontSize="16">20%</Label>
     </Grid>

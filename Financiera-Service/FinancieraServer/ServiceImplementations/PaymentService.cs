@@ -108,19 +108,14 @@ namespace FinancieraServer.ServiceImplementations
             {
                 PaymentDB paymentDB = new();
 
-                if (paymentDB.PaymentExists(payment.Id))
-                {
-                    return new Response(3);
-                }
                 int response = paymentDB.AddPayment(new Payment()
                 {
-                    state = payment.PaymentState.ToString(),
                     amount = payment.Amount,
                     creditId = payment.CreditId,
                     collectionDate = ConvertDate(payment.CollectionDate),
                     registrer = payment.RegistrerId
                 });
-                if(response > 0)
+                if(response == 0)
                 {
                     return new Response(0);
                 }

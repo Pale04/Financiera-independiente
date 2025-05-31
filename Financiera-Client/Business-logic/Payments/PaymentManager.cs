@@ -159,7 +159,9 @@ namespace Business_logic.Payments
         public int AddPolicy(Payment payment)
         {
             PaymentServiceClient client = new();
-            
+            int statusCode = 1;
+
+
             System.DateOnly currentDate = payment.CollectionDate;
             
             PaymentDC paymentDC = new()
@@ -170,8 +172,18 @@ namespace Business_logic.Payments
                 RegistrerId = payment.RegistrerId
 
             };
-            Response response = client.AddPayment(paymentDC);
-            int statusCode = response.StatusCode;
+
+            try
+            {
+                Response response = client.AddPayment(paymentDC);
+                statusCode = response.StatusCode;
+            }
+            catch(CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError); 
+            }
+            
+           
             return statusCode;
         }
     }

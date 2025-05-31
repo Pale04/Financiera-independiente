@@ -29,7 +29,7 @@ namespace Financiera_GUI.Credit
 
             try
             {
-            _requests = manager.GetCreditRequests();
+                _requests = manager.GetCreditRequests();
             }
             catch (CommunicationException error)
             {
