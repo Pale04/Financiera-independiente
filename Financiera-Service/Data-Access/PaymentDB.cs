@@ -89,7 +89,14 @@ namespace Data_Access
             {
                 payment.state = "pending";
                 context.Payments.Add(payment);
-                return context.SaveChanges();
+                if(context.SaveChanges() > 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
                 
             }
         }

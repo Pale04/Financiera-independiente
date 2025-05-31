@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Financiera_GUI.Utilities;
 using CatalogServiceReference;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Windows.Media;
 
 namespace Financiera_GUI.Credit
 {
@@ -175,7 +176,6 @@ namespace Financiera_GUI.Credit
                 {
                     Text = documentation.Name,
                     AcceptedFile = documentation.FileType.ToString(),
-                    DocumentationId = document.DocumentationId
                     DocumentationId = document.DocumentationId,
                     Color = Brushes.Gray,
                     selectable = false,

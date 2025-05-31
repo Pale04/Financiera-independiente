@@ -25,6 +25,7 @@ namespace Financiera_GUI.Credit
         private int _lastId;
         private int _pageSize;
         private int _actualPage;
+        private int _currentIndex;
         private List<DomainClasses.Payment> _paymentsNextPage;
         public wEvaluateApplication_S3(DomainClasses.Credit credit)
         {
@@ -37,6 +38,7 @@ namespace Financiera_GUI.Credit
             _creditPayments = GeneratePayments(total, payments, _creditReferenced, _creditConditionInfo);
             AddPayments(_creditPayments);
             _pageSize = 12;
+            _currentIndex = 0;
             RebootPages();
             
             
@@ -102,9 +104,8 @@ namespace Financiera_GUI.Credit
             decimal capital = credit.Capital;
             decimal iva = creditCondition.IVA / 100m;
             decimal interestRate = creditCondition.InterestRate / 100m;
-            decimal years = credit.Duration / 12m;
 
-            decimal total = capital + (capital * interestRate * years * (1 + iva));
+            decimal total = capital + (capital * interestRate * (1 + iva));
             return total;
             
         }
@@ -153,11 +154,12 @@ namespace Financiera_GUI.Credit
         public void RebootPages()
         {
             _actualPage = 1;
+            _currentIndex = 0;
             _paymentsNextPage = new();
             if (_creditPayments.Count > 0)
             {
                 _firstId = _creditPayments.First().Id;
-                _lastId = _creditPayments.Count > _pageSize ? _creditPayments[_pageSize - 1].Id : _creditPayments.Last().Id;
+                _lastId = _creditPayments.Count >= _pageSize ? _creditPayments[_pageSize - 1].Id : _creditPayments.Last().Id;
             }
             else
             {
@@ -166,65 +168,49 @@ namespace Financiera_GUI.Credit
             }
 
             SaveNextPage();
-            LoadPage(true);
+            LoadPage(false);
         }
 
         public void LoadPage(bool next)
         {
-            List<DomainClasses.Payment> payments;
-
             if (next)
             {
-                int startIndex = _creditPayments.FindIndex(p => p.Id == _lastId);
-                if (startIndex == -1 || startIndex + 1 >= _creditPayments.Count)
+                if (_currentIndex + _pageSize >= _creditPayments.Count)
                     return;
 
-                payments = _creditPayments
-                    .Skip(startIndex + 1)
-                    .Take(_pageSize)
-                    .ToList();
-
-                if (payments.Any())
-                {
-                    _actualPage++;
-                    _firstId = payments.First().Id;
-                    _lastId = payments.Last().Id;
-                }
+                _currentIndex += _pageSize;
             }
             else
             {
-                int startIndex = _creditPayments.FindIndex(p => p.Id == _firstId);
-                if (startIndex <= 0)
-                    return;
-
-                
-                int takeCount = Math.Min(_pageSize, startIndex);
-                payments = _creditPayments
-                    .Skip(startIndex - takeCount)
-                    .Take(_pageSize)
-                    .ToList();
-
-                if (payments.Any())
+                if (_currentIndex - _pageSize < 0)
                 {
-                    _actualPage = Math.Max(1, _actualPage - 1);
-                    _firstId = payments.First().Id;
-                    _lastId = payments.Last().Id;
+                    _currentIndex = 0; // Primer página
+                }
+                else
+                {
+                    _currentIndex -= _pageSize;
                 }
             }
 
-          
+            var payments = _creditPayments
+                .Skip(_currentIndex)
+                .Take(_pageSize)
+                .ToList();
+
+            _actualPage = (_currentIndex / _pageSize) + 1;
+
             TbPayments.Children.RemoveRange(1, TbPayments.Children.Count);
             foreach (var payment in payments)
             {
                 TbPayments.Children.Add(new ucPaymentTableRow(payment));
             }
 
-            
             SaveNextPage();
 
-           
-           previousPageButton.Visibility = _actualPage == 1 ? Visibility.Hidden : Visibility.Visible;
+            previousPageButton.Visibility = _currentIndex == 0 ? Visibility.Hidden : Visibility.Visible;
+            nextPageButton.Visibility = (_currentIndex + _pageSize >= _creditPayments.Count) ? Visibility.Hidden : Visibility.Visible;
         }
+
 
         public void SaveNextPage()
         {
@@ -247,11 +233,6 @@ namespace Financiera_GUI.Credit
                 : Visibility.Visible;
         }
 
-        public void Back(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new wEvaluateApplication_S2(_creditReferenced, true));
-        }
-
         private void PreviousPage(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             LoadPage(false);
@@ -260,6 +241,11 @@ namespace Financiera_GUI.Credit
         private void NextPage(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             LoadPage(true);
+        }
+
+        private void EvaluatePolicies(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new wCreditApplications());
         }
     }
 }

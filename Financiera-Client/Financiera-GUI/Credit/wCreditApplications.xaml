@@ -17,13 +17,13 @@
                 <EventSetter Event="ViewCredit" Handler="ViewCreditInfo"/>
             </Style>
         </Grid.Resources>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -49,7 +49,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -102,7 +102,7 @@
             <Border Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Margin="10, 10, 10, 20" Padding="10" Background="#E0E1DD" CornerRadius="15" Height="Auto">
                 <StackPanel HorizontalAlignment="Center">
                     <Button Content="Aplicar filtros" Click="ApplyFilter" Width="250" FontSize="16"/>
-                    
+
                     <Label FontSize="20" HorizontalAlignment="Center" Margin="0, 10, 0, 0">Capital</Label>
                     <RadioButton Name="rdCapital1" GroupName="capitalRange" Margin="5">25,000-</RadioButton>
                     <RadioButton Name="rdCapital2" GroupName="capitalRange" Margin="5">25,001 - 50,000</RadioButton>
