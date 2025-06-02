@@ -55,7 +55,7 @@ namespace FinancieraServer.ServiceImplementations
             }
         }
 
-        public Response AddCreditRequest(CreditRequestDC request)
+        public ResponseWithContent<int> AddCreditRequest(CreditRequestDC request)
         {
             Credit credit = new()
             {
@@ -77,13 +77,13 @@ namespace FinancieraServer.ServiceImplementations
                 if (credit.id < 1)
                 {
                     _logger.LogWarning("Couldn´t add a credit, but no error was raised");
-                    return new Response(1, "An error ocurred while saving data");
+                    return new(1, "An error ocurred while saving data");
                 }
             }
             catch (DbException error)
             {
                 _logger.LogError($"An error with code {error.ErrorCode} occurred while saving credit at {DateTime.Now}: ", error.Message);
-                return new Response(1, "An error ocurred while saving the credit info");
+                return new(1, "An error ocurred while saving the credit info");
             }
 
             List<Document> documents = new List<Document>();
@@ -108,14 +108,14 @@ namespace FinancieraServer.ServiceImplementations
                 catch (Exception error)
                 {
                     _logger.LogError($"Error saving file at {DateTime.Now}: ", error.Message);
-                    return new Response(1, "Error saving documents");
+                    return new(1, "Error saving documents");
                 }
 
                 documents.Add(document);
             }
 
             DocumentDB documentDB = new();
-            int result;
+            int result = 0;
 
             foreach (Document document in documents)
             {
@@ -126,17 +126,17 @@ namespace FinancieraServer.ServiceImplementations
                     if (result < 1)
                     {
                         _logger.LogWarning("Couldn´t add a credit, but no error was raised");
-                        return new Response(1, "An error ocurred while saving documents");
+                        return new(1, "An error ocurred while saving documents");
                     }
                 }
                 catch (DbException error)
                 {
                     _logger.LogError($"An error with code {error.ErrorCode} occurred while saving documents at {DateTime.Now}: ", error.Message);
-                    return new Response(1, "An error ocurred while saving documents");
+                    return new(1, "An error ocurred while saving documents");
                 }
             }
 
-            return new Response(0, "Credit and documents added successfully");
+            return new(0, credit.id);
         }
 
         public Response DetermineRequest(int requestId, bool granted)

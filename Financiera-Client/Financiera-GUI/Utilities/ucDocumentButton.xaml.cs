@@ -92,7 +92,7 @@ namespace Financiera_GUI.Utilities
                 try
                 {
                     File = System.IO.File.ReadAllBytes(fileDialog.FileName);
-                    FileName = fileDialog.FileName;
+                    FileName = fileDialog.FileName; 
                     button.Background = Brushes.LightGreen;
                 }
                 catch (SecurityException ex)
@@ -105,13 +105,14 @@ namespace Financiera_GUI.Utilities
 
         private void Download()
         {
-            if (!Path.Exists("./creditDocuments/"))
+            string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            if (!Path.Exists(Path.Combine(folder, "creditDocuments")))
             {
-                Directory.CreateDirectory("./creditDocuments/");
+                Directory.CreateDirectory(Path.Combine(folder, "creditDocuments"));
             }
 
             string newFileName = $"{FileName.Substring(0, 2)}{DocumentationName}{Path.GetExtension(FileName)}";
-            System.IO.File.WriteAllBytes("./creditDocuments/"+newFileName, File);
+            System.IO.File.WriteAllBytes(Path.Combine(folder, "creditDocuments/") + newFileName, File);
         }
     }
 }

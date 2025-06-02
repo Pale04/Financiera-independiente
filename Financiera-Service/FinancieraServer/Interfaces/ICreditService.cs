@@ -6,7 +6,7 @@ namespace FinancieraServer.Interfaces
     public interface ICreditService
     {
         [OperationContract]
-        Response AddCreditRequest(CreditRequestDC request);
+        ResponseWithContent<int> AddCreditRequest(CreditRequestDC request);
 
         [OperationContract]
         ResponseWithContent<List<CreditDC>> GetActiveCredits();
