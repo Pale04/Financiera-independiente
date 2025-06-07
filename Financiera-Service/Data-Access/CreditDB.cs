@@ -51,8 +51,6 @@ namespace Data_Access
                 result = context.SaveChanges();
                 return context.Credits.OrderBy(d => d.id).Last().id;
             }
-
-            return result;
         }
 
         public int UpdateState(int creditId, string state)

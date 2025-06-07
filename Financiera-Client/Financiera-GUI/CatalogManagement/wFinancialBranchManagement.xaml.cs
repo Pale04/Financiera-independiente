@@ -110,7 +110,7 @@ namespace Financiera_GUI.CatalogManagement
 
         private void Back(object sender, MouseButtonEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new MainMenus.wSystemManagement());
 
         }
     }

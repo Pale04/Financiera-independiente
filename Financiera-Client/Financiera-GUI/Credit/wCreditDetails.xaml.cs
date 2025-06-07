@@ -141,7 +141,7 @@ namespace Financiera_GUI.Credit
 
         private void LoadData()
         {
-            double total = (double)_credit.Capital + (((double)_credit.Capital * ((double)_creditCondition.InterestRate / 100)) * (1.0 + ((double)_creditCondition.IVA / 100)));
+            double total = ((double)_credit.Capital + ((double)_credit.Capital * ((double)_creditCondition.InterestRate / 100))) * (1.0 + ((double)_creditCondition.IVA / 100));
             int monthlyPayments = (int)Math.Floor(total / (double)_creditCondition.PaymentsPerMonth);
 
             titleLabel.Content = $"Crédito N.{_credit.Id}";

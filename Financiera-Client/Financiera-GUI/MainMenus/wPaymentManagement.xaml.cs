@@ -23,12 +23,7 @@ namespace Financiera_GUI.MainMenus
 
         private void BtnGenerateEfficiencyReportClick(object sender, MouseButtonEventArgs e)
         {
-
-        }
-
-        private void BtnManageUncollectableCreditsClick(object sender, MouseButtonEventArgs e)
-        {
-
+            NavigationService.Navigate(new wGeneralStatistics());
         }
     }
 }

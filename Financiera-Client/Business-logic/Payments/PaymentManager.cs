@@ -186,5 +186,40 @@ namespace Business_logic.Payments
            
             return statusCode;
         }
+
+        public List<Payment>? GetPaymentsFromDateRange(DateTime startDate, DateTime endDate)
+        {
+            PaymentServiceClient client = new();
+            List<Payment> payments = [];
+
+            try
+            {
+                var response = client.GetPaymentsFromDateRange(startDate.ToString(), endDate.ToString());
+
+                if (response.StatusCode == 1)
+                {
+                    throw new Exception(ErrorMessages.ServerError);
+                }
+
+                foreach (var payment in response.Data)
+                {
+                    payments.Add(new()
+                    {
+                        Id = payment.Id,
+                        Amount = payment.Amount,
+                        CreditId = payment.CreditId,
+                        CollectionDate = DateOnly.Parse(payment.CollectionDate),
+                        RegistrerId = payment.RegistrerId,
+                        State = Payment.StateFromString(payment.PaymentState.ToString())
+                    });
+                }
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            return payments;
+        }
     }
 }

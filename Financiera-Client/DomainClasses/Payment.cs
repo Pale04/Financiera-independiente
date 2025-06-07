@@ -22,6 +22,19 @@
 
         public int RegistrerId { get; set; }
 
+        public static PaymentStatus StateFromString(string paymentState)
+        {
+            switch (paymentState)
+            {
+                case "Collected":
+                    return PaymentStatus.Collected;
+                case "NotCollected":
+                    return PaymentStatus.NotCollected;
+                default:
+                    throw new InvalidDataException();
+            }
+        }
+
         public PaymentStatus GetState()
         {
             return _state;
