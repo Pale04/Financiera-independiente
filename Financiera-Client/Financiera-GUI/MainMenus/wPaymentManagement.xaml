@@ -77,29 +77,6 @@
                     <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto">Generar Reporte de Eficiencia</Label>
                 </Grid>
             </Border>
-
-
-            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnManageUncollectableCreditsClick">
-                <Border.Style>
-                    <Style TargetType="Border">
-                        <Setter Property="Background" Value="#FFE0E1DD" />
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="LightSteelBlue" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
-                <Grid Width="400" Height="150">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="0" Margin="10" Source="../images/manage_uncollectible_credits.png" Stretch="Uniform"/>
-                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  FontFamily="Roboto">Gestionar Créditos Incobrables</Label>
-                </Grid>
-            </Border>
         </StackPanel>
     </StackPanel>
 </Page>

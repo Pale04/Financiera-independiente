@@ -5,8 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Financiera_GUI.Utilities"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="40" d:DesignWidth="1280">
+
+    <Grid HorizontalAlignment="Center" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="creditLabel" Margin="0,0,10,0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+FontFamily="Roboto" FontSize="16">120000</Label>
+
+        <Label x:Name="amountLabel" Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+FontFamily="Roboto" FontSize="16">120000</Label>
+
+        <Label x:Name="dateLabel" Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+FontFamily="Roboto" FontSize="16">20/20/20</Label>
+
+        <Label x:Name="stateLabel" Margin="0,0,10,0" Grid.Column="3" HorizontalContentAlignment="Center" VerticalAlignment="Center"
+FontFamily="Roboto" FontSize="16">No cobrado</Label>
     </Grid>
 </UserControl>
