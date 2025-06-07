@@ -77,17 +77,11 @@ namespace Business_logic
             document.Add(creditTable);
 
             document.Close();
-            DownloadDocument(document);
         }
 
         public static void GeneratePaymentLayoutDocument()
         {
             // todo
-        }
-
-        private static void DownloadDocument(iText.Layout.Document document)
-        {
-            //  todo
         }
     }
 }

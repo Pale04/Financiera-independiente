@@ -19,7 +19,7 @@ namespace Financiera_GUI.Credit
         private List<CreditCondition> _conditions;
         public string BeneficiaryId { get; set; }
 
-        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Descargas");
 
         public wNewCredit()
         {
@@ -96,12 +96,8 @@ namespace Financiera_GUI.Credit
 
         private Customer GetCustomerInfo(string customerId)
         {
-            return null;
-        }
-
-        private List<PersonalReference> GetCustomerReferences(string customerId)
-        {
-            return null;
+            CustomerManager manager = new();
+            return manager.GetByRfc(customerId);
         }
 
         private void Back(object sender, MouseButtonEventArgs e)
@@ -163,7 +159,7 @@ namespace Financiera_GUI.Credit
              
             CreditManager creditManager = new();
             (int, int) result = creditManager.Add(credit, documents);
-            switch (result.Item1)
+            switch (result.Item2)
             {
                 case 1:
                     _notificationManager.Show("Error", "Ocurrió un error al crear solicitud, intente nuevamente", NotificationType.Error, "WindowArea");
@@ -176,9 +172,13 @@ namespace Financiera_GUI.Credit
                     break;
                 case 0:
                     credit.Id = result.Item2;
-                    PdfGenerator.GenerateCreditRequestDocument(credit, condition, GetCustomerInfo(BeneficiaryId), GetCustomerReferences(BeneficiaryId), filePath);
+                    Customer customer = GetCustomerInfo(BeneficiaryId);
+                    PdfGenerator.GenerateCreditRequestDocument(credit, condition, customer, customer.PersonalReferences.ToList(), filePath);
                     _notificationManager.Show("Solicitud creada correctamente", NotificationType.Success, "WindowArea");
                     NavigationService.GoBack();
+                    break;
+                default:
+                    _notificationManager.Show("Error", "Ocurrió un error desconocido, código: " + result.Item2, NotificationType.Warning, "WindowArea");
                     break;
             }
         }
