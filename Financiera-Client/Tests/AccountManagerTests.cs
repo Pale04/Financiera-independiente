@@ -77,21 +77,21 @@ public class AccountManagerTests
     [TestMethod]
     public void IsValidSuccessfulTest()
     {
-        bool result = _accountManager.isPasswordValid("ValidPass123!");
+        bool result = _accountManager.IsPasswordValid("ValidPass123!");
         Assert.IsTrue(result, "Expected true for valid password.");
     }
 
     [TestMethod]
     public void IsValidInvalidFieldTest()
     {
-        bool result = _accountManager.isPasswordValid("pass#word");
+        bool result = _accountManager.IsPasswordValid("pass#word");
         Assert.IsFalse(result, "Expected false for password with forbidden character.");
     }
 
     [TestMethod]
     public void IsValidFailedTest()
     {
-        bool result = _accountManager.isPasswordValid("   ");
+        bool result = _accountManager.IsPasswordValid("   ");
         Assert.IsFalse(result, "Expected false for whitespace-only password.");
     }
 

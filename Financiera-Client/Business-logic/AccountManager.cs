@@ -50,7 +50,7 @@ namespace Business_logic
         {
             if (Equals(password, confirmPassword))
             {
-                if (isPasswordValid(password))
+                if (IsPasswordValid(password))
                 {
                     AccountServiceClient accountClient = new();
                     AccountServiceReference.Response response;
@@ -75,24 +75,17 @@ namespace Business_logic
             }
         }
 
-        public bool isPasswordValid(string password)
+        public bool IsPasswordValid(string password)
         {
-            Regex regex = new Regex("[[^'#-%]$");
-            if (String.IsNullOrWhiteSpace(password))
-            {
-                if (regex.IsMatch(password))
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else
-            {
+           
+            if (string.IsNullOrWhiteSpace(password))
                 return false;
-            }
+
+            Regex forbiddenChars = new Regex(@"['#\-%]");
+            if (forbiddenChars.IsMatch(password))
+                return false;
+
+            return true;
         }
 
         public bool isCodeValid(string user, string code)
