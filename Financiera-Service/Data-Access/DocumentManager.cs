@@ -7,7 +7,7 @@ namespace Data_Access
     {
         private string _path = "creditDocuments/";
 
-        public string? SaveDocument(Document documentInfo, byte[] file)
+        public string SaveDocument(Document documentInfo, byte[] file)
         {
             if (!Path.Exists(_path))
             {

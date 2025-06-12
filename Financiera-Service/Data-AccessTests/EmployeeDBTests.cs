@@ -14,12 +14,27 @@ public class EmployeeDBTests
         id = 100,
         user = "pale",
         password = "1234",
-        name = "david",
+        name = "pale molina",
         mail = "correo@ejemplo.com",
         address = "fei",
         phoneNumber = "1237897892",
         birthday = DateOnly.Parse("2004/12/12"),
         role = "adviser",
+        sucursalId = 1
+
+    };
+
+    private static Data_Access.Entities.Employee _analyst= new()
+    {
+        id = 100,
+        user = "david",
+        password = "1234",
+        name = "david carrion",
+        mail = "correo2@ejemplo.com",
+        address = "fei",
+        phoneNumber = "3219879872",
+        birthday = DateOnly.Parse("2000/11/11"),
+        role = "analist",
         sucursalId = 1
 
     };
@@ -47,6 +62,12 @@ public class EmployeeDBTests
         {
             context.Database.ExecuteSqlRaw("DELETE FROM Employee");
         }
+    }
+
+    [TestMethod]
+    public void CreateUserSuccessfulTest()
+    {
+        Assert.AreEqual(0, _employeeDB.Add(_analyst));
     }
 
     [TestMethod]
