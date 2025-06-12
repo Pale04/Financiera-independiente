@@ -7,6 +7,18 @@ namespace Tests;
 public class AccountManagerTests
 {
     private static EmployeeClass _employee;
+    private static EmployeeClass _employee2 = new()
+    {
+        User = "testUser2",
+        Password = "Abcd12345.",
+        Name = "Test2",
+        Mail = "test2@email.com",
+        Address = "Test Address 2",
+        PhoneNumber = "98732165",
+        Birthday = DateOnly.Parse("2000-06-02"),
+        Role = "admin",
+        SucursalId = 1
+    };
     private static AccountManager _accountManager;
 
     [TestInitialize]
@@ -28,6 +40,38 @@ public class AccountManagerTests
 
         _accountManager.CreateAccount(_employee);
     }
+
+    [TestMethod]
+    public void CreateAccountSuccessfulTest()
+    {
+        Assert.AreEqual(0, _accountManager.CreateAccount(_employee2));
+    }
+
+    [TestMethod]
+    public void CreateAccountDuplicateTest()
+    {
+        Assert.AreEqual(3, _accountManager.CreateAccount(_employee));
+    }
+
+    [TestMethod]
+    public void CreateAccountInvalidDataTest()
+    {
+        EmployeeClass employee = new()
+        {
+            User = "testUser",
+            Password = "Abcd12345.",
+            Name = "Test",
+            Mail = "nocorreo",
+            Address = "Test Address",
+            PhoneNumber = "telefonoraro",
+            Birthday = DateOnly.Parse("2004-06-02"),
+            Role = "admin",
+            SucursalId = 1
+        };
+
+        Assert.AreEqual(2, _accountManager.CreateAccount(employee));
+    }
+
     [TestMethod]
     public void SendEmailSuccessfulTest()
     {

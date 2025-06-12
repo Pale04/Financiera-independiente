@@ -17,6 +17,29 @@ public class CreditManagerTests
     private static Document _requiredDocument1;
     private static Document _requiredDocument2;
     private static List<Document> _documents;
+    private static CustomerManager _customerManager;
+
+    private static Credit _credit2 = new Credit()
+    {
+        Beneficiary = "4564564564561",
+        Capital = 50000,
+        ConditionId = 1,
+        State = "requested",
+        Duration = 12
+    };
+
+    private static Customer _customer = new()
+    {
+        Rfc = "1231234561237",
+        Name = "Jese Carrion",
+        BirthDate = DateOnly.Parse("2004-06-02"),
+        HouseAddress = "casa de jese",
+        WorkAddress = "trabajo de jese",
+        PhoneNumber1 = "7897897893",
+        PhoneNumber2 = "3213211231",
+        Email = "ejemlpo@ejemplo.com",
+        State = true
+    };
 
     [TestInitialize]
     public void Initialize(TestContext context)
@@ -25,6 +48,7 @@ public class CreditManagerTests
         _creditConditionManager = new();
         _creditManager = new();
         _requiredDocumentationManager = new RequiredDocumentationManager();
+        _customerManager = new();
 
         _requiredDocument1 = new()
         {
@@ -47,7 +71,7 @@ public class CreditManagerTests
             PhoneNumber = "1234567890",
             Birthday = DateOnly.Parse("2004-06-02"),
             Role = "admin",
-            SucursalId = 1
+            SucursalId = 1,
         };
 
         _credit = new()
@@ -70,12 +94,70 @@ public class CreditManagerTests
             RegistrerId = 1
         };
 
+        List<PersonalReference> references = new();
+        references.Add(new()
+        {
+            Name = "David carrion",
+            PhoneNumber = "9879877771",
+            Relationship = "Hermano",
+            CustomerRfc = "1231234561237"
+        });
+        references.Add(new()
+        {
+            Name = "Fulano carrion",
+            PhoneNumber = "9579877771",
+            Relationship = "Hermano",
+            CustomerRfc = "1231234561237"
+        });
+
+        List<BankAccount> bankAccounts = new();
+        bankAccounts.Add(new()
+        {
+            Clabe = "777788889999444411",
+            Purpose = "collect",
+            CustomerRfc = "1231234561237"
+        });
+        bankAccounts.Add(new()
+        {
+            Clabe = "777788889999544411",
+            Purpose = "receive",
+            CustomerRfc = "1231234561237"
+        });
+
+        _customer.PersonalReferences = references.ToArray();
+        _customer.BankAccounts = bankAccounts.ToArray();
+
         _documents.Add(_requiredDocument1);
         _documents.Add(_requiredDocument2);
         _accountManager.CreateAccount(_employee);
         _creditConditionManager.AddCreditCondition(_creditCondition1);
         _creditManager.Add(_credit, _documents);
+        _customerManager.AddCustomer(_customer);
+    }
 
+    [TestMethod]
+    public void GetCreditRequestsTest()
+    {
+        List<CreditRequestSummary> credits = _creditManager.GetCreditRequests();
+
+        Assert.Equals(1, credits.Count);
+        Assert.Equals(_customer.Name, credits.First().ClientName);
+    }
+
+    [TestMethod]
+    public void CreateCreditRequestTest()
+    {
+        int result = _creditManager.Add(_credit2, _documents).Item2;
+        Assert.AreEqual(0, result);
+    }
+
+    [TestMethod]
+    public void CreateEmptyCreditRequestTest()
+    {
+        Credit credit = new();
+
+        int result = _creditManager.Add(credit, _documents).Item2;
+        Assert.AreEqual(1, result);
     }
 
     [TestMethod]

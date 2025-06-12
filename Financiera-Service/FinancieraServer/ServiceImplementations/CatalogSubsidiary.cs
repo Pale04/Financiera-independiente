@@ -113,12 +113,6 @@ namespace FinancieraServer.ServiceImplementations
         public Response UpdateSubsidiaryState(int id, bool activeSubsidiary)
         {
             SubsidiaryDB subsidiaryDB = new();
-            Subsidiary subsidiary = new Subsidiary()
-            {
-                id = id,
-                address = "",
-                state = activeSubsidiary
-            };
 
             try
             {
