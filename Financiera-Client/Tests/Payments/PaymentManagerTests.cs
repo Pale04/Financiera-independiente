@@ -156,9 +156,9 @@ namespace Payments.Tests
                 CollectionDate = DateOnly.FromDateTime(DateTime.Now.AddDays(14)),
                 RegistrerId = _employee.Id
             };
-            _paymentManager.AddPolicy(_payment1);
-            _paymentManager.AddPolicy(_payment2);
-            _paymentManager.AddPolicy(_payment3);
+            _paymentManager.AddPayment(_payment1);
+            _paymentManager.AddPayment(_payment2);
+            _paymentManager.AddPayment(_payment3);
 
         }
 
@@ -193,6 +193,74 @@ namespace Payments.Tests
             _payment1.State = PaymentStatus.Collected;
             int result = _paymentManager.UpdatePaymentsState(_payment1);
             Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void AddPaymentSuccessfulTest()
+        {
+            Payment newPayment = new()
+            {
+                Amount = 500,
+                CreditId = _credit.Id,
+                CollectionDate = DateOnly.FromDateTime(DateTime.Today.AddDays(1)),
+                RegistrerId = _employee.Id
+            };
+
+            int result = _paymentManager.AddPayment(newPayment);
+
+            Assert.AreEqual(0, result, "The payment should be added successfully and return status code 0.");
+        }
+
+        [TestMethod]
+        public void AddPaymentInvalidFieldsTest()
+        {
+            Payment invalidPayment = new()
+            {
+                Amount = -100,
+                CreditId = _credit.Id,
+                CollectionDate = DateOnly.FromDateTime(DateTime.Today.AddDays(1)),
+                RegistrerId = _employee.Id
+            };
+
+            Assert.ThrowsException<Exception>(() =>
+            {
+                _paymentManager.AddPayment(invalidPayment);
+            }, "An exception should be thrown when trying to add a payment with invalid fields.");
+        }
+
+        [TestMethod]
+        public void AddPaymentEmptyTest()
+        {
+            Payment emptyPayment = new();
+
+            Assert.ThrowsException<Exception>(() =>
+            {
+                _paymentManager.AddPayment(emptyPayment);
+            }, "An exception should be thrown when trying to add an empty payment.");
+        }
+
+        [TestMethod]
+        public void GetPaymentsFromDateRangeSuccessfulTest()
+        {
+            DateTime startDate = DateTime.Today.AddDays(-1);
+            DateTime endDate = DateTime.Today.AddDays(15);
+
+            List<Payment>? result = _paymentManager.GetPaymentsFromDateRange(startDate, endDate);
+
+            Assert.IsNotNull(result, "The result should not be null.");
+            Assert.IsTrue(result.Count >= 3, "At least three payments should be returned in the valid date range.");
+        }
+
+        [TestMethod]
+        public void GetPaymentsFromDateRangeInvalidDateTest()
+        {
+            DateTime startDate = DateTime.Today.AddDays(30);
+            DateTime endDate = DateTime.Today.AddDays(31); // Date range with no expected payments
+
+            List<Payment>? result = _paymentManager.GetPaymentsFromDateRange(startDate, endDate);
+
+            Assert.IsNotNull(result, "The result should not be null even for an empty range.");
+            Assert.AreEqual(0, result.Count, "No payments should be returned for a range with no data.");
         }
     }
 }

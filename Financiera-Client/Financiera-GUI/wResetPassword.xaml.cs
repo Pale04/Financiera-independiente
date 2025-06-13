@@ -137,24 +137,27 @@ namespace Financiera_GUI
             {
                 _notificationManager.Show(NotificationMessages.GlobalEmptyFields, NotificationType.Warning);
             }
-            EmployeeClass employee = new()
+            else
             {
-                User = user
-            };
-            int response = accountManager.ChangePassword(employee, psbNewPassword.Password, psbConfirm.Password);
+                EmployeeClass employee = new()
+                {
+                    User = user
+                };
+                int response = accountManager.ChangePassword(employee, psbNewPassword.Password, psbConfirm.Password);
 
-            switch (response)
-            {
-                case 0:
-                    _notificationManager.Show(NotificationMessages.GlobalUpdateSuccess, NotificationType.Information);
-                    break;
+                switch (response)
+                {
+                    case 0:
+                        _notificationManager.Show(NotificationMessages.GlobalUpdateSuccess, NotificationType.Information);
+                        break;
 
-                case 1:
-                    _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
-                    break;
-                case 2:
-                    _notificationManager.Show(NotificationMessages.ResetInvalidCredentials, NotificationType.Warning);
-                    break;
+                    case 1:
+                        _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
+                        break;
+                    case 2:
+                        _notificationManager.Show(NotificationMessages.ResetInvalidCredentials, NotificationType.Warning);
+                        break;
+                }
             }
         }
 
