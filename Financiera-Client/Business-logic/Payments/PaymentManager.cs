@@ -156,7 +156,7 @@ namespace Business_logic.Payments
             }
         }
 
-        public int AddPolicy(Payment payment)
+        public int AddPayment(Payment payment)
         {
             PaymentServiceClient client = new();
             int statusCode = 1;

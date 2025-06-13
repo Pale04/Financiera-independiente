@@ -52,7 +52,7 @@ namespace Financiera_GUI.Credit
             {
                 foreach (var payment in payments)
                 {
-                    int code = manager.AddPolicy(payment);
+                    int code = manager.AddPayment(payment);
                     if(code != 0)
                     {
                         anyFailed = true;
