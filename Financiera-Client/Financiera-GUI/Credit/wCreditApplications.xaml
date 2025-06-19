@@ -101,7 +101,8 @@
 
             <Border Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Margin="10, 10, 10, 20" Padding="10" Background="#E0E1DD" CornerRadius="15" Height="Auto">
                 <StackPanel HorizontalAlignment="Center">
-                    <Button Content="Aplicar filtros" Click="ApplyFilter" Width="250" FontSize="16"/>
+                    <Button Content="Aplicar filtros" Click="ApplyFilter" Width="250" FontSize="16" Margin="0, 0, 0, 10"/>
+                    <Button Content="Borrar filtros" Click="ResetFilter" Width="250" FontSize="16"/>
 
                     <Label FontSize="20" HorizontalAlignment="Center" Margin="0, 10, 0, 0">Capital</Label>
                     <RadioButton Name="rdCapital1" GroupName="capitalRange" Margin="5">25,000-</RadioButton>
@@ -111,9 +112,9 @@
                     <RadioButton Name="rdCapital5" GroupName="capitalRange" Margin="5">100,000+</RadioButton>
 
                     <Label FontSize="20" HorizontalAlignment="Center" Margin="0, 10, 0, 0">Plazo</Label>
-                    <RadioButton Name="rdPlazo1" GroupName="capitalRange" Margin="5">menos de 1 año</RadioButton>
-                    <RadioButton Name="rdPlazo2" GroupName="capitalRange" Margin="5">1 a 3 años</RadioButton>
-                    <RadioButton Name="rdPlazo3" GroupName="capitalRange" Margin="5">más de 3 años</RadioButton>
+                    <RadioButton Name="rdDuration1" GroupName="capitalRange" Margin="5">menos de 1 año</RadioButton>
+                    <RadioButton Name="rdDuration2" GroupName="capitalRange" Margin="5">1 a 3 años</RadioButton>
+                    <RadioButton Name="rdDuration3" GroupName="capitalRange" Margin="5">más de 3 años</RadioButton>
                 </StackPanel>
             </Border>
         </Grid>
