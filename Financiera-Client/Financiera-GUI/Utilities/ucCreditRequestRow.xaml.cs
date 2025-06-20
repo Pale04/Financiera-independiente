@@ -23,7 +23,7 @@ namespace Financiera_GUI.Utilities
         }
 
         public static readonly RoutedEvent ViewCreditEvent = EventManager.RegisterRoutedEvent(
-            name: "ViewCreditClick",
+            name: "ViewCredit",
             routingStrategy: RoutingStrategy.Bubble,
             handlerType: typeof(RoutedEventHandler),
             ownerType: typeof(ucCreditRequestRow));
@@ -37,6 +37,7 @@ namespace Financiera_GUI.Utilities
         void RaiseViewCreditEvent()
         {
             RoutedEventArgs routedEventArgs = new(routedEvent: ViewCreditEvent);
+            
 
             RaiseEvent(routedEventArgs);
         }

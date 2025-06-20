@@ -22,6 +22,12 @@ namespace Financiera_GUI.Credit
         {
             InitializeComponent();
             LoadRequests();
+
+            if (UserSession.Instance.Employee.Role == "analist")
+            {
+                backBtn.Visibility = Visibility.Collapsed;
+                backBtn.IsEnabled = false;
+            }
         }
 
         private void LoadRequests()

@@ -19,9 +19,7 @@ namespace Financiera_GUI.MainMenus
                     ContentFrame.NavigationService.Navigate(new wSystemManagement());
                     break;
                 case "analist":
-                    //TODO: Go to wCreditApplications
-                    //ContentFrame.NavigationService.Navigate(new wCreditApplications());
-                    ContentFrame.NavigationService.Navigate(new wRequestsManagement());
+                    ContentFrame.NavigationService.Navigate(new wCreditApplications());
                     break;
                 case "adviser":
                     ContentFrame.NavigationService.Navigate(new wRequestsManagement());
