@@ -92,7 +92,8 @@ namespace Financiera_GUI.Utilities
                 try
                 {
                     File = System.IO.File.ReadAllBytes(fileDialog.FileName);
-                    FileName = fileDialog.FileName; 
+                    fileDialog.AddExtension = true;
+                    FileName = fileDialog.FileName;
                     button.Background = Brushes.LightGreen;
                 }
                 catch (SecurityException ex)
