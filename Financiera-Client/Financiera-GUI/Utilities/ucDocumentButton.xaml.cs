@@ -49,6 +49,8 @@ namespace Financiera_GUI.Utilities
         public byte[] File;
         public string FileName;
 
+        public string CreditId { get; set; }
+
         public bool selectable = true;
 
         public void SetImage(string path)
@@ -112,7 +114,7 @@ namespace Financiera_GUI.Utilities
                 Directory.CreateDirectory(Path.Combine(folder, "creditDocuments"));
             }
 
-            string newFileName = $"{FileName.Substring(0, 2)}{DocumentationName}{Path.GetExtension(FileName)}";
+            string newFileName = $"{CreditId.Substring(0, 2)}{DocumentationName}{Path.GetExtension(FileName)}";
             System.IO.File.WriteAllBytes(Path.Combine(folder, "creditDocuments/") + newFileName, File);
         }
     }

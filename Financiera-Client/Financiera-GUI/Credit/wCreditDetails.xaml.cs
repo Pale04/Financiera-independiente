@@ -175,16 +175,15 @@ namespace Financiera_GUI.Credit
                 ucDocumentButton button = new()
                 {
                     Text = documentation.Name,
-                    FileName = documentation.Name,
+                    FileName = document.Name,
                     File = document.File,
                     AcceptedFile = documentation.FileType.ToString(),
                     DocumentationId = document.DocumentationId,
                     Color = Brushes.Gray,
                     selectable = false,
-                    DocumentationName = documentation.Name
+                    DocumentationName = documentation.Name,
+                    CreditId = _credit.Id.ToString()
                 };
-
-                //button.SetImage(".\\Images\\upload_file_icon.png");
 
                 documentsPanel.Children.Add(button);
             }
