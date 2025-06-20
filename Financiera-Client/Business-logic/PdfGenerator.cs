@@ -1,7 +1,11 @@
 ﻿using DomainClasses;
+using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
-using iText.Layout.Properties;  
+using iText.Layout.Properties;
+
+using System.IO;
+
 
 namespace Business_logic
 {
@@ -83,9 +87,29 @@ namespace Business_logic
             document.Close();
         }
 
-        public static void GeneratePaymentLayoutDocument()
+        public static void GeneratePaymentLayoutDocument(List<Payment> paymentsList, int creditId)
         {
-            // todo
+            string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            iText.Layout.Document document = new iText.Layout.Document(new PdfDocument(new PdfWriter(path + $"\\Pagos-{creditId}.pdf")));
+
+            document.Add(new Paragraph("Tabla de pagos").SetFontSize(18).SetHorizontalAlignment(HorizontalAlignment.CENTER));
+            document.Add(new Paragraph("Financiera independiente").SetFontSize(16).SetHorizontalAlignment(HorizontalAlignment.CENTER));
+
+            Table paymentsTable = new Table(UnitValue.CreatePercentArray(3)).UseAllAvailableWidth();
+
+            paymentsTable.AddCell("Folio");
+            paymentsTable.AddCell("Monto");
+            paymentsTable.AddCell("Fecha");
+
+            foreach (Payment payment in paymentsList)
+            {
+                paymentsTable.AddCell(payment.Id.ToString());
+                paymentsTable.AddCell(payment.Amount.ToString());
+                paymentsTable.AddCell(payment.CollectionDate.ToString());
+            }
+
+            document.Add(paymentsTable);
+            document.Close();
         }
     }
 }

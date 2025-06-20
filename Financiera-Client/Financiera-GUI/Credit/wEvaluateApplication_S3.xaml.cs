@@ -148,6 +148,9 @@ namespace Financiera_GUI.Credit
                 currentDate = currentDate.AddDays(daysBetweenPayments);
             }
 
+            PdfGenerator.GeneratePaymentLayoutDocument(payments, credit.Id);
+            MessageBox.Show("Se ha guardado el documento de pagos en su carpeta de Descargas", "Documento generado", MessageBoxButton.OK, MessageBoxImage.Information);
+
             return payments;
         }
 

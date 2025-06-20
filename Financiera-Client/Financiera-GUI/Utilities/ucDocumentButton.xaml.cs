@@ -116,6 +116,8 @@ namespace Financiera_GUI.Utilities
 
             string newFileName = $"{CreditId}{DocumentationName}{Path.GetExtension(FileName)}";
             System.IO.File.WriteAllBytes(Path.Combine(folder, "creditDocuments/") + newFileName, File);
+
+            MessageBox.Show("Se ha guardado el archivo en la carpeta de Desacargas", "Documento descargado", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
