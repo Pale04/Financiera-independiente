@@ -19,7 +19,7 @@ namespace Financiera_GUI.Credit
         private List<CreditCondition> _conditions;
         public string BeneficiaryId { get; set; }
 
-        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Descargas");
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
         public wNewCredit()
         {

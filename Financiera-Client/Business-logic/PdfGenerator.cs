@@ -1,7 +1,7 @@
 ﻿using DomainClasses;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
-using iText.Layout.Properties;
+using iText.Layout.Properties;  
 
 namespace Business_logic
 {
@@ -14,7 +14,7 @@ namespace Business_logic
                 throw new ArgumentNullException();
             }
 
-            iText.Layout.Document document = new iText.Layout.Document(new PdfDocument(new PdfWriter(path + $"Solicitud-{credit.Id}.pdf")));
+            iText.Layout.Document document = new iText.Layout.Document(new PdfDocument(new PdfWriter(path + $"\\Solicitud-{credit.Id}.pdf")));
 
             document.Add(new Paragraph("Solicitud de crédito").SetFontSize(18).SetHorizontalAlignment(HorizontalAlignment.CENTER));
             document.Add(new Paragraph("Financiera independiente").SetFontSize(16).SetHorizontalAlignment(HorizontalAlignment.CENTER));
