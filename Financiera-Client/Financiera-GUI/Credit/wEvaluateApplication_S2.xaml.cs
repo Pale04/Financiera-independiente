@@ -65,6 +65,15 @@ namespace Financiera_GUI.Credit
 
         private void EvaluatePolicies(object sender, RoutedEventArgs e)
         {
+            if (CbState.SelectedIndex == 1)
+            {
+                _policiesApproved = false;
+            }
+            else
+            {
+                _policiesApproved = true;
+            }
+
             CreditManager manager = new();
             int statusCode = manager.DeterminateResquest(_creditReferenced ,_policiesApproved);
             switch (statusCode)

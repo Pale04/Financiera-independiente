@@ -9,7 +9,7 @@
       Title="wSystemManagement">
 
     <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel Orientation="Horizontal">
+        
             <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnCreateAccountClick">
                 <Border.Style>
                     <Style TargetType="Border">
@@ -31,28 +31,7 @@
                     <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" FontFamily="Roboto">Crear cuentas</Label>
                 </Grid>
             </Border>
-            <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnEditAccountClick">
-                <Border.Style>
-                    <Style TargetType="Border">
-                        <Setter Property="Background" Value="#FFE0E1DD" />
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="LightSteelBlue" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
-                <Grid Width="400" Height="150" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="0" Margin="10" Source="../images/edit_account_icon.png" Stretch="Uniform"/>
-                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" FontFamily="Roboto">Modificar cuentas</Label>
-                </Grid>
-            </Border>
-        </StackPanel>
+        
         <StackPanel Orientation="Horizontal">
             <Border Margin="10" CornerRadius="20" MouseLeftButtonDown="BtnCreditPoliciesManagementClick">
                 <Border.Style>

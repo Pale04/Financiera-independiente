@@ -114,7 +114,7 @@ namespace Financiera_GUI.Utilities
                 Directory.CreateDirectory(Path.Combine(folder, "creditDocuments"));
             }
 
-            string newFileName = $"{CreditId.Substring(0, 2)}{DocumentationName}{Path.GetExtension(FileName)}";
+            string newFileName = $"{CreditId}{DocumentationName}{Path.GetExtension(FileName)}";
             System.IO.File.WriteAllBytes(Path.Combine(folder, "creditDocuments/") + newFileName, File);
         }
     }

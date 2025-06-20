@@ -5,8 +5,6 @@ using Notification.Wpf;
 using System.ServiceModel;
 using System.Windows.Controls;
 using Financiera_GUI.Utilities;
-using CatalogServiceReference;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Windows.Media;
 
 namespace Financiera_GUI.Credit
@@ -14,9 +12,9 @@ namespace Financiera_GUI.Credit
     public partial class wCreditDetails : Page
     {
         private DomainClasses.Credit? _credit;
-        private DomainClasses.CreditCondition? _creditCondition;
-        private DomainClasses.Customer? _customer;
-        private List<DomainClasses.Document>? _documents;
+        private CreditCondition? _creditCondition;
+        private Customer? _customer;
+        private List<Document>? _documents;
         private List<RequiredDocument>? _requiredDocumentation;
 
         NotificationManager _notificationManager = new NotificationManager();
@@ -60,7 +58,7 @@ namespace Financiera_GUI.Credit
             }
         }
 
-        private List<DomainClasses.Document>? GetDocuments(int creditId)
+        private List<Document>? GetDocuments(int creditId)
         {
             CreditDocumentManager manager = new();
 
@@ -90,7 +88,7 @@ namespace Financiera_GUI.Credit
             }
         }
 
-        private DomainClasses.CreditCondition? GetCreditCondition(int conditionId)
+        private CreditCondition? GetCreditCondition(int conditionId)
         {
             CreditConditionManager manager = new();
 
