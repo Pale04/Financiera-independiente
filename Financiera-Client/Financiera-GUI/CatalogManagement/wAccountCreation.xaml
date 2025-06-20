@@ -68,7 +68,7 @@
                     <Label>La contraseña debe ser de 8 o más caracteres y contener al menos:</Label>
                     <Label>* Una minuscula</Label>
                     <Label>* Una mayuscula</Label>
-                    <Label>* Un carácter especial</Label>
+                    <Label>* Un carácter especial (!, @, #, $, *, +) </Label>
                     <Label>* Un número</Label>
                 </StackPanel>
                 
