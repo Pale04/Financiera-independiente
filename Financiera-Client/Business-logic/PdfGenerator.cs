@@ -76,6 +76,10 @@ namespace Business_logic
 
             document.Add(creditTable);
 
+            double total = (double)credit.Capital + (((double)credit.Capital * ((double)condition.InterestRate / 100)) * (1.0 + ((double)condition.IVA / 100)));
+            string summary = $"Capital: ${credit.Capital}\nPagos mensuales: {condition.PaymentsPerMonth} de ${total / (credit.Duration * condition.PaymentsPerMonth)}\nDuración en meses: {credit.Duration}\nInteres: {condition.InterestRate}%\n\nTotal a pagar: ${total}";
+            document.Add(new Paragraph(summary).SetFontSize(18).SetHorizontalAlignment(HorizontalAlignment.CENTER));
+
             document.Close();
         }
 
