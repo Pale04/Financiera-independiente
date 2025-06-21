@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Drawing;
+using System.IO;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,12 +35,23 @@ namespace Financiera_GUI.Utilities
             }
         }
 
+        public Brush Color
+        {
+            set
+            {
+                button.Background = value;
+            }
+        }
+
         public int DocumentationId { get; set; }
+        public string DocumentationName { get; set; }
 
         public byte[] File;
         public string FileName;
 
-        public bool clickable = true;
+        public string CreditId { get; set; }
+
+        public bool selectable = true;
 
         public void SetImage(string path)
         {
@@ -53,8 +65,9 @@ namespace Financiera_GUI.Utilities
 
         private void SelectFile(object sender, MouseButtonEventArgs e)
         {
-            if (!clickable)
+            if (!selectable)
             {
+                Download();
                 return;
             }
             
@@ -81,6 +94,7 @@ namespace Financiera_GUI.Utilities
                 try
                 {
                     File = System.IO.File.ReadAllBytes(fileDialog.FileName);
+                    fileDialog.AddExtension = true;
                     FileName = fileDialog.FileName;
                     button.Background = Brushes.LightGreen;
                 }
@@ -90,6 +104,20 @@ namespace Financiera_GUI.Utilities
                     $"Details:\n\n{ex.StackTrace}");
                 }
             }
+        }
+
+        private void Download()
+        {
+            string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            if (!Path.Exists(Path.Combine(folder, "creditDocuments")))
+            {
+                Directory.CreateDirectory(Path.Combine(folder, "creditDocuments"));
+            }
+
+            string newFileName = $"{CreditId}{DocumentationName}{Path.GetExtension(FileName)}";
+            System.IO.File.WriteAllBytes(Path.Combine(folder, "creditDocuments/") + newFileName, File);
+
+            MessageBox.Show("Se ha guardado el archivo en la carpeta de Desacargas", "Documento descargado", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

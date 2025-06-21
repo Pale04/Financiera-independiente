@@ -1,0 +1,4 @@
+Folio,Nombre del cliente,Fecha de cobro,Importe,Banco,CLABE,Cobrado
+1,Juan Perez,22/06/2025,269.04,Banco desconocido,876543210987654321,si
+2,Juan Perez,22/06/2025,269.04,Banco desconocido,876543210987654321,no
+3,Juan Perez,22/06/2025,269.04,Banco desconocido,876543210987654321,SI

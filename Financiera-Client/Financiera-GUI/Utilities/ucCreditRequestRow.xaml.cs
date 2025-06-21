@@ -37,6 +37,7 @@ namespace Financiera_GUI.Utilities
         void RaiseViewCreditEvent()
         {
             RoutedEventArgs routedEventArgs = new(routedEvent: ViewCreditEvent);
+            
 
             RaiseEvent(routedEventArgs);
         }

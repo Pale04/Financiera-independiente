@@ -34,7 +34,7 @@ namespace Data_Access
 
         public int Add(string address)
         {
-            int result = 1;
+            int result = 0;
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
             {
                 var newSubsidiary = new Subsidiary
@@ -51,7 +51,7 @@ namespace Data_Access
 
         public int UpdateAddress(int id, string address)
         {
-            int result = 1;
+            int result = 0;
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
             {
                 var subsidiary = context.Subsidiaries.Find(id);
@@ -66,7 +66,7 @@ namespace Data_Access
 
         public int UpdateState(int id, bool isActive)
         {
-            int result = 1;
+            int result = 0;
             using (var context = new independent_financialContext(ConnectionStringGenerator.GetConnectionString(ConnectionRole.Administrator)))
             {
                 var subsidiary = context.Subsidiaries.Find(id);

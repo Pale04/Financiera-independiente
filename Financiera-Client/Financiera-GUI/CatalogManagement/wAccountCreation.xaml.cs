@@ -11,14 +11,14 @@ namespace Financiera_GUI.CatalogManagement
 {
     public partial class wAccountCreation : Page
     {
-        NotificationManager _notificationManager = new NotificationManager();
+        NotificationManager _notificationManager;
 
         public wAccountCreation()
         {
             InitializeComponent();
+            _notificationManager = new NotificationManager();
             DateTime currentDate = DateTime.Now;
-
-            birthdayPicker.BlackoutDates.Add(new CalendarDateRange(currentDate.AddYears(-18), DateTime.Now.AddYears(100)));
+            //birthdayPicker.BlackoutDates.Add(new CalendarDateRange(currentDate.AddYears(-18), DateTime.Now.AddYears(100)));
         }
 
         private void Back(object sender, MouseButtonEventArgs e)
@@ -51,7 +51,6 @@ namespace Financiera_GUI.CatalogManagement
             string role = GetSelectedRole();
 
             AccountManager manager = new();
-            int result;
 
             EmployeeClass employee = new()
             {
@@ -87,10 +86,13 @@ namespace Financiera_GUI.CatalogManagement
                         _notificationManager.Show("Error al registrar", "Ya existe un trabajador con el nombre de usuario o correo ingresados", NotificationType.Warning, "WindowArea");
                         break;
                 }
+
+                saveBtn.IsEnabled = true;
             }
             catch (Exception error)
             {
                 _notificationManager.Show("Error al registrar", "Ocurrió un error de nuestro lado, intente nuevamente", NotificationType.Error, "WindowArea");
+                saveBtn.IsEnabled = true;
                 return;            
             }
         }
@@ -177,7 +179,7 @@ namespace Financiera_GUI.CatalogManagement
                 pwdErrorLabel.Visibility = Visibility.Visible;
                 invalidFields = true;
             }
-            else if (!new Regex("(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}").IsMatch(pwdField.Password.Trim()))
+            else if (!new Regex("(?=.*[A-Z])(?=.*[!@#$&*+])(?=.*[0-9])(?=.*[a-z]).{8,}").IsMatch(pwdField.Password.Trim()))
             {
                 pwdErrorLabel.Content = "La contraseña no es lo suficientemente fuerte";
                 pwdErrorLabel.Visibility = Visibility.Visible;
@@ -189,9 +191,15 @@ namespace Financiera_GUI.CatalogManagement
                 bdayErrorLabel.Visibility = Visibility.Visible;
                 invalidFields = true;
             }
-            else if (!DateOnly.TryParseExact(DateOnly.FromDateTime((DateTime)birthdayPicker.SelectedDate).ToString(), "dd/MM/yyyy", out temp))
+            else if (birthdayPicker.SelectedDate == null)
             {
-                bdayErrorLabel.Content = "La feecha no es valida";
+                bdayErrorLabel.Content = "La fecha no es valida";
+                bdayErrorLabel.Visibility = Visibility.Visible;
+                invalidFields = true;
+            }
+            else if (birthdayPicker.SelectedDate.Value > DateTime.Now.AddYears(-18))
+            {
+                bdayErrorLabel.Content = "El trabajador debe ser mayor a 18 años";
                 bdayErrorLabel.Visibility = Visibility.Visible;
                 invalidFields = true;
             }

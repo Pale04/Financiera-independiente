@@ -281,6 +281,7 @@ namespace CreditServiceReference
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfCreditDC1nk_PiFui))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfArrayOfCreditDocumentDC1nk_PiFui))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(CreditServiceReference.ResponseWithContentOfint))]
     public partial class Response : object
     {
         
@@ -413,6 +414,28 @@ namespace CreditServiceReference
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public CreditServiceReference.CreditPaymentDC Data
+        {
+            get
+            {
+                return this.DataField;
+            }
+            set
+            {
+                this.DataField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseWithContentOfint", Namespace="http://schemas.datacontract.org/2004/07/FinancieraServer.DataContracts")]
+    public partial class ResponseWithContentOfint : CreditServiceReference.Response
+    {
+        
+        private int DataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Data
         {
             get
             {
@@ -685,10 +708,10 @@ namespace CreditServiceReference
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/AddCreditRequest", ReplyAction="http://tempuri.org/ICreditService/AddCreditRequestResponse")]
-        CreditServiceReference.Response AddCreditRequest(CreditServiceReference.CreditRequestDC request);
+        CreditServiceReference.ResponseWithContentOfint AddCreditRequest(CreditServiceReference.CreditRequestDC request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/AddCreditRequest", ReplyAction="http://tempuri.org/ICreditService/AddCreditRequestResponse")]
-        System.Threading.Tasks.Task<CreditServiceReference.Response> AddCreditRequestAsync(CreditServiceReference.CreditRequestDC request);
+        System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfint> AddCreditRequestAsync(CreditServiceReference.CreditRequestDC request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetActiveCredits", ReplyAction="http://tempuri.org/ICreditService/GetActiveCreditsResponse")]
         CreditServiceReference.ResponseWithContentOfArrayOfCreditDC1nk_PiFui GetActiveCredits();
@@ -725,6 +748,12 @@ namespace CreditServiceReference
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetCreditsDocuments", ReplyAction="http://tempuri.org/ICreditService/GetCreditsDocumentsResponse")]
         System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDocumentDC1nk_PiFui> GetCreditsDocumentsAsync(int creditId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/UpdateCreditDocuments", ReplyAction="http://tempuri.org/ICreditService/UpdateCreditDocumentsResponse")]
+        CreditServiceReference.Response UpdateCreditDocuments(int creditId, CreditServiceReference.CreditDocumentDC[] documents);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/UpdateCreditDocuments", ReplyAction="http://tempuri.org/ICreditService/UpdateCreditDocumentsResponse")]
+        System.Threading.Tasks.Task<CreditServiceReference.Response> UpdateCreditDocumentsAsync(int creditId, CreditServiceReference.CreditDocumentDC[] documents);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditService/GetPaymentInfo", ReplyAction="http://tempuri.org/ICreditService/GetPaymentInfoResponse")]
         CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui GetPaymentInfo(int creditId);
@@ -783,12 +812,12 @@ namespace CreditServiceReference
         {
         }
         
-        public CreditServiceReference.Response AddCreditRequest(CreditServiceReference.CreditRequestDC request)
+        public CreditServiceReference.ResponseWithContentOfint AddCreditRequest(CreditServiceReference.CreditRequestDC request)
         {
             return base.Channel.AddCreditRequest(request);
         }
         
-        public System.Threading.Tasks.Task<CreditServiceReference.Response> AddCreditRequestAsync(CreditServiceReference.CreditRequestDC request)
+        public System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfint> AddCreditRequestAsync(CreditServiceReference.CreditRequestDC request)
         {
             return base.Channel.AddCreditRequestAsync(request);
         }
@@ -851,6 +880,16 @@ namespace CreditServiceReference
         public System.Threading.Tasks.Task<CreditServiceReference.ResponseWithContentOfArrayOfCreditDocumentDC1nk_PiFui> GetCreditsDocumentsAsync(int creditId)
         {
             return base.Channel.GetCreditsDocumentsAsync(creditId);
+        }
+        
+        public CreditServiceReference.Response UpdateCreditDocuments(int creditId, CreditServiceReference.CreditDocumentDC[] documents)
+        {
+            return base.Channel.UpdateCreditDocuments(creditId, documents);
+        }
+        
+        public System.Threading.Tasks.Task<CreditServiceReference.Response> UpdateCreditDocumentsAsync(int creditId, CreditServiceReference.CreditDocumentDC[] documents)
+        {
+            return base.Channel.UpdateCreditDocumentsAsync(creditId, documents);
         }
         
         public CreditServiceReference.ResponseWithContentOfCreditPaymentDC1nk_PiFui GetPaymentInfo(int creditId)

@@ -43,7 +43,7 @@ namespace Business_logic.Payments
                             CollectionDate = DateOnly.Parse(payment.CollectionDate),
                             Amount = payment.Amount,
                             BankAccountClabe = payment.BankAccountClabe,
-                            Bank = result.Banco.Institucion
+                            Bank = result.Banco != null ? result.Banco.Institucion : "Banco desconocido"
                         });
                     }
                     return paymentLayout;
@@ -156,10 +156,12 @@ namespace Business_logic.Payments
             }
         }
 
-        public int AddPolicy(Payment payment)
+        public int AddPayment(Payment payment)
         {
             PaymentServiceClient client = new();
-            
+            int statusCode = 1;
+
+
             System.DateOnly currentDate = payment.CollectionDate;
             
             PaymentDC paymentDC = new()
@@ -170,9 +172,54 @@ namespace Business_logic.Payments
                 RegistrerId = payment.RegistrerId
 
             };
-            Response response = client.AddPayment(paymentDC);
-            int statusCode = response.StatusCode;
+
+            try
+            {
+                Response response = client.AddPayment(paymentDC);
+                statusCode = response.StatusCode;
+            }
+            catch(CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError); 
+            }
+            
+           
             return statusCode;
+        }
+
+        public List<Payment>? GetPaymentsFromDateRange(DateTime startDate, DateTime endDate)
+        {
+            PaymentServiceClient client = new();
+            List<Payment> payments = [];
+
+            try
+            {
+                var response = client.GetPaymentsFromDateRange(startDate.ToString(), endDate.ToString());
+
+                if (response.StatusCode == 1)
+                {
+                    throw new Exception(ErrorMessages.ServerError);
+                }
+
+                foreach (var payment in response.Data)
+                {
+                    payments.Add(new()
+                    {
+                        Id = payment.Id,
+                        Amount = payment.Amount,
+                        CreditId = payment.CreditId,
+                        CollectionDate = DateOnly.Parse(payment.CollectionDate),
+                        RegistrerId = payment.RegistrerId,
+                        State = Payment.StateFromString(payment.PaymentState.ToString())
+                    });
+                }
+            }
+            catch (CommunicationException error)
+            {
+                throw new Exception(ErrorMessages.ServerError);
+            }
+
+            return payments;
         }
     }
 }

@@ -3,6 +3,7 @@ using Business_logic.Catalogs;
 using DomainClasses;
 using Financiera_GUI.Utilities;
 using Notification.Wpf;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,6 +18,8 @@ namespace Financiera_GUI.Credit
         private List<RequiredDocument> _requiredDocuments;
         private List<CreditCondition> _conditions;
         public string BeneficiaryId { get; set; }
+
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
         public wNewCredit()
         {
@@ -91,6 +94,12 @@ namespace Financiera_GUI.Credit
             }
         }
 
+        private Customer GetCustomerInfo(string customerId)
+        {
+            CustomerManager manager = new();
+            return manager.GetByRfc(customerId);
+        }
+
         private void Back(object sender, MouseButtonEventArgs e)
         {
             MessageBoxResult confirmation = MessageBox.Show($"¿Está seguro que desea salir? Los cambios se perderán", "Cancelar solicitud", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
@@ -149,7 +158,8 @@ namespace Financiera_GUI.Credit
             }
              
             CreditManager creditManager = new();
-            switch (creditManager.Add(credit, documents))
+            (int, int) result = creditManager.Add(credit, documents);
+            switch (result.Item2)
             {
                 case 1:
                     _notificationManager.Show("Error", "Ocurrió un error al crear solicitud, intente nuevamente", NotificationType.Error, "WindowArea");
@@ -161,7 +171,14 @@ namespace Financiera_GUI.Credit
                     _notificationManager.Show("No elegible", "El cliente tiene una solicitud rechazada menor a 3 meses", NotificationType.Warning, "WindowArea");
                     break;
                 case 0:
+                    credit.Id = result.Item2;
+                    Customer customer = GetCustomerInfo(BeneficiaryId);
+                    PdfGenerator.GenerateCreditRequestDocument(credit, condition, customer, customer.PersonalReferences.ToList(), filePath);
+                    _notificationManager.Show("Solicitud creada correctamente", NotificationType.Success, "WindowArea");
                     NavigationService.GoBack();
+                    break;
+                default:
+                    _notificationManager.Show("Error", "Ocurrió un error desconocido, código: " + result.Item2, NotificationType.Warning, "WindowArea");
                     break;
             }
         }

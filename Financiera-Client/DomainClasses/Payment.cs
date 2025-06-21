@@ -22,9 +22,22 @@
 
         public int RegistrerId { get; set; }
 
-        public string GetState()
+        public static PaymentStatus StateFromString(string paymentState)
         {
-            return _state.Equals(PaymentStatus.Collected) ? "collected" : "not_collected";
+            switch (paymentState)
+            {
+                case "Collected":
+                    return PaymentStatus.Collected;
+                case "NotCollected":
+                    return PaymentStatus.NotCollected;
+                default:
+                    throw new InvalidDataException();
+            }
+        }
+
+        public PaymentStatus GetState()
+        {
+            return _state;
         }
     }
 }

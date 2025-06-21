@@ -123,19 +123,20 @@ namespace FinancieraServer.ServiceImplementations
         {
             try
             {
-                string smtpPassword = Environment.GetEnvironmentVariable("SMPT_PASSWORD");
+                string smtpPassword = "odiu rcny cscc payy";
 
                 if (string.IsNullOrWhiteSpace(smtpPassword))
                 {
+                    _logger.LogWarning("SMTP password is not set in environment variables.");
                     return 2;
                 }
 
                 StringBuilder mailBody = new StringBuilder();
-                mailBody.AppendFormat("<h1> Has solicitado restablecer tu contraseña</h1>");
-                mailBody.AppendFormat("<br />");
-                mailBody.AppendFormat("<h2> Ingresa el código de verificación para cambia tu contraseña</h2>");
-                mailBody.AppendFormat("<br />");
-                mailBody.AppendFormat($"<p> tu código de verificación es {code} </p>");
+                mailBody.Append("<h1>Has solicitado restablecer tu contraseña</h1>");
+                mailBody.Append("<br />");
+                mailBody.Append("<h2>Ingresa el código de verificación para cambiar tu contraseña</h2>");
+                mailBody.Append("<br />");
+                mailBody.Append($"<p>Tu código de verificación es {code}</p>");
 
                 MailMessage correo = new MailMessage
                 {
@@ -146,7 +147,7 @@ namespace FinancieraServer.ServiceImplementations
                 };
                 correo.To.Add(mail);
 
-                SmtpClient smtp = new SmtpClient("smpt.gmail.com")
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
                     Credentials = new System.Net.NetworkCredential("fnncrspprt@gmail.com", smtpPassword),
@@ -154,15 +155,36 @@ namespace FinancieraServer.ServiceImplementations
                 };
 
                 smtp.Send(correo);
-                _logger.LogInformation($"Verification code email sent successfully");
+                _logger.LogInformation("Verification code email sent successfully.");
 
                 return 0;
             }
-            catch (Exception error)
+            catch (FormatException fe)
             {
-                _logger.LogError($"An error ocurred trying to send the email {error.Message}");
+                _logger.LogError($"Invalid email format: {mail} - {fe.Message}");
+                return 2;
+            }
+            catch (SmtpFailedRecipientsException sfre)
+            {
+                _logger.LogError($"Failed to deliver email to one or more recipients: {sfre.Message}");
+                return 2;
+            }
+            catch (SmtpException se)
+            {
+                _logger.LogError($"SMTP error occurred while sending email: {se.Message}");
+                return 2;
+            }
+            catch (InvalidOperationException ioe)
+            {
+                _logger.LogError($"Invalid operation: {ioe.Message}");
+                return 2;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An unexpected error occurred while sending email: {ex.Message}");
                 return 2;
             }
         }
+
     }
 }

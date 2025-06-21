@@ -29,11 +29,11 @@ app.UseServiceModel(serviceBuilder =>
     serviceBuilder.AddService<AccountService>();
     serviceBuilder.AddServiceEndpoint<AccountService, IAccountService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/AccountService.svc");
     serviceBuilder.AddService<CatalogService>();
-    serviceBuilder.AddServiceEndpoint<CatalogService, ICatalogService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/CatalogService.svc");
     var creditBinding = new BasicHttpBinding(BasicHttpSecurityMode.Transport);
     creditBinding.MaxReceivedMessageSize = 20000000;
+    serviceBuilder.AddServiceEndpoint<CatalogService, ICatalogService>(creditBinding, "/CatalogService.svc");
     serviceBuilder.AddService<CreditService>();
-    serviceBuilder.AddServiceEndpoint<CreditService, ICreditService>(creditBinding, "/CreditService.svc");
+    serviceBuilder.AddServiceEndpoint<CreditService, ICreditService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/CreditService.svc");
     serviceBuilder.AddService<CustomerService>();
     serviceBuilder.AddServiceEndpoint<CustomerService, ICustomerService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/CustomerService.svc");
     serviceBuilder.AddService<PaymentService>();

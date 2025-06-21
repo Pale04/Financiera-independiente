@@ -22,10 +22,6 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
-            <Border Margin="10" Grid.Column="0" Height="40" Width="40" CornerRadius="50" Style="{StaticResource ButtonBehaviorGlobal}" MouseLeftButtonDown="Back">
-                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
-            </Border>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -86,10 +82,21 @@
                     <Label Margin="0,0,10,0" Grid.Column="1" HorizontalContentAlignment="Center"
                         FontFamily="Roboto" FontSize="20" FontWeight="Bold" Foreground="White">Fecha de Pago</Label>
                     <Label Margin="0,0,10,0" Grid.Column="2" HorizontalContentAlignment="Center"
-                        FontFamily="Roboto" FontSize="20
-" FontWeight="Bold" Foreground="White" Height="29" VerticalAlignment="Top">Monto</Label>
+                        FontFamily="Roboto" FontSize="20" FontWeight="Bold" Foreground="White" Height="29" VerticalAlignment="Top">Monto</Label>
                 </Grid>
             </Border>
         </StackPanel>
+
+        <Grid Grid.Row="4">
+            <Button Name="btnEvaluate" VerticalAlignment="Center" HorizontalAlignment="Right" Height="55" Background="#757575"
+                    Width="225" Margin="0,0,25,15"
+                    FontFamily="Roboto" FontSize="25" FontWeight="DemiBold" Foreground="#F5F5F5" Click="EvaluatePolicies">Realizar Dictamen
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

@@ -5,18 +5,16 @@ using Notification.Wpf;
 using System.ServiceModel;
 using System.Windows.Controls;
 using Financiera_GUI.Utilities;
-using CatalogServiceReference;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using SessionServiceReference;
+using System.Windows.Media;
 
 namespace Financiera_GUI.Credit
 {
     public partial class wCreditDetails : Page
     {
         private DomainClasses.Credit? _credit;
-        private DomainClasses.CreditCondition? _creditCondition;
-        private DomainClasses.Customer? _customer;
-        private List<DomainClasses.Document>? _documents;
+        private CreditCondition? _creditCondition;
+        private Customer? _customer;
+        private List<Document>? _documents;
         private List<RequiredDocument>? _requiredDocumentation;
 
         NotificationManager _notificationManager = new NotificationManager();
@@ -60,10 +58,10 @@ namespace Financiera_GUI.Credit
             }
         }
 
-        private List<DomainClasses.Document>? GetDocuments(int creditId)
+        private List<Document>? GetDocuments(int creditId)
         {
             CreditDocumentManager manager = new();
-            
+
             try
             {
                 return manager.GetCreditDocuments(creditId);
@@ -90,7 +88,7 @@ namespace Financiera_GUI.Credit
             }
         }
 
-        private DomainClasses.CreditCondition? GetCreditCondition(int conditionId)
+        private CreditCondition? GetCreditCondition(int conditionId)
         {
             CreditConditionManager manager = new();
 
@@ -98,7 +96,7 @@ namespace Financiera_GUI.Credit
             {
                 var conditions = manager.GetByPagination(1000, 1000, false);
 
-                foreach(var condition in conditions)
+                foreach (var condition in conditions)
                 {
                     if (condition.Id == conditionId)
                     {
@@ -124,7 +122,7 @@ namespace Financiera_GUI.Credit
             {
                 var credit = manager.GetCredit(creditId);
 
-                if (credit != null) 
+                if (credit != null)
                 {
                     return credit;
                 }
@@ -141,7 +139,7 @@ namespace Financiera_GUI.Credit
 
         private void LoadData()
         {
-            double total = (double)_credit.Capital + (((double)_credit.Capital * ((double)_creditCondition.InterestRate / 100)) * (1.0 + ((double)_creditCondition.IVA / 100)));
+            double total = ((double)_credit.Capital + ((double)_credit.Capital * ((double)_creditCondition.InterestRate / 100))) * (1.0 + ((double)_creditCondition.IVA / 100));
             int monthlyPayments = (int)Math.Floor(total / (double)_creditCondition.PaymentsPerMonth);
 
             titleLabel.Content = $"Crédito N.{_credit.Id}";
@@ -175,8 +173,14 @@ namespace Financiera_GUI.Credit
                 ucDocumentButton button = new()
                 {
                     Text = documentation.Name,
+                    FileName = document.Name,
+                    File = document.File,
                     AcceptedFile = documentation.FileType.ToString(),
-                    DocumentationId = document.DocumentationId
+                    DocumentationId = document.DocumentationId,
+                    Color = Brushes.Gray,
+                    selectable = false,
+                    DocumentationName = documentation.Name,
+                    CreditId = _credit.Id.ToString()
                 };
 
                 documentsPanel.Children.Add(button);
@@ -191,6 +195,68 @@ namespace Financiera_GUI.Credit
         private void Back(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void EditCredit(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            editButton.IsEnabled = false;
+            editButton.Visibility = System.Windows.Visibility.Hidden;
+            saveButton.IsEnabled = true;
+            saveButton.Visibility = System.Windows.Visibility.Visible;
+
+            foreach (ucDocumentButton button in documentsPanel.Children)
+            {
+                button.Color = Brushes.LightGreen;
+                button.selectable = true;
+            }
+        }
+
+        private void SaveCredit(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            saveButton.IsEnabled = false;
+            saveButton.Visibility = System.Windows.Visibility.Hidden;
+            editButton.IsEnabled = true;
+            editButton.Visibility = System.Windows.Visibility.Visible;
+
+            foreach (ucDocumentButton button in documentsPanel.Children)
+            {
+                button.Color = Brushes.Gray;
+                button.selectable = false;
+            }
+
+            List<DomainClasses.Document> documents = [];
+
+            foreach (ucDocumentButton button in documentsPanel.Children)
+            {
+                if (button.File == null)
+                {
+                    return;
+                }
+
+                documents.Add(new()
+                {
+                    Name = button.FileName,
+                    File = button.File,
+                    RegistryDate = DateTime.Now,
+                    Registrer = UserSession.Instance.Employee.Id,
+                    DocumentationId = button.DocumentationId,
+                    CreditId = _credit.Id
+                });
+            }
+
+            try
+            {
+                CreditDocumentManager manager = new();
+                if (manager.ReplaceDocuments(documents) != 0)
+                {
+                    _notificationManager.Show("No se pudieron actualizar los documentos", NotificationType.Error);
+                }
+            }
+            catch (CommunicationException error)
+            {
+                _notificationManager.Show("No se pudieron guardar los nuevos documentos", NotificationType.Error);
+                return;
+            }
         }
     }
 }

@@ -108,3 +108,16 @@ BEGIN
 	INSERT INTO Payment(collectionDate,amount,state,registrer,creditId) 
 	VALUES (@collectionDate,@amount,'pending',@registrer,@creditId);
 END;
+GO
+
+CREATE PROCEDURE GetCreditsByDateRange
+	@StartDate DATETIME,
+	@EndDate DATETIME
+AS
+BEGIN
+	SELECT creditId, collectionDate, amount, state
+	FROM Payment
+	WHERE collectionDate >= @StartDate AND collectionDate < DATEADD(day, 1, @EndDate)
+	ORDER BY collectionDate;
+END
+GO

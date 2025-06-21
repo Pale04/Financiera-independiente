@@ -6,7 +6,7 @@ namespace FinancieraServer.Interfaces
     public interface ICreditService
     {
         [OperationContract]
-        Response AddCreditRequest(CreditRequestDC request);
+        ResponseWithContent<int> AddCreditRequest(CreditRequestDC request);
 
         [OperationContract]
         ResponseWithContent<List<CreditDC>> GetActiveCredits();
@@ -25,6 +25,10 @@ namespace FinancieraServer.Interfaces
 
         [OperationContract]
         ResponseWithContent<List<CreditDocumentDC>> GetCreditsDocuments(int creditId);
+
+        [OperationContract]
+        Response UpdateCreditDocuments(int creditId, List<CreditDocumentDC> documents);
+
 
         [OperationContract]
         ResponseWithContent<CreditPaymentDC> GetPaymentInfo(int creditId);

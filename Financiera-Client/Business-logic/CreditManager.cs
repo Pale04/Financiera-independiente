@@ -13,22 +13,22 @@ namespace Business_logic
 {
     public class CreditManager
     {
-        public int Add(Credit credit, List<Document> documents)
+        public (int, int) Add(Credit credit, List<Document> documents)
         {
             try
             {
                 if (CustomerHasActiveCredit(credit.Beneficiary))
                 {
-                    return 2;
+                    return (0, 2);
                 }
                 else if (CustomerHasRecentCreditRequest(credit.Beneficiary))
                 {
-                    return 3;
+                    return (0, 3);
                 }
             }
             catch (CommunicationException error)
             {
-                return 1;
+                return (0, 1);
             }
 
             Response response;
@@ -67,11 +67,12 @@ namespace Business_logic
 
             try
             {
-                return creditService.AddCreditRequest(requestDC).StatusCode;
+                var wpfResponse = creditService.AddCreditRequest(requestDC);
+                return (wpfResponse.Data, wpfResponse.StatusCode);
             }
             catch (CommunicationException error)
             {
-                return 1;
+                return (0, 1);
             }
         }
 
@@ -200,4 +201,3 @@ namespace Business_logic
         }
     }
 }
-

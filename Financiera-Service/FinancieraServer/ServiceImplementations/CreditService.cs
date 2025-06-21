@@ -1,4 +1,5 @@
-﻿using Data_Access;
+﻿using Azure.Core;
+using Data_Access;
 using Data_Access.Entities;
 using FinancieraServer.DataContracts;
 using FinancieraServer.Interfaces;
@@ -54,7 +55,7 @@ namespace FinancieraServer.ServiceImplementations
             }
         }
 
-        public Response AddCreditRequest(CreditRequestDC request)
+        public ResponseWithContent<int> AddCreditRequest(CreditRequestDC request)
         {
             Credit credit = new()
             {
@@ -76,13 +77,13 @@ namespace FinancieraServer.ServiceImplementations
                 if (credit.id < 1)
                 {
                     _logger.LogWarning("Couldn´t add a credit, but no error was raised");
-                    return new Response(1, "An error ocurred while saving data");
+                    return new(1, "An error ocurred while saving data");
                 }
             }
             catch (DbException error)
             {
                 _logger.LogError($"An error with code {error.ErrorCode} occurred while saving credit at {DateTime.Now}: ", error.Message);
-                return new Response(1, "An error ocurred while saving the credit info");
+                return new(1, "An error ocurred while saving the credit info");
             }
 
             List<Document> documents = new List<Document>();
@@ -107,14 +108,14 @@ namespace FinancieraServer.ServiceImplementations
                 catch (Exception error)
                 {
                     _logger.LogError($"Error saving file at {DateTime.Now}: ", error.Message);
-                    return new Response(1, "Error saving documents");
+                    return new(1, "Error saving documents");
                 }
 
                 documents.Add(document);
             }
 
             DocumentDB documentDB = new();
-            int result;
+            int result = 0;
 
             foreach (Document document in documents)
             {
@@ -125,17 +126,17 @@ namespace FinancieraServer.ServiceImplementations
                     if (result < 1)
                     {
                         _logger.LogWarning("Couldn´t add a credit, but no error was raised");
-                        return new Response(1, "An error ocurred while saving documents");
+                        return new(1, "An error ocurred while saving documents");
                     }
                 }
                 catch (DbException error)
                 {
                     _logger.LogError($"An error with code {error.ErrorCode} occurred while saving documents at {DateTime.Now}: ", error.Message);
-                    return new Response(1, "An error ocurred while saving documents");
+                    return new(1, "An error ocurred while saving documents");
                 }
             }
 
-            return new Response(0, "Credit and documents added successfully");
+            return new(0, credit.id);
         }
 
         public Response DetermineRequest(int requestId, bool granted)
@@ -243,6 +244,54 @@ namespace FinancieraServer.ServiceImplementations
             }
         }
 
+        public Response UpdateCreditDocuments(int creditId, List<CreditDocumentDC> documents)
+        {
+            DocumentDB documentDB = new();
+
+            try
+            {
+                var documentsDb = documentDB.GetByCreditId(creditId);
+
+                foreach (Document document in documentsDb)
+                {
+                    foreach (CreditDocumentDC documentDC in documents)
+                    {
+                        if (document.name != documentDC.Name)
+                        {
+                            Document newDocument = new()
+                            {
+                                id = documentDC.Id,
+                                name = documentDC.Name,
+                                active = true,
+                                registryDate = DateTime.Parse(documentDC.RegistryDate),
+                                registrer = documentDC.RegistrerId,
+                                documentationId = documentDC.DocumentationId,
+                                creditId = creditId,
+                            };
+
+                            if (documentDB.ReplaceDocument(newDocument, document.id) < 1)
+                            {
+                                return new(1, "Error replacing document");
+                            }
+
+                            DocumentManager manager = new();
+                            if (string.IsNullOrEmpty(manager.SaveDocument(newDocument, documentDC.File)))
+                            {
+                                return new(1, "Error saving document on server");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"An error with code {error.HResult} occurred while updating documents at {DateTime.Now}: ", error.Message);
+                return new(1, "An error ocurred while saving the credit info");
+            }
+
+            return new(0);
+        }
+
         public ResponseWithContent<List<CreditDocumentDC>> GetCreditsDocuments(int creditId)
         {
             DocumentDB documentDB = new();
@@ -319,10 +368,9 @@ namespace FinancieraServer.ServiceImplementations
             }
             catch (DbException error)
             {
-                _logger.LogError($"An error with code {error.Message} trying to get the condition and capital information ");
+                _logger.LogError($"An error with code {error.ErrorCode} trying to get the condition and capital information ");
                 return new ResponseWithContent<CreditPaymentDC>(1, "An error ocurred while getting the creditpayment info");
             }
         }
     }
 }
-

@@ -13,5 +13,8 @@ namespace FinancieraServer.Interfaces
 
         [OperationContract]
         Response AddPayment(PaymentDC payment);
+
+        [OperationContract]
+        ResponseWithContent<List<PaymentDC>> GetPaymentsFromDateRange(string startDate, string endDate);
     }
 }

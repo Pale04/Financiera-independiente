@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Financiera_GUI
@@ -29,6 +30,7 @@ namespace Financiera_GUI
             this.user = username;
             InitializeComponent();
             SendEmail(user);
+            _notificationManager = new NotificationManager();
         }
 
         private void Code1_KeyDown(object sender, KeyEventArgs e)
@@ -91,7 +93,7 @@ namespace Financiera_GUI
                     }
                     else
                     {
-                        _notificationManager.Show(NotificationMessages.ResetIncorrectCode);
+                        _notificationManager.Show(NotificationMessages.ResetIncorrectCode, NotificationType.Error);
                     }
                 }
             }
@@ -118,26 +120,44 @@ namespace Financiera_GUI
 
         }
 
+        private bool ValidateFields()
+        {
+            bool validFields = true;
+            if (string.IsNullOrWhiteSpace(psbNewPassword.Password) || string.IsNullOrWhiteSpace(psbConfirm.Password))
+            {
+                validFields = false;
+            }
+
+            return validFields;
+        }
+
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            EmployeeClass employee = new()
+            if (!ValidateFields())
             {
-                User = user
-            };
-            int response = accountManager.ChangePassword(employee, psbNewPassword.Password, psbConfirm.Password);
-
-            switch (response)
+                _notificationManager.Show(NotificationMessages.GlobalEmptyFields, NotificationType.Warning);
+            }
+            else
             {
-                case 0:
-                    _notificationManager.Show(NotificationMessages.GlobalUpdateSuccess, NotificationType.Information);
-                    break;
+                EmployeeClass employee = new()
+                {
+                    User = user
+                };
+                int response = accountManager.ChangePassword(employee, psbNewPassword.Password, psbConfirm.Password);
 
-                case 1:
-                    _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
-                    break;
-                case 2:
-                    _notificationManager.Show(NotificationMessages.ResetInvalidCredentials, NotificationType.Warning);
-                    break;
+                switch (response)
+                {
+                    case 0:
+                        _notificationManager.Show(NotificationMessages.GlobalUpdateSuccess, NotificationType.Information);
+                        break;
+
+                    case 1:
+                        _notificationManager.Show(NotificationMessages.GlobalInternalError, NotificationType.Error);
+                        break;
+                    case 2:
+                        _notificationManager.Show(NotificationMessages.ResetInvalidCredentials, NotificationType.Warning);
+                        break;
+                }
             }
         }
 
@@ -167,6 +187,13 @@ namespace Financiera_GUI
           wLogin wLogin = new wLogin();
           wLogin.Show();
           this.Close();
+        }
+
+        private void Back(object sender, MouseButtonEventArgs e)
+        {
+            wLogin login = new wLogin();
+            login.Show();
+            this.Close();
         }
     }
 }

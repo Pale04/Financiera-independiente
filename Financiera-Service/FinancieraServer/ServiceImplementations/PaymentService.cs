@@ -108,19 +108,14 @@ namespace FinancieraServer.ServiceImplementations
             {
                 PaymentDB paymentDB = new();
 
-                if (paymentDB.PaymentExists(payment.Id))
-                {
-                    return new Response(3);
-                }
                 int response = paymentDB.AddPayment(new Payment()
                 {
-                    state = payment.PaymentState.ToString(),
                     amount = payment.Amount,
                     creditId = payment.CreditId,
                     collectionDate = ConvertDate(payment.CollectionDate),
                     registrer = payment.RegistrerId
                 });
-                if(response > 0)
+                if(response == 0)
                 {
                     return new Response(0);
                 }
@@ -141,6 +136,51 @@ namespace FinancieraServer.ServiceImplementations
         {
             DateOnly dateconverted = DateOnly.Parse(paymentDate);
             return dateconverted;
+        }
+
+        public ResponseWithContent<List<PaymentDC>> GetPaymentsFromDateRange(string startDate, string endDate)
+        {
+            try
+            {
+                PaymentDB paymentDB = new();
+                var paymentList = paymentDB.GetFromDateRange(DateOnly.Parse(startDate), DateOnly.Parse(endDate));
+
+                List<PaymentDC> payments = [];
+
+                foreach (Payment payment in paymentList)
+                {
+                    PaymentState state;
+                    switch (payment.state)
+                    {
+                        case "Collected":
+                            state = PaymentState.Collected;
+                            break;
+                        case "NotCollected":
+                            state = PaymentState.NotCollected;
+                            break;
+                        default:
+                            _logger.LogError($"Payment n.{payment.id} has an invalid state: {payment.state}");
+                            return new(1, "Error trying to get payments");
+                    }
+
+                    payments.Add(new()
+                    {
+                        Id = payment.id,
+                        CollectionDate = payment.collectionDate.ToString(),
+                        Amount = payment.amount,
+                        PaymentState = state,
+                        RegistrerId = payment.registrer,
+                        CreditId = payment.creditId
+                    });
+                }
+
+                return new(0, payments);
+            }
+            catch (DbException error)
+            {
+                _logger.LogError($"An error with code {error.HResult} occurred trying to get payments within a date range: {error.Message}");
+                return new(1, "Error trying to get payments");
+            }
         }
     }
 }

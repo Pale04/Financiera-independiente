@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
       d:DesignHeight="720" d:DesignWidth="1280"      
-      Title="Solicitudes de crédito"
+      Title="wCreditApplications"
       xmlns:uc="clr-namespace:Financiera_GUI.Utilities">
 
     <Grid Background="White">
@@ -16,18 +16,22 @@
                 <EventSetter Event="ViewCredit" Handler="ViewCreditInfo"/>
             </Style>
         </Grid.Resources>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
+            <Border Margin="10" Grid.Column="0" Panel.ZIndex="2" Height="40" Width="40" CornerRadius="50" MouseLeftButtonDown="Back" Name="backBtn" Style="{StaticResource ButtonBehaviorGlobal}">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../images/back-logo.png" Stretch="Uniform"/>
+            </Border>
 
             <Label Grid.ColumnSpan="2" Grid.Column="0" Margin="10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
            FontFamily="Roboto" FontSize="30" FontWeight="Bold">Solicitudes de crédito</Label>
@@ -44,7 +48,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -96,23 +100,24 @@
 
             <Border Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Margin="10, 10, 10, 20" Padding="10" Background="#E0E1DD" CornerRadius="15" Height="Auto">
                 <StackPanel HorizontalAlignment="Center">
-                    <Button Content="Aplicar filtros" Click="ApplyFilter" Width="250" FontSize="16"/>
-                    
+                    <Button Content="Aplicar filtros" Click="ApplyFilter" Width="250" FontSize="16" Margin="0, 0, 0, 10"/>
+                    <Button Content="Borrar filtros" Click="ResetFilter" Width="250" FontSize="16"/>
+
                     <Label FontSize="20" HorizontalAlignment="Center" Margin="0, 10, 0, 0">Capital</Label>
-                    <RadioButton Name="rdCapital1" GroupName="capitalRange" Margin="5">25,000-</RadioButton>
-                    <RadioButton Name="rdCapital2" GroupName="capitalRange" Margin="5">25,001 - 50,000</RadioButton>
-                    <RadioButton Name="rdCapital3" GroupName="capitalRange" Margin="5">50,001 - 75,000</RadioButton>
-                    <RadioButton Name="rdCapital4" GroupName="capitalRange" Margin="5">75,001 - 100,000</RadioButton>
-                    <RadioButton Name="rdCapital5" GroupName="capitalRange" Margin="5">100,000+</RadioButton>
+                    <RadioButton Name="rdCapital1" GroupName="capitalFilter" Margin="5">25,000-</RadioButton>
+                    <RadioButton Name="rdCapital2" GroupName="capitalFilter" Margin="5">25,001 - 50,000</RadioButton>
+                    <RadioButton Name="rdCapital3" GroupName="capitalFilter" Margin="5">50,001 - 75,000</RadioButton>
+                    <RadioButton Name="rdCapital4" GroupName="capitalFilter" Margin="5">75,001 - 100,000</RadioButton>
+                    <RadioButton Name="rdCapital5" GroupName="capitalFilter" Margin="5">100,000+</RadioButton>
 
                     <Label FontSize="20" HorizontalAlignment="Center" Margin="0, 10, 0, 0">Plazo</Label>
-                    <RadioButton Name="rdPlazo1" GroupName="capitalRange" Margin="5">menos de 1 año</RadioButton>
-                    <RadioButton Name="rdPlazo2" GroupName="capitalRange" Margin="5">1 a 3 años</RadioButton>
-                    <RadioButton Name="rdPlazo3" GroupName="capitalRange" Margin="5">más de 3 años</RadioButton>
+                    <RadioButton Name="rdDuration1" GroupName="durationFilter" Margin="5">menos de 1 año</RadioButton>
+                    <RadioButton Name="rdDuration2" GroupName="durationFilter" Margin="5">1 a 3 años</RadioButton>
+                    <RadioButton Name="rdDuration3" GroupName="durationFilter" Margin="5">más de 3 años</RadioButton>
                 </StackPanel>
             </Border>
         </Grid>
 
-        <notifications:NotificationArea Grid.Row="2" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
+        <notifications:NotificationArea Grid.Row="3" Margin="0,0,5,5" x:Name="WindowArea" Position="BottomRight" MaxItems="1"/>
     </Grid>
 </Page>
